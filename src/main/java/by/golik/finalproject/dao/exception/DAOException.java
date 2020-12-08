@@ -6,10 +6,10 @@ import java.sql.SQLException;
  * @author Nikita Golik
  */
 public class DAOException extends Exception {
-    public DAOException(String s, SQLException e) {
-        super(s, e);
+    public DAOException(String message, SQLException e) {
+        super(message, e);
     }
-    public DAOException(String s) {
-        super(s);
+    public DAOException(String message) {
+        super(message);
     }
 }
