@@ -6,14 +6,13 @@ import java.util.Objects;
 /**
  * @author Nikita Golik
  */
-public class Actor {
+public class Star {
     private int id;
     //TODO ru en
     private String name;
-    private String surname;
     private String image;
     private List<Movie> movieList;
-    public Actor() {
+    public Star() {
     }
 
     public int getId() {
@@ -30,14 +29,6 @@ public class Actor {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getImage() {
@@ -60,20 +51,18 @@ public class Actor {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Actor actor = (Actor) o;
+        Star star = (Star) o;
 
-        if(id != actor.id) return false;
-        if (!Objects.equals(name, actor.name)) return false;
-        if (!Objects.equals(surname, actor.surname)) return false;
-        if (!Objects.equals(movieList, actor.movieList)) return false;
-        return Objects.equals(image, actor.image);
+        if(id != star.id) return false;
+        if (!Objects.equals(name, star.name)) return false;
+        if (!Objects.equals(movieList, star.movieList)) return false;
+        return Objects.equals(image, star.image);
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (movieList != null ? movieList.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         return result;

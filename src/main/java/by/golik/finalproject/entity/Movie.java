@@ -10,15 +10,17 @@ public class Movie {
     private int id;
     private String title;
     private int year;
+    private String imageUrl;
+    private int runtime;
     private long budget;
     private long gross;
-    private String image;
-    private Actor producer;
+    private float rating;
+    private String description;
+
+    private List<Director> directorList;
     private List<Country> countryList;
-    private List<Rating> ratingList;
     private List<Genre> genreList;
-    private List<Actor> actorList;
-    private double avgRating;
+    private List<Star> starList;
 
     public Movie() {
 
@@ -48,6 +50,22 @@ public class Movie {
         this.year = year;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+
     public long getBudget() {
         return budget;
     }
@@ -64,28 +82,36 @@ public class Movie {
         this.gross = gross;
     }
 
-    public String getImage() {
-        return image;
+    public float getRating() {
+        return rating;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
-    public Actor getProducer() {
-        return producer;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProducer(Actor producer) {
-        this.producer = producer;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public List<Rating> getRatingList() {
-        return ratingList;
+    public List<Director> getDirectorList() {
+        return directorList;
     }
 
-    public void setRatingList(List<Rating> ratingList) {
-        this.ratingList = ratingList;
+    public void setDirectorList(List<Director> directorList) {
+        this.directorList = directorList;
+    }
+
+    public List<Country> getCountryList() {
+        return countryList;
+    }
+
+    public void setCountryList(List<Country> countryList) {
+        this.countryList = countryList;
     }
 
     public List<Genre> getGenreList() {
@@ -96,20 +122,12 @@ public class Movie {
         this.genreList = genreList;
     }
 
-    public List<Actor> getActorList() {
-        return actorList;
+    public List<Star> getStarList() {
+        return starList;
     }
 
-    public void setActorList(List<Actor> actorList) {
-        this.actorList = actorList;
-    }
-
-    public double getAvgRating() {
-        return avgRating;
-    }
-
-    public void setAvgRating(double avgRating) {
-        this.avgRating = avgRating;
+    public void setStarList(List<Star> starList) {
+        this.starList = starList;
     }
 
     @Override
@@ -119,16 +137,16 @@ public class Movie {
         Movie movie = (Movie) o;
         if (id != movie.id) return false;
         if (year != movie.year) return false;
+        if (!Objects.equals(imageUrl, movie.imageUrl)) return false;
         if (budget != movie.budget) return false;
         if (gross != movie.gross) return false;
-        if (Double.compare(movie.avgRating, avgRating) != 0) return false;
+        if (Double.compare(movie.rating, rating) != 0) return false;
         if (!Objects.equals(title, movie.title)) return false;
-        if (!Objects.equals(image, movie.image)) return false;
-        if (!Objects.equals(producer, movie.producer)) return false;
+
+        if (!Objects.equals(directorList, movie.directorList)) return false;
         if (!Objects.equals(countryList, movie.countryList)) return false;
-        if (!Objects.equals(ratingList, movie.ratingList)) return false;
         if (!Objects.equals(genreList, movie.genreList)) return false;
-        return Objects.equals(actorList, movie.actorList);
+        return Objects.equals(starList, movie.starList);
     }
 
     @Override
@@ -138,16 +156,16 @@ public class Movie {
         result = id;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + year;
+        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
         result = 31 * result + (int) (budget ^ (budget >>> 32));
         result = 31 * result + (int) (gross ^ (gross >>> 32));
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (producer != null ? producer.hashCode() : 0);
-        result = 31 * result + (countryList != null ? countryList.hashCode() : 0);
-        result = 31 * result + (ratingList != null ? ratingList.hashCode() : 0);
-        result = 31 * result + (genreList != null ? genreList.hashCode() : 0);
-        result = 31 * result + (actorList != null ? actorList.hashCode() : 0);
-        temp = Double.doubleToLongBits(avgRating);
+        temp = Double.doubleToLongBits(rating);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (directorList != null ? directorList.hashCode() : 0);
+        result = 31 * result + (countryList != null ? countryList.hashCode() : 0);
+        result = 31 * result + (genreList != null ? genreList.hashCode() : 0);
+        result = 31 * result + (starList != null ? starList.hashCode() : 0);
+        
         return result;
     }
 }

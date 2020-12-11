@@ -4,7 +4,7 @@ import by.golik.finalproject.dao.ActorDAO;
 import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
-import by.golik.finalproject.entity.Actor;
+import by.golik.finalproject.entity.Star;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -64,7 +64,7 @@ public class ActorDAOImpl implements ActorDAO {
     }
 
     @Override
-    public List<Actor> getActorsForMovie(int actorId) throws DAOException {
+    public List<Star> getActorsForMovie(int actorId) throws DAOException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -75,16 +75,16 @@ public class ActorDAOImpl implements ActorDAO {
 
             resultSet = preparedStatement.executeQuery();
 
-            List<Actor> actors = new ArrayList<>();
-            Actor actor;
+            List<Star> stars = new ArrayList<>();
+            Star star;
             while (resultSet.next()) {
-                actor = new Actor();
-                actor.setId(resultSet.getInt(ACTOR_ID));
-                actor.setName(ACTOR_NAME);
-                actor.setSurname(ACTOR_SURNAME);
-                actors.add(actor);
+                star = new Star();
+                star.setId(resultSet.getInt(ACTOR_ID));
+                star.setName(ACTOR_NAME);
+                star.setSurname(ACTOR_SURNAME);
+                stars.add(star);
             }
-            return actors;
+            return stars;
         } catch (SQLException e) {
             throw new DAOException("Actor SQL error", e);
         } catch (ConnectionPoolException e) {
@@ -93,12 +93,12 @@ public class ActorDAOImpl implements ActorDAO {
     }
 
     @Override
-    public Actor getProducerForMovie(int producerId) {
+    public Star getProducerForMovie(int producerId) {
         return null;
     }
 
     @Override
-    public Actor getActor(int actorId) {
+    public Star getActor(int actorId) {
         return null;
     }
 
@@ -138,7 +138,7 @@ public class ActorDAOImpl implements ActorDAO {
     }
 
     @Override
-    public List<Actor> getAllActors() {
+    public List<Star> getAllActors() {
         return null;
     }
 

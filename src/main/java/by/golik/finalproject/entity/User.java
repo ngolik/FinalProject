@@ -11,9 +11,7 @@ public class User {
     private String userName;
     private String email;
     private String userType;
-    private String sex;
-    private Date registration;
-    private List<Rating> ratingList;
+    private Date registrationDate;
     private String image;
 
     public String getUserName() {
@@ -40,28 +38,14 @@ public class User {
         this.userType = userType;
     }
 
-    public String getSex() {
-        return sex;
-    }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
 
     public Date getRegistration() {
-        return registration;
+        return registrationDate;
     }
 
-    public void setRegistration(Date registration) {
-        this.registration = registration;
-    }
-
-    public List<Rating> getRatingList() {
-        return ratingList;
-    }
-
-    public void setRatingList(List<Rating> ratingList) {
-        this.ratingList = ratingList;
+    public void setRegistration(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public String getImage() {
@@ -81,9 +65,7 @@ public class User {
         if (!Objects.equals(userName, user.userName)) return false;
         if (!Objects.equals(email, user.email)) return false;
         if (!Objects.equals(userType, user.userType)) return false;
-        if (!Objects.equals(sex, user.sex)) return false;
-        if (!Objects.equals(registration, user.registration)) return false;
-        if (!Objects.equals(ratingList, user.ratingList)) return false;
+        if (!Objects.equals(registrationDate, user.registrationDate)) return false;
         return Objects.equals(image, user.image);
     }
 
@@ -92,9 +74,7 @@ public class User {
         int result = userName != null ? userName.hashCode() : 0;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (userType != null ? userType.hashCode() : 0);
-        result = 31 * result + (sex != null ? sex.hashCode() : 0);
-        result = 31 * result + (registration != null ? registration.hashCode() : 0);
-        result = 31 * result + (ratingList != null ? ratingList.hashCode() : 0);
+        result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         return result;
     }
