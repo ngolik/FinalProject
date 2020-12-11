@@ -6,6 +6,7 @@ import java.sql.SQLException;
  * @author Nikita Golik
  */
 public class ConnectionPoolException extends Exception {
+
     public ConnectionPoolException(String message) {
         super(message);
     }

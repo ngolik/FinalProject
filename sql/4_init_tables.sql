@@ -1,7 +1,7 @@
-INSERT INTO `film_users` (
-    `identity`,
+INSERT INTO `users` (
+    `id`,
     `login`,
-    `password`,
+    `pasword`,
     `role`
 ) VALUES (
              1,
