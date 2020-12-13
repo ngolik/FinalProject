@@ -91,7 +91,7 @@ public class ConnectionPool {
                 throw new ConnectionPoolException("Can't return closed connection");
             }
         } catch (SQLException e) {
-            throw new ConnectionPoolException("SQL exception in returnCinnection");
+            throw new ConnectionPoolException("SQL exception in returnConnection");
         }
         try {
             usedConnections.remove(connection);

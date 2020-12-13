@@ -12,7 +12,7 @@ public class User {
     private String email;
     private String userType;
     private Date registrationDate;
-    private String image;
+
 
     public String getUserName() {
         return userName;
@@ -48,14 +48,6 @@ public class User {
         this.registrationDate = registrationDate;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,8 +57,7 @@ public class User {
         if (!Objects.equals(userName, user.userName)) return false;
         if (!Objects.equals(email, user.email)) return false;
         if (!Objects.equals(userType, user.userType)) return false;
-        if (!Objects.equals(registrationDate, user.registrationDate)) return false;
-        return Objects.equals(image, user.image);
+        return Objects.equals(registrationDate, user.registrationDate);
     }
 
     @Override
@@ -75,7 +66,6 @@ public class User {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (userType != null ? userType.hashCode() : 0);
         result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
         return result;
     }
 }

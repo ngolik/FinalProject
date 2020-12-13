@@ -17,10 +17,8 @@ public class Movie {
     private float rating;
     private String description;
 
-    private List<Director> directorList;
-    private List<Country> countryList;
     private List<Genre> genreList;
-    private List<Star> starList;
+
 
     public Movie() {
 
@@ -98,36 +96,12 @@ public class Movie {
         this.description = description;
     }
 
-    public List<Director> getDirectorList() {
-        return directorList;
-    }
-
-    public void setDirectorList(List<Director> directorList) {
-        this.directorList = directorList;
-    }
-
-    public List<Country> getCountryList() {
-        return countryList;
-    }
-
-    public void setCountryList(List<Country> countryList) {
-        this.countryList = countryList;
-    }
-
     public List<Genre> getGenreList() {
         return genreList;
     }
 
     public void setGenreList(List<Genre> genreList) {
         this.genreList = genreList;
-    }
-
-    public List<Star> getStarList() {
-        return starList;
-    }
-
-    public void setStarList(List<Star> starList) {
-        this.starList = starList;
     }
 
     @Override
@@ -142,11 +116,8 @@ public class Movie {
         if (gross != movie.gross) return false;
         if (Double.compare(movie.rating, rating) != 0) return false;
         if (!Objects.equals(title, movie.title)) return false;
+        return  (!Objects.equals(genreList, movie.genreList));
 
-        if (!Objects.equals(directorList, movie.directorList)) return false;
-        if (!Objects.equals(countryList, movie.countryList)) return false;
-        if (!Objects.equals(genreList, movie.genreList)) return false;
-        return Objects.equals(starList, movie.starList);
     }
 
     @Override
@@ -161,11 +132,8 @@ public class Movie {
         result = 31 * result + (int) (gross ^ (gross >>> 32));
         temp = Double.doubleToLongBits(rating);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (directorList != null ? directorList.hashCode() : 0);
-        result = 31 * result + (countryList != null ? countryList.hashCode() : 0);
         result = 31 * result + (genreList != null ? genreList.hashCode() : 0);
-        result = 31 * result + (starList != null ? starList.hashCode() : 0);
-        
+
         return result;
     }
 }
