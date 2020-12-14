@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `movies_db`.`movies` (
     `gross` INT NOT NULL,
     `description` TEXT NOT NULL,
     PRIMARY KEY (`id`))
-    ENGINE = InnoDB;
+    ENGINE = InnoDB DEFAULT CHARACTER SET utf8;;
 
 
 -- -----------------------------------------------------
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `movies_db`.`genres` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`))
-    ENGINE = InnoDB;
+    ENGINE = InnoDB DEFAULT CHARACTER SET utf8;;
 
 
 -- -----------------------------------------------------
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `movies_db`.`users` (
     `role` TINYINT NOT NULL,
     `registrationdate` DATE NOT NULL,
     PRIMARY KEY (`id`))
-    ENGINE = InnoDB;
+    ENGINE = InnoDB DEFAULT CHARACTER SET utf8;;
 
 
 -- -----------------------------------------------------
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `movies_db`.`participants` (
     `surname` VARCHAR(45) NOT NULL,
     `secondname` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`))
-    ENGINE = InnoDB;
+    ENGINE = InnoDB DEFAULT CHARACTER SET utf8;;
 
 
 -- -----------------------------------------------------
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `movies_db`.`movies_participants` (
            REFERENCES `movies_db`.`participants` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION)
-    ENGINE = InnoDB;
+    ENGINE = InnoDB DEFAULT CHARACTER SET utf8;;
 
 
 -- -----------------------------------------------------
@@ -147,13 +147,13 @@ CREATE TABLE IF NOT EXISTS `movies_db`.`movies_users` (
             REFERENCES `movies_db`.`movies` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION)
-    ENGINE = InnoDB;
+    ENGINE = InnoDB DEFAULT CHARACTER SET utf8;;
 
 
 -- -----------------------------------------------------
--- Table `movies_db`.`votes`
+-- Table `movies_db`.`vote`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `movies_db`.`votes` (
+CREATE TABLE IF NOT EXISTS `movies_db`.`vote` (
    `score` INT NOT NULL,
    `date` DATE NOT NULL,
    `users_id` INT NOT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `movies_db`.`votes` (
            REFERENCES `movies_db`.`users` (`id`)
            ON DELETE NO ACTION
            ON UPDATE NO ACTION)
-    ENGINE = InnoDB;
+    ENGINE = InnoDB DEFAULT CHARACTER SET utf8;;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

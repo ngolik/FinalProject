@@ -5,7 +5,18 @@ import java.util.Objects;
 /**
  * @author Nikita Golik
  */
-public class Votes {
+public class Vote {
+
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     /**
      * id of movie
      */
@@ -19,7 +30,7 @@ public class Votes {
      */
     private int score;
 
-    public Votes() {
+    public Vote() {
     }
 
     public int getMovieID() {
@@ -50,10 +61,10 @@ public class Votes {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Votes votes = (Votes) o;
-        return movieID == votes.movieID &&
-                userID == votes.userID &&
-                score == votes.score;
+        Vote vote = (Vote) o;
+        return movieID == vote.movieID &&
+                userID == vote.userID &&
+                score == vote.score;
     }
 
     @Override

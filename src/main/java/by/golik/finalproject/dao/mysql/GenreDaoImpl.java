@@ -16,15 +16,16 @@ import java.util.List;
  * @author Nikita Golik
  */
 public class GenreDaoImpl implements GenreDAO {
-    private final static String SHOW_GENRES_BY_ID = "SELECT genres_genre_ru FROM genres WHERE movies_m_id=?";
+    private final static String SHOW_GENRES_BY_ID =
+            "SELECT name FROM genres\n" +
+                    " WHERE id = ?";
     private static final String ADD_GENRE =
-            "INSERT INTO genres (movies_m_id, genres_genre_) VALUES (?, ?, ?)";
+            "INSERT INTO `genres` " +
+                    "(`name`) VALUES (?)";
     private static final String DELETE_GENRE =
-            "DELETE FROM genres\n" +
-                    "WHERE movies_m_id=? AND genres_genre=?;";
+            "DELETE FROM `genres` WHERE `id` = ?";
 
-    private static final String GENRE_RU = "genres_genre_ru";
-    private static final String GENRE_EN = "genres_genre_en";
+    private static final String GENRE = "genres";
     private static final GenreDAO instance = new GenreDaoImpl();
 
     private GenreDaoImpl() {
@@ -58,7 +59,7 @@ public class GenreDaoImpl implements GenreDAO {
             Genre genre = null;
             while (rs.next()) {
                 genre = new Genre();
-                genre.setName(rs.getString(GENRE_RU));
+                genre.setName(rs.getString(GENRE));
                 genreList.add(genre);
             }
             return genreList;
