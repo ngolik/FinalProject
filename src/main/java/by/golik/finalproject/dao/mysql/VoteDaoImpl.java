@@ -23,13 +23,13 @@ public class VoteDaoImpl implements VoteDAO {
     private static final String SHOW_RATINGS_OF_USER =
             "SELECT score, date, movies_id FROM votes WHERE users_id=?";
     private static final String CHECK_RATING =
-            "SELECT user_u_nick, rating_score FROM rating WHERE movies_m_id=? AND user_u_nick=?";
+            "SELECT users_id, score FROM votes WHERE movies_id=? AND users_id=?";
     private static final String ADD_RATING =
-            "INSERT INTO rating (movies_m_id, user_u_nick, rating_score) VALUES (?, ?, ?)";
+            "INSERT INTO votes (movies_id, users_id, score) VALUES (?, ?, ?)";
     private final static String UPDATE_RATING =
-            "UPDATE rating SET rating_score=? WHERE movies_m_id=? AND user_u_nick=?;";
+            "UPDATE votes SET score=? WHERE movies_id=? AND users_id=?;";
     private final static String DELETE_RATING =
-            "DELETE FROM rating WHERE movies_m_id=? AND user_u_nick=?;";
+            "DELETE FROM votes WHERE movies_id=? AND users_id=?;";
     private static final String USER_NAME = "userName";
     private static final String MOVIES_ID = "movies_id";
     private static final String SCORE = "score";
@@ -62,9 +62,9 @@ public class VoteDaoImpl implements VoteDAO {
             return voteList;
 
         } catch (SQLException e) {
-            throw new DAOException("Rating sql error", e);
+            throw new DAOException("Vote sql error", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("Rating pool connection error");
+            throw new DAOException("Vote pool connection error");
         }
     }
 
@@ -92,29 +92,104 @@ public class VoteDaoImpl implements VoteDAO {
             return voteList;
 
         } catch (SQLException e) {
-            throw new DAOException("Review sql error", e);
+            throw new DAOException("Vote sql error", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("Review pool connection error");
+            throw new DAOException("Vote pool connection error");
         }
     }
 
     @Override
     public Vote checkVotes(int intMovieID, String userNickname) throws DAOException {
-        return null;
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(CHECK_RATING);
+            st.setInt(1, intMovieID);
+            st.setString(2, userNickname);
+            rs = st.executeQuery();
+
+            Vote vote = null;
+            if (rs.next()) {
+                vote = new Vote();
+                vote.setMovieID(intMovieID);
+                vote.setUserName(userNickname);
+                vote.setScore(rs.getInt(SCORE));
+            }
+            return vote;
+
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error");
+        }
     }
 
     @Override
     public void addVotes(int intMovieID, String userNickname, int rating) throws DAOException {
-
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(ADD_RATING);
+            st.setInt(1, intMovieID);
+            st.setString(2, userNickname);
+            st.setInt(3, rating);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                return;
+            }
+            throw new DAOException("Wrong movie data");
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error");
+        }
     }
 
     @Override
     public void updateVotes(int intMovieID, String userNickname, int intRating) throws DAOException {
-
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(UPDATE_RATING);
+            st.setInt(1, intRating);
+            st.setInt(2, intMovieID);
+            st.setString(3, userNickname);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                return;
+            }
+            throw new DAOException("Wrong rating data");
+        } catch (SQLException e) {
+            throw new DAOException("Rating sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Rating pool connection error");
+        }
     }
 
     @Override
     public void deleteVotes(int movieID, String userNickname) throws DAOException {
-
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(DELETE_RATING);
+            st.setInt(1, movieID);
+            st.setString(2, userNickname);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                //System.out.println("Rating udalen vse ok");
+                return;
+            }
+            throw new DAOException("Wrong rating data");
+        } catch (SQLException e) {
+            throw new DAOException("Rating sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Rating pool connection error");
+        }
     }
 }
