@@ -15,6 +15,16 @@ public class Movie {
     private long budget;
     private long gross;
     private float rating;
+    private double avgRating;
+
+    public double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
+    }
+
     private String description;
 
     private List<Genre> genreList;

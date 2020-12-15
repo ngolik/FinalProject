@@ -6,8 +6,7 @@ package by.golik.finalproject.entity;
 public enum Role {
     ADMINISTRATOR("administrator"),
     MODERATOR("moderator"),
-    USER("user"),
-    GUEST("guest");
+    USER("user");
 
     private String name;
 

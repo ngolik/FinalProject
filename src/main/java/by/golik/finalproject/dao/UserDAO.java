@@ -13,7 +13,5 @@ public interface UserDAO {
     User register(String email, String login, String password) throws DAOException;
     List<User> getAllUsers() throws DAOException;
     User getUserByUsername (String userName) throws DAOException;
-    void banUser(String userName);
-    void unBanUser(String userName);
     void deleteUser(String userName) throws DAOException;
 }

@@ -6,12 +6,12 @@ import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.entity.Role;
 import by.golik.finalproject.entity.User;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * UserDaoImpl is an implementation of UserDAO for MySQL.
  * @author Nikita Golik
  */
 public class UserDaoImpl implements UserDAO {
@@ -44,6 +44,13 @@ public class UserDaoImpl implements UserDAO {
     }
 
 
+    /**
+     * This method is used to authorise user in the system using data source.
+     * @param login of user
+     * @param password of user
+     * @return filled User bean or null
+     * @throws DAOException if some error occurred while processing data.
+     */
     @Override
     public User authorise(String login, String password) throws DAOException {
         Connection con = null;
@@ -77,6 +84,14 @@ public class UserDaoImpl implements UserDAO {
         }
     }
 
+    /**
+     * This method is used to add new user to the system and data source.
+     * @param email of user
+     * @param login of user
+     * @param password of user
+     * @return filled User bean or null
+     * @throws DAOException f some error occurred while processing data.
+     */
     @Override
     public User register(String email, String login, String password) throws DAOException {
         Connection con = null;
@@ -107,6 +122,11 @@ public class UserDaoImpl implements UserDAO {
         return null;
     }
 
+    /**
+     * This method is used to get all existing users from data source.
+     * @return list of filled User beans
+     * @throws DAOException if some error occurred while processing data.
+     */
     @Override
     public List<User> getAllUsers() throws DAOException {
         Connection con = null;
@@ -138,6 +158,12 @@ public class UserDaoImpl implements UserDAO {
         }
     }
 
+    /**
+     * This method is used to get detailed information about some user from data source.
+     * @param userName of user
+     * @return filled User bean.
+     * @throws DAOException if some error occurred while processing data.
+     */
     @Override
     public User getUserByUsername(String userName) throws DAOException {
         Connection con = null;
@@ -167,16 +193,11 @@ public class UserDaoImpl implements UserDAO {
         }
     }
 
-    @Override
-    public void banUser(String userName) {
-
-    }
-
-    @Override
-    public void unBanUser(String userName) {
-
-    }
-
+    /**
+     * This method is used to delete some user from the system.
+     * @param userName of user
+     * @throws DAOException if some error occurred while processing data.
+     */
     @Override
     public void deleteUser(String userName) throws DAOException {
         Connection con = null;
