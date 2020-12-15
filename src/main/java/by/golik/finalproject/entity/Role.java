@@ -4,10 +4,10 @@ package by.golik.finalproject.entity;
  * @author Nikita Golik
  */
 public enum Role {
-    ADMINISTRATOR("администратор"),
-    MODERATOR("модератор"),
-    USER("пользователь"),
-    GUEST("гость");
+    ADMINISTRATOR("administrator"),
+    MODERATOR("moderator"),
+    USER("user"),
+    GUEST("guest");
 
     private String name;
 

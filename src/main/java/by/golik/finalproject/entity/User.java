@@ -10,7 +10,7 @@ import java.util.Objects;
 public class User {
     private String userName;
     private String email;
-    private String userType;
+    private Role role;
     private Date registrationDate;
 
 
@@ -30,23 +30,22 @@ public class User {
         this.email = email;
     }
 
-    public String getUserType() {
-        return userType;
+    public Role getRole() {
+        return role;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-
-
-    public Date getRegistration() {
+    public Date getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistration(Date registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -56,7 +55,7 @@ public class User {
 
         if (!Objects.equals(userName, user.userName)) return false;
         if (!Objects.equals(email, user.email)) return false;
-        if (!Objects.equals(userType, user.userType)) return false;
+        if (!Objects.equals(role, user.role)) return false;
         return Objects.equals(registrationDate, user.registrationDate);
     }
 
@@ -64,7 +63,7 @@ public class User {
     public int hashCode() {
         int result = userName != null ? userName.hashCode() : 0;
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (userType != null ? userType.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
         return result;
     }
