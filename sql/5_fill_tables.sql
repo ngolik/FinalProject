@@ -30,9 +30,16 @@ VALUES
     (27, "film noir");
 
 INSERT INTO participants
-    (id, name,           surname,         secondname)
+    (id,      name,           surname,         secondname)
     VALUES
-    ()
-
+    (1, "Thomas",         "Hanks",            "Jeffrey"),
+    (2, "Morgan",         "Freeman"),
+    (3, "Tim",            "Robbins"   ),
+    (4, "Elijah",         "Wood",             "Jordan " );
+INSERT INTO movies
+    (id, title, year, image_path, runtime, budget, gross, description)
+    VALUES
+    (1, "The Green Mile", 1999, ,189, 60000000, 286801374, "Mystical drama based on the novel by Stephen King"),
+           
 
 

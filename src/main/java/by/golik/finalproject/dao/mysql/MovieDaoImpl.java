@@ -68,7 +68,7 @@ public class MovieDaoImpl implements MovieDAO {
     private MovieDaoImpl() {
 
     }
-    private MovieDAO getInstance() {
+    public static MovieDAO getInstance() {
         return instance;
     }
 
