@@ -17,7 +17,7 @@ public interface MovieDAO {
     void addMovie(String title, int year, long budget, long gross) throws DAOException;
     void updateMovie(int id, String title, int year, long budget, long gross) throws DAOException;
     void deleteMovie(int id) throws DAOException;
-    void updateImage(int id, String path);
+    void updateImage(int id, String path) throws DAOException;
 
 
 }

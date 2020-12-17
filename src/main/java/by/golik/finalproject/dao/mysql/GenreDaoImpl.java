@@ -114,7 +114,6 @@ public class GenreDaoImpl implements GenreDAO {
             con = ConnectionPool.getInstance().takeConnection();
             st = con.prepareStatement(DELETE_GENRE);
             st.setInt(1, intMovieID);
-            st.setString(2, name);
             int update = st.executeUpdate();
             if (update > 0) {
                 //System.out.println("Genre udalen vse ok  " + intMovieID);

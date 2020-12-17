@@ -15,7 +15,7 @@ import java.util.concurrent.BlockingQueue;
 public class ConnectionPool {
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3309/films?useEncoding=true&amp;characterEncoding=UTF-8";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3309/movies_db?useEncoding=true&amp;characterEncoding=UTF-8";
     private static final String USER = "root";
     private static final String PASSWORD = "canada@123";
 
@@ -76,7 +76,7 @@ public class ConnectionPool {
         Connection connection;
         try {
             if(freeConnections == null) {
-                throw new ConnectionPoolException("Pol doesn't exist");
+                throw new ConnectionPoolException("Pool doesn't exist");
             }
             connection = freeConnections.take();
             usedConnections.put(connection);

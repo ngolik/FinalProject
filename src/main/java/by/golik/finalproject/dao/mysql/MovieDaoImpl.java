@@ -60,7 +60,8 @@ public class MovieDaoImpl implements MovieDAO {
                     "WHERE `id` = ?;\n";
     private static final String DELETE_BY_ID =
             "DELETE FROM `movies_db`.`movies` WHERE id=?;";
-
+    private static final String UPDATE_IMAGE =
+            "UPDATE movies SET image_path= ? WHERE id= ?;";
 
     private static final MovieDAO instance = new MovieDaoImpl();
 
@@ -306,7 +307,24 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public void updateImage(int id, String path) {
-
+    public void updateImage(int id, String path) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(UPDATE_IMAGE);
+            st.setString(1, path);
+            st.setInt(2, id);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                //System.out.println("Movie obnovlen vse ok " + path);
+                return;
+            }
+            throw new DAOException("Wrong review data");
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error");
+        }
     }
 }
