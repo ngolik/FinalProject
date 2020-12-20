@@ -68,6 +68,13 @@ public class GenreDaoImpl implements GenreDAO {
             throw new DAOException("Genre sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Genre pool connection error");
+        } finally {
+            try {
+            rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+            st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 
@@ -98,6 +105,11 @@ public class GenreDaoImpl implements GenreDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Review pool connection error");
         }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     /**
@@ -124,6 +136,11 @@ public class GenreDaoImpl implements GenreDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 }

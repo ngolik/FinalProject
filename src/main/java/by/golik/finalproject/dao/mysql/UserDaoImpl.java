@@ -82,6 +82,14 @@ public class UserDaoImpl implements UserDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Login pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     /**
@@ -118,6 +126,11 @@ public class UserDaoImpl implements UserDAO {
             throw new DAOException("Register sql error", e);
         } catch (DAOException | ConnectionPoolException e) {
             throw new DAOException("Login pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
         return null;
     }
@@ -156,6 +169,14 @@ public class UserDaoImpl implements UserDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     /**
@@ -191,6 +212,14 @@ public class UserDaoImpl implements UserDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("User pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     /**
@@ -216,6 +245,11 @@ public class UserDaoImpl implements UserDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 

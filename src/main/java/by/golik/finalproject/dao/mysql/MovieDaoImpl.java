@@ -105,6 +105,14 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -138,6 +146,14 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -170,6 +186,14 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -200,6 +224,14 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 
@@ -234,6 +266,14 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -257,6 +297,11 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 
@@ -283,6 +328,11 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -303,6 +353,11 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 
@@ -325,6 +380,11 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 }

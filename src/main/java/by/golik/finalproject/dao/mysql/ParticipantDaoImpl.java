@@ -82,6 +82,14 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Participant pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -111,6 +119,14 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Actor pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -132,6 +148,11 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 
@@ -156,6 +177,11 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -176,6 +202,11 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 
@@ -215,6 +246,14 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Actor pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -242,6 +281,14 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 

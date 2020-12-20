@@ -66,6 +66,14 @@ public class VoteDaoImpl implements VoteDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Vote pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -96,6 +104,14 @@ public class VoteDaoImpl implements VoteDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Vote pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -125,6 +141,14 @@ public class VoteDaoImpl implements VoteDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         }
+        finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -146,6 +170,11 @@ public class VoteDaoImpl implements VoteDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 
@@ -169,6 +198,11 @@ public class VoteDaoImpl implements VoteDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Rating pool connection error");
         }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override
@@ -190,6 +224,11 @@ public class VoteDaoImpl implements VoteDAO {
             throw new DAOException("Rating sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Rating pool connection error");
+        }
+        finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
         }
     }
 }
