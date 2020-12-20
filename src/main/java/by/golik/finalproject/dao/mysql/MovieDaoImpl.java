@@ -197,7 +197,7 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public List<Movie> getMoviesByActor(int actorId) throws DAOException {
+    public List<Movie> getMoviesByParticipant(int actorId) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;

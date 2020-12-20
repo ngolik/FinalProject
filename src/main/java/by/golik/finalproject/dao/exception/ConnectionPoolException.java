@@ -11,11 +11,7 @@ public class ConnectionPoolException extends Exception {
         super(message);
     }
 
-    public ConnectionPoolException(String message, SQLException e) {
-        super(message, e);
-    }
-
-    public ConnectionPoolException(String message, InterruptedException e) {
+    public ConnectionPoolException(String message, Exception e) {
         super(message, e);
     }
 }

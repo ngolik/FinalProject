@@ -19,7 +19,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
 
     private static final String PARTICIPANTS_FOR_MOVIE =
             "SELECT id, name, surname, secondname FROM participants\n" +
-                    "ORDER BY `name`, `surname`, `secondname`";
+                    "WHERE `movies_db`.movies.id = ?";
 
     private static final String PARTICIPANT_BY_ID =
             "SELECT name, surname, secondname FROM participants\n" +
@@ -66,14 +66,14 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             rs = st.executeQuery();
 
             List<Participant> actors = new ArrayList<>();
-            Participant actor;
+            Participant participant;
             while (rs.next()) {
-                actor = new Participant();
-                actor.setId(rs.getInt(ID));
-                actor.setName(rs.getString(NAME));
-                actor.setSurname(rs.getString(SURNAME));
-                actor.setSecondName(rs.getString(SECONDNAME));
-                actors.add(actor);
+                participant = new Participant();
+                participant.setId(rs.getInt(ID));
+                participant.setName(rs.getString(NAME));
+                participant.setSurname(rs.getString(SURNAME));
+                participant.setSecondName(rs.getString(SECONDNAME));
+                actors.add(participant);
             }
             return actors;
 
@@ -92,6 +92,8 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         }
     }
 
+
+
     @Override
     public Participant getParticipant(int normId) throws DAOException {
         Connection con = null;
@@ -104,15 +106,15 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             st.setInt(1, normId);
             rs = st.executeQuery();
 
-            Participant actor = null;
+            Participant participant = null;
             if (rs.next()) {
-                actor = new Participant();
-                actor.setId(normId);
-                actor.setName(rs.getString(NAME));
-                actor.setSurname(rs.getString(SURNAME));
-                actor.setSecondName(rs.getString(SECONDNAME));
+                participant = new Participant();
+                participant.setId(normId);
+                participant.setName(rs.getString(NAME));
+                participant.setSurname(rs.getString(SURNAME));
+                participant.setSecondName(rs.getString(SECONDNAME));
             }
-            return actor;
+            return participant;
 
         } catch (SQLException e) {
             throw new DAOException("Actor sql error", e);

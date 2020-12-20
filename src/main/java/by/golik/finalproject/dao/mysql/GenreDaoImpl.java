@@ -20,8 +20,7 @@ public class GenreDaoImpl implements GenreDAO {
             "SELECT name FROM genres\n" +
                     " WHERE id = ?";
     private static final String ADD_GENRE =
-            "INSERT INTO `genres` " +
-                    "(`name`) VALUES (?)";
+            "INSERT INTO genres(id, name) VALUES (?, ?)";
     private static final String DELETE_GENRE =
             "DELETE FROM `genres` WHERE `id` = ?";
 

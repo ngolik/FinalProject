@@ -17,7 +17,6 @@ public interface ParticipantDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     List<Participant> getParticipantsForMovie(int normId) throws DAOException;
-
     /**
      * This method is used to retrieve actor by id from data source.
      *

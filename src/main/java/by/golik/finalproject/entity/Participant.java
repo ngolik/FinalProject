@@ -1,5 +1,6 @@
 package by.golik.finalproject.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -10,9 +11,18 @@ public class Participant {
     private String name;
     private String surname;
     private String secondName;
+    private List<Movie> movies;
 
     public Participant() {
 
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 
     public int getId() {
