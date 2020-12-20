@@ -3,20 +3,14 @@ package by.golik.finalproject.entity;
 import java.util.Objects;
 
 /**
+ * entity represents rating of movie
  * @author Nikita Golik
  */
 public class Vote {
-
+    /**
+     * name of user
+     */
     private String userName;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     /**
      * id of movie
      */
@@ -35,6 +29,13 @@ public class Vote {
 
     public int getMovieID() {
         return movieID;
+    }
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setMovieID(int movieID) {

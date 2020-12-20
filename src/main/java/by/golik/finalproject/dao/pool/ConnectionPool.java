@@ -10,6 +10,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
+ *  entity represents connection pool
  * @author Nikita Golik
  */
 public class ConnectionPool {
@@ -31,6 +32,10 @@ public class ConnectionPool {
     private ConnectionPool() {
     }
 
+    /**
+     * This method is used to initialize pool of connections with data source.
+     * @throws ConnectionPoolException if some error occurred while initializing ConnectionPool.
+     */
     public void init() throws ConnectionPoolException {
         if(!isInit) {
             try {
@@ -50,6 +55,10 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * This method is used to destroy the pool of connections with data source.
+     * @throws ConnectionPoolException if some error occurred while initializing ConnectionPool.
+     */
     public void destroy() throws ConnectionPoolException {
         if(isInit) {
             try {
@@ -72,6 +81,12 @@ public class ConnectionPool {
     public static ConnectionPool getInstance() {
         return instance;
     }
+
+    /**
+     * This method is used to get Connection from the free connections queue
+     * @return Connection object
+     * @throws ConnectionPoolException if some error occurred while proceeding.
+     */
     public Connection takeConnection() throws ConnectionPoolException {
         Connection connection;
         try {
@@ -100,5 +115,4 @@ public class ConnectionPool {
             throw  new ConnectionPoolException("Exception while return connections to queues", e);
         }
     }
-
 }

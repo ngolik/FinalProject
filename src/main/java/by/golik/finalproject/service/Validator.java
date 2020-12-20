@@ -1,6 +1,13 @@
 package by.golik.finalproject.service;
 
+import by.golik.finalproject.dao.VoteDAO;
+import by.golik.finalproject.dao.exception.DAOException;
+import by.golik.finalproject.entity.Movie;
+import by.golik.finalproject.entity.Vote;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -117,5 +124,22 @@ public class Validator {
         Matcher matcher;
         matcher = PATTERN_YEAR.matcher(year);
         return matcher.matches();
+    }
+    public static String encodePassword(byte[] password) {
+        return DigestUtils.md5Hex(password);
+    }
+    /**
+     * This method is used to fill movies with ratings.
+     *
+     * @param voteDAO rating DAO
+     * @param movies    list of movies
+     * @throws DAOException if any error occurred while processing method.
+     */
+    public static void fillVotesForMovie(VoteDAO voteDAO, List<Movie> movies) throws DAOException {
+        List<Vote> voteList;
+        for (Movie movie : movies) {
+            voteList = voteDAO.getVotesForMovie(movie.getId());
+            movie.setVotes(voteList);
+        }
     }
 }

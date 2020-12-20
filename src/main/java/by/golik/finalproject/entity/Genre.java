@@ -3,10 +3,17 @@ package by.golik.finalproject.entity;
 import java.util.Objects;
 
 /**
+ * Entity represents genre.
  * @author Nikita Golik
  */
 public class Genre {
+    /**
+     * genre id
+     */
     private int id;
+    /**
+     * genre name;
+     */
     private String name;
 
     public int getId() {
@@ -27,7 +34,6 @@ public class Genre {
     public Genre() {
 
     }
-
 
     @Override
     public boolean equals(Object o) {

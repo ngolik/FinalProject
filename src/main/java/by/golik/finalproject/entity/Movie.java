@@ -4,18 +4,59 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * Entity represents movie.
  * @author Nikita Golik
  */
 public class Movie {
+
+    /**
+     * unique identifier
+     */
     private int id;
+    /**
+     * movie title
+     */
     private String title;
+    /**
+     * year 4 digits
+     */
     private int year;
+    /**
+     * path to movie icon
+     */
     private String imageUrl;
+    /**
+     * movie runtime
+     */
     private int runtime;
+    /**
+     * movie budget
+     */
     private long budget;
+    /**
+     * movie gross
+     */
     private long gross;
+    /**
+     * movie rating
+     */
     private float rating;
+    /**
+     * movie average rating
+     */
     private double avgRating;
+    /**
+     * list of marks from users
+     */
+    List<Vote> votes;
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
 
     public double getAvgRating() {
         return avgRating;

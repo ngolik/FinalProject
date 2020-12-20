@@ -4,13 +4,29 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * entity represents participant
  * @author Nikita Golik
  */
 public class Participant {
+    /**
+     * unique identifier
+     */
     private int id;
+    /**
+     * participant name
+     */
     private String name;
+    /**
+     * participant surname
+     */
     private String surname;
+    /**
+     * participant second name
+     */
     private String secondName;
+    /**
+     * list of movies, where participant takes part
+     */
     private List<Movie> movies;
 
     public Participant() {

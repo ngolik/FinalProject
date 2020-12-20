@@ -2,10 +2,10 @@ package by.golik.finalproject.dao;
 
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Genre;
-
 import java.util.List;
 
 /**
+ *  interface is mainly used to interact with Genre bean mainly.
  * @author Nikita Golik
  */
 public interface GenreDAO {

@@ -5,12 +5,25 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * entity represents user
  * @author Nikita Golik
  */
 public class User {
+    /**
+     * name of user(login)
+     */
     private String userName;
+    /**
+     * email of user
+     */
     private String email;
+    /**
+     * role of user
+     */
     private Role role;
+    /**
+     * date of registration
+     */
     private Date registrationDate;
 
 
