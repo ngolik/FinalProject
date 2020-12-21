@@ -10,70 +10,72 @@ import java.util.List;
  */
 public interface ParticipantDAO {
     /**
-     * This method gets list of Actors from data source.
+     * This method gets list of Participants from data source.
      *
-     * @param normId id of actor
-     * @return list of filled Actor beans
+     * @param id id of participant
+     * @return list of filled Participant beans
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Participant> getParticipantsForMovie(int normId) throws DAOException;
+    List<Participant> getParticipantsForMovie(int id) throws DAOException;
     /**
-     * This method is used to retrieve actor by id from data source.
+     * This method is used to retrieve participant by id from data source.
      *
-     * @param normId id of actor
-     * @return filled Actor bean
+     * @param id id of participant
+     * @return filled Participant bean
      * @throws DAOException if some error occurred while processing data.
      */
-    Participant getParticipant(int normId) throws DAOException;
+    Participant getParticipant(int id) throws DAOException;
 
     /**
-     * This method is used to insert data about new actor into data source.
+     * This method is used to insert data about new participant into data source.
      *
-     * @param nameRu name of actor in russian
-     * @param nameEn name of actor in english
+     * @param name name of participant in
+     * @param surname surname of participant
+     * @param secondName second name of participant
      * @throws DAOException if some error occurred while processing data.
      */
-    void addParticipant(String nameRu, String nameEn) throws DAOException;
+    void addParticipant(String name, String surname, String secondName) throws DAOException;
 
     /**
-     * This method is used to update data about any actor in data source.
+     * This method is used to update data about any participant in data source.
      *
-     * @param ID actor id
-     * @param nameRu  name of actor in russian
-     * @param nameEn  name of actor in english
+     * @param id participant id
+     * @param name  name of participant
+     * @param surName  name of participant
+     * @param secondName  second name of participant
      * @throws DAOException if some error occurred while processing data.
      */
-    void updateParticipant(int ID, String nameRu, String nameEn) throws DAOException;
+    void updateParticipant(int id, String name, String surName, String secondName) throws DAOException;
 
     /**
-     * This method is used to delete connection between some Movie and Actor from data source.
+     * This method is used to delete connection between some Movie and Participant from data source.
      *
-     * @param participantID id of actor
-     * @param movieID id of movie
+     * @param participantId id of participant
+     * @param movieId id of movie
      * @throws DAOException if some error occurred while processing data.
      */
-    void deleteParticipantForMovie(int participantID, int movieID) throws DAOException;
+    void deleteParticipantForMovie(int participantId, int movieId) throws DAOException;
 
     /**
-     * This method is used to get list of all actors from data source.
+     * This method is used to get list of all participants from data source.
      *
-     * @return list of filled Actor beans
+     * @return list of filled Participant beans
      * @throws DAOException if some error occurred while processing data.
      */
     List<Participant> getAllParticipants() throws DAOException;
 
     /**
-     * This method is used to retrieve the most recently added actor from data source.
+     * This method is used to retrieve the most recently added participant from data source.
      *
-     * @return filled Actor bean
+     * @return filled Participant bean
      * @throws DAOException if some error occurred while processing data.
      */
     Participant getLastInsertedParticipant() throws DAOException;
 
     /**
-     * This method is used to delete actor from data source, used only for tests.
+     * This method is used to delete participant from data source, used only for tests.
      *
-     * @param id of actor
+     * @param id of participant
      * @throws DAOException if some error occurred while processing data.
      */
     void deleteParticipant(int id) throws DAOException;

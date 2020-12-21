@@ -15,10 +15,10 @@ public interface AdministratorService {
     List<User> getAllUsers() throws ServiceException;
     void addMovie(String title, String year, String runtime, String budget, String gross) throws ServiceException;
     void updateMovie(String id, String title, String year, String runtime, String budget, String gross) throws ServiceException;
-    void addGenreForMovie(int movieID, String name);
-    void deleteGenreForMovie(int movieID, String name);
+    void addGenreForMovie(String movieID, String name) throws ServiceException;
+    void deleteGenreForMovie(String movieID, String name) throws ServiceException;
     void addParticipant(String name, String surname, String secondName);
-    void updateParticipant(int ID, String name, String surname, String secondName);
+    void updateParticipant(String ID, String name, String surname, String secondName);
     void addParticipantForMovie(String participantID, String movieID);
     void deleteParticipantForMovie(String participantID, String movieID);
     List<Participant> showAllParticipants();

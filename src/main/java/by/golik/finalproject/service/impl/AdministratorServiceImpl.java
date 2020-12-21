@@ -1,8 +1,6 @@
 package by.golik.finalproject.service.impl;
 
-import by.golik.finalproject.dao.DaoFactory;
-import by.golik.finalproject.dao.MovieDAO;
-import by.golik.finalproject.dao.UserDAO;
+import by.golik.finalproject.dao.*;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Participant;
 import by.golik.finalproject.entity.User;
@@ -137,22 +135,65 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void addGenreForMovie(int movieID, String name) {
-        
+    public void addGenreForMovie(String movieID, String name) throws ServiceException {
+        if (!Validator.validate(movieID, name)
+                || !Validator.validateNumber(movieID)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        GenreDAO dao = daoFactory.getGenreDAO();
+        int intMovieID;
+        try {
+            intMovieID = Integer.parseInt(movieID);
+        } catch (NumberFormatException e) {
+            throw new ServiceException("Wrong data input, while adding film");
+        }
+
+        try {
+            dao.addGenreForMovie(intMovieID, name);
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
     }
 
     @Override
-    public void deleteGenreForMovie(int movieID, String name) {
+    public void deleteGenreForMovie(String movieID, String name) throws ServiceException {
+        if (!Validator.validate(movieID, name)
+                || !Validator.validateNumber(movieID)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        GenreDAO dao = daoFactory.getGenreDAO();
+        int intMovieID;
+        try {
+            intMovieID = Integer.parseInt(movieID);
+        } catch (NumberFormatException e) {
+            throw new ServiceException("Wrong data input, while adding film");
+        }
 
+        try {
+            dao.deleteGenreForMovie(intMovieID, name);
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
     }
 
     @Override
     public void addParticipant(String name, String surname, String secondName) {
-
+        if (!Validator.validate(name, surname, secondName)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        try {
+            dao.addParticipant(name, surname, secondName);
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
     }
 
     @Override
-    public void updateParticipant(int ID, String name, String surname, String secondName) {
+    public void updateParticipant(String ID, String name, String surname, String secondName) {
 
     }
 
