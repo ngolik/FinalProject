@@ -49,6 +49,42 @@ public class Movie {
      * list of marks from users
      */
     List<Vote> votes;
+    private Participant actor;
+    private Participant director;
+    private Participant producer;
+    List<Participant> participants;
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
+
+    public Participant getActor() {
+        return actor;
+    }
+
+    public void setActor(Participant actor) {
+        this.actor = actor;
+    }
+
+    public Participant getDirector() {
+        return director;
+    }
+
+    public void setDirector(Participant director) {
+        this.director = director;
+    }
+
+    public Participant getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Participant producer) {
+        this.producer = producer;
+    }
 
     public List<Vote> getVotes() {
         return votes;

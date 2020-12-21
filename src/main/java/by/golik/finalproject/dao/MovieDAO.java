@@ -35,8 +35,9 @@ public interface MovieDAO {
     List<Movie> searchMovieByTitle(String title) throws DAOException;
     List<Movie> getMoviesByParticipant(int actorId) throws DAOException;
     Movie getMovieById(int id) throws DAOException;
-    void addMovie(String title, int year, long budget, long gross) throws DAOException;
-    void updateMovie(int id, String title, int year, long budget, long gross) throws DAOException;
+    int countAllMoviesAmount() throws DAOException;
+    void addMovie(String title, int year, int runtime, long budget, long gross) throws DAOException;
+    void updateMovie(int id, String title, int year, int runtime, long budget, long gross) throws DAOException;
     void deleteMovie(int id) throws DAOException;
     void updateImage(int id, String path) throws DAOException;
 

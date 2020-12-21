@@ -7,5 +7,4 @@ public enum NameParticipant {
     PRODUCER,
     DIRECTOR,
     ACTOR,
-    ARTIST
 }

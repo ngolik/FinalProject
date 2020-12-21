@@ -24,11 +24,6 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String RUNTIME = "runtime";
     private static final String BUDGET = "budget";
     private static final String GROSS = "gross";
-    private static final String DESCRIPTION = "description";
-
-    private static final String R_USER_NICK = "user_u_nick";
-    private static final String R_REVIEW = "review";
-    private static final String R_REVIEW_DATE = "review_date";
 
     private static final String RATING = "rating";
     private static final String VOTES = "votes";
@@ -52,6 +47,8 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String SHOW_BY_ID =
             "SELECT `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `id` = ?";
+    private static final String COUNT_ALL_MOVIES =
+            "SELECT COUNT(movies.id) AS amount FROM movies";
     private static final String ADD_MOVIE =
             "INSERT INTO movies (title, `year`, `runtime`, `budget`, `gross`) VALUES (?, ?, ?, ?, ?)";
     private static final String UPDATE_BY_ID =
@@ -277,7 +274,39 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public void addMovie(String title, int year, long budget, long gross) throws DAOException {
+    public int countAllMoviesAmount() throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(COUNT_ALL_MOVIES);
+            int amount = 0;
+            rs = st.executeQuery();
+            if (rs.next()) {
+                amount = rs.getInt(AMOUNT);
+            }
+            return amount;
+
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error", e);
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {
+            }
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {
+            }
+        }
+    }
+
+    @Override
+    public void addMovie(String title, int year, int runtime, long budget, long gross) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
@@ -285,8 +314,9 @@ public class MovieDaoImpl implements MovieDAO {
             st = con.prepareStatement(ADD_MOVIE);
             st.setString(1, title);
             st.setInt(2, year);
-            st.setLong(3, budget);
-            st.setLong(4, gross);
+            st.setInt(3, runtime);
+            st.setLong(4, budget);
+            st.setLong(5, gross);
             int update = st.executeUpdate();
             if (update > 0) {
                 //System.out.println("Filmec dobavlen vse ok" + titleRu);

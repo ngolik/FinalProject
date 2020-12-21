@@ -29,6 +29,16 @@ public class UserDaoImpl implements UserDAO {
                     "VALUES(?,?,?,'user',?)";
     private final static String VIEW_ALL_USERS =
             "SELECT * FROM users";
+    private static final String BAN_USER_BY_USERNAME =
+            "UPDATE `jackdb`.`user`\n" +
+                    "SET\n" +
+                    "`u_type` = 'banned'\n" +
+                    "WHERE `u_nick` = ?;";
+    private static final String UNBAN_USER_BY_USERNAME =
+            "UPDATE `jackdb`.`user`\n" +
+                    "SET\n" +
+                    "`u_type` = 'user'\n" +
+                    "WHERE `u_nick` = ?;";
     private static final String VIEW_BY_NICKNAME =
             "SELECT * FROM users WHERE login=?";
     private static final String DELETE_BY_NICKNAME =
@@ -173,6 +183,56 @@ public class UserDaoImpl implements UserDAO {
             try {
                 rs.close();
             } catch (SQLException | NullPointerException e) {}
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
+    }
+
+    @Override
+    public void banUser(String userName) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(BAN_USER_BY_USERNAME);
+            st.setString(1, userName);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                //System.out.println("User v bane vse ok" + userNickname);
+                return;
+            }
+            throw new DAOException("Wrong ban data");
+        } catch (SQLException e) {
+            throw new DAOException("User sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("User pool connection error", e);
+        } finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
+    }
+
+    @Override
+    public void unBanUser(String userName) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(UNBAN_USER_BY_USERNAME);
+            st.setString(1, userName);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                //System.out.println("User razbanen vse ok " + userNickname);
+                return;
+            }
+            throw new DAOException("Wrong unban data");
+        } catch (SQLException e) {
+            throw new DAOException("User sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("User pool connection error", e);
+        } finally {
             try {
                 st.close();
             } catch (SQLException | NullPointerException e) {}
