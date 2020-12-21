@@ -17,11 +17,11 @@ public interface AdministratorService {
     void updateMovie(String id, String title, String year, String runtime, String budget, String gross) throws ServiceException;
     void addGenreForMovie(String movieID, String name) throws ServiceException;
     void deleteGenreForMovie(String movieID, String name) throws ServiceException;
-    void addParticipant(String name, String surname, String secondName);
-    void updateParticipant(String ID, String name, String surname, String secondName);
-    void addParticipantForMovie(String participantID, String movieID);
+    void addParticipant(String name, String surname, String secondName) throws ServiceException;
+    void updateParticipant(String ID, String name, String surname, String secondName) throws ServiceException;
+    void addParticipantForMovie(String participantID, String movieID) throws ServiceException;
     void deleteParticipantForMovie(String participantID, String movieID);
-    List<Participant> showAllParticipants();
-    void updateImage(String entity, String filename, String path);
+    List<Participant> showAllParticipants() throws ServiceException;
+    void updateImage(String entity, String filename, String path) throws ServiceException;
 
 }

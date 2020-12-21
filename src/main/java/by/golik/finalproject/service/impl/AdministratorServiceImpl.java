@@ -179,7 +179,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void addParticipant(String name, String surname, String secondName) {
+    public void addParticipant(String name, String surname, String secondName) throws ServiceException {
         if (!Validator.validate(name, surname, secondName)) {
             throw new ServiceException("Illegal data input");
         }
@@ -193,13 +193,48 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void updateParticipant(String ID, String name, String surname, String secondName) {
-
+    public void updateParticipant(String id, String name, String surname, String secondName) throws ServiceException {
+        if (!Validator.validate(id, name, surname, secondName)
+                || !Validator.validateNumber(id)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        int intActorId;
+        try {
+            intActorId = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            throw new ServiceException("Wrong data input, while updating actor for movie");
+        }
+        try {
+            dao.updateParticipant(intActorId, name, surname, secondName);
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
     }
 
-    @Override
-    public void addParticipantForMovie(String participantID, String movieID) {
-
+    @Override//TODO (PARTICIPANT FOR MOVIE)
+    public void addParticipantForMovie(String participantId, String movieId) throws ServiceException {
+        if (!Validator.validate(participantId, movieId)
+                || !Validator.validateNumber(participantId)
+                || !Validator.validateNumber(movieId)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        int intMovieID;
+        int intActorID;
+        try {
+            intMovieID = Integer.parseInt(movieId);
+            intActorID = Integer.parseInt(participantId);
+        } catch (NumberFormatException e) {
+            throw new ServiceException("Wrong data input, while adding actor for movie");
+        }
+        try {
+            dao.addParticipant(intActorID, intMovieID);
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
     }
 
     @Override
@@ -208,12 +243,37 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public List<Participant> showAllParticipants() {
-        return null;
+    public List<Participant> showAllParticipants() throws ServiceException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        List<Participant> actors;
+        try {
+            actors = dao.getAllParticipants();
+            if (actors == null || actors.size() == 0) {
+                throw new ServiceException("No users matching your query");
+            }
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+        return actors;
     }
 
-    @Override
-    public void updateImage(String entity, String filename, String path) {
-
+    @Override //TODO (IMAGES FOR USERS AND PARTICIPANTS)
+    public void updateImage(String entity, String filename, String path) throws ServiceException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        MovieDAO movieDAO;
+        UserDAO userDAO;
+        ParticipantDAO participantDAO;
+        try {
+            switch (entity) {
+                case MOVIE:
+                    movieDAO = daoFactory.getMovieDAO();
+                    int id = Integer.parseInt(filename);
+                    movieDAO.updateImage(id, IMAGES + MOVIE + DELIM + path);
+                    break;
+            }
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
     }
 }
