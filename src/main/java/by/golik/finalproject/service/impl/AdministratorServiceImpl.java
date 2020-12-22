@@ -231,7 +231,7 @@ public class AdministratorServiceImpl implements AdministratorService {
             throw new ServiceException("Wrong data input, while adding actor for movie");
         }
         try {
-            dao.addParticipant(intActorID, intMovieID);
+            dao.addParticipant();
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
