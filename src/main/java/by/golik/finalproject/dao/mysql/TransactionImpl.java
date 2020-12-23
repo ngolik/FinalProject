@@ -12,5 +12,18 @@ import org.apache.logging.log4j.Logger;
 public class TransactionImpl implements Transaction {
     private static Logger logger = LogManager.getLogger(Transaction.class);
 
+    @Override
+    public void createDao() {
+
+    }
+
+    @Override
+    public void commit() {
+
+    }
+
+    @Override
+    public void rollback() {
+
     }
 }

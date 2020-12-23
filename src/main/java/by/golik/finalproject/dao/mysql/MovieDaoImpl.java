@@ -34,33 +34,49 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String SHOW_BY_GENRE =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `movies_db`.genres.name LIKE ? ORDER BY `title`";
-    private static final String SEARCH_BY_TITLE =
+    private static final String SHOW_BY_TITLE =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `title` LIKE ? ORDER BY `title`";
-    private static final String SEARCH_BY_ACTOR =
+    private static final String SHOW_BY_PARTICIPANT =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `movies_db`.movies_participants.participants_id = ? ORDER BY `title`";
     private static final String SHOW_BY_ID =
             "SELECT `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `id` = ?";
+
     private static final String COUNT_ALL_MOVIES =
             "SELECT COUNT(movies.id) AS amount FROM movies";
+
     private static final String ADD_MOVIE =
             "INSERT INTO movies (title, `year`, `runtime`, `budget`, `gross`) VALUES (?, ?, ?, ?, ?)";
+
     private static final String UPDATE_BY_ID =
             "UPDATE `movies_db`.`movies`\n" +
                     "SET title = ?, `year` = ?, `runtime` = ?, `budget` = ?,`gross` = ?\n" +
                     "WHERE `id` = ?;\n";
+
     private static final String DELETE_BY_ID =
             "DELETE FROM `movies_db`.`movies` WHERE id=?;";
     private static final String UPDATE_IMAGE =
             "UPDATE movies SET image_path= ? WHERE id= ?;";
+
+    //TODO SQL EXPRESSION
+    private static final String MOVIES_FOR_PARTICIPANT =
+            "SELECT DISTINCT movies_id, movies_title IFNULL(rating.m_rating, 0) AS m_rating, IFNULL(rating.m_votes, 0) AS m_votes\n" +
+                    "FROM movies\n" +
+                    "LEFT JOIN (\n" +
+                    "SELECT movies_m_id, AVG(rating.rating_score) AS m_rating, COUNT(rating.rating_score) AS m_votes FROM rating GROUP BY movies_m_id)\n" +
+                    "rating ON (movies.id = movies_m_id) \n" +
+                    "LEFT JOIN movies_participants ON movies_id= movies_participants.movies_id\n" +
+                    "WHERE movies_participants.movies_id = ? OR movies_participants.participants_id = ?;";
+
 
     private static final MovieDAO instance = new MovieDaoImpl();
 
     private MovieDaoImpl() {
 
     }
+
     public static MovieDAO getInstance() {
         return instance;
     }
@@ -97,14 +113,15 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 rs.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -136,14 +153,15 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 rs.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -155,7 +173,7 @@ public class MovieDaoImpl implements MovieDAO {
         try {
             con = ConnectionPool.getInstance().takeConnection();
 
-            st = con.prepareStatement(SEARCH_BY_TITLE);
+            st = con.prepareStatement(SHOW_BY_TITLE);
             st.setString(1, "%" + title + "%");
             //System.out.println("%" + title + "%");
             rs = st.executeQuery();
@@ -176,14 +194,15 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 rs.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -195,7 +214,7 @@ public class MovieDaoImpl implements MovieDAO {
         try {
             con = ConnectionPool.getInstance().takeConnection();
 
-            st = con.prepareStatement(SEARCH_BY_ACTOR);
+            st = con.prepareStatement(SHOW_BY_PARTICIPANT);
             st.setInt(1, actorId);
             rs = st.executeQuery();
 
@@ -215,14 +234,15 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 rs.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -256,14 +276,15 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 rs.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -321,11 +342,11 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -352,11 +373,11 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -378,11 +399,11 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -405,11 +426,50 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
+        }
+    }
+
+    @Override
+    public List<Movie> getMoviesForParticipant(int participantId) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(MOVIES_FOR_PARTICIPANT);
+            st.setInt(1, participantId);
+            rs = st.executeQuery();
+
+            List<Movie> movies = new ArrayList<>();
+            Movie movie;
+            while (rs.next()) {
+                movie = new Movie();
+                movie.setId(rs.getInt(ID));
+                movie.setTitle(rs.getString(TITLE));
+                movie.setAvgRating(rs.getDouble(RATING));
+                movies.add(movie);
+            }
+            return movies;
+
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error", e);
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException | NullPointerException e) {
+            }
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 }

@@ -80,18 +80,18 @@ public class GenreDaoImpl implements GenreDAO {
     /**
      * This method is used to add connection between some movie and genre into data source.
      *
-     * @param intMovieID id of movie
+     * @param intMovieId id of movie
      * @param name       genre name in russian
      * @throws DAOException if some error occurred while processing data.
      */
     @Override
-    public void addGenreForMovie(int intMovieID, String name) throws DAOException {
+    public void addGenreForMovie(int intMovieId, String name) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
             st = con.prepareStatement(ADD_GENRE);
-            st.setInt(1, intMovieID);
+            st.setInt(1, intMovieId);
             st.setString(2, name);
             int update = st.executeUpdate();
             if (update > 0) {

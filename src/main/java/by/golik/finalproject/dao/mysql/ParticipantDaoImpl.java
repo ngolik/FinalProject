@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class ParticipantDaoImpl implements ParticipantDAO {
 
-    private static final String PARTICIPANTS_FOR_MOVIE =
-            "SELECT id, name, surname, secondname FROM participants\n" +
-                    "WHERE `movies_db`.movies.id = ?";
+    private static final String PARTICIPANTS_FOR_MOVIE = "SELECT participants.id, name, surname, secondname FROM participants\n" +
+            "LEFT JOIN movies_participants mp ON participants.id = mp.participants_id\n" +
+            "WHERE movies_db.movies.id=?;";
 
     private static final String PARTICIPANT_BY_ID =
             "SELECT name, surname, secondname FROM participants\n" +
@@ -31,12 +31,19 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     private final static String UPDATE_PARTICIPANT =
             "UPDATE `participants` SET `name` = ?, `surname` = ?, `secondname` = ?" +
                     " WHERE `id` = ?";
+    private final static String ADD_ACTOR_FOR_MOVIE =
+            "INSERT INTO movies_participants (participants_id, movies_id) VALUES (?, ?)";
+    private static final String DELETE_ACTOR_FOR_MOVIE =
+            "DELETE FROM movies_participants\n" +
+                    "WHERE movies_id=? AND participants_id=?;";
     private static final String DELETE_PARTICIPANT_BY_ID =
             "DELETE FROM `participants` WHERE `id` = ?";
     private static final String ALL_PARTICIPANTS =
             "SELECT * FROM participants;";
     private static final String LAST_INSERTED_PARTICIPANT =
             "SELECT * FROM movies_db.participants ORDER BY id DESC LIMIT 1;";
+
+
 
 
     private static final String ID = "id";
@@ -214,10 +221,56 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         }
     }
 
+    @Override
+    public void addParticipantForMovie(int participantId, int movieId) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(ADD_ACTOR_FOR_MOVIE);
+            st.setInt(1, participantId);
+            st.setInt(2, movieId);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                //System.out.println("Participant added to movie");
+                return;
+            }
+            throw new DAOException("Wrong movie data");
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error", e);
+        } finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e){}
+        }
+    }
 
     @Override
-    public void deleteParticipantForMovie(int participantID, int movieID) throws DAOException {
-
+    public void deleteParticipantForMovie(int participantId, int movieId) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(DELETE_ACTOR_FOR_MOVIE);
+            st.setInt(1, movieId);
+            st.setInt(2, participantId);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                //System.out.println("Actor udalen vse ok " + actorID);
+                return;
+            }
+            throw new DAOException("Wrong review data");
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error", e);
+        } finally {
+            try {
+                st.close();
+            } catch (SQLException | NullPointerException e) {}
+        }
     }
 
     @Override

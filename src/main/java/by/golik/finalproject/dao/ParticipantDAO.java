@@ -3,6 +3,7 @@ package by.golik.finalproject.dao;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Participant;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -46,7 +47,7 @@ public interface ParticipantDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     void updateParticipant(int id, String name, String surName, String secondName) throws DAOException;
-
+    void addParticipantForMovie(int participantId, int movieId) throws DAOException;
     /**
      * This method is used to delete connection between some Movie and Participant from data source.
      *
@@ -55,6 +56,7 @@ public interface ParticipantDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     void deleteParticipantForMovie(int participantId, int movieId) throws DAOException;
+
 
     /**
      * This method is used to get list of all participants from data source.
