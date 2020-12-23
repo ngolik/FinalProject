@@ -5,7 +5,6 @@ import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.entity.Movie;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,11 +32,8 @@ public class MovieDaoImpl implements MovieDAO {
     private final static String SHOW_ALL =
             "SELECT *  FROM `movies`";
     private static final String SHOW_BY_GENRE =
-            "SELECT id, title, AVG(votes.score) AS m_rating, COUNT(votes.score) AS m_votes\n" +
-                    "FROM movies\n" +
-                    "LEFT JOIN votes ON movies.id = votes.movies_id\n" +
-                    "LEFT JOIN genres ON movies.id = genres.id " +
-                    "WHERE genres.name = ? GROUP BY movies_id ORDER BY m_rating DESC LIMIT ?, ?;";
+            "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
+                    "WHERE `movies_db`.genres.name LIKE ? ORDER BY `title`";
     private static final String SEARCH_BY_TITLE =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `title` LIKE ? ORDER BY `title`";
@@ -122,8 +118,6 @@ public class MovieDaoImpl implements MovieDAO {
 
             st = con.prepareStatement(SHOW_BY_GENRE);
             st.setString(1, genre);
-            st.setInt(2, offset);
-            st.setInt(3, recordsNumber);
             rs = st.executeQuery();
 
             List<Movie> movies = new ArrayList<>();
@@ -336,7 +330,7 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public void updateMovie(int id, String title, int year, long budget, long gross) throws DAOException {
+    public void updateMovie(int id, String title, int year, int runtime, long budget, long gross) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
@@ -344,12 +338,13 @@ public class MovieDaoImpl implements MovieDAO {
             st = con.prepareStatement(UPDATE_BY_ID);
             st.setString(1, title);
             st.setInt(2, year);
-            st.setLong(3, budget);
-            st.setLong(4, gross);
-            st.setInt(5, id);
+            st.setInt(3, runtime);
+            st.setLong(4, budget);
+            st.setLong(5, gross);
+            st.setInt(6, id);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Filmec obnovlen vse ok" + titleRu);
+                //System.out.println("Movie updated " + title);
                 return;
             }
             throw new DAOException("Wrong movie data");
@@ -375,7 +370,7 @@ public class MovieDaoImpl implements MovieDAO {
             st.setInt(1, id);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Filmec udalen vse ok " + id);
+                //System.out.println("movie deleted " + id);
                 return;
             }
             throw new DAOException("Wrong movie data");
@@ -402,7 +397,7 @@ public class MovieDaoImpl implements MovieDAO {
             st.setInt(2, id);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Movie obnovlen vse ok " + path);
+                //System.out.println("Movie image updated " + path);
                 return;
             }
             throw new DAOException("Wrong review data");

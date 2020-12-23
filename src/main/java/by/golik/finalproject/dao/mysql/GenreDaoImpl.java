@@ -95,7 +95,7 @@ public class GenreDaoImpl implements GenreDAO {
             st.setString(2, name);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Genre dobavlen vse ok " + name);
+                //System.out.println("Genre is added " + name);
                 return;
             }
             throw new DAOException("Wrong review data");
@@ -127,7 +127,7 @@ public class GenreDaoImpl implements GenreDAO {
             st.setInt(1, intMovieID);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Genre udalen vse ok  " + intMovieID);
+                //System.out.println("Genre is deleted " + intMovieID);
                 return;
             }
             throw new DAOException("Wrong review data");

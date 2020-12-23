@@ -3,7 +3,7 @@ package by.golik.finalproject.entity;
 /**
  * @author Nikita Golik
  */
-public enum NameParticipant {
+public enum ParticipantList {
     PRODUCER,
     DIRECTOR,
     ACTOR,

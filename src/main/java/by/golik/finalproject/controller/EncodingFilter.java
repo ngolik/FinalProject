@@ -26,7 +26,7 @@ public class EncodingFilter implements Filter {
         request.setCharacterEncoding(CHARACTER_ENCODING);
         response.setCharacterEncoding(CHARACTER_ENCODING);
         response.setContentType(CONTENT_TYPE);
-        logger.log(Level.INFO, "Filter was done: charset encoding was set.");
+        logger.log(Level.INFO, "charset encoding was set.");
 
         chain.doFilter(request, response);
     }

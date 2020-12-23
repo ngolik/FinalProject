@@ -30,15 +30,15 @@ public class UserDaoImpl implements UserDAO {
     private final static String VIEW_ALL_USERS =
             "SELECT * FROM users";
     private static final String BAN_USER_BY_USERNAME =
-            "UPDATE `jackdb`.`user`\n" +
+            "UPDATE `movies_db`.`users`\n" +
                     "SET\n" +
-                    "`u_type` = 'banned'\n" +
-                    "WHERE `u_nick` = ?;";
+                    "`users`.role = 'banned'\n" +
+                    "WHERE `users`.login = ?;";
     private static final String UNBAN_USER_BY_USERNAME =
-            "UPDATE `jackdb`.`user`\n" +
+            "UPDATE `movies_db`.`users`\n" +
                     "SET\n" +
-                    "`u_type` = 'user'\n" +
-                    "WHERE `u_nick` = ?;";
+                    "`users`.role = 'user'\n" +
+                    "WHERE `users`.login = ?;";
     private static final String VIEW_BY_NICKNAME =
             "SELECT * FROM users WHERE login=?";
     private static final String DELETE_BY_NICKNAME =

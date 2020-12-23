@@ -53,6 +53,8 @@ public class Movie {
     private Participant director;
     private Participant producer;
     List<Participant> participants;
+    private String description;
+    private List<Genre> genreList;
 
     public List<Participant> getParticipants() {
         return participants;
@@ -101,11 +103,6 @@ public class Movie {
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
     }
-
-    private String description;
-
-    private List<Genre> genreList;
-
 
     public Movie() {
 

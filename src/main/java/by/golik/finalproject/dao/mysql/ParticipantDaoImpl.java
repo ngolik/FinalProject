@@ -117,9 +117,9 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             return participant;
 
         } catch (SQLException e) {
-            throw new DAOException("Actor sql error", e);
+            throw new DAOException("Participant sql error", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("Actor pool connection error");
+            throw new DAOException("Participant pool connection error");
         }
         finally {
             try {
@@ -132,7 +132,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     }
 
     @Override
-    public void addParticipant(String name, String surname) throws DAOException {
+    public void addParticipant(String name, String surname, String secondName) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
@@ -140,9 +140,10 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             st = con.prepareStatement(ADD_PARTICIPANT);
             st.setString(1, name);
             st.setString(2, surname);
+            st.setString(3, secondName);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Actor dobavlen vse ok" + nameEn);
+                //System.out.println("Participant is added " + name);
                 return;
             }
             throw new DAOException("Wrong movie data");
@@ -159,7 +160,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     }
 
     @Override
-    public void updateParticipant(int actorID, String name, String surname) throws DAOException {
+    public void updateParticipant(int actorID, String name, String surname, String secondName) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
@@ -168,6 +169,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             st.setString(1, name);
             st.setString(2, surname);
             st.setInt(3, actorID);
+            st.setString(4, secondName);
             int update = st.executeUpdate();
             if (update > 0) {
                 //System.out.println("Actor obnovlen vse ok " + nameEn);
@@ -196,7 +198,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             st.setInt(1, id);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Actor udalen vse ok " + id);
+                //System.out.println("Participant deleted " + id);
                 return;
             }
             throw new DAOException("Wrong movie data");
