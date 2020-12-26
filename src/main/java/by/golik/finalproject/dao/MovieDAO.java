@@ -14,7 +14,7 @@ public interface MovieDAO {
      * @return list of movies
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Movie> getAllMovies() throws DAOException;
+    List<Movie> readAllMovies() throws DAOException;
 
     /**
      * This method is used to get movies of a particular genre from data source.
@@ -36,7 +36,7 @@ public interface MovieDAO {
     List<Movie> getMoviesByParticipant(int actorId) throws DAOException;
     Movie getMovieById(int id) throws DAOException;
     int countAllMoviesAmount() throws DAOException;
-    void addMovie(String title, int year, int runtime, long budget, long gross) throws DAOException;
+    void createMovie(String title, int year, int runtime, long budget, long gross) throws DAOException;
     void updateMovie(int id, String title, int year, int runtime, long budget, long gross) throws DAOException;
     void deleteMovie(int id) throws DAOException;
     List<Movie> getMoviesForParticipant(int participantId) throws DAOException;

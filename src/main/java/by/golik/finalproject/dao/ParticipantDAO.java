@@ -25,7 +25,7 @@ public interface ParticipantDAO {
      * @return filled Participant bean
      * @throws DAOException if some error occurred while processing data.
      */
-    Participant getParticipant(int id) throws DAOException;
+    Participant readParticipant(int id) throws DAOException;
 
     /**
      * This method is used to insert data about new participant into data source.
@@ -35,7 +35,7 @@ public interface ParticipantDAO {
      * @param secondName second name of participant
      * @throws DAOException if some error occurred while processing data.
      */
-    void addParticipant(String name, String surname, String secondName) throws DAOException;
+    void createParticipant(String name, String surname, String secondName) throws DAOException;
 
     /**
      * This method is used to update data about any participant in data source.

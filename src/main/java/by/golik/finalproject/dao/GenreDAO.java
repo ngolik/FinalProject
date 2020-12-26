@@ -16,7 +16,7 @@ public interface GenreDAO {
      * @return filled Genre beans
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Genre> getGenresByMovie(int id) throws DAOException;
+    List<Genre> readGenresByMovie(int id) throws DAOException;
 
     /**
      * This method is used to add connection between some movie and genre into data source.
@@ -25,7 +25,8 @@ public interface GenreDAO {
      * @param name genre name
      * @throws DAOException if some error occurred while processing data.
      */
-    void addGenreForMovie(int intMovieID, String name) throws DAOException;
+    void createGenreForMovie(int intMovieID, String name) throws DAOException;
+    void addGenre(String name) throws DAOException;
 
     /**
      * This method is used to remove connection between some movie and genre from data source.

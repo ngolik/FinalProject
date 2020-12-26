@@ -7,7 +7,7 @@ CREATE TABLE `film_users` (
     /*
      * 0 - администратор (Role.ADMINISTRATOR)
      * 1 - пользователь (Role.USER)
-     * 2 - гость (Role.GUEST)
+     * 2 - гость (Role.BANNED)
      */
                          `role` TINYINT NOT NULL CHECK (`role` IN (0, 1, 2)),
                          PRIMARY KEY (`identity`)

@@ -21,7 +21,7 @@ public class MovieServiceImpl implements MovieService {
         VoteDAO ratingDAO = daoFactory.getVoteDAO();
         List<Movie> movies;
         try {
-            movies = dao.getAllMovies();
+            movies = dao.readAllMovies();
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
@@ -82,7 +82,7 @@ public class MovieServiceImpl implements MovieService {
             movie = dao.getMovieById(normId);
             if (movie != null) {
 
-                genreList = genreDAO.getGenresByMovie(normId);
+                genreList = genreDAO.readGenresByMovie(normId);
                 voteList = ratingDAO.getVotesForMovie(normId);
                 participantList = participantDAO.getParticipantsForMovie(normId);
                 movie.setGenreList(genreList);

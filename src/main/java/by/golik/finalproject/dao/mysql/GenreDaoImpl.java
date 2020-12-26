@@ -19,8 +19,13 @@ public class GenreDaoImpl implements GenreDAO {
     private final static String SHOW_GENRES_BY_ID =
             "SELECT name FROM genres\n" +
                     " WHERE id = ?";
-    private static final String ADD_GENRE =
-            "INSERT INTO genres(id, name) VALUES (?, ?)";
+
+    private static final String ADD_GENRE = "INSERT INTO `genres` " +
+            "(`name`) VALUES (?)";
+
+    private static final String ADD_GENRE_FOR_MOVIE =
+            "INSERT INTO movies_genres(movies_id, movies_genres.genres_id) VALUES (?, ?)";
+
     private static final String DELETE_GENRE =
             "DELETE FROM `genres` WHERE `id` = ?";
 
@@ -35,6 +40,29 @@ public class GenreDaoImpl implements GenreDAO {
         return instance;
     }
 
+    @Override
+    public void addGenre(String name) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(ADD_GENRE);
+            st.setString(1, name);
+            int update = st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error", e);
+        }finally {
+            try {
+                con.close();
+            } catch (SQLException e) {}
+            try {
+                st.close();
+            } catch (SQLException e) {}
+        }
+    }
+
     /**
      * This method is used to get genres for a particular movie from data source.
      *
@@ -43,7 +71,7 @@ public class GenreDaoImpl implements GenreDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     @Override
-    public List<Genre> getGenresByMovie(int id) throws DAOException {
+    public List<Genre> readGenresByMovie(int id) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -85,12 +113,12 @@ public class GenreDaoImpl implements GenreDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     @Override
-    public void addGenreForMovie(int intMovieId, String name) throws DAOException {
+    public void createGenreForMovie(int intMovieId, String name) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(ADD_GENRE);
+            st = con.prepareStatement(ADD_GENRE_FOR_MOVIE);
             st.setInt(1, intMovieId);
             st.setString(2, name);
             int update = st.executeUpdate();

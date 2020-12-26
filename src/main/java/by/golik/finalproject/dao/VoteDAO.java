@@ -44,7 +44,7 @@ public interface VoteDAO {
      * @param rating       user gave
      * @throws DAOException if some error occurred while processing data.
      */
-    void addVotes(int intMovieID, String userNickname, int rating) throws DAOException;
+    void createVotes(int intMovieID, String userNickname, int rating) throws DAOException;
 
     /**
      * This method is used to update rating some user gave to some movie in data source.

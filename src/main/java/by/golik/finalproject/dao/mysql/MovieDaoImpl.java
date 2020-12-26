@@ -61,14 +61,8 @@ public class MovieDaoImpl implements MovieDAO {
             "UPDATE movies SET image_path= ? WHERE id= ?;";
 
     //TODO SQL EXPRESSION
-    private static final String MOVIES_FOR_PARTICIPANT =
-            "SELECT DISTINCT movies_id, movies_title IFNULL(rating.m_rating, 0) AS m_rating, IFNULL(rating.m_votes, 0) AS m_votes\n" +
-                    "FROM movies\n" +
-                    "LEFT JOIN (\n" +
-                    "SELECT movies_m_id, AVG(rating.rating_score) AS m_rating, COUNT(rating.rating_score) AS m_votes FROM rating GROUP BY movies_m_id)\n" +
-                    "rating ON (movies.id = movies_m_id) \n" +
-                    "LEFT JOIN movies_participants ON movies_id= movies_participants.movies_id\n" +
-                    "WHERE movies_participants.movies_id = ? OR movies_participants.participants_id = ?;";
+    private static final String MOVIES_FOR_PARTICIPANT = "SELECT DISTINCT id, title, IFNULL(.m_votes, 0) AS m_votes\n" +
+            "FROM movies"
 
 
     private static final MovieDAO instance = new MovieDaoImpl();
@@ -82,7 +76,7 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public List<Movie> getAllMovies() throws DAOException {
+    public List<Movie> readAllMovies() throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -321,7 +315,7 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public void addMovie(String title, int year, int runtime, long budget, long gross) throws DAOException {
+    public void createMovie(String title, int year, int runtime, long budget, long gross) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {

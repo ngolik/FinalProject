@@ -33,7 +33,7 @@ public class ParticipantServiceImpl implements ParticipantService {
                 throw new ServiceException("No person with such ID");
             }
             try {
-                participant = participantDAO.getParticipant(normId);
+                participant = participantDAO.readParticipant(normId);
                 if (participant != null) {
                     movieList = movieDAO.getMoviesByParticipant(normId);
 

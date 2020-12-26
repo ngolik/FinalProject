@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User authorise(String login, byte[] password) throws ServiceException, ServiceAutoException, ServiceBanException {
-        logger.debug("authorize begin");
+        logger.debug("authorise begin");
         if (!Validator.validateLogin(login) ||
                 !Validator.validatePassword(password)) {
             throw new ServiceAutoException("Wrong parameters!");

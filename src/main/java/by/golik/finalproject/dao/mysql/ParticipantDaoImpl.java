@@ -28,18 +28,24 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     private final static String ADD_PARTICIPANT =
             "INSERT INTO `participants` " +
                     "(`surname`, `name`, `secondname`) VALUES (?, ?, ?)";
+
     private final static String UPDATE_PARTICIPANT =
             "UPDATE `participants` SET `name` = ?, `surname` = ?, `secondname` = ?" +
                     " WHERE `id` = ?";
-    private final static String ADD_ACTOR_FOR_MOVIE =
+
+    private final static String ADD_PARTICIPANT_FOR_MOVIE =
             "INSERT INTO movies_participants (participants_id, movies_id) VALUES (?, ?)";
-    private static final String DELETE_ACTOR_FOR_MOVIE =
+
+    private static final String DELETE_PARTICIPANT_FOR_MOVIE =
             "DELETE FROM movies_participants\n" +
                     "WHERE movies_id=? AND participants_id=?;";
+
     private static final String DELETE_PARTICIPANT_BY_ID =
             "DELETE FROM `participants` WHERE `id` = ?";
+
     private static final String ALL_PARTICIPANTS =
             "SELECT * FROM participants;";
+
     private static final String LAST_INSERTED_PARTICIPANT =
             "SELECT * FROM movies_db.participants ORDER BY id DESC LIMIT 1;";
 
@@ -102,7 +108,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
 
 
     @Override
-    public Participant getParticipant(int normId) throws DAOException {
+    public Participant readParticipant(int normId) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -139,7 +145,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     }
 
     @Override
-    public void addParticipant(String name, String surname, String secondName) throws DAOException {
+    public void createParticipant(String name, String surname, String secondName) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
@@ -227,7 +233,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         PreparedStatement st = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(ADD_ACTOR_FOR_MOVIE);
+            st = con.prepareStatement(ADD_PARTICIPANT_FOR_MOVIE);
             st.setInt(1, participantId);
             st.setInt(2, movieId);
             int update = st.executeUpdate();
@@ -253,7 +259,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         PreparedStatement st = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(DELETE_ACTOR_FOR_MOVIE);
+            st = con.prepareStatement(DELETE_PARTICIPANT_FOR_MOVIE);
             st.setInt(1, movieId);
             st.setInt(2, participantId);
             int update = st.executeUpdate();

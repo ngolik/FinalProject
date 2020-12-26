@@ -37,6 +37,7 @@ public class VoteDaoImpl implements VoteDAO {
     public static VoteDAO getInstance() {
         return instance;
     }
+
     @Override
     public List<Vote> getVotesForMovie(int id) throws DAOException {
         Connection con = null;
@@ -151,7 +152,7 @@ public class VoteDaoImpl implements VoteDAO {
     }
 
     @Override
-    public void addVotes(int intMovieID, String userNickname, int rating) throws DAOException {
+    public void createVotes(int intMovieID, String userNickname, int rating) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {

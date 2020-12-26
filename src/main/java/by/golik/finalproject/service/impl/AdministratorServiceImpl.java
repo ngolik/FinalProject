@@ -96,7 +96,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
         try {
 
-            dao.addMovie(title, intYear, intRuntime, longBudget, longGross);
+            dao.createMovie(title, intYear, intRuntime, longBudget, longGross);
 
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
@@ -150,7 +150,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
 
         try {
-            dao.addGenreForMovie(intMovieID, name);
+            dao.createGenreForMovie(intMovieID, name);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -186,7 +186,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         DaoFactory daoFactory = DaoFactory.getInstance();
         ParticipantDAO dao = daoFactory.getParticipantDAO();
         try {
-            dao.addParticipant(name, surname, secondName);
+            dao.createParticipant(name, surname, secondName);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -222,16 +222,16 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         ParticipantDAO dao = daoFactory.getParticipantDAO();
-        int intMovieID;
-        int intActorID;
+        int intMovieId;
+        int intParticipantId;
         try {
-            intMovieID = Integer.parseInt(movieId);
-            intActorID = Integer.parseInt(participantId);
+            intMovieId = Integer.parseInt(movieId);
+            intParticipantId = Integer.parseInt(participantId);
         } catch (NumberFormatException e) {
             throw new ServiceException("Wrong data input, while adding actor for movie");
         }
         try {
-            dao.addParticipant();
+            dao.addParticipantForMovie(intParticipantId, intMovieId);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -258,7 +258,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         return actors;
     }
 
-    @Override //TODO (IMAGES FOR USERS AND PARTICIPANTS)
+    @Override
     public void updateImage(String entity, String filename, String path) throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO movieDAO;
