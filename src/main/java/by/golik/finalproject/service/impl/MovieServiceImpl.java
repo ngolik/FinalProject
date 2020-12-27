@@ -134,4 +134,38 @@ public class MovieServiceImpl implements MovieService {
         }
         return amount;
     }
+
+    @Override
+    public void addVote(String movieID, String userName, String rating) throws ServiceException {
+        if (!Validator.validate(movieID, userName, rating)
+                || !Validator.validateNumber(movieID)
+                || !Validator.validateNumber(rating)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        VoteDAO dao = daoFactory.getVoteDAO();
+
+        int intMovieID;
+        int intRating;
+        try {
+            intMovieID = Integer.parseInt(movieID);
+            intRating = Integer.parseInt(rating);
+            if (intRating < 1 && intRating > 10) {
+                throw new ServiceException("Wrong rating input, while adding rating");
+            }
+        } catch (NumberFormatException e) {
+            throw new ServiceException("Wrong data input, while adding rating");
+        }
+        try {
+            Vote vote = dao.checkVotes(intMovieID, userName);
+            if (vote != null) {
+                dao.updateVotes(intMovieID, userName, intRating);
+            } else {
+                dao.createVotes(intMovieID, userName, intRating);
+            }
+
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+    }
 }

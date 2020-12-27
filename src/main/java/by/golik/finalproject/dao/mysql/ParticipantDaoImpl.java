@@ -17,7 +17,8 @@ import java.util.List;
  */
 public class ParticipantDaoImpl implements ParticipantDAO {
 
-    private static final String PARTICIPANTS_FOR_MOVIE = "SELECT participants.id, name, surname, secondname FROM participants\n" +
+    private static final String PARTICIPANTS_FOR_MOVIE = "SELECT participants.id, name, surname, secondname " +
+            "FROM participants\n" +
             "LEFT JOIN movies_participants mp ON participants.id = mp.participants_id\n" +
             "WHERE movies_db.movies.id=?;";
 
@@ -78,7 +79,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
 
             rs = st.executeQuery();
 
-            List<Participant> actors = new ArrayList<>();
+            List<Participant> participants = new ArrayList<>();
             Participant participant;
             while (rs.next()) {
                 participant = new Participant();
@@ -86,9 +87,9 @@ public class ParticipantDaoImpl implements ParticipantDAO {
                 participant.setName(rs.getString(NAME));
                 participant.setSurname(rs.getString(SURNAME));
                 participant.setSecondName(rs.getString(SECONDNAME));
-                actors.add(participant);
+                participants.add(participant);
             }
-            return actors;
+            return participants;
 
         } catch (SQLException e) {
             throw new DAOException("Participant sql error", e);

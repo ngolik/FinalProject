@@ -11,7 +11,7 @@ import java.sql.*;
 public class MovieServlet {
     public static void main(String[] args) throws SQLException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 
-    String url = "jdbc:mysql://localhost/movies_db?serverTimezone=Europe/Moscow&useSSL=false";
+    String url = "jdbc:mysql://localhost/test_db?serverTimezone=Europe/Moscow&useSSL=false";
     String username = "root";
     String password = "canada@123";
     Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();

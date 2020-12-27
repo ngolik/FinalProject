@@ -37,9 +37,11 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String SHOW_BY_TITLE =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `title` LIKE ? ORDER BY `title`";
+
     private static final String SHOW_BY_PARTICIPANT =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `movies_db`.movies_participants.participants_id = ? ORDER BY `title`";
+
     private static final String SHOW_BY_ID =
             "SELECT `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `id` = ?";
@@ -61,8 +63,11 @@ public class MovieDaoImpl implements MovieDAO {
             "UPDATE movies SET image_path= ? WHERE id= ?;";
 
     //TODO SQL EXPRESSION
-    private static final String MOVIES_FOR_PARTICIPANT = "SELECT DISTINCT id, title, IFNULL(.m_votes, 0) AS m_votes\n" +
-            "FROM movies"
+    private static final String MOVIES_FOR_PARTICIPANT =
+            "SELECT *" +
+            "FROM movies";
+    private static final String LAST_INSERTED_MOVIE =
+            "SELECT * FROM test_db.movies ORDER BY id DESC LIMIT 1;";
 
 
     private static final MovieDAO instance = new MovieDaoImpl();
@@ -201,7 +206,7 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public List<Movie> getMoviesByParticipant(int actorId) throws DAOException {
+    public List<Movie> getMoviesByParticipant(int participantId) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -209,7 +214,7 @@ public class MovieDaoImpl implements MovieDAO {
             con = ConnectionPool.getInstance().takeConnection();
 
             st = con.prepareStatement(SHOW_BY_PARTICIPANT);
-            st.setInt(1, actorId);
+            st.setInt(1, participantId);
             rs = st.executeQuery();
 
             List<Movie> movies = new ArrayList<>();
@@ -464,6 +469,43 @@ public class MovieDaoImpl implements MovieDAO {
                 st.close();
             } catch (SQLException | NullPointerException e) {
             }
+        }
+    }
+
+    @Override
+    public Movie getLastInsertedMovie() throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(LAST_INSERTED_MOVIE);
+            rs = st.executeQuery();
+
+            Movie movie = null;
+            if (rs.next()) {
+                movie = new Movie();
+                movie.setId(rs.getInt(ID));
+                movie.setTitle(rs.getString(TITLE));
+                movie.setYear(rs.getInt(YEAR));
+                movie.setBudget(rs.getLong(BUDGET));
+                movie.setGross(rs.getLong(GROSS));
+                movie.setGross(rs.getLong(RUNTIME));
+            }
+            return movie;
+
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error", e);
+        } finally {
+            try {
+                st.close();
+            } catch (SQLException e){}
+                try {
+                    rs.close();
+                } catch (SQLException e) {}
         }
     }
 }

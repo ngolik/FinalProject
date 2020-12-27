@@ -58,14 +58,14 @@ public class DispatcherServlet extends HttpServlet {
         if (commandString != null && !commandString.isEmpty()) {
             try {
                 User user = (User) request.getSession(false).getAttribute(USER);
-                String type;
+                String role;
                 if (user != null) {
-                    type = String.valueOf(user.getRole());
+                    role = String.valueOf(user.getRole());
                 } else {
-                    type = GUEST;
+                    role = GUEST;
                 }
                 Command command;
-                command = CommandProvider.getInstance().getCommandForUser(type, commandString);
+                command = CommandProvider.getInstance().getCommandForUser(role, commandString);
                 if (command == null) {
                     logger.log(Level.ERROR, "Access without permission from client");
                     request.setAttribute(ERROR, MESSAGE_OF_ERROR);

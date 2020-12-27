@@ -17,7 +17,6 @@ public class AdministratorHelper {
     private static final String ERROR_PAGE = "WEB-INF/jsp/error.jsp";
 
     private static final String USER = "user";
-    private static final String MODER = "moder";
     private static final String ADMIN = "admin";
 
     private static final String ERROR = "errorMessage";
@@ -45,7 +44,7 @@ public class AdministratorHelper {
                 administratorService = ServiceFactory.getInstance().getAdministratorService();
             }
             else {
-                request.setAttribute(ERROR, MESSAGE_OF_ERROR_2);
+                request.setAttribute(ERROR, MESSAGE_OF_ERROR);
                 request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
             }
         } else {
