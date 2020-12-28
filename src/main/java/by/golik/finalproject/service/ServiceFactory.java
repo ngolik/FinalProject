@@ -35,7 +35,7 @@ public class ServiceFactory {
         return poolService;
     }
 
-    public ParticipantService getActorService() {
+    public ParticipantService getParticipantService() {
         return participantService;
     }
 

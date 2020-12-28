@@ -41,7 +41,7 @@ public class GenreDaoImpl implements GenreDAO {
     }
 
     @Override
-    public void addGenre(String name) throws DAOException {
+    public void createGenre(String name) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
@@ -54,9 +54,6 @@ public class GenreDaoImpl implements GenreDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error", e);
         }finally {
-            try {
-                con.close();
-            } catch (SQLException e) {}
             try {
                 st.close();
             } catch (SQLException e) {}

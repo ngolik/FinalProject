@@ -10,8 +10,9 @@ import by.golik.finalproject.dao.pool.ConnectionPool;
 public class DaoFactory {
     private static final DaoFactory INSTANCE = new DaoFactory();
 
-    private DaoFactory() {
+    public DaoFactory() {
     }
+
     public static DaoFactory getInstance() {
         return INSTANCE;
     }

@@ -59,7 +59,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     private static final String SECONDNAME = "secondname";
     private static final ParticipantDAO instance = new ParticipantDaoImpl();
 
-    private ParticipantDaoImpl() {
+    public ParticipantDaoImpl() {
     }
 
     public static ParticipantDAO getInstance() {
@@ -289,7 +289,6 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             con = ConnectionPool.getInstance().takeConnection();
 
             st = con.prepareStatement(ALL_PARTICIPANTS);
-            //st.setInt(1, normId);
 
             rs = st.executeQuery();
 
@@ -306,9 +305,9 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             return participants;
 
         } catch (SQLException e) {
-            throw new DAOException("Actor sql error", e);
+            throw new DAOException("Participant sql error", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("Actor pool connection error");
+            throw new DAOException("Participant pool connection error");
         }
         finally {
             try {

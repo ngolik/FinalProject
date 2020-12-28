@@ -38,14 +38,14 @@ public class AddParticipant implements Command {
         String name = request.getParameter(NAME);
         String surname = request.getParameter(SURNAME);
         String secondName = request.getParameter(SECOND_NAME);
-        AdministratorService adminService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
         if (name == null && surname == null && secondName == null) {
 
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
 
         } else {
             try {
-                adminService.addParticipant(name, surname, secondName);
+                administratorService.addParticipant(name, surname, secondName);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
                 response.sendRedirect(REDIRECT);
             } catch (ServiceException e) {

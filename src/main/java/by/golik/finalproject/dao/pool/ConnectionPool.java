@@ -13,10 +13,12 @@ import java.util.concurrent.BlockingQueue;
  *  entity represents connection pool
  * @author Nikita Golik
  */
+
 public class ConnectionPool {
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
-    private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3309/movies_db?useEncoding=true&amp;characterEncoding=UTF-8";
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost/test_db?serverTimezone=Europe/Moscow&useSSL=false";
+//    jdbc:mysql://localhost/test_db?serverTimezone=Europe/Moscow&useSSL=false
     private static final String USER = "root";
     private static final String PASSWORD = "canada@123";
 
@@ -47,6 +49,7 @@ public class ConnectionPool {
                     connection = DriverManager.getConnection(URL, USER, PASSWORD);
                     freeConnections.add(connection);
                 } isInit = true;
+                logger.info("Success connection poll init");
             } catch (ClassNotFoundException | SQLException e) {
                 logger.catching(e);
             }
@@ -95,6 +98,7 @@ public class ConnectionPool {
             }
             connection = freeConnections.take();
             usedConnections.put(connection);
+            logger.info("Success poll takeConnection");
             return connection;
         } catch (InterruptedException e) {
             throw new ConnectionPoolException("Couldn't take connection from pool", e);

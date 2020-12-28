@@ -26,7 +26,7 @@ public class GenreDaoImplTest {
             dao = factory.getGenreDAO();
 
             pool.init();
-            String name = "Тест";
+            String name = "Test";
 
             int movieId = factory.getMovieDAO().getLastInsertedMovie().getId();
             int sizeBefore = dao.readGenresByMovie(movieId).size();
@@ -67,7 +67,7 @@ public class GenreDaoImplTest {
             dao = factory.getGenreDAO();
 
             pool.init();
-            String name= "Тест";
+            String name= "Test";
 
             int movieId = factory.getMovieDAO().getLastInsertedMovie().getId();
             dao.createGenreForMovie(movieId, name);
