@@ -30,7 +30,7 @@ public class DispatcherServlet extends HttpServlet {
     private static final String GUEST = "guest";
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "You don't have permission to do that.";
-    private static final String MESSAGE_OF_ERROR_2 = "Ooops something went wrong";
+    private static final String MESSAGE_OF_ERROR_2 = "Something went wrong";
 
     public DispatcherServlet() {
         super();
