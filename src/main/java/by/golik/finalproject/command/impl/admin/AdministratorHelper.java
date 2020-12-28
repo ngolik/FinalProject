@@ -33,13 +33,13 @@ public class AdministratorHelper {
      * @throws IOException
      */
     static AdministratorService getAdminService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Role userType;
+        String userRole;
         AdministratorService administratorService=null;
         Object object = request.getSession(false).getAttribute(USER);
         if (object.getClass().equals(User.class)){
             User user = (User) object;
-            userType = user.getRole();
-            if (userType.equals(ADMIN))
+            userRole = user.getRole().toString();
+            if (userRole.equals(ADMIN))
             {
                 administratorService = ServiceFactory.getInstance().getAdministratorService();
             }

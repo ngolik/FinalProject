@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UserDAO {
     User authorise(String login, String password) throws DAOException;
-    User register(String email, String login, String password) throws DAOException;
+    User register(String login, String email, String password) throws DAOException;
     List<User> getAllUsers() throws DAOException;
     public void banUser(String userName) throws DAOException;
     public void unBanUser(String userName) throws DAOException;

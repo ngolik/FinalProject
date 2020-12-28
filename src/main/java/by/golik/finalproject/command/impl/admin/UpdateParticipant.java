@@ -16,36 +16,31 @@ import java.io.IOException;
 /**
  * @author Nikita Golik
  */
-public class AddParticipant implements Command {
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/addParticipantPage.jsp";
-    private static final String REDIRECT = "Controller?command=add-participant";
-
-    private static final Logger logger = LogManager.getLogger(AddParticipant.class);
-
+public class UpdateParticipant implements Command {
+    private static final Logger logger = LogManager.getLogger(UpdateParticipant.class);
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/addActorPage.jsp";
+    private static final String REDIRECT = "Controller?command=add-actor";
+    private static final String PARTICIPANT_ID = "participant-id";
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
     private static final String SECOND_NAME = "secondName";
-
     private static final String ERROR = "errorMessage";
-    private static final String MESSAGE_OF_ERROR = "Cannot add participant";
+    private static final String MESSAGE_OF_ERROR = "Cannot update participant";
     private static final String SUCCESS = "successMessage";
-    private static final String MESSAGE_OF_SUCCESS = "Participant successfully added";
+    private static final String MESSAGE_OF_SUCCESS = "Participant successfully updated";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         CommandHelper.saveCurrentQueryToSession(request);
 
+        String participantID = request.getParameter(PARTICIPANT_ID);
         String name = request.getParameter(NAME);
-        String surname = request.getParameter(SURNAME);
+        String surName = request.getParameter(SURNAME);
         String secondName = request.getParameter(SECOND_NAME);
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
-        if (name == null && surname == null && secondName == null) {
-
-            request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
-
-        } else {
+        if(name != null && surName != null) {
             try {
-                administratorService.addParticipant(name, surname, secondName);
+                administratorService.updateParticipant(participantID, name, surName, secondName);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
                 response.sendRedirect(REDIRECT);
             } catch (ServiceException e) {

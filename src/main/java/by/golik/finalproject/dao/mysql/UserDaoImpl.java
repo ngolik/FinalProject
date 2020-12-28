@@ -111,7 +111,7 @@ public class UserDaoImpl implements UserDAO {
      * @throws DAOException f some error occurred while processing data.
      */
     @Override
-    public User register(String email, String login, String password) throws DAOException {
+    public User register(String login, String email, String password) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {

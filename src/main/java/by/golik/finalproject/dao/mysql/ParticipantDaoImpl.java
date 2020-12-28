@@ -27,8 +27,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
                     " WHERE `id` = ?";
 
     private final static String ADD_PARTICIPANT =
-            "INSERT INTO `participants` " +
-                    "(`surname`, `name`, `secondname`) VALUES (?, ?, ?)";
+            "INSERT INTO participants (name, surname, secondname) VALUES (?, ?, ?)";
 
     private final static String UPDATE_PARTICIPANT =
             "UPDATE `participants` SET `name` = ?, `surname` = ?, `secondname` = ?" +
@@ -48,7 +47,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             "SELECT * FROM participants;";
 
     private static final String LAST_INSERTED_PARTICIPANT =
-            "SELECT * FROM movies_db.participants ORDER BY id DESC LIMIT 1;";
+            "SELECT * FROM movies_db.participants ORDER BY participants.id DESC LIMIT 1;";
 
 
 
