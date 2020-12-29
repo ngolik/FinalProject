@@ -167,4 +167,5 @@ public class GenreDaoImpl implements GenreDAO {
             } catch (SQLException | NullPointerException e) {}
         }
     }
+
 }

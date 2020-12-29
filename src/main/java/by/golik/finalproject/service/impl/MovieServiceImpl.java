@@ -6,6 +6,8 @@ import by.golik.finalproject.entity.*;
 import by.golik.finalproject.service.MovieService;
 import by.golik.finalproject.service.Validator;
 import by.golik.finalproject.service.exception.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
  * @author Nikita Golik
  */
 public class MovieServiceImpl implements MovieService {
+    Logger logger = LogManager.getLogger(MovieServiceImpl.class);
     @Override
     public List<Movie> getFullList() throws ServiceException {
 
@@ -109,6 +112,7 @@ public class MovieServiceImpl implements MovieService {
         List<Movie> movies;
         try {
             movies = dao.searchMovieByTitle(title);
+            logger.info(movies.toString());
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
@@ -167,5 +171,16 @@ public class MovieServiceImpl implements MovieService {
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
+    }
+    @Override
+    public int countMoviesByGenre(String genre) throws ServiceException, DAOException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        MovieDAO dao = daoFactory.getMovieDAO();
+        int amount;
+        amount = dao.countMoviesByGenre(genre);
+        if (amount == 0) {
+            throw new ServiceException("No movies matching your query");
+        }
+        return amount;
     }
 }

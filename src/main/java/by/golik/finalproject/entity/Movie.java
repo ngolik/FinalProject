@@ -220,4 +220,26 @@ public class Movie {
 
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", year=" + year +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", runtime=" + runtime +
+                ", budget=" + budget +
+                ", gross=" + gross +
+                ", rating=" + rating +
+                ", avgRating=" + avgRating +
+                ", votes=" + votes +
+                ", actor=" + actor +
+                ", director=" + director +
+                ", producer=" + producer +
+                ", participants=" + participants +
+                ", description='" + description + '\'' +
+                ", genreList=" + genreList +
+                '}';
+    }
 }

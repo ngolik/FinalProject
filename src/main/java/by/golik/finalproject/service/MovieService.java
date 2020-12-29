@@ -1,5 +1,6 @@
 package by.golik.finalproject.service;
 
+import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Movie;
 import by.golik.finalproject.service.exception.ServiceException;
 
@@ -15,4 +16,5 @@ public interface MovieService {
     public void addVote(String movieID, String userName, String rating) throws ServiceException;
     List<Movie> findMovieByTitle(String title) throws ServiceException;
     int countAllMoviesAmount() throws ServiceException;
+    int countMoviesByGenre(String genre) throws ServiceException, DAOException;
 }

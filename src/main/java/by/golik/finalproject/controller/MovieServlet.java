@@ -13,9 +13,11 @@ import by.golik.finalproject.dao.pool.PooledConnection;
 import by.golik.finalproject.entity.Participant;
 import by.golik.finalproject.service.exception.ServiceException;
 import by.golik.finalproject.service.impl.AdministratorServiceImpl;
+import by.golik.finalproject.service.impl.MovieServiceImpl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.util.Arrays;
 
 /**
  * @author Nikita Golik
@@ -42,13 +44,14 @@ public class MovieServlet {
 
         DaoFactory daoFactory;
         ConnectionPool connectionPool;
-        ParticipantDAO participantDAO;
+        MovieDAO movieDAO;
         daoFactory = DaoFactory.getInstance();
         connectionPool = daoFactory.getConnectionPool();
-        participantDAO = daoFactory.getParticipantDAO();
+        movieDAO = daoFactory.getMovieDAO();
         connectionPool.init();
-        System.out.println(participantDAO.getAllParticipants());
-
+        System.out.println(movieDAO.searchMovieByTitle("власть").toString());
+        MovieServiceImpl movieService = new MovieServiceImpl();
+        System.out.println(movieService.findMovieByTitle("власть").toString());
     }
 }
 

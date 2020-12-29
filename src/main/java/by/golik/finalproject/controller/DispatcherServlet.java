@@ -54,7 +54,7 @@ public class DispatcherServlet extends HttpServlet {
         } else {
             commandString = request.getParameter(COMMAND);
         }
-        logger.log(Level.INFO, "Controller processRequest() - commandName = {}", commandString);
+        logger.log(Level.INFO, "DispatcherServlet processRequest() - commandName = {}", commandString);
         if (commandString != null && !commandString.isEmpty()) {
             try {
                 User user = (User) request.getSession(false).getAttribute(USER);

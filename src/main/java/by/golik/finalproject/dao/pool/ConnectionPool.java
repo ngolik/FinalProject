@@ -49,7 +49,7 @@ public class ConnectionPool {
                     connection = DriverManager.getConnection(URL, USER, PASSWORD);
                     freeConnections.add(connection);
                 } isInit = true;
-                logger.info("Success connection poll init");
+                logger.info("Success connection pool init");
             } catch (ClassNotFoundException | SQLException e) {
                 logger.catching(e);
             }
@@ -75,7 +75,7 @@ public class ConnectionPool {
                 usedConnections.clear();
                 isInit = false;
             } catch (SQLException e) {
-                throw new ConnectionPoolException("Can not destroy poll", e);
+                throw new ConnectionPoolException("Can not destroy pool", e);
             }
         } else {
             throw new ConnectionPoolException("You can't destroy pool, that didn't init");

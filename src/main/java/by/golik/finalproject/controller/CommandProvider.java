@@ -2,7 +2,9 @@ package by.golik.finalproject.controller;
 
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.command.impl.admin.*;
+import by.golik.finalproject.command.impl.guest.FindMovieByTitle;
 import by.golik.finalproject.command.impl.guest.Login;
+import by.golik.finalproject.command.impl.guest.ShowMoviesByGenre;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,6 +31,8 @@ public class CommandProvider {
     private CommandProvider() {
 
         guestCommands.put(CommandList.LOGIN, new Login());
+        guestCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
+        guestCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
 
         adminCommands.put(CommandList.ADD_GENRE_FOR_MOVIE, new AddGenreForMovie());
         adminCommands.put(CommandList.ADD_MOVIE, new AddGenreForMovie());

@@ -119,7 +119,7 @@
 
         <div class="col-sm-8 text-left mainContent">
             <br>
-            <form method="get" action="Controller" class="form-horizontal">
+            <form method="get" action="DispatcherServlet" class="form-horizontal">
                 <input type="hidden" name="command" value="find-movie-by-title"/>
                 <div class="form-group">
                     <label for="search" class="col-sm-2 control-label">${searchLabel}</label>

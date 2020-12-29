@@ -42,6 +42,7 @@ public interface MovieDAO {
     List<Movie> getMoviesForParticipant(int participantId) throws DAOException;
     Movie getLastInsertedMovie() throws DAOException;
     void updateImage(int id, String path) throws DAOException;
+    int countMoviesByGenre(String genre) throws DAOException;
 
 
 }

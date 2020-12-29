@@ -64,11 +64,12 @@ public class MovieDaoImpl implements MovieDAO {
 
     //TODO SQL EXPRESSION
     private static final String MOVIES_FOR_PARTICIPANT =
-            "SELECT *" +
-            "FROM movies";
+            "SELECT movies_id from movies_participants where participants_id = ?;";
     private static final String LAST_INSERTED_MOVIE =
             "SELECT * FROM test_db.movies ORDER BY id DESC LIMIT 1;";
 
+    private static final String COUNT_ALL_MOVIES_BY_GENRE =
+            "SELECT COUNT(id) AS amount FROM genres WHERE name = ?;";
 
     private static final MovieDAO instance = new MovieDaoImpl();
 
@@ -174,7 +175,7 @@ public class MovieDaoImpl implements MovieDAO {
 
             st = con.prepareStatement(SHOW_BY_TITLE);
             st.setString(1, "%" + title + "%");
-            //System.out.println("%" + title + "%");
+            System.out.println("%" + title + "%");
             rs = st.executeQuery();
 
             List<Movie> movies = new ArrayList<>();
@@ -183,8 +184,10 @@ public class MovieDaoImpl implements MovieDAO {
                 movie = new Movie();
                 movie.setId(rs.getInt(ID));
                 movie.setTitle(rs.getString(TITLE));
-                movie.setAvgRating(rs.getDouble(RATING));
-                movie.setRating(rs.getInt(VOTES));
+                movie.setYear(rs.getInt(YEAR));
+                movie.setRuntime(rs.getInt(RUNTIME));
+                movie.setBudget(rs.getLong(BUDGET));
+                movie.setGross(rs.getInt(GROSS));
                 movies.add(movie);
             }
             return movies;
@@ -506,6 +509,34 @@ public class MovieDaoImpl implements MovieDAO {
                 try {
                     rs.close();
                 } catch (SQLException e) {}
+        }
+    }
+    @Override
+    public int countMoviesByGenre(String genre) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(COUNT_ALL_MOVIES_BY_GENRE);
+            st.setString(1, genre);
+            int amount = 0;
+            rs = st.executeQuery();
+            if (rs.next()) {
+                amount = rs.getInt(AMOUNT);
+            }
+            return amount;
+
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error", e);
+        } finally {
+            try {
+                st.close();
+            } catch (SQLException e) {
+            }
         }
     }
 }
