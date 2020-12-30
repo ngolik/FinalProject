@@ -2,9 +2,7 @@ package by.golik.finalproject.controller;
 
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.command.impl.admin.*;
-import by.golik.finalproject.command.impl.guest.FindMovieByTitle;
-import by.golik.finalproject.command.impl.guest.Login;
-import by.golik.finalproject.command.impl.guest.ShowMoviesByGenre;
+import by.golik.finalproject.command.impl.guest.*;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +31,8 @@ public class CommandProvider {
         guestCommands.put(CommandList.LOGIN, new Login());
         guestCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
         guestCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
+        guestCommands.put(CommandList.REGISTER, new Register());
+        guestCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
 
         adminCommands.put(CommandList.ADD_GENRE_FOR_MOVIE, new AddGenreForMovie());
         adminCommands.put(CommandList.ADD_MOVIE, new AddGenreForMovie());
@@ -80,7 +80,7 @@ public class CommandProvider {
             }
         } catch (IllegalArgumentException e) {
             logger.log(Level.ERROR, "No such command", e);
-            command = guestCommands.get(CommandList.ALL_MOVIES);
+            command = guestCommands.get(CommandList.SHOW_ALL_MOVIES);
         }
         return command;
     }

@@ -2,11 +2,11 @@ package by.golik.finalproject.command.impl.guest;
 
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.command.CommandHelper;
-import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Movie;
 import by.golik.finalproject.service.MovieService;
 import by.golik.finalproject.service.ServiceFactory;
 import by.golik.finalproject.service.exception.ServiceException;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,14 +19,13 @@ import java.util.List;
 /**
  * @author Nikita Golik
  */
-public class ShowMoviesByGenre implements Command {
+public class ShowAllMovies implements Command {
 
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/moviesPage.jsp";
     private static final String ERROR_PAGE = "/error.jsp";
 
-    private static final Logger logger = LogManager.getLogger(ShowMoviesByGenre.class);
+    private static final Logger logger = LogManager.getLogger(ShowAllMovies.class);
 
-    private static final String GENRE = "genre";
 
     private static final String PAGE = "page";
     private static final String AMOUNT_OF_PAGES = "noOfPages";
@@ -42,8 +41,6 @@ public class ShowMoviesByGenre implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         CommandHelper.saveCurrentQueryToSession(request);
 
-        String genre = request.getParameter(GENRE);
-
         List<Movie> movies;
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         try {
@@ -51,21 +48,21 @@ public class ShowMoviesByGenre implements Command {
             if (request.getParameter(PAGE) != null) {
                 page = Integer.parseInt(request.getParameter(PAGE));
             }
-            movies = movieService.getMoviesByGenre((page-1)*RECORDS_PER_PAGE, RECORDS_PER_PAGE, genre);
 
-            request.setAttribute(REQUEST_ATTRIBUTE, movies);
-            int numberOfMovies = movieService.countMoviesByGenre(genre);
+            movies = movieService.getFullList((page-1)* RECORDS_PER_PAGE, RECORDS_PER_PAGE);
+
+            int numberOfMovies = movieService.countAllMoviesAmount();
+            logger.info("number of movies" + numberOfMovies);
             int noOfPages = (int) Math.ceil(numberOfMovies * 1.0 / RECORDS_PER_PAGE);
 
             request.setAttribute(AMOUNT_OF_PAGES, noOfPages);
             request.setAttribute(CURRENT_PAGE, page);
+            request.setAttribute(REQUEST_ATTRIBUTE, movies);
 
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
-        } catch (ServiceException | DAOException e) {
-            logger.error(e.getMessage(), e);
-
+        } catch (ServiceException e) {
+            logger.log(Level.ERROR, e.getMessage(), e);
             request.setAttribute(ERROR, MESSAGE_OF_ERROR);
-
             request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
         }
     }

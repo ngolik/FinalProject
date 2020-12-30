@@ -163,9 +163,7 @@
                     <div>
                         <a href="DispatcherServlet?command=all-movies"></a>
                     </div>
-                    <div>
-                        <a href="DispatcherServlet?command=view-latest-reviews"></a>
-                    </div>
+
                 </div>
 
                 <!--#region Bullet Navigator Skin Begin -->

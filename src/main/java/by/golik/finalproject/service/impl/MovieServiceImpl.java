@@ -16,9 +16,12 @@ import java.util.List;
  */
 public class MovieServiceImpl implements MovieService {
     Logger logger = LogManager.getLogger(MovieServiceImpl.class);
-    @Override
-    public List<Movie> getFullList() throws ServiceException {
 
+    @Override
+    public List<Movie> getFullList(int offset, int recordsPerPage) throws ServiceException {
+        if (!Validator.validate(offset, recordsPerPage)) {
+            throw new ServiceException("Illegal data input");
+        }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
         VoteDAO ratingDAO = daoFactory.getVoteDAO();

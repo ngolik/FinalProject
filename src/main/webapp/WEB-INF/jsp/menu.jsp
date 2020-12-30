@@ -38,7 +38,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li id="index-page"><a href="../index.jsp">${home}</a> </li>
+                <li id="index-page"><a href="${pageContext.request.contextPath}/index.jsp">${home}</a> </li>
                 <li id="movies-page"><a href="DispatcherServlet?command=all-movies">${movies}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

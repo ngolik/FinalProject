@@ -6,7 +6,7 @@ import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.User;
 import by.golik.finalproject.service.UserService;
 import by.golik.finalproject.service.Validator;
-import by.golik.finalproject.service.exception.ServiceAutoException;
+import by.golik.finalproject.service.exception.ServiceAuthorizationException;
 import by.golik.finalproject.service.exception.ServiceBanException;
 import by.golik.finalproject.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
@@ -20,9 +20,9 @@ public class UserServiceImpl implements UserService {
     private static final String BANNED = "banned";
 
     @Override
-    public User getUserByNickname(String userName) throws ServiceException, ServiceAutoException {
+    public User getUserByNickname(String userName) throws ServiceException, ServiceAuthorizationException {
         if (!Validator.validate(userName)) {
-            throw new ServiceAutoException("Wrong username!");
+            throw new ServiceAuthorizationException("Wrong username!");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDAO dao = daoFactory.getUserDAO();
@@ -36,12 +36,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(String login, byte[] password, byte[] passwordrep, String email) throws ServiceException, ServiceAutoException {
+    public User register(String login, byte[] password, byte[] passwordrep, String email) throws ServiceException, ServiceAuthorizationException {
         if (!Validator.validate(login, email) ||
                 !Validator.validateLogin(login) ||
                 !Validator.validatePassword(password, passwordrep) ||
                 !Validator.validateEmail(email)) {
-            throw new ServiceAutoException("Check input parameters");
+            throw new ServiceAuthorizationException("Check input parameters");
         }
         String encodedPassword = Validator.encodePassword(password);
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
             user = dao.register(login, email, encodedPassword);
 
             if (user == null) {
-                throw new ServiceAutoException("Wrong login or password!");
+                throw new ServiceAuthorizationException("Wrong login or password!");
             }
 
         } catch (DAOException e) {
@@ -62,11 +62,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User authorise(String login, byte[] password) throws ServiceException, ServiceAutoException, ServiceBanException {
+    public User authorise(String login, byte[] password) throws ServiceException, ServiceAuthorizationException, ServiceBanException {
         logger.debug("authorise begin");
         if (!Validator.validateLogin(login) ||
                 !Validator.validatePassword(password)) {
-            throw new ServiceAutoException("Wrong parameters!");
+            throw new ServiceAuthorizationException("Wrong parameters!");
         }
         String encodedPassword = Validator.encodePassword(password);
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
             user = dao.authorise(login, encodedPassword);
 
             if (user == null) {
-                throw new ServiceAutoException("Wrong login or password!");
+                throw new ServiceAuthorizationException("Wrong login or password!");
             } else if (user.getRole().equals(BANNED)) {
                 throw new ServiceBanException("Sorry access for you is temporary unavailable");
             }

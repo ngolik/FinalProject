@@ -11,7 +11,7 @@
 <jsp:useBean id="movie" class="by.golik.finalproject.entity.Movie" scope="request"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setBundle basename="locale" var="locale"/>
-<fmt:setLocale value="${sessionScope.language}"/>
+
 <fmt:setBundle basename="locale" var="locale"/>
 <fmt:message bundle="${locale}" key="locale.year" var="year"/>
 <fmt:message bundle="${locale}" key="locale.genre" var="genre"/>
