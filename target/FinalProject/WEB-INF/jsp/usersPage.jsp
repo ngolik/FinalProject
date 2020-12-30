@@ -26,8 +26,10 @@
 </head>
 
 <body>
+<c:import url="menu.jsp"/>
 <div class="container-fluid text-center wrapper">
      <div class="row content">
+         <c:import url="leftside.jsp"/>
          <div class="col-sm-8 text-left mainContent">
              <br>
              <table class="table">

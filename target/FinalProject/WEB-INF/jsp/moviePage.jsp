@@ -41,6 +41,7 @@
 </head>
 <!--Событие onload используется как указатель, что веб-страница полностью загружена, включая содержание, изображения, стилевые файлы и внешние скрипты.-->
 <body onload="active()">
+<c:import url="menu.jsp"/>
 <script language="javascript">
     function active() {
         document.getElementById("movies-page").className = "active";
@@ -48,6 +49,7 @@
 </script>
 <div class="container-fluid text-center wrapper"></div>
 <div class="row content">
+    <c:import url="leftside.jsp"/>
     <div class="col-sm-8 text-left mainContent">
         <h1><c:out value="${movie.title}"/></h1>
         <div class="col-sm-3">

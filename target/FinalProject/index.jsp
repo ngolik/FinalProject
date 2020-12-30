@@ -106,6 +106,8 @@
 </head>
 <body onload="active()">
 
+<c:import url="WEB-INF/jsp/menu.jsp"/>
+
 
 <script language="javascript">
     function active() {
@@ -115,7 +117,7 @@
 <div class="container-fluid text-center wrapper">
     <div class="row content">
 
-
+        <c:import url="WEB-INF/jsp/leftside.jsp"/>
 
         <div class="col-sm-8 text-left mainContent">
             <br>
