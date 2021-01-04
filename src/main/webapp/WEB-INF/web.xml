@@ -23,7 +23,7 @@
   </filter>
   <filter-mapping>
     <filter-name>CharacterEncodingFilter</filter-name>
-    <url-pattern>/Controller</url-pattern>
+    <url-pattern>/DispatcherServlet</url-pattern>
   </filter-mapping>
 
   <listener>

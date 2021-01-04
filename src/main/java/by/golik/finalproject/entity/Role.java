@@ -5,8 +5,8 @@ package by.golik.finalproject.entity;
  * @author Nikita Golik
  */
 public enum Role {
-    ADMINISTRATOR("administrator"),
-    BANNED("banned"),
+    ADMIN("admin"),
+    GUEST("guest"),
     USER("user");
 
     private String name;

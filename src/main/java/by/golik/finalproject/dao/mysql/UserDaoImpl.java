@@ -23,10 +23,11 @@ public class UserDaoImpl implements UserDAO {
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     private final static String LOG_IN_STATEMENT =
-            "SELECT * FROM users WHERE login=? and password=?";
+            "SELECT * FROM users " +
+                    "WHERE `login`= ? and `password` = ?";
     private final static String REGISTER_STATEMENT =
             "INSERT INTO users ('login', 'email', `password`, `role`, `registrationdate`) " +
-                    "VALUES(?,?,?,'user',?)";
+                    "VALUES(?,?,?,?,?)";
     private final static String VIEW_ALL_USERS =
             "SELECT * FROM users";
     private static final String BAN_USER_BY_USERNAME =
@@ -254,7 +255,8 @@ public class UserDaoImpl implements UserDAO {
             con = ConnectionPool.getInstance().takeConnection();
 
             st = con.prepareStatement(VIEW_BY_NICKNAME);
-            st.setString(1, userName);
+            st.setString(1,userName);
+            System.out.println("%" + userName + "%");
             rs = st.executeQuery();
 
             User user = null;

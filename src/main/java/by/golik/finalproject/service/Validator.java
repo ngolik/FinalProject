@@ -125,9 +125,7 @@ public class Validator {
         matcher = PATTERN_YEAR.matcher(year);
         return matcher.matches();
     }
-    public static String encodePassword(byte[] password) {
-        return DigestUtils.md5Hex(password);
-    }
+
     /**
      * This method is used to fill movies with ratings.
      *

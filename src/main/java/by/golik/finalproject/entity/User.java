@@ -26,6 +26,15 @@ public class User {
      */
     private Date registrationDate;
 
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getUserName() {
         return userName;
@@ -79,5 +88,16 @@ public class User {
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                ", registrationDate=" + registrationDate +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

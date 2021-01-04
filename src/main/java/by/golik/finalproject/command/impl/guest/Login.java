@@ -29,7 +29,7 @@ public class Login implements Command {
 
     private static final Logger logger = LogManager.getLogger(Login.class);
 
-    private static final String LOGIN = "userName";
+    private static final String LOGIN = "username";
     private static final String PASSWORD = "pass";
 
     private static final String ERROR = "errorMessage";
@@ -58,6 +58,7 @@ public class Login implements Command {
                 response.sendRedirect(previousQuery);
             } catch (ServiceAuthorizationException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
+                logger.log(Level.INFO, " authorization error");
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR_1);
                 request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             } catch (ServiceBanException e) {
@@ -68,6 +69,8 @@ public class Login implements Command {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR_3);
                 request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             request.setAttribute(ERROR, MESSAGE_OF_ERROR_4);

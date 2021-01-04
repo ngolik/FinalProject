@@ -66,6 +66,8 @@ public class Register implements Command {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR_2);
                 request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             request.setAttribute(ERROR, MESSAGE_OF_ERROR_3);

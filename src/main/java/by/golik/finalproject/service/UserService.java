@@ -10,6 +10,6 @@ import by.golik.finalproject.service.exception.ServiceException;
  */
 public interface UserService {
     User getUserByNickname(String nickname) throws ServiceException, ServiceAuthorizationException;
-    User register(String login, byte[] password, byte[] passwordrep, String email) throws ServiceException, ServiceAuthorizationException;
-    User authorise(String login, byte[] password) throws ServiceException, ServiceAuthorizationException, ServiceBanException;
+    User register(String login, byte[] password, byte[] passwordrep, String email) throws Exception;
+    User authorise(String login, byte[] password) throws Exception;
 }

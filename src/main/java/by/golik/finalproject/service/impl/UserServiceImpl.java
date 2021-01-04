@@ -4,6 +4,7 @@ import by.golik.finalproject.dao.DaoFactory;
 import by.golik.finalproject.dao.UserDAO;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.User;
+import by.golik.finalproject.service.PasswordUtil;
 import by.golik.finalproject.service.UserService;
 import by.golik.finalproject.service.Validator;
 import by.golik.finalproject.service.exception.ServiceAuthorizationException;
@@ -11,6 +12,8 @@ import by.golik.finalproject.service.exception.ServiceBanException;
 import by.golik.finalproject.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
 
 /**
  * @author Nikita Golik
@@ -29,6 +32,7 @@ public class UserServiceImpl implements UserService {
         User user;
         try {
             user = dao.getUserByUsername(userName);
+            logger.info(user.toString());
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -36,14 +40,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(String login, byte[] password, byte[] passwordrep, String email) throws ServiceException, ServiceAuthorizationException {
+    public User register(String login, byte[] password, byte[] passwordrep, String email) throws Exception {
         if (!Validator.validate(login, email) ||
                 !Validator.validateLogin(login) ||
                 !Validator.validatePassword(password, passwordrep) ||
                 !Validator.validateEmail(email)) {
             throw new ServiceAuthorizationException("Check input parameters");
         }
-        String encodedPassword = Validator.encodePassword(password);
+        String encodedPassword = PasswordUtil.getSaltedHash(Arrays.toString(password));
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDAO dao = daoFactory.getUserDAO();
         User user;
@@ -62,13 +66,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User authorise(String login, byte[] password) throws ServiceException, ServiceAuthorizationException, ServiceBanException {
+    public User authorise(String login, byte[] password) throws Exception {
         logger.debug("authorise begin");
         if (!Validator.validateLogin(login) ||
                 !Validator.validatePassword(password)) {
             throw new ServiceAuthorizationException("Wrong parameters!");
         }
-        String encodedPassword = Validator.encodePassword(password);
+        String encodedPassword = PasswordUtil.getSaltedHash(Arrays.toString(password));
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDAO dao = daoFactory.getUserDAO();
         User user;
@@ -77,13 +81,15 @@ public class UserServiceImpl implements UserService {
 
             if (user == null) {
                 throw new ServiceAuthorizationException("Wrong login or password!");
-            } else if (user.getRole().equals(BANNED)) {
+            } else if (user.getRole().toString().equals(BANNED)) {
                 throw new ServiceBanException("Sorry access for you is temporary unavailable");
             }
         } catch (DAOException e) {
             throw new ServiceException("Error in source", e);
         }
-
+        logger.info(user.toString());
         return user;
+
+
     }
 }

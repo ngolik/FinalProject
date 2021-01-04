@@ -15,7 +15,7 @@
 
 <fmt:message bundle="${locale}" key="locale.banUser" var="banUser"/>
 <fmt:message bundle="${locale}" key="locale.submit" var="submit"/>
-<fmt:message bundle="${locale}" key="locale.username" var="userName"/>
+<fmt:message bundle="${locale}" key="locale.username" var="username"/>
 <fmt:message bundle="${locale}" key="locale.registrationDate" var="registrationdate"/>
 <fmt:message bundle="${locale}" key="locale.email" var="email"/>
 <!DOCTYPE html>
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Bootstrap JS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
@@ -47,13 +48,14 @@
         <div class="col-sm-8 text-left mainContent">
             <div>
                 <h1><c:out value="${user.userName}"/> profile</h1>
+                <h1>TEST</h1>
                 <div class="col-sm-3">
                     <c:if test="${not empty param.errorMessage}">
                         <h4 class="red"><c:out value="${param.errorMessage}"/></h4>
                     </c:if>
                 </div>
                 <div class="col-sm-9">
-                    ${userName} <c:out value="${user.userName}"/><br/>
+                    ${username} <c:out value="${user.userName}"/><br/>
                     ${email} <c:out value="${user.email}"/><br/>
                     ${registrationdate} <c:out value="${user.registrationDate}"/><br/>
                 </div>
@@ -61,7 +63,6 @@
 
         </div>
 
-        <c:import url=""/>
 
     </div>
 </div>
