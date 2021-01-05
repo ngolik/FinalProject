@@ -36,13 +36,13 @@
              <table class="table">
                  <c:forEach var="user" items="${requestScope.all_users}">
                      <tr>
-                         <td><a href="DispatcherServlet?command=view-user&username=${user.userName}"><c:out value="${user.userName}"/> </a></td>
+                         <td><a href="DispatcherServlet?command=view-user&username=${user.username}"><c:out value="${user.username}"/> </a></td>
                          <td>${user.email}</td>
                          <td>${user.role}</td>
                          <td>${user.registrationDate}</td>
                          <c:if test="${sessionScope.get('user').role eq 'admin'}">
-                             <td><a href="DispatcherServlet?command=ban-user&userName=${user.userName}">${ban}</a> </td>
-                             <td><a href="DispatcherServlet?command=ban-user&userName=${user.userName}">${unban}</a> </td>
+                             <td><a href="DispatcherServlet?command=ban-user&userName=${user.username}">${ban}</a> </td>
+                             <td><a href="DispatcherServlet?command=ban-user&userName=${user.username}">${unban}</a> </td>
                          </c:if>
                      </tr>
                  </c:forEach>

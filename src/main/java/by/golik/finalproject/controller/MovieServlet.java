@@ -1,23 +1,9 @@
 package by.golik.finalproject.controller;
 
 import by.golik.finalproject.dao.*;
-import by.golik.finalproject.dao.exception.ConnectionPoolException;
-import by.golik.finalproject.dao.exception.DAOException;
-import by.golik.finalproject.dao.mysql.ParticipantDaoImpl;
 import by.golik.finalproject.dao.pool.ConnectionPool;
-import by.golik.finalproject.dao.pool.ConnectionPoolMovie;
-import by.golik.finalproject.dao.pool.PooledConnection;
-import by.golik.finalproject.entity.Participant;
-import by.golik.finalproject.service.exception.ServiceAuthorizationException;
-import by.golik.finalproject.service.exception.ServiceBanException;
-import by.golik.finalproject.service.exception.ServiceException;
-import by.golik.finalproject.service.impl.AdministratorServiceImpl;
 import by.golik.finalproject.service.impl.MovieServiceImpl;
 import by.golik.finalproject.service.impl.UserServiceImpl;
-
-import java.lang.reflect.InvocationTargetException;
-import java.sql.*;
-import java.util.Arrays;
 
 /**
  * @author Nikita Golik
@@ -60,10 +46,11 @@ public class MovieServlet {
 
         UserServiceImpl userService = new UserServiceImpl();
 
-        System.out.println(userService.getUserByNickname("administrator").toString());
+        System.out.println(userService.getUserByUserName("administrator").toString());
 //        System.out.println(userDAO.authorise("admin", "adminpass"));
 
-        userService.authorise("admin", "adminpass".getBytes());
+//        userService.authorise("admin", "administrator".getBytes());
+        userService.register("test", "12345678".getBytes(), "12345678".getBytes(), "test@mail.ru");
 
     }
 }

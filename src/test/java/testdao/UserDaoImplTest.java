@@ -36,7 +36,7 @@ public class UserDaoImplTest {
             dao.deleteUser(userName);
 
             Assert.assertNotEquals(user, null);
-            Assert.assertEquals(userName, user.getUserName());
+            Assert.assertEquals(userName, user.getUsername());
             Assert.assertEquals(userEmail, user.getEmail());
 
 

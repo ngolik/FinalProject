@@ -33,7 +33,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <title>${user.userName} profile</title>
+    <title>${user.username} profile</title>
 
 </head>
 <body>
@@ -47,7 +47,7 @@
 
         <div class="col-sm-8 text-left mainContent">
             <div>
-                <h1><c:out value="${user.userName}"/> profile</h1>
+                <h1><c:out value="${user.username}"/> profile</h1>
                 <h1>TEST</h1>
                 <div class="col-sm-3">
                     <c:if test="${not empty param.errorMessage}">
@@ -55,7 +55,7 @@
                     </c:if>
                 </div>
                 <div class="col-sm-9">
-                    ${username} <c:out value="${user.userName}"/><br/>
+                    ${username} <c:out value="${user.username}"/><br/>
                     ${email} <c:out value="${user.email}"/><br/>
                     ${registrationdate} <c:out value="${user.registrationDate}"/><br/>
                 </div>

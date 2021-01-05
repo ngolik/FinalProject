@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private static final String BANNED = "banned";
 
     @Override
-    public User getUserByNickname(String userName) throws ServiceException, ServiceAuthorizationException {
+    public User getUserByUserName(String userName) throws ServiceException, ServiceAuthorizationException {
         if (!Validator.validate(userName)) {
             throw new ServiceAuthorizationException("Wrong username!");
         }
@@ -48,21 +48,21 @@ public class UserServiceImpl implements UserService {
                 !Validator.validateEmail(email)) {
             throw new ServiceAuthorizationException("Check input parameters");
         }
-        String encodedPassword = PasswordUtil.getSaltedHash(Arrays.toString(password));
+        String pass =  new String(password);
+        String encodedPassword = Encryption.encrypt(pass);
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDAO dao = daoFactory.getUserDAO();
         User user;
         try {
             user = dao.register(login, email, encodedPassword);
 
-            if (user == null) {
+            if (user == null || !Encryption.isMatch(pass , user.getPassword())) {
                 throw new ServiceAuthorizationException("Wrong login or password!");
             }
 
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
-
         return user;
     }
 
@@ -73,15 +73,18 @@ public class UserServiceImpl implements UserService {
                 !Validator.validatePassword(password)) {
             throw new ServiceAuthorizationException("Wrong parameters!");
         }
-        String encodedPassword = Encryption.encrypt(password.toString());
+        String pass =  new String(password);
+        String encodedPassword = Encryption.encrypt(pass);
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDAO dao = daoFactory.getUserDAO();
         User user;
 
-        try {
-            user = dao.authorise(login, encodedPassword);
 
-            if (user == null) {
+        try {
+            user = dao.getUserByUsername(login);
+
+
+            if (user == null || !Encryption.isMatch(pass , user.getPassword())) {
                 throw new ServiceAuthorizationException("Wrong login or password!");
             } else if (user.getRole().toString().equals(BANNED)) {
                 throw new ServiceBanException("Sorry access for you is temporary unavailable");
@@ -89,6 +92,7 @@ public class UserServiceImpl implements UserService {
         } catch (DAOException e) {
             throw new ServiceException("Error in source", e);
         }
+
         logger.info(user.toString());
         return user;
 

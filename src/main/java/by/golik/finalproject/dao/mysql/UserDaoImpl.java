@@ -1,13 +1,11 @@
 package by.golik.finalproject.dao.mysql;
 
-import by.golik.finalproject.dao.DaoFactory;
 import by.golik.finalproject.dao.UserDAO;
 import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.entity.Role;
 import by.golik.finalproject.entity.User;
-import by.golik.finalproject.service.PasswordUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,14 +21,17 @@ public class UserDaoImpl implements UserDAO {
     private static final String USER_EMAIL = "email";
     private static final String USER_ROLE = "role";
     private static final String USER_REGISTER = "registrationdate";
+    private static final String USER_PASSWORD = "password";
+
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     private final static String LOG_IN_STATEMENT =
             "SELECT * FROM users " +
                     "WHERE `login`= ? and `password` = ?";
+
     private final static String REGISTER_STATEMENT =
-            "INSERT INTO users ('login', 'email', `password`, `role`, `registrationdate`) " +
-                    "VALUES(?,?,?,?,?)";
+            "INSERT INTO users (login, email, password, role, registrationdate) " +
+                    "VALUES(?,?, ?,0,?)";
     private final static String VIEW_ALL_USERS =
             "SELECT * FROM users";
     private static final String BAN_USER_BY_USERNAME =
@@ -43,9 +44,9 @@ public class UserDaoImpl implements UserDAO {
                     "SET\n" +
                     "`users`.role = 'user'\n" +
                     "WHERE `users`.login = ?;";
-    private static final String VIEW_BY_NICKNAME =
+    private static final String VIEW_BY_USERNAME =
             "SELECT * FROM users WHERE login=?";
-    private static final String DELETE_BY_NICKNAME =
+    private static final String DELETE_BY_USERNAME =
             "DELETE FROM `movies_db`.`users` WHERE login=?;";
 
     private static final UserDAO instance = new UserDaoImpl();
@@ -78,6 +79,7 @@ public class UserDaoImpl implements UserDAO {
             st.setString(1, login);
             st.setString(2, password);
 
+
             rs = st.executeQuery();
 
             if (!rs.next()) {
@@ -85,9 +87,9 @@ public class UserDaoImpl implements UserDAO {
             }
 
             User user = new User();
-            user.setUserName(rs.getString(USER_NAME));
+            user.setUsername(rs.getString(USER_NAME));
             user.setEmail(rs.getString(USER_EMAIL));
-            user.setRole(Role.getByIdentity(rs.getInt(USER_ROLE)));
+            user.setRole(rs.getString(USER_ROLE));
             user.setRegistrationDate(rs.getDate(USER_REGISTER));
             return user;
 
@@ -170,9 +172,9 @@ public class UserDaoImpl implements UserDAO {
             User user;
             while (rs.next()) {
                 user = new User();
-                user.setUserName(rs.getString(USER_NAME));
+                user.setUsername(rs.getString(USER_NAME));
                 user.setEmail(rs.getString(USER_EMAIL));
-                user.setRole(Role.getByIdentity(rs.getInt(USER_ROLE)));
+                user.setRole((rs.getString(USER_ROLE)));
                 user.setRegistrationDate(rs.getDate(USER_REGISTER));
                 users.add(user);
             }
@@ -257,7 +259,7 @@ public class UserDaoImpl implements UserDAO {
         try {
             con = ConnectionPool.getInstance().takeConnection();
 
-            st = con.prepareStatement(VIEW_BY_NICKNAME);
+            st = con.prepareStatement(VIEW_BY_USERNAME);
             st.setString(1,userName);
             System.out.println("%" + userName + "%");
             rs = st.executeQuery();
@@ -265,9 +267,10 @@ public class UserDaoImpl implements UserDAO {
             User user = null;
             if (rs.next()) {
                 user = new User();
-                user.setUserName(rs.getString(USER_NAME));
+                user.setUsername(rs.getString(USER_NAME));
                 user.setEmail(rs.getString(USER_EMAIL));
-                user.setRole(Role.getByIdentity(rs.getInt(USER_ROLE)));
+                user.setPassword(rs.getString(USER_PASSWORD));
+                user.setRole(rs.getString(USER_ROLE));
                 user.setRegistrationDate(rs.getDate(USER_REGISTER));
             }
             return user;
@@ -298,7 +301,7 @@ public class UserDaoImpl implements UserDAO {
         PreparedStatement st = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(DELETE_BY_NICKNAME);
+            st = con.prepareStatement(DELETE_BY_USERNAME);
             st.setString(1, userName);
             int update = st.executeUpdate();
             if (update > 0) {

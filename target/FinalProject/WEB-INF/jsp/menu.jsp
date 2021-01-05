@@ -55,7 +55,7 @@
                 </c:if>
                     <c:if test="${sessionScope.get('user') != null}">
                     <li class="sign-up">
-                        <a href="DispatcherServlet?command=view-user&nickname=${sessionScope.get('user').username}">
+                        <a href="DispatcherServlet?command=view-user&username=${sessionScope.get('user').username}">
                             <span class="glyphicon glyphicon-user"></span> ${sessionScope.get('user').username}</a>
                     </li>
                     <li><a href="DispatcherServlet?command=log-out">

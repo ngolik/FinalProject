@@ -1,7 +1,6 @@
 package by.golik.finalproject.entity;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,7 +11,7 @@ public class User {
     /**
      * name of user(login)
      */
-    private String userName;
+    private String username;
     /**
      * email of user
      */
@@ -20,7 +19,7 @@ public class User {
     /**
      * role of user
      */
-    private Role role;
+    private String role;
     /**
      * date of registration
      */
@@ -36,12 +35,12 @@ public class User {
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -52,11 +51,11 @@ public class User {
         this.email = email;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -75,7 +74,7 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
 
-        if (!Objects.equals(userName, user.userName)) return false;
+        if (!Objects.equals(username, user.username)) return false;
         if (!Objects.equals(email, user.email)) return false;
         if (!Objects.equals(role, user.role)) return false;
         return Objects.equals(registrationDate, user.registrationDate);
@@ -83,7 +82,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = userName != null ? userName.hashCode() : 0;
+        int result = username != null ? username.hashCode() : 0;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
@@ -93,7 +92,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "userName='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", role=" + role +
                 ", registrationDate=" + registrationDate +

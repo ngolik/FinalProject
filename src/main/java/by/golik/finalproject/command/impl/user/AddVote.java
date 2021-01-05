@@ -42,7 +42,7 @@ public class AddVote implements Command {
 
         if (object.getClass().equals(User.class)) {
             User user = (User) object;
-            userNickname = user.getUserName();
+            userNickname = user.getUsername();
         }
 
         String rating = request.getParameter(RATING);
