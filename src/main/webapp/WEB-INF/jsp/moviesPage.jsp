@@ -114,6 +114,7 @@
             </li>
             </c:if>
         </ul>
+    <c:import url="rightside.jsp"/>
     </div>
 </div>
 </body>

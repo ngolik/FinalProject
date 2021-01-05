@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDAO dao = daoFactory.getUserDAO();
         User user;
+
         try {
             user = dao.authorise(login, encodedPassword);
 
@@ -89,7 +90,6 @@ public class UserServiceImpl implements UserService {
         }
         logger.info(user.toString());
         return user;
-
 
     }
 }

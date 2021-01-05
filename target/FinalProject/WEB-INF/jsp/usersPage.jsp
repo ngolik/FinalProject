@@ -48,6 +48,7 @@
                  </c:forEach>
              </table>
          </div>
+         <c:import url="rightside.jsp"/>
      </div>
 </div>
 </body>

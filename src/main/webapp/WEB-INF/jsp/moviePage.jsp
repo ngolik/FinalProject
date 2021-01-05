@@ -75,6 +75,7 @@
                 </c:if>
             </c:if>
         </div>
+        <c:import url="rightside.jsp"/>
     </div>
 </div>
 </body>

@@ -109,7 +109,7 @@
             </div>
         </div>
 
-
+        <c:import url="rightside.jsp"/>
 
     </div>
 </div>

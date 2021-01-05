@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
  */
 public class UserDaoImplTest {
     @Test
-    public void registerTest(){
+    public void registerTest() throws Exception {
         DaoFactory factory = null;
         ConnectionPool poolDAO = null;
         UserDAO dao = null;

@@ -1,11 +1,14 @@
 package by.golik.finalproject.dao.mysql;
 
+import by.golik.finalproject.dao.DaoFactory;
 import by.golik.finalproject.dao.UserDAO;
 import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.entity.Role;
 import by.golik.finalproject.entity.User;
+import by.golik.finalproject.service.PasswordUtil;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +66,7 @@ public class UserDaoImpl implements UserDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     @Override
-    public User authorise(String login, String password) throws DAOException {
+    public User authorise(String login, String password) throws Exception {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -112,7 +115,7 @@ public class UserDaoImpl implements UserDAO {
      * @throws DAOException f some error occurred while processing data.
      */
     @Override
-    public User register(String login, String email, String password) throws DAOException {
+    public User register(String login, String email, String password) throws Exception {
         Connection con = null;
         PreparedStatement st = null;
         try {
