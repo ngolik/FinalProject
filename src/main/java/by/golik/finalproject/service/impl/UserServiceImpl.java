@@ -4,6 +4,7 @@ import by.golik.finalproject.dao.DaoFactory;
 import by.golik.finalproject.dao.UserDAO;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.User;
+import by.golik.finalproject.service.Encryption;
 import by.golik.finalproject.service.PasswordUtil;
 import by.golik.finalproject.service.UserService;
 import by.golik.finalproject.service.Validator;
@@ -72,7 +73,7 @@ public class UserServiceImpl implements UserService {
                 !Validator.validatePassword(password)) {
             throw new ServiceAuthorizationException("Wrong parameters!");
         }
-        String encodedPassword = PasswordUtil.getSaltedHash(Arrays.toString(password));
+        String encodedPassword = Encryption.encrypt(password.toString());
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDAO dao = daoFactory.getUserDAO();
         User user;
