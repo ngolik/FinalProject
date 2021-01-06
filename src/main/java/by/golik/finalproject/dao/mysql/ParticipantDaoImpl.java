@@ -34,7 +34,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
                     " WHERE `id` = ?";
 
     private final static String ADD_PARTICIPANT_FOR_MOVIE =
-            "INSERT INTO movies_participants (participants_id, movies_id) VALUES (?, ?)";
+            "INSERT INTO movies_participants (participants_id, movies_id, position) VALUES (?, ?, 'actor')";
 
     private static final String DELETE_PARTICIPANT_FOR_MOVIE =
             "DELETE FROM movies_participants\n" +

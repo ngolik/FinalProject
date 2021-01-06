@@ -2,6 +2,7 @@ package by.golik.finalproject.controller;
 
 import by.golik.finalproject.dao.*;
 import by.golik.finalproject.dao.pool.ConnectionPool;
+import by.golik.finalproject.service.impl.AdministratorServiceImpl;
 import by.golik.finalproject.service.impl.MovieServiceImpl;
 import by.golik.finalproject.service.impl.UserServiceImpl;
 
@@ -50,7 +51,10 @@ public class MovieServlet {
 //        System.out.println(userDAO.authorise("admin", "adminpass"));
 
 //        userService.authorise("admin", "administrator".getBytes());
-        userService.register("test", "12345678".getBytes(), "12345678".getBytes(), "test@mail.ru");
+//        userService.register("test4", "12345678".getBytes(), "12345678".getBytes(), "test4@mail.ru");
+        AdministratorServiceImpl administratorService = new AdministratorServiceImpl();
+//        administratorService.addParticipant("testname", "testsurname", "testSecond");
+        administratorService.addParticipantForMovie("1","2");
 
     }
 }

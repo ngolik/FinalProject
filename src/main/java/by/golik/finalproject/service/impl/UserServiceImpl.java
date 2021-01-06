@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
         try {
             user = dao.register(login, email, encodedPassword);
 
-            if (user == null || !Encryption.isMatch(pass , user.getPassword())) {
+            if (user == null) {
                 throw new ServiceAuthorizationException("Wrong login or password!");
             }
 

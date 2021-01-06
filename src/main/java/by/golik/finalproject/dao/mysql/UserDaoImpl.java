@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDAO {
 
     private final static String REGISTER_STATEMENT =
             "INSERT INTO users (login, email, password, role, registrationdate) " +
-                    "VALUES(?,?, ?,0,?)";
+                    "VALUES(?,?, ?,'user',?)";
     private final static String VIEW_ALL_USERS =
             "SELECT * FROM users";
     private static final String BAN_USER_BY_USERNAME =

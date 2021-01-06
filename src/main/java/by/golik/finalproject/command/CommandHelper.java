@@ -8,12 +8,28 @@ import javax.servlet.http.HttpSession;
  */
 public class CommandHelper {
 
+    private static final String LANGUAGE = "language";
+    private static final String ENGLISH = "en";
     private static final String WELCOME_PAGE = "index.jsp";
     private static final String PREVIOUS_QUERY = "previousQuery";
     private static final String SESSION_PREV_QUERY = "previousQuery";
     private static final char QUERY_SEPARATOR = '?';
 
     private CommandHelper() {
+    }
+
+    /**
+     * This method is used to get session language, if session exists
+     * in other case returns russian language by default.
+     * @param request
+     * @return String language
+     */
+    public static Object getLanguage(HttpServletRequest request) {
+        Object lang = request.getSession(false).getAttribute(LANGUAGE);
+        if (lang == null) {
+            return ENGLISH;
+        }
+        return lang;
     }
 
     /**
