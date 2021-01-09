@@ -34,7 +34,7 @@ public class ViewAllParticipants implements Command {
         List<Participant> participants;
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
         try {
-            participants = administratorService.showAllParticipants();
+            participants = administratorService.readAllParticipants();
 
             request.setAttribute(REQUEST_ATTRIBUTE, participants);
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);

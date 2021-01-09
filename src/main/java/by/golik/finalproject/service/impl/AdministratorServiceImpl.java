@@ -242,7 +242,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public List<Participant> showAllParticipants() throws ServiceException {
+    public List<Participant> readAllParticipants() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         ParticipantDAO dao = daoFactory.getParticipantDAO();
         List<Participant> participants;

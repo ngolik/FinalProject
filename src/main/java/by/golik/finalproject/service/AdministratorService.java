@@ -21,7 +21,7 @@ public interface AdministratorService {
     void updateParticipant(String ID, String name, String surname, String secondName) throws ServiceException;
     void addParticipantForMovie(String participantID, String movieID) throws ServiceException;
     void deleteParticipantForMovie(String participantID, String movieID);
-    List<Participant> showAllParticipants() throws ServiceException;
+    List<Participant> readAllParticipants() throws ServiceException;
     void updateImage(String entity, String filename, String path) throws ServiceException;
 
 }

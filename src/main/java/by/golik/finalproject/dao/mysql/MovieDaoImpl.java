@@ -102,8 +102,6 @@ public class MovieDaoImpl implements MovieDAO {
                 movie.setRuntime(rs.getInt(RUNTIME));
                 movie.setBudget(rs.getInt(BUDGET));
                 movie.setGross(rs.getInt(GROSS));
-                movie.setAvgRating(rs.getDouble(RATING));
-                movie.setRating(rs.getInt(VOTES));
                 movies.add(movie);
             }
             return movies;

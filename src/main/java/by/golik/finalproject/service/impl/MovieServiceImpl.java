@@ -18,6 +18,22 @@ public class MovieServiceImpl implements MovieService {
     Logger logger = LogManager.getLogger(MovieServiceImpl.class);
 
     @Override
+    public List<Movie> readAllMovies() throws ServiceException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        MovieDAO dao = daoFactory.getMovieDAO();
+        List<Movie> movies;
+        try {
+            movies = dao.readAllMovies();
+            if (movies == null || movies.size() == 0) {
+                throw new ServiceException("No participants matching your query");
+            }
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+        return movies;
+    }
+
+    @Override
     public List<Movie> getFullList(int offset, int recordsPerPage) throws ServiceException {
         if (!Validator.validate(offset, recordsPerPage)) {
             throw new ServiceException("Illegal data input");
