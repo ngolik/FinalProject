@@ -212,7 +212,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
-    @Override//TODO (PARTICIPANT FOR MOVIE)
+    @Override
     public void addParticipantForMovie(String participantId, String movieId) throws ServiceException {
         if (!Validator.validate(participantId, movieId)
                 || !Validator.validateNumber(participantId)
@@ -245,16 +245,16 @@ public class AdministratorServiceImpl implements AdministratorService {
     public List<Participant> showAllParticipants() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         ParticipantDAO dao = daoFactory.getParticipantDAO();
-        List<Participant> actors;
+        List<Participant> participants;
         try {
-            actors = dao.getAllParticipants();
-            if (actors == null || actors.size() == 0) {
-                throw new ServiceException("No users matching your query");
+            participants = dao.getAllParticipants();
+            if (participants == null || participants.size() == 0) {
+                throw new ServiceException("No participants matching your query");
             }
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
-        return actors;
+        return participants;
     }
 
     @Override

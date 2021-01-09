@@ -43,7 +43,7 @@ public class MovieServlet {
 
 //        administratorService.addParticipant("testname", "testsurname", "testSecond");
 //        administratorService.addParticipantForMovie("3","2");
-//        administratorService.addMovie("testService", "1000", "1500", "1500", "1500");
+//        administratorService.addMovie("testService2", "1000", "1500", "1500", "1500");
 //        administratorService.addGenreForMovie("3", "1");
 
     }

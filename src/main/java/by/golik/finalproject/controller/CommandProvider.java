@@ -48,6 +48,11 @@ public class CommandProvider {
         adminCommands.put(CommandList.UPDATE_PARTICIPANT, new UpdateParticipant());
         adminCommands.put(CommandList.VIEW_ALL_PARTICIPANTS, new ViewAllParticipants());
         adminCommands.put(CommandList.VIEW_ALL_USERS, new ViewAllUsers());
+        adminCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
+        adminCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
+        adminCommands.put(CommandList.LOG_OUT, new Logout());
+        adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
+
 
         userCommands.put(CommandList.LOG_OUT, new Logout());
         userCommands.put(CommandList.ADD_RATING, new AddVote());
