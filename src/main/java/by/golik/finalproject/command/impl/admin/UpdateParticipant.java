@@ -18,8 +18,8 @@ import java.io.IOException;
  */
 public class UpdateParticipant implements Command {
     private static final Logger logger = LogManager.getLogger(UpdateParticipant.class);
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/addActorPage.jsp";
-    private static final String REDIRECT = "Controller?command=add-actor";
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/addParticipantPage.jsp";
+    private static final String REDIRECT = "DispatcherServlet?command=add-participant";
     private static final String PARTICIPANT_ID = "participant-id";
     private static final String NAME = "name";
     private static final String SURNAME = "surname";

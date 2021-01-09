@@ -62,7 +62,6 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String UPDATE_IMAGE =
             "UPDATE movies SET image_path= ? WHERE id= ?;";
 
-    //TODO SQL EXPRESSION
     private static final String MOVIES_FOR_PARTICIPANT =
             "SELECT movies_id from movies_participants where participants_id = ?;";
     private static final String LAST_INSERTED_MOVIE =

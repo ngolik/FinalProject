@@ -23,7 +23,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <H1>Test-Hello</H1>
+    <H1>Movies</H1>
     <!--<script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
     IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -157,13 +157,13 @@
                 <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 1000px; height: 700px;
             overflow: hidden;">
                     <div>
-                        <a href="DispatcherServlet?command=all-movies"></a>
+                        <a href="DispatcherServlet?command=all-movies"><img u="image" src2="images/main/6.jpg"/></a></a>
                     </div>
                     <div>
-                        <a href="DispatcherServlet?command=latest-movies"></a>
+                        <a href="DispatcherServlet?command=latest-movies"><img u="image" src2="images/main/7.jpg"/></a></a>
                     </div>
                     <div>
-                        <a href="DispatcherServlet?command=all-movies"></a>
+                        <a href="DispatcherServlet?command=all-movies"><img u="image" src2="images/main/8.jpg"/></a></a>
                     </div>
 
                 </div>

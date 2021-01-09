@@ -53,7 +53,7 @@
             <br>
             <br action="DispatcherServlet" method="post">
                 <p>
-                    <label><input type="radio" name="command" value="add-participant"></label>
+                    <label><input type="radio" name="command" value="add-participant" checked/>${addParticipant}</label>
                     <label><input type="radio" name="command" value="update-participant"></label>
                 </p>
                 <label for="movieID">${participantID}<br></label>

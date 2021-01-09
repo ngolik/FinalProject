@@ -26,7 +26,6 @@ public class ShowAllMovies implements Command {
 
     private static final Logger logger = LogManager.getLogger(ShowAllMovies.class);
 
-
     private static final String PAGE = "page";
     private static final String AMOUNT_OF_PAGES = "noOfPages";
     private static final String CURRENT_PAGE = "currentPage";

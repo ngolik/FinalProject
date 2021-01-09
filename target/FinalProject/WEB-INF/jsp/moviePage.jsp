@@ -56,12 +56,7 @@
         <c:if test="${sessionScope.get('language') eq 'ru' || sessionScope.get('language')==null}">
             <h1><c:out value="${movie.title}"/></h1>
         </c:if>
-        <h1><c:out value="${movie.title}"/></h1>
-        <h1><c:out value="${movie.year}"/></h1>
-        <h1><c:out value="${movie.runtime}"/></h1>
-        <h1><c:out value="${movie.gross}"/></h1>
-        <h1><c:out value="${movie.description}"/></h1>
-        <h1><c:out value="${movie.budget}"/></h1>
+
         <div class="col-sm-3">
             <c:if test="${requestScope.get('user').role eq 'admin'}">
                 <c:if test="${requestScope.get('errorGenre')!= null}">

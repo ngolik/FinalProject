@@ -3,6 +3,8 @@ package by.golik.finalproject.controller;
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.command.impl.admin.*;
 import by.golik.finalproject.command.impl.guest.*;
+import by.golik.finalproject.command.impl.user.AddVote;
+import by.golik.finalproject.command.impl.user.Logout;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +37,7 @@ public class CommandProvider {
         guestCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
 
         adminCommands.put(CommandList.ADD_GENRE_FOR_MOVIE, new AddGenreForMovie());
-        adminCommands.put(CommandList.ADD_MOVIE, new AddGenreForMovie());
+        adminCommands.put(CommandList.ADD_MOVIE, new AddMovie());
         adminCommands.put(CommandList.ADD_PARTICIPANT, new AddParticipant());
         adminCommands.put(CommandList.ADD_PARTICIPANT_FOR_MOVIE, new AddParticipantForMovie());
         adminCommands.put(CommandList.BAN_USER, new BanUser());
@@ -46,6 +48,9 @@ public class CommandProvider {
         adminCommands.put(CommandList.UPDATE_PARTICIPANT, new UpdateParticipant());
         adminCommands.put(CommandList.VIEW_ALL_PARTICIPANTS, new ViewAllParticipants());
         adminCommands.put(CommandList.VIEW_ALL_USERS, new ViewAllUsers());
+
+        userCommands.put(CommandList.LOG_OUT, new Logout());
+        userCommands.put(CommandList.ADD_RATING, new AddVote());
 
 
     }

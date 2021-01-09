@@ -19,7 +19,7 @@ public class UpdateMovie implements Command {
     private static final Logger logger = LogManager.getLogger(UpdateMovie.class);
 
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/addMoviePage.jsp";
-    private static final String REDIRECT = "Controller?command=add-movie";
+    private static final String REDIRECT = "DispatcherServlet?command=add-movie";
 
     private static final String ID = "id";
     private static final String TITLE = "title";

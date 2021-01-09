@@ -95,7 +95,6 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
 
         try {
-
             dao.createMovie(title, intYear, intRuntime, longBudget, longGross);
 
         } catch (DAOException e) {

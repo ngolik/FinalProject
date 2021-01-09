@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public class AddMovie implements Command {
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/addMovie.jsp";
-    private static final String REDIRECT = "Controller?command=add-movie";
+    private static final String REDIRECT = "DispatcherServlet?command=add-movie";
 
     private static final Logger logger = LogManager.getLogger(AddMovie.class);
 
@@ -27,6 +27,7 @@ public class AddMovie implements Command {
     private static final String RUNTIME = "runtime";
     private static final String BUDGET = "budget";
     private static final String GROSS = "gross";
+
 
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot add movie";
@@ -53,7 +54,7 @@ public class AddMovie implements Command {
                 administratorService.addMovie(title, year, runtime, budget, gross);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
                 response.sendRedirect(REDIRECT);
-                //request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
+
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR);

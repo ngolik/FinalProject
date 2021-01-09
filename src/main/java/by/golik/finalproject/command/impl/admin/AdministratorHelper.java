@@ -24,7 +24,7 @@ public class AdministratorHelper {
     private static final String MESSAGE_OF_ERROR_2 = "You don't have permission to do that";
 
     /**
-     * This method is used to give Admin Service if user is admin or moderator
+     * This method is used to give Admin Service if user is admin
      * in other case return null
      * @param request
      * @param response

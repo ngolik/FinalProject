@@ -74,6 +74,10 @@
                     <td>
                         <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
                             <c:out value="${movie.title}"/>
+                            <c:out value="${movie.year}"/>
+                            <c:out value="${movie.runtime}"/>
+                            <c:out value="${movie.budget}"/>
+                            <c:out value="${movie.gross}"/>
                         </a>
                     </td>
                 </tr>
