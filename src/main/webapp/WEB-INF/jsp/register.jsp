@@ -51,10 +51,7 @@
 
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
-                        <h4 class="modal-title" id="myModalLabel">${movieRateRegister}</h4>
-                    </div>
+
                     <c:if test="${requestScope.get('errorMessage')!=null}">
                         <h4 class="red text-center"><c:out value="${requestScope.get('errorMessage')}"/></h4>
                         <c:remove var="errorMessage" scope="request"/>

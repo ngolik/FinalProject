@@ -16,6 +16,7 @@
 <fmt:message bundle="${locale}" key="locale.year" var="year"/>
 <fmt:message bundle="${locale}" key="locale.genre" var="genre"/>
 <fmt:message bundle="${locale}" key="locale.budget" var="budget"/>
+<fmt:message bundle="${locale}" key="locale.runtime" var="runtime"/>
 <fmt:message bundle="${locale}" key="locale.gross" var="gross"/>
 <fmt:message bundle="${locale}" key="locale.votes" var="votes"/>
 <fmt:message bundle="${locale}" key="locale.banUser" var="banUser"/>
@@ -52,6 +53,9 @@
 <div class="row content">
     <c:import url="leftside.jsp"/>
     <div class="col-sm-8 text-left mainContent">
+        <c:if test="${sessionScope.get('language') eq 'ru' || sessionScope.get('language')==null}">
+            <h1><c:out value="${movie.title}"/></h1>
+        </c:if>
         <h1><c:out value="${movie.title}"/></h1>
         <h1><c:out value="${movie.year}"/></h1>
         <h1><c:out value="${movie.runtime}"/></h1>
@@ -73,8 +77,80 @@
                            href="DispatcherServlet?command=delete-genre-for-movie&id=${movie.id}&genre=${genre.name}">x</a>
                     </c:forEach>
                 </c:if>
+                <br>
+                <a class="edit" data-toggle="modal" data-target="#add-genre" href="#">Add genre</a>
+                <br/>
+
+                ${year} <c:out value="${movie.year}"/><br/>
+                ${runtime} <c:out value="${movie.runtime}"/><br/>
+                ${budget} <c:out value="${movie.budget}"/><br/>
+                ${gross} <c:out value="${movie.gross}"/><br/>
             </c:if>
+
+            <c:if test="${sessionScope.get('user').type ne 'admin'}">
+
+                <c:if test="${sessionScope.get('language') eq 'ru' || sessionScope.get('language')==null}">
+                    <br/>
+                    <c:if test="${movie.genreList.size()>0}">
+                        ${genre} <c:forEach var="genre" items="${requestScope.all_movies.genres}">
+                        <a href="DispatcherServlet?command=movies-by-genre&genre=${genre.name}">
+                            <c:out value="${genre.name}"/></a>
+                    </c:forEach>
+                    </c:if>
+                </c:if>
+            </c:if>
+
+            ${budget} <c:out value="${movie.budget}"/><br/>
+            ${gross} <c:out value="${movie.gross}"/><br/>
+
+            <c:if test="${sessionScope.get('user').type eq 'admin'}">
+
+                <c:import url="addParticipant.jsp"/>
+
+            </c:if>
+
+
         </div>
+        <div class="col-sm-12">
+            <hr>
+
+            <div class="row">
+
+                <ul class="pagination">
+                    <c:if test="${requestScope.currentPage > 1}">
+                        <li>
+                            <a href="DispatcherServlet?command=${param.command}&page=${requestScope.currentPage - 1}&id=${param.id}">${previous}</a>
+                        </li>
+                    </c:if>
+
+                    <%--For displaying Page numbers.
+                    The when condition does not display a link for the current page--%>
+                    <c:if test="${requestScope.noOfPages>1}">
+                        <c:forEach begin="1" end="${requestScope.noOfPages}" var="i">
+                            <c:choose>
+                                <c:when test="${requestScope.currentPage eq i}">
+                                    <li class="active"><a href="#">${i}</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>
+                                        <a href="DispatcherServlet?command=${param.command}&page=${i}&id=${param.id}">${i}</a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </c:if>
+
+                    <%--For displaying Next link --%>
+                    <c:if test="${requestScope.currentPage lt requestScope.noOfPages}">
+                        <li>
+                            <a href="DispatcherServlet?command=${param.command}&page=${requestScope.currentPage + 1}&id=${param.id}">${next}</a>
+                        </li>
+                    </c:if>
+                </ul>
+            </div>
+        </div>
+
+    </div>
         <c:import url="rightside.jsp"/>
     </div>
 </div>

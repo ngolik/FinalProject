@@ -38,7 +38,7 @@ public class AdministratorHelper {
         Object object = request.getSession(false).getAttribute(USER);
         if (object.getClass().equals(User.class)){
             User user = (User) object;
-            userRole = user.getRole().toString();
+            userRole = user.getRole();
             if (userRole.equals(ADMIN))
             {
                 administratorService = ServiceFactory.getInstance().getAdministratorService();

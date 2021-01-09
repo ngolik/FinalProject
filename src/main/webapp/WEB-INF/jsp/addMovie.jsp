@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Nikitos
@@ -61,7 +62,7 @@
                     <label><input type="radio" name="command" value="update-movie"/>${updateMovie}</label>
                 </p>
                 <label for="movieID">${movieID}<br></label>
-                <input id="movieID" class="form-control" type="text" name="id" placeholder="${leaveBlankMovieID}"/>
+                <input id="movieID" class="form-control" type="text" name="id"/>
                 <br/>
                 <label for="title">${title}<br></label>
                 <input id="title" class="form-control" type="text" name="title" required/>

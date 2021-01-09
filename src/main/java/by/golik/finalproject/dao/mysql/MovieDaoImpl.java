@@ -50,7 +50,7 @@ public class MovieDaoImpl implements MovieDAO {
             "SELECT COUNT(movies.id) AS amount FROM movies";
 
     private static final String ADD_MOVIE =
-            "INSERT INTO movies (title, `year`, `runtime`, `budget`, `gross`) VALUES (?, ?, ?, ?, ?)";
+            "INSERT INTO movies (title, year, runtime, budget, image_path, gross, description) VALUES (?, ?, ?, ?, 'sa', ?, 'empty')";
 
     private static final String UPDATE_BY_ID =
             "UPDATE `movies_db`.`movies`\n" +
@@ -336,7 +336,6 @@ public class MovieDaoImpl implements MovieDAO {
             st.setLong(5, gross);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Filmec dobavlen vse ok" + titleRu);
                 return;
             }
             throw new DAOException("Wrong movie data");
@@ -367,7 +366,7 @@ public class MovieDaoImpl implements MovieDAO {
             st.setInt(6, id);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Movie updated " + title);
+
                 return;
             }
             throw new DAOException("Wrong movie data");
@@ -393,7 +392,7 @@ public class MovieDaoImpl implements MovieDAO {
             st.setInt(1, id);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("movie deleted " + id);
+
                 return;
             }
             throw new DAOException("Wrong movie data");
@@ -420,7 +419,7 @@ public class MovieDaoImpl implements MovieDAO {
             st.setInt(2, id);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Movie image updated " + path);
+
                 return;
             }
             throw new DAOException("Wrong review data");
