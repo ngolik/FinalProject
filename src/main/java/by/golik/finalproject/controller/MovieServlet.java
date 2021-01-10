@@ -35,7 +35,7 @@ public class MovieServlet {
         UserServiceImpl userService = new UserServiceImpl();
         AdministratorServiceImpl administratorService = new AdministratorServiceImpl();
         MovieServiceImpl movieService = new MovieServiceImpl();
-        System.out.println(movieService.readAllMovies().toString());
+        System.out.println(administratorService.readAllParticipants());
 
 //        System.out.println(userService.getUserByUserName("administrator").toString());
 //        System.out.println(userDAO.authorise("admin", "adminpass"));

@@ -12,7 +12,7 @@ import java.util.List;
 public interface AdministratorService {
     void banUser(String userNickname) throws ServiceException;
     void unbanUser(String userNickname) throws ServiceException;
-    List<User> getAllUsers() throws ServiceException;
+    List<User> readAllUsers() throws ServiceException;
     void addMovie(String title, String year, String runtime, String budget, String gross) throws ServiceException;
     void updateMovie(String id, String title, String year, String runtime, String budget, String gross) throws ServiceException;
     void addGenreForMovie(String movieID, String name) throws ServiceException;

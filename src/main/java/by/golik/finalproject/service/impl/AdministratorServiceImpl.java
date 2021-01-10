@@ -58,7 +58,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public List<User> getAllUsers() throws ServiceException {
+    public List<User> readAllUsers() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDAO dao = daoFactory.getUserDAO();
         List<User> users;

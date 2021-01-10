@@ -36,7 +36,7 @@ public class ViewAllUsers implements Command {
         AdministratorService adminService = AdministratorHelper.getAdminService(request, response);
 
         try {
-            users = adminService.getAllUsers();
+            users = adminService.readAllUsers();
 
             request.setAttribute(REQUEST_ATTRIBUTE, users);
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
