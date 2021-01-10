@@ -28,7 +28,7 @@ public class AddParticipant implements Command {
 
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot add participant";
-    private static final String SUCCESS = "successMessage";
+    private static final String SUCCESS = "add_participant";
     private static final String MESSAGE_OF_SUCCESS = "Participant successfully added";
 
     @Override

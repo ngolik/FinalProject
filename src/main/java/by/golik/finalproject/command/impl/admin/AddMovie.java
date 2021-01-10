@@ -31,7 +31,7 @@ public class AddMovie implements Command {
 
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot add movie";
-    private static final String SUCCESS = "successMessage";
+    private static final String SUCCESS = "add_movie";
     private static final String MESSAGE_OF_SUCCESS = "Movie successfully added";
 
     @Override
