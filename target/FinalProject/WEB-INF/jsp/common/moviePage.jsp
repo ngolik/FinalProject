@@ -36,14 +36,13 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Bootstrap JS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <title><c:out value="${movie.title}"/></title>
 </head>
 <!--Событие onload используется как указатель, что веб-страница полностью загружена, включая содержание, изображения, стилевые файлы и внешние скрипты.-->
 <body onload="active()">
-<c:import url="menu.jsp"/>
+<c:import url="../menu/menu.jsp"/>
 <script language="javascript">
     function active() {
         document.getElementById("movies-page").className = "active";
@@ -51,7 +50,7 @@
 </script>
 <div class="container-fluid text-center wrapper"></div>
 <div class="row content">
-    <c:import url="leftside.jsp"/>
+    <c:import url="../menu/leftside.jsp"/>
     <div class="col-sm-8 text-left mainContent">
         <c:if test="${sessionScope.get('language') eq 'ru' || sessionScope.get('language')==null}">
             <h1><c:out value="${movie.title}"/></h1>
@@ -100,7 +99,7 @@
 
             <c:if test="${sessionScope.get('user').type eq 'admin'}">
 
-                <c:import url="addParticipant.jsp"/>
+                <c:import url="../admin/addParticipant.jsp"/>
 
             </c:if>
 
@@ -146,7 +145,7 @@
         </div>
 
     </div>
-        <c:import url="rightside.jsp"/>
+        <c:import url="../menu/rightside.jsp"/>
     </div>
 </div>
 </body>

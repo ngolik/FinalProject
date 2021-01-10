@@ -27,7 +27,7 @@
 </head>
 <body onload="active()">
 
-<c:import url="menu.jsp"/>
+<c:import url="../menu/menu.jsp"/>
 
 <script language="JavaScript">
     function active() {
@@ -36,16 +36,18 @@
 </script>
 <div class="container-fluid text-center wrapper">
     <br class="row content">
-        <c:import url="leftside.jsp"/>
+        <c:import url="../menu/leftside.jsp"/>
         <div class="col-sm-8 text-left mainContent">
             <h1>MOVIES</h1>
 
             <div class="selectboxes">
                 <div class="sortAwaits" style="width: 391px; float: left;margin: 0">
-                    <select onchange="MakeSort(this);">
-                        <option value="DispatcherServlet?command=all-movies">-</option>
-                        <option selected="" value="DispatcherServlet?command=all-movies">${all}</option>
-                    </select>
+                    <label>
+                        <select onchange="MakeSort(this);">
+                            <option value="DispatcherServlet?command=all-movies">-</option>
+                            <option selected="" value="DispatcherServlet?command=all-movies">${all}</option>
+                        </select>
+                    </label>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -118,7 +120,7 @@
             </li>
             </c:if>
         </ul>
-    <c:import url="rightside.jsp"/>
+    <c:import url="../menu/rightside.jsp"/>
     </div>
 </div>
 </body>

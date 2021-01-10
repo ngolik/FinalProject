@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ViewAllParticipants implements Command {
     private static final Logger logger = LogManager.getLogger(ViewAllParticipants.class);
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/participantsPage.jsp";
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/participantsPage.jsp";
     private static final String ERROR_PAGE = "WEB-INF/jsp/error.jsp";
     private static final String REQUEST_ATTRIBUTE = "all_participants";
 

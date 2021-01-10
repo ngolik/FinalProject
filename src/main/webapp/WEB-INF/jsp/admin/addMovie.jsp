@@ -39,12 +39,12 @@
 </head>
 <body>
 
-<c:import url="menu.jsp"/>
+<c:import url="../menu/menu.jsp"/>
 
 <div class="container-fluid text-center wrapper">
     <div class="row content">
 
-        <c:import url="leftside.jsp"/>
+        <c:import url="../menu/leftside.jsp"/>
 
         <div class="col-sm-8 text-left mainContent">
             <c:if test="${requestScope.get('errorMessage')!=null}">
@@ -83,7 +83,7 @@
             </form>
         </div>
 
-        <c:import url="rightside.jsp"/>
+        <c:import url="../menu/rightside.jsp"/>
 
     </div>
 </div>

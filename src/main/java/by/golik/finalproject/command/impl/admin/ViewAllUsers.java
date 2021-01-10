@@ -19,7 +19,7 @@ import java.util.List;
  * @author Nikita Golik
  */
 public class ViewAllUsers implements Command {
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/usersPage.jsp";
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/usersPage.jsp";
     private static final String ERROR_PAGE = "WEB-INF/jsp/error.jsp";
     private static final Logger logger = LogManager.getLogger(ViewAllUsers.class);
 

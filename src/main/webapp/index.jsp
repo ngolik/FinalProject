@@ -107,7 +107,7 @@
 </head>
 <body onload="active()">
 
-<c:import url="WEB-INF/jsp/menu.jsp"/>
+<c:import url="WEB-INF/jsp/menu/menu.jsp"/>
 
 
 <script language="javascript">
@@ -119,7 +119,7 @@
     <div class="row content">
 
 
-        <c:import url="WEB-INF/jsp/leftside.jsp"/>
+        <c:import url="WEB-INF/jsp/menu/leftside.jsp"/>
 
         <div class="col-sm-8 text-left mainContent">
             <br>

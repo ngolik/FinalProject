@@ -20,7 +20,7 @@ import java.util.List;
  * @author Nikita Golik
  */
 public class FindMovieByTitle implements Command {
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/moviesPage.jsp";
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/common/moviesPage.jsp";
     private static final String ERROR_PAGE = "WEB-INF/jsp/error.jsp";
 
     private static final Logger logger = LogManager.getLogger(FindMovieByTitle.class);

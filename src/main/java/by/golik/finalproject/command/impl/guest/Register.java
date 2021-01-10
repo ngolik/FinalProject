@@ -23,7 +23,7 @@ import java.util.Arrays;
  */
 public class Register implements Command {
 
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/register.jsp";
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/guest/register.jsp";
 
     private static final Logger logger = LogManager.getLogger(Register.class);
 

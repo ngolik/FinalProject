@@ -23,7 +23,7 @@ import java.util.Arrays;
  * @author Nikita Golik
  */
 public class Login implements Command {
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/login.jsp";
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/guest/login.jsp";
 
     private static final String USER = "user";
 
