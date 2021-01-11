@@ -138,7 +138,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public void addGenreForMovie(String movieID, String name) throws ServiceException {
-        if (!Validator.validate(movieID, name)
+        if (!Validator.validate(name)
                 || !Validator.validateNumber(movieID)) {
             throw new ServiceException("Illegal data input");
         }
@@ -160,7 +160,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public void deleteGenreForMovie(String movieID, String name) throws ServiceException {
-        if (!Validator.validate(movieID, name)
+        if (!Validator.validate(name)
                 || !Validator.validateNumber(movieID)) {
             throw new ServiceException("Illegal data input");
         }
@@ -217,8 +217,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public void addParticipantForMovie(String participantId, String movieId) throws ServiceException {
-        if (!Validator.validate(participantId, movieId)
-                || !Validator.validateNumber(participantId)
+        if (!Validator.validateNumber(participantId)
                 || !Validator.validateNumber(movieId)) {
             throw new ServiceException("Illegal data input");
         }
@@ -264,8 +263,6 @@ public class AdministratorServiceImpl implements AdministratorService {
     public void updateImage(String entity, String filename, String path) throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO movieDAO;
-        UserDAO userDAO;
-        ParticipantDAO participantDAO;
         try {
             switch (entity) {
                 case MOVIE:

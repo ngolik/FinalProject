@@ -48,7 +48,8 @@ public class MovieServlet {
 //        administratorService.addMovie("testService2", "1000", "1500", "1500", "1500");
 //        administratorService.addGenreForMovie("3", "1");
 //        administratorService.updateParticipant("1", "saasfs","sa","dagger");
-        administratorService.updateMovie("4","nikita", "1995","156", "152", "138");
+//        administratorService.updateMovie("4","nikita", "1995","156", "152", "138");
+        administratorService.addGenreForMovie("5", "drama");
 
 
     }

@@ -199,6 +199,7 @@
 
 
     </div>
+    <c:import url="WEB-INF/jsp/menu/footer.jsp"/>
 </div>
 
 
