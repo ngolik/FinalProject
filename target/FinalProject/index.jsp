@@ -27,13 +27,13 @@
     <!--<script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
     IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
+
 
     <!-- jssor slider scripts-->
     <!-- use jssor.slider.debug.js for debug -->
-    <script type="text/javascript" src="js/jssor.slider.mini.js"></script>
 
     <style>
+
         /* jssor slider bullet navigator skin 05 css */
         /*
         .jssorb05 div           (normal)
@@ -50,6 +50,7 @@
             /* size of bullet elment */
             width: 16px;
             height: 16px;
+            background: url(images/main/7.jpg) no-repeat;
             overflow: hidden;
             cursor: pointer;
         }
@@ -83,6 +84,7 @@
             width: 37px;
             height: 37px;
             cursor: pointer;
+            background: url(images/main/8.jpg) no-repeat;
             overflow: hidden;
         }
         .jssora11l {
@@ -157,13 +159,13 @@
                 <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 1000px; height: 700px;
             overflow: hidden;">
                     <div>
-                        <a href="DispatcherServlet?command=all-movies"><img u="image" src2="images/main/6.jpg"/></a></a>
+                        <a href="DispatcherServlet?command=movie-by-id&id=5"><img  data-u="image" src="${pageContext.request.contextPath}/images/main/6.jpg" /></a>
                     </div>
                     <div>
-                        <a href="DispatcherServlet?command=latest-movies"><img u="image" src2="images/main/7.jpg"/></a></a>
+                        <a href="DispatcherServlet?command=movie-by-id&id=5"><img  data-u="image" src="${pageContext.request.contextPath}/images/main/7.jpg" /></a>
                     </div>
                     <div>
-                        <a href="DispatcherServlet?command=all-movies"><img u="image" src2="images/main/8.jpg"/></a></a>
+                        <a href="DispatcherServlet?command=movie-by-id&id=5"><img  data-u="image" src="${pageContext.request.contextPath}/images/main/8.jpg" /></a>
                     </div>
 
                 </div>
@@ -256,6 +258,7 @@
         //responsive code end
     });
 </script>
+
 </body>
 </html>
 

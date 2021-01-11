@@ -31,7 +31,7 @@ public class AddMovie implements Command {
 
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot add movie";
-    private static final String SUCCESS = "add_movie";
+    private static final String ADD_MOVIE = "add_movie";
     private static final String MESSAGE_OF_SUCCESS = "Movie successfully added";
 
     @Override
@@ -52,7 +52,7 @@ public class AddMovie implements Command {
         } else {
             try {
                 administratorService.addMovie(title, year, runtime, budget, gross);
-                request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
+                request.setAttribute(ADD_MOVIE, MESSAGE_OF_SUCCESS);
                 response.sendRedirect(REDIRECT);
 
             } catch (ServiceException e) {

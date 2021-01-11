@@ -14,6 +14,7 @@
 <fmt:message bundle="${locale}" key="locale.viewAllUsers" var="viewAllUsers"/>
 <fmt:message bundle="${locale}" key="locale.viewAllBanned" var="viewAllBanned"/>
 <fmt:message bundle="${locale}" key="locale.viewAllParticipants" var="viewAllParticipants"/>
+<fmt:message bundle="${locale}" key="locale.viewAllParticipants" var="viewAllParticipants"/>
 <div class="col-sm-2 sidenav">
     <c:if test='${sessionScope.get("user").role eq "admin"}'>
         <p><a class="admin" href="DispatcherServlet?command=add-movie">${addMovie}</a></p>
@@ -21,6 +22,7 @@
         <p><a class="admin" href="DispatcherServlet?command=view-all-users">${viewAllUsers}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=view-all-banned">${viewAllBanned}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=view-all-participants">${viewAllParticipants}</a></p>
+        <p><a class="admin" href="DispatcherServlet?command=add-genre">${viewAllParticipants}</a></p>
     </c:if>
 
 </div>

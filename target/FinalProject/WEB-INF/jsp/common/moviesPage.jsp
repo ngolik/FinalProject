@@ -35,6 +35,7 @@
     }
 </script>
 <div class="container-fluid text-center wrapper">
+
     <br class="row content">
         <c:import url="../menu/leftside.jsp"/>
         <div class="col-sm-8 text-left mainContent">
@@ -66,8 +67,12 @@
         <br>
         <table class="table table-stripped">
             <thead>
-            <tr>
-                <th>${movie}</th>
+            <tr class="thead-dark">
+                <th>Movie name</th>
+                <th>Year of issue</th>
+                <th>Runtime</th>
+                <th>Budget</th>
+                <th>Gross</th>
             </tr>
             </thead>
             <tbody>
@@ -76,9 +81,24 @@
                     <td>
                         <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
                             <c:out value="${movie.title}"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
                             <c:out value="${movie.year}"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
                             <c:out value="${movie.runtime}"/>
+                    </td>
+                    <td>
+                        <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
                             <c:out value="${movie.budget}"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
                             <c:out value="${movie.gross}"/>
                         </a>
                     </td>
@@ -123,5 +143,6 @@
     <c:import url="../menu/rightside.jsp"/>
     </div>
 </div>
+<c:import url="../menu/footer.jsp"/>
 </body>
 </html>

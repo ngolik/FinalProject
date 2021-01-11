@@ -178,14 +178,14 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void addParticipant(String name, String surname, String secondName) throws ServiceException {
-        if (!Validator.validate(name, surname, secondName)) {
+    public void addParticipant(String name, String surName, String secondName) throws ServiceException {
+        if (!Validator.validate(name, surName, secondName)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         ParticipantDAO dao = daoFactory.getParticipantDAO();
         try {
-            dao.createParticipant(name, surname, secondName);
+            dao.createParticipant(name, surName, secondName);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }

@@ -34,6 +34,14 @@
          <div class="col-sm-8 text-left mainContent">
              <br>
              <table class="table">
+                 <tr class="thead-dark">
+                     <th>User Name</th>
+                     <th>Email</th>
+                     <th>Role</th>
+                     <th>Date of registration</th>
+                     <th>Ban</th>
+                     <th>Unban</th>
+                 </tr>
                  <c:forEach var="user" items="${requestScope.all_users}">
                      <tr>
                          <td><a href="DispatcherServlet?command=view-user&username=${user.username}"><c:out value="${user.username}"/> </a></td>
