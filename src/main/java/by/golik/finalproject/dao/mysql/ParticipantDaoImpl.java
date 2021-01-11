@@ -31,10 +31,10 @@ public class ParticipantDaoImpl implements ParticipantDAO {
 
     private final static String UPDATE_PARTICIPANT =
             "UPDATE `participants` SET `name` = ?, `surname` = ?, `secondname` = ?" +
-                    " WHERE `id` = ?";
+                    " WHERE participants.id = ?";
 
     private final static String ADD_PARTICIPANT_FOR_MOVIE =
-            "INSERT INTO movies_participants (participants_id, movies_id, position) VALUES (?, ?, 'actor')";
+            "INSERT INTO movies_participants (participants_id, movies_id, position) VALUES (?, ?, 'participant')";
 
     private static final String DELETE_PARTICIPANT_FOR_MOVIE =
             "DELETE FROM movies_participants\n" +
@@ -181,11 +181,10 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             st = con.prepareStatement(UPDATE_PARTICIPANT);
             st.setString(1, name);
             st.setString(2, surname);
-            st.setInt(3, actorID);
-            st.setString(4, secondName);
+            st.setString(3, secondName);
+            st.setInt(4, actorID);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Actor obnovlen vse ok " + nameEn);
                 return;
             }
             throw new DAOException("Wrong movie data");

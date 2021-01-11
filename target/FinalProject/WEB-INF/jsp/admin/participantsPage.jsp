@@ -14,7 +14,7 @@
 <fmt:setBundle basename="locale" var="locale"/>
 <fmt:message bundle="${locale}" key="locale.allParticipantsList" var="allParticipantsList"/>
 <fmt:message bundle="${locale}" key="locale.name" var="name"/>
-<fmt:message bundle="${locale}" key="locale.surName" var="surname"/>
+<fmt:message bundle="${locale}" key="locale.surname" var="surname"/>
 <fmt:message bundle="${locale}" key="locale.secondName" var="second_name"/>
 <!DOCTYPE html>
 <html>

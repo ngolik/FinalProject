@@ -18,7 +18,7 @@ import java.io.IOException;
 public class UpdateMovie implements Command {
     private static final Logger logger = LogManager.getLogger(UpdateMovie.class);
 
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/addMoviePage.jsp";
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/addMovie.jsp";
     private static final String REDIRECT = "DispatcherServlet?command=add-movie";
 
     private static final String ID = "id";
@@ -43,7 +43,7 @@ public class UpdateMovie implements Command {
         String gross = request.getParameter(GROSS);
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
 
-        if (title == null && year == null && runtime == null && budget == null && gross == null) {
+        if (title != null && year != null && runtime != null && budget != null && gross != null) {
 
             try {
                 administratorService.updateMovie(id, title, year, runtime, budget, gross);

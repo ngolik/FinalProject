@@ -53,9 +53,10 @@ public class MovieDaoImpl implements MovieDAO {
             "INSERT INTO movies (title, year, runtime, budget, image_path, gross, description) VALUES (?, ?, ?, ?, 'sa', ?, 'empty')";
 
     private static final String UPDATE_BY_ID =
-            "UPDATE `movies_db`.`movies`\n" +
-                    "SET title = ?, `year` = ?, `runtime` = ?, `budget` = ?,`gross` = ?\n" +
+            "UPDATE `test_db`.`movies`\n" +
+                    "SET title = ?, year = ?, `runtime` = ?, `budget` = ?,`gross` = ?\n" +
                     "WHERE `id` = ?;\n";
+
 
     private static final String DELETE_BY_ID =
             "DELETE FROM `movies_db`.`movies` WHERE id=?;";

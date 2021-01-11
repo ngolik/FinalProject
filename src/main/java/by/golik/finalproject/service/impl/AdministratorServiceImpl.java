@@ -104,8 +104,11 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public void updateMovie(String id, String title, String year, String runtime, String budget, String gross) throws ServiceException {
-        if (!Validator.validate(title, year, runtime, budget, gross)
+        if (!Validator.validate(title)
                 || !Validator.validateYear(year)
+                || !Validator.validateNumber(runtime)
+                || !Validator.validateNumber(budget)
+                || !Validator.validateNumber(gross)
                 || !Validator.validateNumber(id)) {
             throw new ServiceException("Illegal data input");
         }
@@ -193,7 +196,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public void updateParticipant(String id, String name, String surname, String secondName) throws ServiceException {
-        if (!Validator.validate(id, name, surname, secondName)
+        if (!Validator.validate(name, surname, secondName)
                 || !Validator.validateNumber(id)) {
             throw new ServiceException("Illegal data input");
         }
