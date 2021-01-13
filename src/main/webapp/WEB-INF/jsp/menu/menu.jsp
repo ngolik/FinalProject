@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="locale" var="locale"/>
 <fmt:message bundle="${locale}" key="locale.siteName" var="siteName"/>
 <fmt:message bundle="${locale}" key="locale.home" var="home"/>
@@ -62,6 +63,8 @@
                         <span class="glyphicon glyphicon-log-out"></span> ${logOut}</a>
                     </li>
                 </c:if>
+                <li><a href="DispatcherServlet?command=change-language&language=en">English</a></li>
+                <li><a href="DispatcherServlet?command=change-language&language=ru">Русский</a></li>
             </ul>
         </div>
     </div>

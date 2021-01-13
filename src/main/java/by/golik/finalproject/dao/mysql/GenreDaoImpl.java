@@ -30,6 +30,7 @@ public class GenreDaoImpl implements GenreDAO {
             "DELETE FROM `genres` WHERE `id` = ?";
 
     private static final String GENRE = "genres";
+
     private static final GenreDAO instance = new GenreDaoImpl();
 
     private GenreDaoImpl() {

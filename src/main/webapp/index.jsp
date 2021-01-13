@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set scope="session" var="previousQuery" value="index.jsp"/>
+<fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="locale" var="locale"/>
 <fmt:message bundle="${locale}" key="locale.indexTitle" var="indexTitle"/>
 <fmt:message bundle="${locale}" key="locale.searchTitle" var="searchTitle"/>

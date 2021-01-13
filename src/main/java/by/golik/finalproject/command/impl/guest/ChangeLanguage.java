@@ -25,9 +25,11 @@ public class ChangeLanguage implements Command {
     private static final String ENGLISH = "en";
     private static final String RUSSIAN = "ru";
 
+
     public ChangeLanguage() {
         supportedLanguages.add(ENGLISH);
         supportedLanguages.add(RUSSIAN);
+
     }
 
     @Override

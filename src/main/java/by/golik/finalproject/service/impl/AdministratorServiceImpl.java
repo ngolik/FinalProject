@@ -75,8 +75,11 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public void addMovie(String title, String year, String runtime, String budget, String gross) throws ServiceException {
-        if (!Validator.validate(title, year, runtime, budget, gross)
-                || !Validator.validateYear(year)) {
+        if (!Validator.validate(title)
+                || !Validator.validateYear(year)
+                || !Validator.validateNumber(runtime)
+                || !Validator.validateNumber(budget)
+                || !Validator.validateNumber(gross)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
