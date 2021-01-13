@@ -18,37 +18,37 @@ import java.io.IOException;
  * @author Nikita Golik
  */
 public class DeleteUser implements Command {
-    private static final Logger logger = LogManager.getLogger(DeleteUser.class);
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/deleteUserPage.jsp";
+    private static final String REDIRECT = "DispatcherServlet?command=delete-user";
 
-    private static final String ERROR_PAGE = "WEB-INF/jsp/error.jsp";
+    private static final Logger logger = LogManager.getLogger(AddParticipant.class);
 
-    private static final String USER_NAME = "userName";
+    private static final String USERNAME = "username";
 
     private static final String ERROR = "errorMessage";
-    private static final String MESSAGE_OF_ERROR = "Cannot delete review";
-    private static final String MESSAGE_OF_ERROR_2 = "Fill in all fields";
+    private static final String MESSAGE_OF_ERROR = "Cannot delete user";
+    private static final String SUCCESS = "delete_user";
+    private static final String MESSAGE_OF_SUCCESS = "USer successfully deleted";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        CommandHelper.saveCurrentQueryToSession(request);
 
-        String previousQuery = CommandHelper.getPreviousQuery(request);
+        String username = request.getParameter(USERNAME);
+        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        if (username == null) {
+            request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
 
-        String userName = request.getParameter(USER_NAME);
-
-        AdministratorService adminService = AdministratorHelper.getAdminService(request, response);
-
-
+        } else {
             try {
-                adminService.deleteUser(userName);
-                response.sendRedirect(previousQuery);
+                administratorService.deleteUser(username);
+                request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
+                response.sendRedirect(REDIRECT);
             } catch (ServiceException | DAOException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR);
-                //redirect on same page should be and print error
-                request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             }
-            request.setAttribute(ERROR, MESSAGE_OF_ERROR_2);
-            //redirect on same page should be and print error
-            request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
+        }
     }
 }
