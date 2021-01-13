@@ -278,4 +278,18 @@ public class AdministratorServiceImpl implements AdministratorService {
             throw new ServiceException("Error in source!", e);
         }
     }
+
+    @Override
+    public void deleteUser(String userName) throws DAOException, ServiceException {
+        if (!Validator.validate(userName)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        UserDAO dao = daoFactory.getUserDAO();
+        try {
+            dao.deleteUser(userName);
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+    }
 }

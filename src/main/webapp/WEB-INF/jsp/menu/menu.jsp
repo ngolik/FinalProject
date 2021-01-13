@@ -63,6 +63,7 @@
                         <span class="glyphicon glyphicon-log-out"></span> ${logOut}</a>
                     </li>
                 </c:if>
+
                 <li><a href="DispatcherServlet?command=change-language&language=en">English</a></li>
                 <li><a href="DispatcherServlet?command=change-language&language=ru">Русский</a></li>
             </ul>

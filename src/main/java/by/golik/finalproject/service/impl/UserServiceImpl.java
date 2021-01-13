@@ -5,7 +5,6 @@ import by.golik.finalproject.dao.UserDAO;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.User;
 import by.golik.finalproject.service.Encryption;
-import by.golik.finalproject.service.PasswordUtil;
 import by.golik.finalproject.service.UserService;
 import by.golik.finalproject.service.Validator;
 import by.golik.finalproject.service.exception.ServiceAuthorizationException;

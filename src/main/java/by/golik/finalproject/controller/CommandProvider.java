@@ -36,6 +36,7 @@ public class CommandProvider {
         guestCommands.put(CommandList.REGISTER, new Register());
         guestCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
         guestCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
+        guestCommands.put(CommandList.VIEW_USER, new ViewUser());
 
         adminCommands.put(CommandList.ADD_GENRE_FOR_MOVIE, new AddGenreForMovie());
         adminCommands.put(CommandList.ADD_MOVIE, new AddMovie());
@@ -54,11 +55,15 @@ public class CommandProvider {
         adminCommands.put(CommandList.LOG_OUT, new Logout());
         adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
         adminCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
+        adminCommands.put(CommandList.DELETE_USER, new DeleteUser());
+        adminCommands.put(CommandList.VIEW_USER, new ViewUser());
 
 
         userCommands.put(CommandList.LOG_OUT, new Logout());
         userCommands.put(CommandList.ADD_RATING, new AddVote());
         userCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
+        adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
+        adminCommands.put(CommandList.VIEW_USER, new ViewUser());
 
 
     }

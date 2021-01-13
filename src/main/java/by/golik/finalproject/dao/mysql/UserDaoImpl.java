@@ -47,7 +47,7 @@ public class UserDaoImpl implements UserDAO {
     private static final String VIEW_BY_USERNAME =
             "SELECT * FROM users WHERE login=?";
     private static final String DELETE_BY_USERNAME =
-            "DELETE FROM `movies_db`.`users` WHERE login=?;";
+            "DELETE FROM users WHERE login=?;";
 
     private static final UserDAO instance = new UserDaoImpl();
     private UserDaoImpl(){
@@ -205,7 +205,7 @@ public class UserDaoImpl implements UserDAO {
             st.setString(1, userName);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("User v bane vse ok" + userNickname);
+
                 return;
             }
             throw new DAOException("Wrong ban data");
@@ -230,7 +230,7 @@ public class UserDaoImpl implements UserDAO {
             st.setString(1, userName);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("User razbanen vse ok " + userNickname);
+
                 return;
             }
             throw new DAOException("Wrong unban data");
@@ -305,7 +305,7 @@ public class UserDaoImpl implements UserDAO {
             st.setString(1, userName);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("User udalen vse ok " + userNickname);
+
                 return;
             }
             throw new DAOException("Wrong movie data");

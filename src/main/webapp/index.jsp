@@ -35,6 +35,7 @@
 
     <style>
 
+
         /* jssor slider bullet navigator skin 05 css */
         /*
         .jssorb05 div           (normal)
@@ -110,6 +111,9 @@
 </head>
 <body onload="active()">
 
+<body style="background-image:url(images/main/9.jpg)">
+
+
 <c:import url="WEB-INF/jsp/menu/menu.jsp"/>
 
 
@@ -130,6 +134,7 @@
                 <input type="hidden" name="command" value="find-movie-by-title"/>
                 <div class="form-group">
                     <label for="search" class="col-sm-2 control-label">${searchLabel}</label>
+
                     <div class="col-sm-8">
                         <input id="search" title="${searchTitle}" type="text" class="form-control"
                                placeholder="${movie}"

@@ -11,6 +11,7 @@
 <jsp:useBean id="user" class="by.golik.finalproject.entity.User" scope="request"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="locale" var="locale"/>
 
 <fmt:message bundle="${locale}" key="locale.banUser" var="banUser"/>
