@@ -49,11 +49,11 @@
         <br>
         <form action="DispatcherServlet" method="post">
             <p>
-                <label><input type="radio" name="command" value="add-participant" checked/>${deleteUser}</label>
+                <label><input type="radio" name="command" value="delete-user" checked/>${deleteUser}</label>
             </p>
 
-            <label for="name">${username}<br></label>
-            <input id="name" class="form-control" type="text" name="name" required>
+            <label for="username">${username}<br></label>
+            <input id="username" class="form-control" type="text" name="username" required>
             <br/>
             <button type="submit" class="btn btn-primary">${submit}</button>
         </form>
