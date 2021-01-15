@@ -50,7 +50,7 @@ public class AddVote implements Command {
 
         if (movieID != null && userNickname != null && rating != null) {
             try {
-                movieService.addVote(movieID, userNickname, rating);
+                movieService.addRating(movieID, userNickname, rating);
 
                 request.getRequestDispatcher(previousQuery).forward(request, response);
             } catch (ServiceException e) {

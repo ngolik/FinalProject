@@ -14,6 +14,8 @@
 <fmt:message bundle="${locale}" key="locale.movie" var="movie"/>
 <fmt:message bundle="${locale}" key="locale.next" var="next"/>
 <fmt:message bundle="${locale}" key="locale.previous" var="previous"/>
+<fmt:message bundle="${locale}" key="locale.yourRating" var="yourRating"/>
+<fmt:message bundle="${locale}" key="locale.ratingVotes" var="ratingVotes"/>
 
 <!DOCTYPE html>
 <html>
@@ -133,12 +135,6 @@
             </c:forEach>
             </c:if>
 
-            <%--For displaying Next link --%>
-            <c:if test="${requestScope.currentPage lt requestScope.noOfPages}">
-            <li>
-                <a href="DispatcherServlet?command=${param.command}&page=${requestScope.currentPage + 1}&country=${param.country}&genre=${param.genre}">${next}</a>
-            </li>
-            </c:if>
         </ul>
     <c:import url="../menu/rightside.jsp"/>
     </div>
