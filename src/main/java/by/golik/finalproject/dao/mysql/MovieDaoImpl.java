@@ -43,7 +43,7 @@ public class MovieDaoImpl implements MovieDAO {
                     "WHERE `movies_db`.movies_participants.participants_id = ? ORDER BY `title`";
 
     private static final String SHOW_BY_ID =
-            "SELECT `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
+            "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `id` = ?";
 
     private static final String COUNT_ALL_MOVIES =
@@ -266,9 +266,7 @@ public class MovieDaoImpl implements MovieDAO {
                 movie.setYear(rs.getInt(YEAR));
                 movie.setBudget(rs.getLong(BUDGET));
                 movie.setGross(rs.getLong(GROSS));
-                movie.setAvgRating(rs.getDouble(RATING));
-                movie.setRating(rs.getInt(VOTES));
-                movie.setImageUrl(rs.getString(IMAGE));
+
             }
             return movie;
 

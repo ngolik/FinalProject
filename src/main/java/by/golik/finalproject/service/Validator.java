@@ -1,10 +1,9 @@
 package by.golik.finalproject.service;
 
-import by.golik.finalproject.dao.VoteDAO;
+import by.golik.finalproject.dao.RatingDAO;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Movie;
 import by.golik.finalproject.entity.Vote;
-import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -129,14 +128,14 @@ public class Validator {
     /**
      * This method is used to fill movies with ratings.
      *
-     * @param voteDAO rating DAO
+     * @param ratingDAO rating DAO
      * @param movies    list of movies
      * @throws DAOException if any error occurred while processing method.
      */
-    public static void fillVotesForMovie(VoteDAO voteDAO, List<Movie> movies) throws DAOException {
+    public static void fillVotesForMovie(RatingDAO ratingDAO, List<Movie> movies) throws DAOException {
         List<Vote> voteList;
         for (Movie movie : movies) {
-            voteList = voteDAO.getVotesForMovie(movie.getId());
+            voteList = ratingDAO.getRatingorMovie(movie.getId());
             movie.setVotes(voteList);
         }
     }

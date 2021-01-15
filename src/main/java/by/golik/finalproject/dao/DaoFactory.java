@@ -20,7 +20,7 @@ public class DaoFactory {
     private MovieDAO movieDAO = MovieDaoImpl.getInstance();
     private ParticipantDAO participantDAO = ParticipantDaoImpl.getInstance();
     private UserDAO userDAO = UserDaoImpl.getInstance();
-    private VoteDAO voteDAO = VoteDaoImpl.getInstance();
+    private RatingDAO ratingDAO = RatingDaoImpl.getInstance();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     public GenreDAO getGenreDAO() {
@@ -35,8 +35,8 @@ public class DaoFactory {
     public UserDAO getUserDAO() {
         return userDAO;
     }
-    public VoteDAO getVoteDAO() {
-        return voteDAO;
+    public RatingDAO getRatingDAO() {
+        return ratingDAO;
     }
     public ConnectionPool getConnectionPool() {
         return connectionPool;

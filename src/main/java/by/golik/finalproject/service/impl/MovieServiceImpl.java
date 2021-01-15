@@ -40,7 +40,7 @@ public class MovieServiceImpl implements MovieService {
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
-        VoteDAO ratingDAO = daoFactory.getVoteDAO();
+        RatingDAO ratingDAO = daoFactory.getRatingDAO();
         List<Movie> movies;
         try {
             movies = dao.readAllMovies();
@@ -62,14 +62,14 @@ public class MovieServiceImpl implements MovieService {
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
-        VoteDAO voteDAO = daoFactory.getVoteDAO();
+        RatingDAO ratingDAO = daoFactory.getRatingDAO();
         List<Movie> movies;
         try {
             movies = dao.getMoviesByGenre(genre, offset, recordsPerPage);
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
-            Validator.fillVotesForMovie(voteDAO, movies);
+            Validator.fillVotesForMovie(ratingDAO, movies);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -78,21 +78,13 @@ public class MovieServiceImpl implements MovieService {
 
     //TODO (producer, director)
     @Override
-    public Movie getMovieByID(int offset, int recordsPerPage, String id, String lang) throws ServiceException {
-        if (!Validator.validate(offset, recordsPerPage)
-                || !Validator.validate(id, lang)
-                || !Validator.validateNumber(id)) {
+    public Movie getMovieByID(String id) throws ServiceException {
+        if (!Validator.validateNumber(id)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
-        VoteDAO ratingDAO = daoFactory.getVoteDAO();
-        GenreDAO genreDAO = daoFactory.getGenreDAO();
-        ParticipantDAO participantDAO = daoFactory.getParticipantDAO();
         Movie movie;
-        List<Vote> voteList;
-        List<Genre> genreList;
-        List<Participant> participantList;
 
         int normId;
         try {
@@ -102,18 +94,7 @@ public class MovieServiceImpl implements MovieService {
         }
         try {
             movie = dao.getMovieById(normId);
-            if (movie != null) {
-
-                genreList = genreDAO.readGenresByMovie(normId);
-                voteList = ratingDAO.getVotesForMovie(normId);
-                participantList = participantDAO.getParticipantsForMovie(normId);
-                movie.setGenreList(genreList);
-                movie.setVotes(voteList);
-                movie.setParticipants(participantList);
-
-            } else {
-                throw new ServiceException("No movies matching your query");
-            }
+            logger.info(movie.toString());
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -127,7 +108,7 @@ public class MovieServiceImpl implements MovieService {
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
-        VoteDAO voteDAO = daoFactory.getVoteDAO();
+        RatingDAO ratingDAO = daoFactory.getRatingDAO();
         List<Movie> movies;
         try {
             movies = dao.searchMovieByTitle(title);
@@ -135,7 +116,7 @@ public class MovieServiceImpl implements MovieService {
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
-            Validator.fillVotesForMovie(voteDAO, movies);
+            Validator.fillVotesForMovie(ratingDAO, movies);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -159,14 +140,14 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void addVote(String movieID, String userName, String rating) throws ServiceException {
+    public void addRating(String movieID, String userName, String rating) throws ServiceException {
         if (!Validator.validate(movieID, userName, rating)
                 || !Validator.validateNumber(movieID)
                 || !Validator.validateNumber(rating)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
-        VoteDAO dao = daoFactory.getVoteDAO();
+        RatingDAO dao = daoFactory.getRatingDAO();
 
         int intMovieID;
         int intRating;
@@ -180,11 +161,11 @@ public class MovieServiceImpl implements MovieService {
             throw new ServiceException("Wrong data input, while adding rating");
         }
         try {
-            Vote vote = dao.checkVotes(intMovieID, userName);
+            Vote vote = dao.checkRating(intMovieID, userName);
             if (vote != null) {
-                dao.updateVotes(intMovieID, userName, intRating);
+                dao.updateRating(intMovieID, userName, intRating);
             } else {
-                dao.createVotes(intMovieID, userName, intRating);
+                dao.createRating(intMovieID, userName, intRating);
             }
 
         } catch (DAOException e) {

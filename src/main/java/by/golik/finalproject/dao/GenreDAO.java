@@ -26,6 +26,7 @@ public interface GenreDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     void createGenreForMovie(int intMovieID, String name) throws DAOException;
+
     void createGenre(String name) throws DAOException;
 
     /**

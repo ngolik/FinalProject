@@ -25,6 +25,9 @@ public class User {
      */
     private Date registrationDate;
 
+    /**
+     * password of user
+     */
     private String password;
 
     public String getPassword() {

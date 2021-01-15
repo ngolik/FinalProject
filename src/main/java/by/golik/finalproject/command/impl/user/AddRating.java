@@ -18,9 +18,9 @@ import java.io.IOException;
 /**
  * @author Nikita Golik
  */
-public class AddVote implements Command {
+public class AddRating implements Command {
 
-    private static final Logger logger = LogManager.getLogger(AddVote.class);
+    private static final Logger logger = LogManager.getLogger(AddRating.class);
 
     private static final String MOVIE_ID = "movieID";
     private static final String USER = "user";
@@ -36,21 +36,21 @@ public class AddVote implements Command {
         String previousQuery = CommandHelper.getPreviousQuery(request);
 
         String movieID = request.getParameter(MOVIE_ID);
-        String userNickname = null;
+        String userName = null;
 
         Object object = request.getSession(false).getAttribute(USER);
 
         if (object.getClass().equals(User.class)) {
             User user = (User) object;
-            userNickname = user.getUsername();
+            userName = user.getUsername();
         }
 
         String rating = request.getParameter(RATING);
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
 
-        if (movieID != null && userNickname != null && rating != null) {
+        if (movieID != null && userName != null && rating != null) {
             try {
-                movieService.addRating(movieID, userNickname, rating);
+                movieService.addRating(movieID, userName, rating);
 
                 request.getRequestDispatcher(previousQuery).forward(request, response);
             } catch (ServiceException e) {

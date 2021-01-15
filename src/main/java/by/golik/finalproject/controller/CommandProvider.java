@@ -3,7 +3,7 @@ package by.golik.finalproject.controller;
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.command.impl.admin.*;
 import by.golik.finalproject.command.impl.guest.*;
-import by.golik.finalproject.command.impl.user.AddVote;
+import by.golik.finalproject.command.impl.user.AddRating;
 import by.golik.finalproject.command.impl.user.Logout;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +37,7 @@ public class CommandProvider {
         guestCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
         guestCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
         guestCommands.put(CommandList.VIEW_USER, new ViewUser());
+        guestCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
 
         adminCommands.put(CommandList.ADD_GENRE_FOR_MOVIE, new AddGenreForMovie());
         adminCommands.put(CommandList.ADD_MOVIE, new AddMovie());
@@ -53,17 +54,18 @@ public class CommandProvider {
         adminCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
         adminCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
         adminCommands.put(CommandList.LOG_OUT, new Logout());
-        adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
         adminCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
         adminCommands.put(CommandList.DELETE_USER, new DeleteUser());
         adminCommands.put(CommandList.VIEW_USER, new ViewUser());
+        adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
 
 
         userCommands.put(CommandList.LOG_OUT, new Logout());
-        userCommands.put(CommandList.ADD_RATING, new AddVote());
+        userCommands.put(CommandList.ADD_RATING, new AddRating());
         userCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
-        adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
-        adminCommands.put(CommandList.VIEW_USER, new ViewUser());
+        userCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
+        userCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
+
 
 
     }

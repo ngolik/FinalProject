@@ -45,7 +45,7 @@ public class UserDaoImpl implements UserDAO {
                     "`users`.role = 'user'\n" +
                     "WHERE `users`.login = ?;";
     private static final String VIEW_BY_USERNAME =
-            "SELECT * FROM users WHERE login=?";
+            "SELECT id, login, password, email, role, registrationdate FROM users WHERE login=?";
     private static final String DELETE_BY_USERNAME =
             "DELETE FROM users WHERE login=?;";
 

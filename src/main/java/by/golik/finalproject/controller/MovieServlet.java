@@ -50,7 +50,12 @@ public class MovieServlet {
 //        administratorService.updateParticipant("1", "saasfs","sa","dagger");
 //        administratorService.updateMovie("4","nikita", "1995","156", "152", "138");
 //        administratorService.addGenreForMovie("5", "drama");
-        administratorService.deleteUser("test2");
+//        administratorService.deleteUser("test2");
+//        movieService.addRating("1", "6", "7");
+        System.out.println(movieService.getMovieByID("1").toString());
+
+
+
 
 
     }

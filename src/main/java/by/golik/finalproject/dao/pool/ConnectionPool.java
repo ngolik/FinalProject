@@ -98,7 +98,7 @@ public class ConnectionPool {
             }
             connection = freeConnections.take();
             usedConnections.put(connection);
-            logger.info("Success poll takeConnection");
+            logger.info("Success pool takeConnection");
             return connection;
         } catch (InterruptedException e) {
             throw new ConnectionPoolException("Couldn't take connection from pool", e);

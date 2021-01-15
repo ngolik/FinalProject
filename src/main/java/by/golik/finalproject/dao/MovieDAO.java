@@ -27,21 +27,95 @@ public interface MovieDAO {
     List<Movie> getMoviesByGenre(String genre, int offset, int recordsNumber) throws DAOException;
 
     /**
+     * This method is used to search movies into data source.
+     * @param title  movie
+     * @return list of filled movie beans
+     * @throws DAOException  if some error occurred while processing data.
+     */
+    List<Movie> searchMovieByTitle(String title) throws DAOException;
+
+    /**
      *
-     * @param title
+     * @param actorId
      * @return
      * @throws DAOException
      */
-    List<Movie> searchMovieByTitle(String title) throws DAOException;
     List<Movie> getMoviesByParticipant(int actorId) throws DAOException;
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws DAOException
+     */
     Movie getMovieById(int id) throws DAOException;
+
+    /**
+     *
+     * @return
+     * @throws DAOException
+     */
     int countAllMoviesAmount() throws DAOException;
+
+    /**
+     *
+     * @param title
+     * @param year
+     * @param runtime
+     * @param budget
+     * @param gross
+     * @throws DAOException
+     */
     void createMovie(String title, int year, int runtime, long budget, long gross) throws DAOException;
+
+    /**
+     *
+     * @param id
+     * @param title
+     * @param year
+     * @param runtime
+     * @param budget
+     * @param gross
+     * @throws DAOException
+     */
     void updateMovie(int id, String title, int year, int runtime, long budget, long gross) throws DAOException;
+
+    /**
+     *
+     * @param id
+     * @throws DAOException
+     */
     void deleteMovie(int id) throws DAOException;
+
+    /**
+     *
+     * @param participantId
+     * @return
+     * @throws DAOException
+     */
     List<Movie> getMoviesForParticipant(int participantId) throws DAOException;
+
+    /**
+     *
+     * @return
+     * @throws DAOException
+     */
     Movie getLastInsertedMovie() throws DAOException;
+
+    /**
+     *
+     * @param id
+     * @param path
+     * @throws DAOException
+     */
     void updateImage(int id, String path) throws DAOException;
+
+    /**
+     *
+     * @param genre
+     * @return
+     * @throws DAOException
+     */
     int countMoviesByGenre(String genre) throws DAOException;
 
 

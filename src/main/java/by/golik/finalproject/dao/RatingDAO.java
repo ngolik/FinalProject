@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author Nikita Golik
  */
-public interface VoteDAO {
+public interface RatingDAO {
     /**
      * This method is used to get Rating for a movie.
      *
@@ -15,7 +15,7 @@ public interface VoteDAO {
      * @return list of filled rating beans
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Vote> getVotesForMovie(int id) throws DAOException;
+    List<Vote> getRatingorMovie(int id) throws DAOException;
 
     /**
      * This method is used to get rating user gave to any movies.
@@ -24,7 +24,7 @@ public interface VoteDAO {
      * @return list of filled movie beans
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Vote> getVotesOfUser(String nickname) throws DAOException;
+    List<Vote> getRatingFromUser(String nickname) throws DAOException;
 
     /**
      * This method is used to check if there is an entry of this user for this movie.
@@ -34,7 +34,7 @@ public interface VoteDAO {
      * @return filled rating bean
      * @throws DAOException if some error occurred while processing data.
      */
-    Vote checkVotes(int intMovieID, String userNickname) throws DAOException;
+    Vote checkRating(int intMovieID, String userNickname) throws DAOException;
 
     /**
      * This method is used to add rating of some user for some mvoie.
@@ -44,7 +44,7 @@ public interface VoteDAO {
      * @param rating       user gave
      * @throws DAOException if some error occurred while processing data.
      */
-    void createVotes(int intMovieID, String userNickname, int rating) throws DAOException;
+    void createRating(int intMovieID, String userNickname, int rating) throws DAOException;
 
     /**
      * This method is used to update rating some user gave to some movie in data source.
@@ -54,7 +54,7 @@ public interface VoteDAO {
      * @param intRating    rating user gave
      * @throws DAOException if some error occurred while processing data.
      */
-    void updateVotes(int intMovieID, String userNickname, int intRating) throws DAOException;
+    void updateRating(int intMovieID, String userNickname, int intRating) throws DAOException;
 
     /**
      * This method is used to remove rating some user gave for some movie and used only for tests!!!
@@ -63,5 +63,5 @@ public interface VoteDAO {
      * @param userNickname nickname of user
      * @throws DAOException if some error occurred while processing data.
      */
-    void deleteVotes(int movieID, String userNickname) throws DAOException;
+    void deleteRating(int movieID, String userNickname) throws DAOException;
 }
