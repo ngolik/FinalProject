@@ -9,6 +9,7 @@ import by.golik.finalproject.entity.Participant;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class ParticipantDaoImplTest {
             Assert.assertEquals(secondName, participant.getSecondName());
             Assert.assertEquals(position, participant.getPosition());
 
-        } catch (ConnectionPoolException | DAOException e) {
+        } catch (ConnectionPoolException | DAOException | SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -92,7 +93,7 @@ public class ParticipantDaoImplTest {
 
             dao.updateParticipant(id, nameTemp, surNameTemp, secondNameTemp, positionTemp);
 
-        } catch (ConnectionPoolException | DAOException e) {
+        } catch (ConnectionPoolException | DAOException | SQLException e) {
             e.printStackTrace();
         } finally {
             try {

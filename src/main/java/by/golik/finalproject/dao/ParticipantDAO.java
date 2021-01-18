@@ -64,7 +64,7 @@ public interface ParticipantDAO {
      * @return list of filled Participant beans
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Participant> getAllParticipants() throws DAOException;
+    List<Participant> getAllParticipants() throws DAOException, SQLException;
 
     /**
      * This method is used to retrieve the most recently added participant from data source.

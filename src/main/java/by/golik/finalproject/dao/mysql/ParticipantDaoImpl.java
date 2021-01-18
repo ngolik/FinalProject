@@ -50,8 +50,6 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             "SELECT * FROM movies_db.participants ORDER BY participants.id DESC LIMIT 1;";
 
 
-
-
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
@@ -96,17 +94,17 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Participant sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Participant pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 rs.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
-
 
 
     @Override
@@ -136,14 +134,15 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Participant sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Participant pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 rs.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -168,11 +167,11 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -197,11 +196,11 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -223,11 +222,11 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -253,7 +252,8 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e){}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
@@ -279,12 +279,13 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         } finally {
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
         }
     }
 
     @Override
-    public List<Participant> getAllParticipants() throws DAOException {
+    public List<Participant> getAllParticipants() throws DAOException, SQLException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -312,16 +313,20 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             throw new DAOException("Participant sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Participant pool connection error");
-        }
-        finally {
+        } finally {
             try {
                 rs.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
             try {
                 st.close();
-            } catch (SQLException | NullPointerException e) {}
+            } catch (SQLException | NullPointerException e) {
+            }
+            con.close();
         }
+
     }
+
 
     @Override
     public Participant getLastInsertedParticipant() throws DAOException {

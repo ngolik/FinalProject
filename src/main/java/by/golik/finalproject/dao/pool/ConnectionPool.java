@@ -22,7 +22,7 @@ public class ConnectionPool {
     private static final String USER = "root";
     private static final String PASSWORD = "canada@123";
 
-    private static final int MINIMAL_CONNECTION_COUNT = 5;
+    private static final int MINIMAL_CONNECTION_COUNT = 100;
 
     private static BlockingQueue<Connection> freeConnections;
     private static BlockingQueue<Connection> usedConnections;

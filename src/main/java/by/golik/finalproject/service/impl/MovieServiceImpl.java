@@ -1,6 +1,7 @@
 package by.golik.finalproject.service.impl;
 
 import by.golik.finalproject.dao.*;
+import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.*;
 import by.golik.finalproject.service.MovieService;
@@ -9,6 +10,7 @@ import by.golik.finalproject.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -193,9 +195,10 @@ public class MovieServiceImpl implements MovieService {
             if (participants == null || participants.size() == 0) {
                 throw new ServiceException("No participants matching your query");
             }
-        } catch (DAOException e) {
-            throw new ServiceException("Error in source!", e);
+        } catch (DAOException | SQLException e) {
+            throw new ServiceException("Error in source!", (ConnectionPoolException) e);
         }
         return participants;
     }
+
 }
