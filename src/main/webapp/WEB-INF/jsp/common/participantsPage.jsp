@@ -17,6 +17,9 @@
 <fmt:message bundle="${locale}" key="locale.surname" var="surname"/>
 <fmt:message bundle="${locale}" key="locale.secondName" var="second_name"/>
 <fmt:message bundle="${locale}" key="locale.position" var="position"/>
+<fmt:message bundle="${locale}" key="locale.participant" var="participant"/>
+<fmt:message bundle="${locale}" key="locale.all" var="all"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,13 +47,33 @@
         <c:import url="../menu/adminMenu.jsp"/>
 
         <div class="col-sm-8 text-left mainContent">
-            <h1>PARTICIPANTS</h1>
             <h1>${allParticipantsList}</h1>
+
+            <div class="selectboxes">
+                <div class="sortAwaits" style="width: 391px; float: left;margin: 0">
+                    <label>
+                        <select onchange="MakeSort(this);">
+                            <option value="DispatcherServlet?command=all-participants">-</option>
+                            <option selected="" value="DispatcherServlet?command=all-participants">${all}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <script type="text/javascript">
+                function MakeSort(element) {
+                    var selected = $('option:selected', element),
+                        href = selected.val();
+                    if (/*selected.text() === '-' || */!href) {
+                        return false;
+                    }
+                    document.location = href;
+                }
+            </script>
             <br>
-            <table class="table">
+            <table class="table table-stripped">
                 <thead>
-                <tr>
-                    <th>id</th>
+                <tr class="thead-dark">
                     <th>${name}</th>
                     <th>${surname}</th>
                     <th>${second_name}</th>
@@ -60,13 +83,10 @@
                 <tbody>
                 <c:forEach var="participant" items="${requestScope.all_participants}">
                     <tr>
-                        <td><a href="DispatcherServlet?command=view-participant&participant-id=${participant.id}">
-                            <c:out value="${participant.id}"/></a></td>
-
-                        <td><c:out value="${participant.name}"/></td>
-                        <td><c:out value="${participant.surname}"/></td>
-                        <td><c:out value="${participant.secondName}"/></td>
-                        <td><c:out value="${participant.position}"/></td>
+                        <td><a href="DispatcherServlet?command=view-participant&participant=${participant.name}"><c:out value="${participant.name}"/> </a></td>
+                        <td>${participant.surname}</td>
+                        <td>${participant.secondName}</td>
+                        <td>${participant.position}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -76,6 +96,7 @@
         <c:import url="../menu/rightside.jsp"/>
 
     </div>
+
 </div>
 
 

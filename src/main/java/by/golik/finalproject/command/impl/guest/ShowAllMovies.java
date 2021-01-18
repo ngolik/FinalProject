@@ -20,15 +20,11 @@ import java.util.List;
  * @author Nikita Golik
  */
 public class ShowAllMovies implements Command {
+    private static final Logger logger = LogManager.getLogger(ShowAllMovies.class);
 
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/common/moviesPage.jsp";
     private static final String ERROR_PAGE = "/error.jsp";
-
-    private static final Logger logger = LogManager.getLogger(ShowAllMovies.class);
-
-
     private static final String REQUEST_ATTRIBUTE = "all_movies";
-
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "No movies matching your query";
 

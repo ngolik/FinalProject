@@ -77,6 +77,7 @@
                 <th>Gross</th>
             </tr>
             </thead>
+
             <tbody>
             <c:forEach var="movie" items="${requestScope.all_movies}">
                 <tr>

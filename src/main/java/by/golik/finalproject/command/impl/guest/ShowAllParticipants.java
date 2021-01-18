@@ -38,7 +38,6 @@ public class ShowAllParticipants implements Command {
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         try {
             participants = movieService.readAllParticipants();
-
             request.setAttribute(REQUEST_ATTRIBUTE, participants);
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } catch (ServiceException e) {
