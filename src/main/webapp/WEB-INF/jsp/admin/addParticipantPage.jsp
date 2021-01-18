@@ -16,6 +16,7 @@
 <fmt:message bundle="${locale}" key="locale.name" var="name"/>
 <fmt:message bundle="${locale}" key="locale.surname" var="surname"/>
 <fmt:message bundle="${locale}" key="locale.secondName" var="secondName"/>
+<fmt:message bundle="${locale}" key="locale.position" var="position"/>
 <fmt:message bundle="${locale}" key="locale.addParticipant" var="addParticipant"/>
 <fmt:message bundle="${locale}" key="locale.updateParticipant" var="updateParticipant"/>
 <fmt:message bundle="${locale}" key="locale.submit" var="submit"/>
@@ -39,7 +40,7 @@
 
 <div class="container-fluid text-center wrapper">
     <div class="row content">
-        <c:import url="../menu/leftside.jsp"/>
+        <c:import url="../menu/adminMenu.jsp"/>
         <br class="col-sm-8 text-left mainContent">
         <c:if test="${requestScope.get('errorMessage')!=null}">
             <h3 class="red"><c:out value="${requestScope.get('errorMessage')}"/></h3>
@@ -67,6 +68,10 @@
             <br/>
             <label for="secondName">${secondName}<br></label>
             <input id="secondName" class="form-control" type="text" name="secondName">
+            <br/>
+            <br/>
+            <label for="secondName">${position}<br></label>
+            <input id="position" class="form-control" type="text" name="position">
             <br/>
             <br/>
             <button type="submit" class="btn btn-primary">${submit}</button>

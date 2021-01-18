@@ -28,6 +28,10 @@ public class Participant {
      * list of movies, where participant takes part
      */
     private List<Movie> movies;
+    /**
+     * position of participant
+     */
+    private String position;
 
     public Participant() {
 
@@ -73,6 +77,14 @@ public class Participant {
         this.secondName = secondName;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,12 +93,13 @@ public class Participant {
         return id == that.id &&
                 name.equals(that.name) &&
                 surname.equals(that.surname) &&
-                secondName.equals(that.secondName);
+                secondName.equals(that.secondName) &&
+                position.equals(that.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, secondName);
+        return Objects.hash(id, name, surname, secondName, position);
     }
 
     @Override
@@ -96,6 +109,7 @@ public class Participant {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", secondName='" + secondName + '\'' +
+                ", position='" + position + '\'' +
                 '}';
     }
 }

@@ -16,6 +16,7 @@
 <fmt:message bundle="${locale}" key="locale.name" var="name"/>
 <fmt:message bundle="${locale}" key="locale.surname" var="surname"/>
 <fmt:message bundle="${locale}" key="locale.secondName" var="second_name"/>
+<fmt:message bundle="${locale}" key="locale.position" var="position"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,15 +35,16 @@
 <c:import url="../menu/menu.jsp"/>
 <script language="javascript">
     function active() {
-        document.getElementById("movies-page").className = "active";
+        document.getElementById("participants-page").className = "active";
     }
 </script>
 <div class="container-fluid text-center wrapper">
     <div class="row content">
 
-        <c:import url="../menu/leftside.jsp"/>
+        <c:import url="../menu/adminMenu.jsp"/>
 
         <div class="col-sm-8 text-left mainContent">
+            <h1>PARTICIPANTS</h1>
             <h1>${allParticipantsList}</h1>
             <br>
             <table class="table">
@@ -52,17 +54,19 @@
                     <th>${name}</th>
                     <th>${surname}</th>
                     <th>${second_name}</th>
+                    <th>${position}</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="participant" items="${requestScope.all_participants}">
                     <tr>
-                        <td><a href="DispatcherServlet?command=view-actor&actor-id=${participant.id}">
+                        <td><a href="DispatcherServlet?command=view-participant&participant-id=${participant.id}">
                             <c:out value="${participant.id}"/></a></td>
 
                         <td><c:out value="${participant.name}"/></td>
                         <td><c:out value="${participant.surname}"/></td>
                         <td><c:out value="${participant.secondName}"/></td>
+                        <td><c:out value="${participant.position}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>

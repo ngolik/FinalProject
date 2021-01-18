@@ -25,6 +25,7 @@ public class AddParticipant implements Command {
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
     private static final String SECOND_NAME = "secondName";
+    private static final String POSITION = "position";
 
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot add participant";
@@ -38,6 +39,7 @@ public class AddParticipant implements Command {
         String name = request.getParameter(NAME);
         String surname = request.getParameter(SURNAME);
         String secondName = request.getParameter(SECOND_NAME);
+        String position = request.getParameter(POSITION);
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
         if (name == null && surname == null && secondName == null) {
 
@@ -45,7 +47,7 @@ public class AddParticipant implements Command {
 
         } else {
             try {
-                administratorService.addParticipant(name, surname, secondName);
+                administratorService.addParticipant(name, surname, secondName, position);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
                 response.sendRedirect(REDIRECT);
             } catch (ServiceException e) {

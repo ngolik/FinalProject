@@ -1,9 +1,12 @@
-package by.golik.finalproject.command.impl.admin;
+package by.golik.finalproject.command.impl.guest;
 
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.command.CommandHelper;
+import by.golik.finalproject.command.impl.admin.AdministratorHelper;
 import by.golik.finalproject.entity.Participant;
 import by.golik.finalproject.service.AdministratorService;
+import by.golik.finalproject.service.MovieService;
+import by.golik.finalproject.service.ServiceFactory;
 import by.golik.finalproject.service.exception.ServiceException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -18,9 +21,9 @@ import java.util.List;
 /**
  * @author Nikita Golik
  */
-public class ViewAllParticipants implements Command {
-    private static final Logger logger = LogManager.getLogger(ViewAllParticipants.class);
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/participantsPage.jsp";
+public class ShowAllParticipants implements Command {
+    private static final Logger logger = LogManager.getLogger(ShowAllParticipants.class);
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/common/participantsPage.jsp";
     private static final String ERROR_PAGE = "WEB-INF/jsp/error.jsp";
     private static final String REQUEST_ATTRIBUTE = "all_participants";
 
@@ -32,9 +35,9 @@ public class ViewAllParticipants implements Command {
         CommandHelper.saveCurrentQueryToSession(request);
 
         List<Participant> participants;
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        MovieService movieService = ServiceFactory.getInstance().getMovieService();
         try {
-            participants = administratorService.readAllParticipants();
+            participants = movieService.readAllParticipants();
 
             request.setAttribute(REQUEST_ATTRIBUTE, participants);
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);

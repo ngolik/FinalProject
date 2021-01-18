@@ -184,22 +184,22 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void addParticipant(String name, String surName, String secondName) throws ServiceException {
-        if (!Validator.validate(name, surName, secondName)) {
+    public void addParticipant(String name, String surName, String secondName, String position) throws ServiceException {
+        if (!Validator.validate(name, surName, secondName, position)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         ParticipantDAO dao = daoFactory.getParticipantDAO();
         try {
-            dao.createParticipant(name, surName, secondName);
+            dao.createParticipant(name, surName, secondName, position);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
     }
 
     @Override
-    public void updateParticipant(String id, String name, String surname, String secondName) throws ServiceException {
-        if (!Validator.validate(name, surname, secondName)
+    public void updateParticipant(String id, String name, String surname, String secondName,String position) throws ServiceException {
+        if (!Validator.validate(name, surname, secondName, position)
                 || !Validator.validateNumber(id)) {
             throw new ServiceException("Illegal data input");
         }
@@ -212,7 +212,7 @@ public class AdministratorServiceImpl implements AdministratorService {
             throw new ServiceException("Wrong data input, while updating actor for movie");
         }
         try {
-            dao.updateParticipant(intActorId, name, surname, secondName);
+            dao.updateParticipant(intActorId, name, surname, secondName, position);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -244,22 +244,6 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     public void deleteParticipantForMovie(String participantID, String movieID) {
 
-    }
-
-    @Override
-    public List<Participant> readAllParticipants() throws ServiceException {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        ParticipantDAO dao = daoFactory.getParticipantDAO();
-        List<Participant> participants;
-        try {
-            participants = dao.getAllParticipants();
-            if (participants == null || participants.size() == 0) {
-                throw new ServiceException("No participants matching your query");
-            }
-        } catch (DAOException e) {
-            throw new ServiceException("Error in source!", e);
-        }
-        return participants;
     }
 
     @Override

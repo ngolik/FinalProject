@@ -183,4 +183,19 @@ public class MovieServiceImpl implements MovieService {
         }
         return amount;
     }
+    @Override
+    public List<Participant> readAllParticipants() throws ServiceException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        List<Participant> participants;
+        try {
+            participants = dao.getAllParticipants();
+            if (participants == null || participants.size() == 0) {
+                throw new ServiceException("No participants matching your query");
+            }
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+        return participants;
+    }
 }

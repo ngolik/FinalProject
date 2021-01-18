@@ -43,7 +43,7 @@ public class MovieServlet {
 //        userService.authorise("admin", "administrator".getBytes());
 //        userService.register("test4", "12345678".getBytes(), "12345678".getBytes(), "test4@mail.ru");
 
-//        administratorService.addParticipant("testnamenew", "testsurnamenew", "testSecondnew");
+        administratorService.addParticipant("lol", "lal", "fam", "actor");
 //        administratorService.addParticipantForMovie("3","2");
 //        administratorService.addMovie("testService2", "1000", "1500", "1500", "1500");
 //        administratorService.addGenreForMovie("3", "1");
@@ -52,7 +52,7 @@ public class MovieServlet {
 //        administratorService.addGenreForMovie("5", "drama");
 //        administratorService.deleteUser("test2");
 //        movieService.addRating("1", "6", "7");
-        System.out.println(movieService.getMovieByID("1").toString());
+//        System.out.println(movieService.getMovieByID("1").toString());
 
 
 

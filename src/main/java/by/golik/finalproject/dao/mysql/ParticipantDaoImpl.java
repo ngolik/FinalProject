@@ -23,18 +23,18 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             "WHERE movies_db.movies.id=?;";
 
     private static final String PARTICIPANT_BY_ID =
-            "SELECT name, surname, secondname FROM participants\n" +
+            "SELECT name, surname, secondname, position FROM participants\n" +
                     " WHERE `id` = ?";
 
-    private final static String ADD_PARTICIPANT =
-            "INSERT INTO participants (name, surname, secondname) VALUES (?, ?, ?)";
+    private final static String CREATE_PARTICIPANT =
+            "INSERT INTO participants (name, surname, secondname, position)" + "VALUES (?, ?, ?,?)";
 
     private final static String UPDATE_PARTICIPANT =
-            "UPDATE `participants` SET `name` = ?, `surname` = ?, `secondname` = ?" +
+            "UPDATE `participants` SET `name` = ?, `surname` = ?, `secondname` = ?, `position` = ?" +
                     " WHERE participants.id = ?";
 
     private final static String ADD_PARTICIPANT_FOR_MOVIE =
-            "INSERT INTO movies_participants (participants_id, movies_id, position) VALUES (?, ?, 'participant')";
+            "INSERT INTO movies_participants (participants_id, movies_id) VALUES (?, ?)";
 
     private static final String DELETE_PARTICIPANT_FOR_MOVIE =
             "DELETE FROM movies_participants\n" +
@@ -56,6 +56,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
     private static final String SECONDNAME = "secondname";
+    private static final String POSITION = "position";
     private static final ParticipantDAO instance = new ParticipantDaoImpl();
 
     public ParticipantDaoImpl() {
@@ -86,6 +87,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
                 participant.setName(rs.getString(NAME));
                 participant.setSurname(rs.getString(SURNAME));
                 participant.setSecondName(rs.getString(SECONDNAME));
+                participant.setPosition(rs.getString(POSITION));
                 participants.add(participant);
             }
             return participants;
@@ -126,6 +128,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
                 participant.setName(rs.getString(NAME));
                 participant.setSurname(rs.getString(SURNAME));
                 participant.setSecondName(rs.getString(SECONDNAME));
+                participant.setPosition(rs.getString(POSITION));
             }
             return participant;
 
@@ -145,15 +148,16 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     }
 
     @Override
-    public void createParticipant(String name, String surname, String secondName) throws DAOException {
+    public void createParticipant(String name, String surname, String secondName, String position) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(ADD_PARTICIPANT);
+            st = con.prepareStatement(CREATE_PARTICIPANT);
             st.setString(1, name);
             st.setString(2, surname);
             st.setString(3, secondName);
+            st.setString(4, position);
             int update = st.executeUpdate();
             if (update > 0) {
                 //System.out.println("Participant is added " + name);
@@ -173,7 +177,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     }
 
     @Override
-    public void updateParticipant(int actorID, String name, String surname, String secondName) throws DAOException {
+    public void updateParticipant(int actorID, String name, String surname, String secondName, String position) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
@@ -182,7 +186,8 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             st.setString(1, name);
             st.setString(2, surname);
             st.setString(3, secondName);
-            st.setInt(4, actorID);
+            st.setString(4, position);
+            st.setInt(5, actorID);
             int update = st.executeUpdate();
             if (update > 0) {
                 return;
@@ -298,6 +303,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
                 participant.setName(rs.getString(NAME));
                 participant.setSurname(rs.getString(SURNAME));
                 participant.setSecondName(rs.getString(SECONDNAME));
+                participant.setPosition(rs.getString(POSITION));
                 participants.add(participant);
             }
             return participants;

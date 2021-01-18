@@ -52,7 +52,7 @@
 </script>
 <div class="container-fluid text-center wrapper"></div>
 <div class="row content">
-    <c:import url="../menu/leftside.jsp"/>
+    <c:import url="../menu/adminMenu.jsp"/>
     <div class="col-sm-8 text-left mainContent">
         <c:if test="${sessionScope.get('language') eq 'ru' || sessionScope.get('language')==null}">
             <h1><c:out value="${movie.title}"/></h1>

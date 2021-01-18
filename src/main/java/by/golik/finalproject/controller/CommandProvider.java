@@ -38,6 +38,7 @@ public class CommandProvider {
         guestCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
         guestCommands.put(CommandList.VIEW_USER, new ViewUser());
         guestCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
+        guestCommands.put(CommandList.SHOW_ALL_PARTICIPANTS, new ShowAllParticipants());
 
         adminCommands.put(CommandList.ADD_GENRE_FOR_MOVIE, new AddGenreForMovie());
         adminCommands.put(CommandList.ADD_MOVIE, new AddMovie());
@@ -49,7 +50,6 @@ public class CommandProvider {
         adminCommands.put(CommandList.UNBAN_USER, new UnbanUser());
         adminCommands.put(CommandList.UPDATE_MOVIE, new UpdateMovie());
         adminCommands.put(CommandList.UPDATE_PARTICIPANT, new UpdateParticipant());
-        adminCommands.put(CommandList.VIEW_ALL_PARTICIPANTS, new ViewAllParticipants());
         adminCommands.put(CommandList.VIEW_ALL_USERS, new ViewAllUsers());
         adminCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
         adminCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());

@@ -24,6 +24,7 @@ public class UpdateParticipant implements Command {
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
     private static final String SECOND_NAME = "secondName";
+    private static final String POSITION = "position";
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot update participant";
     private static final String SUCCESS = "successMessage";
@@ -37,10 +38,11 @@ public class UpdateParticipant implements Command {
         String name = request.getParameter(NAME);
         String surName = request.getParameter(SURNAME);
         String secondName = request.getParameter(SECOND_NAME);
+        String position = request.getParameter(POSITION);
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
         if(name != null && surName != null) {
             try {
-                administratorService.updateParticipant(participantID, name, surName, secondName);
+                administratorService.updateParticipant(participantID, name, surName, secondName, position);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
                 response.sendRedirect(REDIRECT);
             } catch (ServiceException e) {

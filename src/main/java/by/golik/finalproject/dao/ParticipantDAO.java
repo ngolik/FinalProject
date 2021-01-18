@@ -35,7 +35,7 @@ public interface ParticipantDAO {
      * @param secondName second name of participant
      * @throws DAOException if some error occurred while processing data.
      */
-    void createParticipant(String name, String surname, String secondName) throws DAOException;
+    void createParticipant(String name, String surname, String secondName, String position) throws DAOException;
 
     /**
      * This method is used to update data about any participant in data source.
@@ -46,7 +46,7 @@ public interface ParticipantDAO {
      * @param secondName  second name of participant
      * @throws DAOException if some error occurred while processing data.
      */
-    void updateParticipant(int id, String name, String surName, String secondName) throws DAOException;
+    void updateParticipant(int id, String name, String surName, String secondName, String position) throws DAOException;
     void addParticipantForMovie(int participantId, int movieId) throws DAOException;
     /**
      * This method is used to delete connection between some Movie and Participant from data source.

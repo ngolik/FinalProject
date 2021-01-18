@@ -41,7 +41,7 @@
 <div class="container-fluid text-center wrapper">
     <div class="row content">
 
-        <c:import url="WEB-INF/jsp/menu/leftside.jsp"/>
+        <c:import url="WEB-INF/jsp/menu/adminMenu.jsp"/>
 
         <div class="col-sm-8 text-left mainContent">
             <br>

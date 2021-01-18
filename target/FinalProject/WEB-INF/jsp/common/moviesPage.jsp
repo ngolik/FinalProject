@@ -39,7 +39,7 @@
 <div class="container-fluid text-center wrapper">
 
     <br class="row content">
-        <c:import url="../menu/leftside.jsp"/>
+        <c:import url="../menu/adminMenu.jsp"/>
         <div class="col-sm-8 text-left mainContent">
             <h1>MOVIES</h1>
 

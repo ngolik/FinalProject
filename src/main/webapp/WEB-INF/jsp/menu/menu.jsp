@@ -21,6 +21,7 @@
 <fmt:message bundle="${locale}" key="locale.password" var="password"/>
 <fmt:message bundle="${locale}" key="locale.cancel" var="cancel"/>
 <fmt:message bundle="${locale}" key="locale.movies" var="movies"/>
+<fmt:message bundle="${locale}" key="locale.showAllParticipants" var="showAllParticipants"/>
 <fmt:message bundle="${locale}" key="locale.movieRateRegister" var="movieRateRegister"/>
 <fmt:message bundle="${locale}" key="locale.email" var="email"/>
 <fmt:message bundle="${locale}" key="locale.repeatPassword" var="repeatPassword"/>
@@ -41,6 +42,7 @@
             <ul class="nav navbar-nav">
                 <li id="index-page"><a href="${pageContext.request.contextPath}/index.jsp">${home}</a> </li>
                 <li id="movies-page"><a href="DispatcherServlet?command=all-movies">${movies}</a></li>
+                <li id="participants-page"><a href="DispatcherServlet?command=all-participants">${showAllParticipants}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${sessionScope.get('user') == null}">

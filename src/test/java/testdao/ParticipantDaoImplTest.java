@@ -29,13 +29,15 @@ public class ParticipantDaoImplTest {
             String name = "Test";
             String surName = "TestSur";
             String secondName = "TestSecond";
+            String position = "TestPosition";
 
-            dao.createParticipant(name, surName, secondName);
+            dao.createParticipant(name, surName, secondName, position);
             Participant participant = dao.getAllParticipants().get(15);
 
             Assert.assertEquals(name, participant.getName());
             Assert.assertEquals(surName, participant.getSurname());
             Assert.assertEquals(secondName, participant.getSecondName());
+            Assert.assertEquals(position, participant.getPosition());
 
         } catch (ConnectionPoolException | DAOException e) {
             e.printStackTrace();
@@ -73,19 +75,22 @@ public class ParticipantDaoImplTest {
             String name = "Test";
             String surName = "TestSur";
             String secondName = "TestSecond";
+            String position = "TestPosition";
 
             String nameTemp= participant.getName();
             String surNameTemp= participant.getSurname();
             String secondNameTemp= participant.getSecondName();
+            String positionTemp= participant.getPosition();
 
-            dao.updateParticipant(id, name, surName, secondName);
+            dao.updateParticipant(id, name, surName, secondName, position);
             participant = dao.readParticipant(id);
             Assert.assertEquals(name, participant.getName());
             Assert.assertEquals(surName, participant.getSurname());
             Assert.assertEquals(secondName, participant.getSecondName());
+            Assert.assertEquals(position, participant.getPosition());
 
 
-            dao.updateParticipant(id, nameTemp, surNameTemp, secondNameTemp);
+            dao.updateParticipant(id, nameTemp, surNameTemp, secondNameTemp, positionTemp);
 
         } catch (ConnectionPoolException | DAOException e) {
             e.printStackTrace();
