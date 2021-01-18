@@ -70,7 +70,7 @@
         <table class="table table-stripped">
             <thead>
             <tr class="thead-dark">
-                <th>Movie name</th>
+                <th>${movie}</th>
                 <th>Year of issue</th>
                 <th>Runtime</th>
                 <th>Budget</th>
@@ -82,9 +82,7 @@
                 <tr>
                     <td>
                         <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
-                            <c:out value="${movie.title}"/>
-                        </a>
-                    </td>
+                            <c:out value="${movie.title}"/></a></td>
                     <td>
                         <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
                             <c:out value="${movie.year}"/>

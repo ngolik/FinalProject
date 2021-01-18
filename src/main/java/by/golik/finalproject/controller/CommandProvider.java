@@ -58,6 +58,7 @@ public class CommandProvider {
         adminCommands.put(CommandList.DELETE_USER, new DeleteUser());
         adminCommands.put(CommandList.VIEW_USER, new ViewUser());
         adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
+        adminCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
 
 
         userCommands.put(CommandList.LOG_OUT, new Logout());
