@@ -42,15 +42,11 @@ public class FindMovieByTitle implements Command {
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         try {
             movies = movieService.findMovieByTitle(title);
-
             request.setAttribute(REQUEST_ATTRIBUTE, movies);
-
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, e.getMessage(), e);
-
             request.setAttribute(ERROR, MESSAGE_OF_ERROR);
-
             request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
         }
     }

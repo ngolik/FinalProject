@@ -41,9 +41,7 @@ public class ViewUser implements Command {
         UserService userService = ServiceFactory.getInstance().getUserService();
         try {
             user = userService.getUserByUserName(username);
-
             request.setAttribute(REQUEST_ATTRIBUTE, user);
-
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } catch (ServiceException | ServiceAuthorizationException e) {
             logger.log(Level.ERROR, e.getMessage(), e);
