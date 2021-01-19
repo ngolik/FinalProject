@@ -117,8 +117,8 @@ public class GenreDaoImpl implements GenreDAO {
         try {
             con = ConnectionPool.getInstance().takeConnection();
             st = con.prepareStatement(ADD_GENRE_FOR_MOVIE);
-            st.setString(1, name);
-            st.setInt(2, intMovieId);
+            st.setInt(1, intMovieId);
+            st.setString(2, name);
             int update = st.executeUpdate();
             if (update > 0) {
                 //System.out.println("Genre is added " + name);

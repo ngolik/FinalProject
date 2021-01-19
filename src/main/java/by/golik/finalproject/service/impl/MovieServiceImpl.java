@@ -78,7 +78,6 @@ public class MovieServiceImpl implements MovieService {
         return movies;
     }
 
-    //TODO (producer, director)
     @Override
     public Movie getMovieByID(String id) throws ServiceException {
         if (!Validator.validateNumber(id)) {
@@ -101,6 +100,30 @@ public class MovieServiceImpl implements MovieService {
             throw new ServiceException("Error in source!", e);
         }
         return movie;
+    }
+
+    @Override
+    public Participant getParticipantByID(String id) throws ServiceException {
+        if (!Validator.validateNumber(id)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        Participant participant;
+
+        int normId;
+        try {
+            normId = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            throw new ServiceException("No film with such ID");
+        }
+        try {
+            participant = dao.readParticipant(normId);
+            logger.info(participant.toString());
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+        return participant;
     }
 
     @Override

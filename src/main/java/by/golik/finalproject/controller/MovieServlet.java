@@ -43,10 +43,10 @@ public class MovieServlet {
 //        userService.authorise("admin", "administrator".getBytes());
 //        userService.register("test4", "12345678".getBytes(), "12345678".getBytes(), "test4@mail.ru");
 
-        administratorService.addParticipant("lol", "lal", "fam", "actor");
+//        administratorService.addParticipant("lol", "lal", "fam", "actor");
 //        administratorService.addParticipantForMovie("3","2");
 //        administratorService.addMovie("testService2", "1000", "1500", "1500", "1500");
-//        administratorService.addGenreForMovie("3", "1");
+//        administratorService.addGenreForMovie("5", "3");
 //        administratorService.updateParticipant("1", "saasfs","sa","dagger");
 //        administratorService.updateMovie("4","nikita", "1995","156", "152", "138");
 //        administratorService.addGenreForMovie("5", "drama");

@@ -5,6 +5,7 @@ import by.golik.finalproject.entity.Movie;
 import by.golik.finalproject.entity.Participant;
 import by.golik.finalproject.service.exception.ServiceException;
 
+import javax.mail.Part;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public interface MovieService {
 
     List<Movie> getMoviesByGenre(int offset, int recordsPerPage, String genre) throws ServiceException;
     Movie getMovieByID(String id) throws ServiceException;
+    Participant getParticipantByID(String id) throws ServiceException;
     public void addRating(String movieID, String userName, String rating) throws ServiceException;
     List<Movie> findMovieByTitle(String title) throws ServiceException;
     int countAllMoviesAmount() throws ServiceException;

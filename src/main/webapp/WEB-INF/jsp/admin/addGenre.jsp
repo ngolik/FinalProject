@@ -28,10 +28,10 @@
                     <input type="hidden" name="command" value="add-genre-for-movie"/>
                     <input type="hidden" name="id" value="${movie.id}"/>
                     <div class="form-group">
-                        <label for="inputNickname" class="col-sm-3 control-label">${genre}</label>
+                        <label for="inputUsername" class="col-sm-3 control-label">${genre}</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="inputNickname" placeholder="${genre}"
-                                   name="nameRu" required>
+                            <input type="text" class="form-control" id="inputUsername" placeholder="${genre}"
+                                   name="name" required>
                         </div>
                     </div>
 

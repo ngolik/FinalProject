@@ -83,7 +83,8 @@
                 <tbody>
                 <c:forEach var="participant" items="${requestScope.all_participants}">
                     <tr>
-                        <td><a href="DispatcherServlet?command=view-participant&participant=${participant.name}"><c:out value="${participant.name}"/> </a></td>
+                        <td><a href="DispatcherServlet?command=participant-by-id&id=${participant.id}">
+                            <c:out value="${participant.name}"/> </a></td>
                         <td>${participant.surname}</td>
                         <td>${participant.secondName}</td>
                         <td>${participant.position}</td>
