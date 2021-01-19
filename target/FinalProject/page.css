@@ -1,5 +1,5 @@
 
-/* Set gray background color and 100% height */
+/* Set gray background color and 100% height меню справа */
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
@@ -105,7 +105,7 @@ select {
     width: 100%;
     /* Set the fixed height of the footer here */
     min-height: 7%;
-    background-color: #555;
+    background-image:url(images/main/9.jpg);
 }
 #child{
     padding: 1%;

@@ -19,35 +19,37 @@ import java.io.IOException;
  */
 public class AddGenreForMovie implements Command {
 
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/addGenrePage.jsp";
+    private static final String REDIRECT = "DispatcherServlet?command=add-genre-for-movie";
     private static final Logger logger = LogManager.getLogger(AddGenreForMovie.class);
-    private static final String ID = "id";
-    private static final String NAME = "name";
+    private static final String MOVIE_ID = "movieID";
+    private static final String GENRE_ID = "genreID";
 
     private static final String ERROR = "errorGenre";
     private static final String MESSAGE_OF_ERROR = "Cannot add genre for movie";
-    private static final String MESSAGE_OF_ERROR_2 = "Cannot add genre for movie, wrong input";
+    private static final String ADD_GENRE_FOR_MOVIE = "add_genre_for_movie";
+    private static final String MESSAGE_OF_SUCCESS = "Genre successfully added";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String movieID = request.getParameter(ID);
-        String name = request.getParameter(NAME);
-        String previousQuery = CommandHelper.getPreviousQuery(request);
+        CommandHelper.saveCurrentQueryToSession(request);
+        String movieID = request.getParameter(MOVIE_ID);
+        String genreID = request.getParameter(GENRE_ID);
 
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
 
-        if (name != null && movieID !=null) {
+        if (genreID == null && movieID == null) {
+            request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
+        } else {
             try {
-                administratorService.addGenreForMovie(movieID, name);
-
-                response.sendRedirect(previousQuery);
+                administratorService.addGenreForMovie(movieID, genreID);
+                request.setAttribute(ADD_GENRE_FOR_MOVIE, MESSAGE_OF_SUCCESS);
+                response.sendRedirect(REDIRECT);
             }  catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR);
-                request.getRequestDispatcher(previousQuery).forward(request, response);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             }
-        } else {
-            request.setAttribute(ERROR, MESSAGE_OF_ERROR_2);
-            request.getRequestDispatcher(previousQuery).forward(request, response);
         }
     }
 }

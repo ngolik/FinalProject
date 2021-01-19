@@ -22,8 +22,8 @@
     </Appenders>
 
     <Loggers>
-        <Root level="all">
-            <AppenderRef ref="rollingFile" />
+        <Root level="info">
+            <AppenderRef ref="console" />
         </Root>
     </Loggers>
 

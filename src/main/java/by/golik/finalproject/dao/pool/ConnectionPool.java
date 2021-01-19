@@ -23,7 +23,7 @@ public class ConnectionPool {
     private static final String PASSWORD = "canada@123";
 
     //TODO absolute value
-    private static final int MINIMAL_CONNECTION_COUNT = 1000;
+    private static final int MINIMAL_CONNECTION_COUNT = 5;
 
     private static BlockingQueue<Connection> freeConnections;
     private static BlockingQueue<Connection> usedConnections;
