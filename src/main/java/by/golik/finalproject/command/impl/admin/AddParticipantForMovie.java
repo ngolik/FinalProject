@@ -18,35 +18,37 @@ import java.io.IOException;
  */
 public class AddParticipantForMovie implements Command {
 
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/addParticipantForMoviePage.jsp";
+    private static final String REDIRECT = "DispatcherServlet?command=add-participant-for-movie";
     private static final Logger logger = LogManager.getLogger(AddParticipantForMovie.class);
-
-    private static final String ID = "id";
-    private static final String PARTICIPANT_ID = "participant-id";
+    private static final String MOVIE_ID = "movieID";
+    private static final String PARTICIPANT_ID = "participantID";
 
     private static final String ERROR = "errorParticipant";
     private static final String MESSAGE_OF_ERROR = "Cannot add participant for movie";
-    private static final String MESSAGE_OF_ERROR_2 = "Cannot add participant for movie, wrong input";
+    private static final String ADD_PARTICIPANT_FOR_MOVIE = "add_participant_for_movie";
+    private static final String MESSAGE_OF_SUCCESS = "Participant successfully added";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String movieID = request.getParameter(ID);
-        String actorID = request.getParameter(PARTICIPANT_ID);
-        String previousQuery = CommandHelper.getPreviousQuery(request);
+        CommandHelper.saveCurrentQueryToSession(request);
+        String movieID = request.getParameter(MOVIE_ID);
+        String participantID = request.getParameter(PARTICIPANT_ID);
 
-        AdministratorService adminService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
 
-        if (actorID != null && movieID !=null) {
+        if (participantID == null && movieID == null) {
+            request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
+        } else {
             try {
-                adminService.addParticipantForMovie(actorID, movieID);
-                response.sendRedirect(previousQuery);
+                administratorService.addParticipantForMovie(movieID, participantID);
+                request.setAttribute(ADD_PARTICIPANT_FOR_MOVIE, MESSAGE_OF_SUCCESS);
+                response.sendRedirect(REDIRECT);
             }  catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR);
-                request.getRequestDispatcher(previousQuery).forward(request, response);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             }
-        } else {
-            request.setAttribute(ERROR, MESSAGE_OF_ERROR_2);
-            request.getRequestDispatcher(previousQuery).forward(request, response);
         }
     }
 }

@@ -53,6 +53,7 @@ public class MovieServlet {
 //        administratorService.deleteUser("test2");
 //        movieService.addRating("1", "6", "7");
 //        System.out.println(movieService.getMovieByID("1").toString());
+//        administratorService.addParticipantForMovie("10", "10");
 
 
 
