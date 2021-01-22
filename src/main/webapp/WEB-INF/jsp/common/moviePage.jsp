@@ -22,6 +22,7 @@
 <fmt:message bundle="${locale}" key="locale.next" var="next"/>
 <fmt:message bundle="${locale}" key="locale.previous" var="previous"/>
 <fmt:message bundle="${locale}" key="locale.submit" var="submit"/>
+<fmt:message bundle="${locale}" key="locale.addRating" var="addRating"/>
 <fmt:message bundle="${locale}" key="locale.rating" var="rating"/>
 <fmt:message bundle="${locale}" key="locale.noRating" var="noRating"/>
 <fmt:message bundle="${locale}" key="locale.yourRating" var="yourRating"/>
@@ -62,46 +63,29 @@
                     ${budget} <c:out value="${movie.budget}"/><br/>
                     ${gross} <c:out value="${movie.gross}"/><br/>
             </div>
+            <div id="rate1">
+
+                <label>
+                <input type="radio" name="rating" value="1" class="star">
+                <input type="radio" name="rating" value="2" class="star">
+                <input type="radio" name="rating" value="3" class="star">
+                <input type="radio" name="rating" value="4" class="star">
+                <input type="radio" name="rating" value="5" class="star">
+                <input type="radio" name="rating" value="6" class="star">
+                <input type="radio" name="rating" value="7" class="star">
+                <input type="radio" name="rating" value="8" class="star">
+                <input type="radio" name="rating" value="9" class="star">
+                <input type="radio" name="rating" value="10" class="star">
+                </label>
+            </div>
+
+            rating = <%= request.getAttribute("Result") %>
+            <a href="DispatcherServlet?command=add-rating"><c:out value="${addRating}"/> </a>
+
+
         </c:if>
 
-        <div class="col-sm-3">
-            <c:if test="${requestScope.get('user').role eq 'admin'}">
-                <c:if test="${requestScope.get('errorGenre')!= null}">
-                      <h3 class="red"><c:out value="${requestScope.get('errorGenre')}"/></h3>
-                      <c:remove var="errorGenre" scope="request"/>
-                </c:if>
-                <c:if test="${movie.genreList.size()>0}">
-                    ${genre}
-                    <c:forEach var="genre" items="${requestScope.all_movies}">
-                        <a href="DispatcherServlet?command=movies-by-genre&genre=${genre.name}"><c:out
-                                value="${genre.name}"/></a>
-                        <a class="edit"
-                           href="DispatcherServlet?command=delete-genre-for-movie&id=${movie.id}&genre=${genre.name}">x</a>
-                    </c:forEach>
-                </c:if>
-                <br>
-                <a class="edit" data-toggle="modal" data-target="#add-genre" href="#">Add genre</a>
-                <br/>
 
-            </c:if>
-
-            <c:if test="${sessionScope.get('user').type ne 'admin'}">
-                <c:if test="${sessionScope.get('language') eq 'ru' || sessionScope.get('language')==null}">
-                    <br/>
-                    <c:if test="${movie.genreList.size()>0}">
-                        ${genre} <c:forEach var="genre" items="${requestScope.all_movies.genres}">
-                        <a href="DispatcherServlet?command=movies-by-genre&genre=${genre.name}">
-                            <c:out value="${genre.name}"/></a>
-                    </c:forEach>
-                    </c:if>
-                </c:if>
-            </c:if>
-            <c:if test="${sessionScope.get('user').type eq 'admin'}">
-                <c:import url="../admin/addParticipant.jsp"/>
-            </c:if>
-
-
-        </div>
         <div class="col-sm-12">
             <hr>
 

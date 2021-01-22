@@ -34,7 +34,7 @@ public class CommandProvider {
         guestCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
         guestCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
         guestCommands.put(CommandList.REGISTER, new Register());
-        guestCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
+        guestCommands.put(CommandList.ALL_MOVIES, new ShowAllMovies());
         guestCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
         guestCommands.put(CommandList.VIEW_USER, new ViewUser());
         guestCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
@@ -52,7 +52,7 @@ public class CommandProvider {
         adminCommands.put(CommandList.UPDATE_MOVIE, new UpdateMovie());
         adminCommands.put(CommandList.UPDATE_PARTICIPANT, new UpdateParticipant());
         adminCommands.put(CommandList.VIEW_ALL_USERS, new ViewAllUsers());
-        adminCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
+        adminCommands.put(CommandList.ALL_MOVIES, new ShowAllMovies());
         adminCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
         adminCommands.put(CommandList.LOG_OUT, new Logout());
         adminCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
@@ -65,8 +65,9 @@ public class CommandProvider {
         userCommands.put(CommandList.LOG_OUT, new Logout());
         userCommands.put(CommandList.ADD_RATING, new AddRating());
         userCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
-        userCommands.put(CommandList.SHOW_ALL_MOVIES, new ShowAllMovies());
+        userCommands.put(CommandList.ALL_MOVIES, new ShowAllMovies());
         userCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
+        userCommands.put(CommandList.MOVIE_BY_ID, new FindMovieByTitle());
 
 
 
@@ -102,7 +103,7 @@ public class CommandProvider {
             }
         } catch (IllegalArgumentException e) {
             logger.log(Level.ERROR, "No such command", e);
-            command = guestCommands.get(CommandList.SHOW_ALL_MOVIES);
+            command = guestCommands.get(CommandList.ALL_MOVIES);
         }
         return command;
     }
