@@ -4,6 +4,7 @@ import by.golik.finalproject.dao.RatingDAO;
 import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
+import by.golik.finalproject.dao.pool.ConnectionPoolHelper;
 import by.golik.finalproject.entity.Vote;
 
 import java.sql.*;
@@ -68,12 +69,7 @@ public class RatingDaoImpl implements RatingDAO {
             throw new DAOException("Vote pool connection error");
         }
         finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {}
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -106,12 +102,7 @@ public class RatingDaoImpl implements RatingDAO {
             throw new DAOException("Vote pool connection error");
         }
         finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {}
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -143,12 +134,7 @@ public class RatingDaoImpl implements RatingDAO {
             throw new DAOException("Movie pool connection error");
         }
         finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {}
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -179,9 +165,7 @@ public class RatingDaoImpl implements RatingDAO {
             throw new DAOException("Movie pool connection error");
         }
         finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -206,9 +190,7 @@ public class RatingDaoImpl implements RatingDAO {
             throw new DAOException("Rating pool connection error");
         }
         finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -223,7 +205,6 @@ public class RatingDaoImpl implements RatingDAO {
             st.setString(2, userName);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Rating udalen vse ok");
                 return;
             }
             throw new DAOException("Wrong rating data");
@@ -233,9 +214,7 @@ public class RatingDaoImpl implements RatingDAO {
             throw new DAOException("Rating pool connection error");
         }
         finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 }

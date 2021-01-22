@@ -4,6 +4,7 @@ import by.golik.finalproject.dao.UserDAO;
 import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
+import by.golik.finalproject.dao.pool.ConnectionPoolHelper;
 import by.golik.finalproject.entity.Role;
 import by.golik.finalproject.entity.User;
 
@@ -73,15 +74,11 @@ public class UserDaoImpl implements UserDAO {
         ResultSet rs = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-
             st = con.prepareStatement(LOG_IN_STATEMENT);
 
             st.setString(1, login);
             st.setString(2, password);
-
-
             rs = st.executeQuery();
-
             if (!rs.next()) {
                 return null;
             }
@@ -99,12 +96,7 @@ public class UserDaoImpl implements UserDAO {
             throw new DAOException("Login pool connection error");
         }
         finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {}
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -133,7 +125,6 @@ public class UserDaoImpl implements UserDAO {
             String currentTime = sdf.format(dt);
             st.setDate(4, Date.valueOf(currentTime));
             int i = st.executeUpdate();
-
             if (i > 0) {
                 return authorise(login, password);
             }
@@ -144,9 +135,7 @@ public class UserDaoImpl implements UserDAO {
             throw new DAOException("Login pool connection error");
         }
         finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
         return null;
     }
@@ -163,9 +152,7 @@ public class UserDaoImpl implements UserDAO {
         ResultSet rs = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-
             st = con.prepareStatement(VIEW_ALL_USERS);
-
             rs = st.executeQuery();
 
             List<User> users = new ArrayList<>();
@@ -186,12 +173,7 @@ public class UserDaoImpl implements UserDAO {
             throw new DAOException("Movie pool connection error");
         }
         finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {}
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -205,7 +187,6 @@ public class UserDaoImpl implements UserDAO {
             st.setString(1, userName);
             int update = st.executeUpdate();
             if (update > 0) {
-
                 return;
             }
             throw new DAOException("Wrong ban data");
@@ -214,9 +195,7 @@ public class UserDaoImpl implements UserDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("User pool connection error", e);
         } finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -239,9 +218,7 @@ public class UserDaoImpl implements UserDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("User pool connection error", e);
         } finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -281,12 +258,7 @@ public class UserDaoImpl implements UserDAO {
             throw new DAOException("User pool connection error");
         }
         finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {}
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -315,9 +287,7 @@ public class UserDaoImpl implements UserDAO {
             throw new DAOException("Movie pool connection error");
         }
         finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 

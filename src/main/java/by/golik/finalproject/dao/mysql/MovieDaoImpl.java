@@ -4,6 +4,7 @@ import by.golik.finalproject.dao.MovieDAO;
 import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
+import by.golik.finalproject.dao.pool.ConnectionPoolHelper;
 import by.golik.finalproject.entity.Movie;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -112,14 +113,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {
-            }
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -152,14 +146,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {
-            }
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -195,14 +182,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {
-            }
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -235,14 +215,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {
-            }
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -276,14 +249,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {
-            }
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -308,14 +274,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error", e);
         } finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {
-            }
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -341,10 +300,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -372,10 +328,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -398,10 +351,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -425,10 +375,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error");
         } finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -460,14 +407,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error", e);
         } finally {
-            try {
-                rs.close();
-            } catch (SQLException | NullPointerException e) {
-            }
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -499,12 +439,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error", e);
         } finally {
-            try {
-                st.close();
-            } catch (SQLException e){}
-                try {
-                    rs.close();
-                } catch (SQLException e) {}
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
     @Override
@@ -529,10 +464,7 @@ public class MovieDaoImpl implements MovieDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error", e);
         } finally {
-            try {
-                st.close();
-            } catch (SQLException e) {
-            }
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 }

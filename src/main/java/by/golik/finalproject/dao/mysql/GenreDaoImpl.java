@@ -4,6 +4,7 @@ import by.golik.finalproject.dao.GenreDAO;
 import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
+import by.golik.finalproject.dao.pool.ConnectionPoolHelper;
 import by.golik.finalproject.entity.Genre;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,9 +56,7 @@ public class GenreDaoImpl implements GenreDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error", e);
         }finally {
-            try {
-                st.close();
-            } catch (SQLException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -94,12 +93,7 @@ public class GenreDaoImpl implements GenreDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Genre pool connection error");
         } finally {
-            try {
-            rs.close();
-            } catch (SQLException | NullPointerException e) {}
-            try {
-            st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
 
@@ -131,9 +125,7 @@ public class GenreDaoImpl implements GenreDAO {
             throw new DAOException("Review pool connection error");
         }
         finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
@@ -153,7 +145,6 @@ public class GenreDaoImpl implements GenreDAO {
             st.setInt(1, intMovieID);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Genre is deleted " + intMovieID);
                 return;
             }
             throw new DAOException("Wrong review data");
@@ -163,9 +154,7 @@ public class GenreDaoImpl implements GenreDAO {
             throw new DAOException("Movie pool connection error");
         }
         finally {
-            try {
-                st.close();
-            } catch (SQLException | NullPointerException e) {}
+            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 
