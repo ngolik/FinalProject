@@ -55,10 +55,10 @@
                     <label><input type="radio" name="command" value="add-genre-for-movie" checked/>${addGenreForMovie}</label>
                 </p>
                 <label for="movieID">${movieID}<br></label>
-                <input id="movieID" class="form-control" type="text" name="movieID" required/>
+                <input id="movieID" class="form-control" type="text" name="movieID" placeholder="movieID" required/>
                 <br/>
                 <label for="genreID">${genreID}<br></label>
-                <input id="genreID" class="form-control" type="text" name="genreID" required/>
+                <input id="genreID" class="form-control" type="text" name="genreID" placeholder="genreID" required/>
                 <br/>
                 <button type="submit" class="btn btn-primary">${submit}</button>
             </form>

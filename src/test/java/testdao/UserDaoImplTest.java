@@ -16,14 +16,14 @@ public class UserDaoImplTest {
     @Test
     public void registerTest() throws Exception {
         DaoFactory factory = null;
-        ConnectionPool poolDAO = null;
+        ConnectionPool pool = null;
         UserDAO dao = null;
         try{
             factory = DaoFactory.getInstance();
-            poolDAO = factory.getConnectionPool();
+            pool = factory.getConnectionPool();
             dao = factory.getUserDAO();
 
-            poolDAO.init();
+            pool.init();
             String userName= "testUser";
             String userEmail= "testuser@mail.ru";
             String userPass= "testUserPass";
@@ -44,8 +44,8 @@ public class UserDaoImplTest {
             e.printStackTrace();
         } finally {
             try {
-                assert poolDAO != null;
-                poolDAO.destroy();
+                assert pool != null;
+                pool.destroy();
             } catch (ConnectionPoolException e) {
                 e.printStackTrace();
             }

@@ -18,14 +18,14 @@ public class MovieDaoImplTest {
     @Test
     public void addMovieTest(){
         DaoFactory factory = null;
-        ConnectionPool poolDAO = null;
+        ConnectionPool pool = null;
         MovieDAO dao = null;
         try{
             factory = DaoFactory.getInstance();
-            poolDAO = factory.getConnectionPool();
+            pool = factory.getConnectionPool();
             dao = factory.getMovieDAO();
 
-            poolDAO.init();
+            pool.init();
             String title= "Test";
             int year= 1999;
             int runtime = 200;
@@ -48,8 +48,8 @@ public class MovieDaoImplTest {
             e.printStackTrace();
         } finally {
             try {
-                assert poolDAO != null;
-                poolDAO.destroy();
+                assert pool != null;
+                pool.destroy();
             } catch (ConnectionPoolException e) {
                 e.printStackTrace();
             }

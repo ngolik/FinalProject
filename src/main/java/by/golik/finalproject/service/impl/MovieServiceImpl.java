@@ -36,6 +36,22 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public List<Genre> readAllGenres() throws ServiceException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        GenreDAO dao = daoFactory.getGenreDAO();
+        List<Genre> genres;
+        try {
+            genres = dao.readAllGenres();
+            if (genres == null || genres.size() == 0) {
+                throw new ServiceException("No genres matching your query");
+            }
+        } catch (DAOException | SQLException e) {
+            throw new ServiceException("Error in source!");
+        }
+        return genres;
+    }
+
+    @Override
     public List<Movie> getFullList(int offset, int recordsPerPage) throws ServiceException {
         if (!Validator.validate(offset, recordsPerPage)) {
             throw new ServiceException("Illegal data input");

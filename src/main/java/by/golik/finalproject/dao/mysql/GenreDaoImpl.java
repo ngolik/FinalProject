@@ -6,6 +6,8 @@ import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.dao.pool.ConnectionPoolHelper;
 import by.golik.finalproject.entity.Genre;
+import by.golik.finalproject.entity.Participant;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +32,12 @@ public class GenreDaoImpl implements GenreDAO {
     private static final String DELETE_GENRE =
             "DELETE FROM `genres` WHERE `id` = ?";
 
+    private static final String ALL_GENRES =
+            "SELECT * FROM genres;";
+
     private static final String GENRE = "genres";
+    private static final String ID = "id";
+    private static final String NAME = "name";
 
     private static final GenreDAO instance = new GenreDaoImpl();
 
@@ -91,6 +98,37 @@ public class GenreDaoImpl implements GenreDAO {
             throw new DAOException("Genre sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Genre pool connection error");
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st, rs);
+        }
+    }
+
+    @Override
+    public List<Genre> readAllGenres() throws DAOException, SQLException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(ALL_GENRES);
+
+            rs = st.executeQuery();
+
+            List<Genre> genres = new ArrayList<>();
+            Genre genre;
+            while (rs.next()) {
+                genre = new Genre();
+                genre.setId(rs.getInt(ID));
+                genre.setName(rs.getString(NAME));
+                genres.add(genre);
+            }
+            return genres;
+
+        } catch (SQLException e) {
+            throw new DAOException("Participant sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Participant pool connection error");
         } finally {
             ConnectionPoolHelper.closeResource(con, st, rs);
         }

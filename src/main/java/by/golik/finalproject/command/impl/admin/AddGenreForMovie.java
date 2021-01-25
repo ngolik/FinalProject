@@ -33,6 +33,7 @@ public class AddGenreForMovie implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         CommandHelper.saveCurrentQueryToSession(request);
+
         String movieID = request.getParameter(MOVIE_ID);
         String genreID = request.getParameter(GENRE_ID);
 

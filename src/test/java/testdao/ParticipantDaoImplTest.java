@@ -30,10 +30,10 @@ public class ParticipantDaoImplTest {
             String name = "Test";
             String surName = "TestSur";
             String secondName = "TestSecond";
-            String position = "TestPosition";
+            String position = "TestPos";
 
             dao.createParticipant(name, surName, secondName, position);
-            Participant participant = dao.getAllParticipants().get(15);
+            Participant participant = dao.getAllParticipants().get(30);
 
             Assert.assertEquals(name, participant.getName());
             Assert.assertEquals(surName, participant.getSurname());
@@ -76,7 +76,7 @@ public class ParticipantDaoImplTest {
             String name = "Test";
             String surName = "TestSur";
             String secondName = "TestSecond";
-            String position = "TestPosition";
+            String position = "TestPos";
 
             String nameTemp= participant.getName();
             String surNameTemp= participant.getSurname();

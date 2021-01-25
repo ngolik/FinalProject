@@ -2,6 +2,8 @@ package by.golik.finalproject.dao;
 
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Genre;
+
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -26,6 +28,7 @@ public interface GenreDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     void createGenreForMovie(int intMovieID, String name) throws DAOException;
+    List<Genre> readAllGenres() throws DAOException, SQLException;
 
     void createGenre(String name) throws DAOException;
 
