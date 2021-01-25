@@ -50,7 +50,6 @@ public class GenreDaoImpl implements GenreDAO {
             con = ConnectionPool.getInstance().takeConnection();
             st = con.prepareStatement(ADD_GENRE);
             st.setString(1, name);
-            int update = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
@@ -115,7 +114,6 @@ public class GenreDaoImpl implements GenreDAO {
             st.setString(2, name);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Genre is added " + name);
                 return;
             }
             throw new DAOException("Wrong review data");

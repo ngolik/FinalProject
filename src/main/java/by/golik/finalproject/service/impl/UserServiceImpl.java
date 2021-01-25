@@ -78,14 +78,11 @@ public class UserServiceImpl implements UserService {
         UserDAO dao = daoFactory.getUserDAO();
         User user;
 
-
         try {
             user = dao.getUserByUsername(login);
-
-
             if (user == null || !Encryption.isMatch(pass , user.getPassword())) {
                 throw new ServiceAuthorizationException("Wrong login or password!");
-            } else if (user.getRole().toString().equals(BANNED)) {
+            } else if (user.getRole().equals(BANNED)) {
                 throw new ServiceBanException("Sorry access for you is temporary unavailable");
             }
         } catch (DAOException e) {

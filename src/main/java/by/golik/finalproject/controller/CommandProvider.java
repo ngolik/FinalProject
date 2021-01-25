@@ -31,7 +31,7 @@ public class CommandProvider {
     private CommandProvider() {
 
         guestCommands.put(CommandList.LOGIN, new Login());
-        guestCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
+        guestCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new ShowMovieByTitle());
         guestCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
         guestCommands.put(CommandList.REGISTER, new Register());
         guestCommands.put(CommandList.ALL_MOVIES, new ShowAllMovies());
@@ -58,16 +58,20 @@ public class CommandProvider {
         adminCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
         adminCommands.put(CommandList.DELETE_USER, new DeleteUser());
         adminCommands.put(CommandList.VIEW_USER, new ViewUser());
-        adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
+        adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new ShowMovieByTitle());
         adminCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
+        adminCommands.put(CommandList.ALL_PARTICIPANTS, new ShowAllParticipants());
+        adminCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowAllParticipants());
 
 
         userCommands.put(CommandList.LOG_OUT, new Logout());
         userCommands.put(CommandList.ADD_RATING, new AddRating());
         userCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
         userCommands.put(CommandList.ALL_MOVIES, new ShowAllMovies());
-        userCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new FindMovieByTitle());
-        userCommands.put(CommandList.MOVIE_BY_ID, new FindMovieByTitle());
+        userCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new ShowMovieByTitle());
+        userCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieByTitle());
+        userCommands.put(CommandList.ALL_PARTICIPANTS, new ShowAllParticipants());
+        userCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowAllParticipants());
 
 
 

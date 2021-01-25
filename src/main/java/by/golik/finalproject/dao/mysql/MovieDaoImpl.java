@@ -116,6 +116,82 @@ public class MovieDaoImpl implements MovieDAO {
             ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
+    @Override
+    public void createMovie(String title, int year, int runtime, long budget, long gross) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(ADD_MOVIE);
+            st.setString(1, title);
+            st.setInt(2, year);
+            st.setInt(3, runtime);
+            st.setLong(4, budget);
+            st.setLong(5, gross);
+            int update = st.executeUpdate();
+            if (update > 0) {
+                return;
+            }
+            throw new DAOException("Wrong movie data");
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error");
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st);
+        }
+    }
+
+    @Override
+    public void updateMovie(int id, String title, int year, int runtime, long budget, long gross) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(UPDATE_BY_ID);
+            st.setString(1, title);
+            st.setInt(2, year);
+            st.setInt(3, runtime);
+            st.setLong(4, budget);
+            st.setLong(5, gross);
+            st.setInt(6, id);
+            int update = st.executeUpdate();
+            if (update > 0) {
+
+                return;
+            }
+            throw new DAOException("Wrong movie data");
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error");
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st);
+        }
+    }
+
+    @Override
+    public void deleteMovie(int id) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+            st = con.prepareStatement(DELETE_BY_ID);
+            st.setInt(1, id);
+            int update = st.executeUpdate();
+            if (update > 0) {
+
+                return;
+            }
+            throw new DAOException("Wrong movie data");
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error");
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st);
+        }
+    }
 
     @Override
     public List<Movie> getMoviesByGenre(String genre, int offset, int recordsNumber) throws DAOException {
@@ -278,82 +354,7 @@ public class MovieDaoImpl implements MovieDAO {
         }
     }
 
-    @Override
-    public void createMovie(String title, int year, int runtime, long budget, long gross) throws DAOException {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(ADD_MOVIE);
-            st.setString(1, title);
-            st.setInt(2, year);
-            st.setInt(3, runtime);
-            st.setLong(4, budget);
-            st.setLong(5, gross);
-            int update = st.executeUpdate();
-            if (update > 0) {
-                return;
-            }
-            throw new DAOException("Wrong movie data");
-        } catch (SQLException e) {
-            throw new DAOException("Movie sql error", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("Movie pool connection error");
-        } finally {
-            ConnectionPoolHelper.closeResource(con, st);
-        }
-    }
 
-    @Override
-    public void updateMovie(int id, String title, int year, int runtime, long budget, long gross) throws DAOException {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(UPDATE_BY_ID);
-            st.setString(1, title);
-            st.setInt(2, year);
-            st.setInt(3, runtime);
-            st.setLong(4, budget);
-            st.setLong(5, gross);
-            st.setInt(6, id);
-            int update = st.executeUpdate();
-            if (update > 0) {
-
-                return;
-            }
-            throw new DAOException("Wrong movie data");
-        } catch (SQLException e) {
-            throw new DAOException("Movie sql error", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("Movie pool connection error");
-        } finally {
-            ConnectionPoolHelper.closeResource(con, st);
-        }
-    }
-
-    @Override
-    public void deleteMovie(int id) throws DAOException {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(DELETE_BY_ID);
-            st.setInt(1, id);
-            int update = st.executeUpdate();
-            if (update > 0) {
-
-                return;
-            }
-            throw new DAOException("Wrong movie data");
-        } catch (SQLException e) {
-            throw new DAOException("Movie sql error", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("Movie pool connection error");
-        } finally {
-            ConnectionPoolHelper.closeResource(con, st);
-        }
-    }
 
     @Override
     public void updateImage(int id, String path) throws DAOException {

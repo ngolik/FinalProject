@@ -34,3 +34,6 @@ hs_err_pid*
 *.iml
 *.iws
 .out/
+logs/
+target/
+
