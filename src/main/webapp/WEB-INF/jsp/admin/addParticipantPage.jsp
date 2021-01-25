@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="by.golik.finalproject.entity.Position"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -70,10 +71,17 @@
             <input id="secondName" class="form-control" type="text" name="secondName">
             <br/>
             <br/>
-            <label for="secondName">${position}<br></label>
-            <input id="position" class="form-control" type="text" name="position">
-            <br/>
-            <br/>
+
+            <label for="position">Choose a Position:</label>
+            <select name="position" id="position">
+            <c:forEach items="<%=Position.values()%>" var="position">
+                <option value ="${position.name()}">${position.toString()}</option>
+            </c:forEach>
+            </select>
+<%--            <label for="secondName">${position}<br></label>--%>
+<%--            <input id="position" class="form-control" type="text" name="position">--%>
+<%--            <br/>--%>
+<%--            <br/>--%>
             <button type="submit" class="btn btn-primary">${submit}</button>
         </form>
     </div>

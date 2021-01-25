@@ -2,8 +2,12 @@ package by.golik.finalproject.command.impl.admin;
 
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.command.CommandHelper;
+import by.golik.finalproject.entity.Movie;
 import by.golik.finalproject.service.AdministratorService;
+import by.golik.finalproject.service.MovieService;
+import by.golik.finalproject.service.ServiceFactory;
 import by.golik.finalproject.service.exception.ServiceException;
+import by.golik.finalproject.service.impl.MovieServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -27,24 +32,28 @@ public class AddGenreForMovie implements Command {
 
     private static final String ERROR = "errorGenre";
     private static final String MESSAGE_OF_ERROR = "Cannot add genre for movie";
-    private static final String ADD_GENRE_FOR_MOVIE = "add_genre_for_movie";
+    private static final String REQUEST = "all-movies";
     private static final String MESSAGE_OF_SUCCESS = "Genre successfully added";
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
         CommandHelper.saveCurrentQueryToSession(request);
+
+        List<Movie> movies;
 
         String movieID = request.getParameter(MOVIE_ID);
         String genreID = request.getParameter(GENRE_ID);
 
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        MovieService movieService = ServiceFactory.getInstance().getMovieService();
 
         if (genreID == null && movieID == null) {
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } else {
             try {
+                movies = movieService.readAllMovies();
+                request.setAttribute(REQUEST, movies);
                 administratorService.addGenreForMovie(movieID, genreID);
-                request.setAttribute(ADD_GENRE_FOR_MOVIE, MESSAGE_OF_SUCCESS);
                 response.sendRedirect(REDIRECT);
             }  catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);

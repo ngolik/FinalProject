@@ -2,6 +2,7 @@ package by.golik.finalproject.controller;
 
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.entity.User;
+import by.golik.finalproject.service.exception.ServiceException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -75,7 +76,7 @@ public class DispatcherServlet extends HttpServlet {
                 } else {
                     command.execute(request, response);
                 }
-            } catch (IllegalArgumentException ex) {
+            } catch (IllegalArgumentException | ServiceException ex) {
 
                 logger.log(Level.ERROR, "404 error, client requests a nonexistent command", ex);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR_2);

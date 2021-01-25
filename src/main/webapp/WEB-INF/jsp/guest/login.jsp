@@ -107,12 +107,12 @@
 
 <script language="javascript">
     function validateForm() {
-        var uname, psw;
-        var unameText, pswText;
-        var result = true;
+        let uname, psw;
+        let unameText, pswText;
+        let result = true;
         uname = document.forms["loginForm"]["username"].value;
         psw = document.forms["loginForm"]["pass"].value;
-        var unamePattern = /[a-zA-Z_0-9]{3,16}/;
+        const unamePattern = /[a-zA-Z_0-9]{3,16}/;
         if (!unamePattern.test(uname)) {
             unameText = "Username should contain only latin symbols, digits and _";
             document.getElementById("unameDemo").innerHTML = unameText;
@@ -129,7 +129,7 @@
             unameText = "";
             document.getElementById("unameDemo").innerHTML = unameText;
         }
-        var passPattern = /[a-zA-Z0-9_]{6,32}/;
+        const passPattern = /[a-zA-Z0-9_]{6,32}/;
         if (psw.length < 6) {
             pswText = "Password should be at least 6 symbols";
             document.getElementById("pswDemo").innerHTML = pswText;

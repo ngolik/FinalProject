@@ -117,13 +117,13 @@
 
 <script language="javascript">
     function validateForm() {
-        var uname, psw;
-        var unameText, pswText;
-        var result = true;
-        uname = document.forms["loginForm"]["username"].value;
+    let uname, psw;
+    let unameText, pswText;
+    let result = true;
+    uname = document.forms["loginForm"]["username"].value;
         psw = document.forms["loginForm"]["pass"].value;
-        var unamePattern = /[a-zA-Z_0-9]{3,16}/;
-        if (!unamePattern.test(uname)) {
+    const unamePattern = /[a-zA-Z_0-9]{3,16}/;
+    if (!unamePattern.test(uname)) {
             unameText = "Username should contain only latin symbols, digits and _";
             document.getElementById("unameDemo").innerHTML = unameText;
             result = false;
@@ -139,8 +139,8 @@
             unameText = "";
             document.getElementById("unameDemo").innerHTML = unameText;
         }
-        var passPattern = /[a-zA-Z0-9_]{6,32}/;
-        if (psw.length < 8) {
+    const passPattern = /[a-zA-Z0-9_]{6,32}/;
+    if (psw.length < 8) {
             pswText = "Password should be at least 8 symbols";
             document.getElementById("pswDemo").innerHTML = pswText;
             result = false;
@@ -215,15 +215,15 @@
 
 <script  language="javascript">
     function validateReg() {
-        var uname, email, psw, psw2;
-        var unameText, emailText, pswText;
-        var result = true;
-        uname = document.forms["registerForm"]["username"].value;
+    let uname, email, psw, psw2;
+    let unameText, emailText, pswText;
+    let result = true;
+    uname = document.forms["registerForm"]["username"].value;
         email = document.forms["registerForm"]["email"].value;
         psw = document.forms["registerForm"]["pass"].value;
         psw2 = document.forms["registerForm"]["pass2"].value;
-        var unamePattern = /[a-zA-Z_0-9]{3,15}/;
-        if (!unamePattern.test(uname)) {
+    const unamePattern = /[a-zA-Z_0-9]{3,15}/;
+    if (!unamePattern.test(uname)) {
             unameText = "Username should contain only latin symbols, digits and _";
             document.getElementById("unameDemo2").innerHTML = unameText;
             result = false;
@@ -239,8 +239,8 @@
             unameText = "";
             document.getElementById("unameDemo2").innerHTML = unameText;
         }
-        var emailPattern = /[a-zA-Z0-9_]+@[A-Za-z0-9].+/;
-        if (!emailPattern.test(email)) {
+    const emailPattern = /[a-zA-Z0-9_]+@[A-Za-z0-9].+/;
+    if (!emailPattern.test(email)) {
             emailText = "Email should contain latin symbols, @, digits, . and _";
             document.getElementById("emailDemo2").innerHTML = emailText;
             return false;
@@ -248,8 +248,8 @@
             unameText = "";
             document.getElementById("emailDemo2").innerHTML = unameText;
         }
-        var passPattern = /[a-zA-Z0-9_]{6,32}/;
-        if (psw.length < 6) {
+    const passPattern = /[a-zA-Z0-9_]{6,32}/;
+    if (psw.length < 6) {
             pswText = "Password should be at least 6 symbols";
             document.getElementById("pswDemo2").innerHTML = pswText;
             result = false;

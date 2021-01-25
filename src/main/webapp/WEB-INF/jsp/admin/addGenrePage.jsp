@@ -13,6 +13,7 @@
 <fmt:message bundle="${locale}" key="locale.addGenreForMovie" var="addGenreForMovie"/>
 <fmt:message bundle="${locale}" key="locale.genre" var="genre"/>
 <fmt:message bundle="${locale}" key="locale.movie" var="movie"/>
+<fmt:message bundle="${locale}" key="locale.movies" var="movies"/>
 <fmt:message bundle="${locale}" key="locale.movieID" var="movieID"/>
 <fmt:message bundle="${locale}" key="locale.genreID" var="genreID"/>
 <fmt:message bundle="${locale}" key="locale.submit" var="submit"/>
@@ -54,12 +55,29 @@
                 <p>
                     <label><input type="radio" name="command" value="add-genre-for-movie" checked/>${addGenreForMovie}</label>
                 </p>
-                <label for="movieID">${movieID}<br></label>
-                <input id="movieID" class="form-control" type="text" name="movieID" placeholder="movieID" required/>
-                <br/>
-                <label for="genreID">${genreID}<br></label>
-                <input id="genreID" class="form-control" type="text" name="genreID" placeholder="genreID" required/>
-                <br/>
+
+
+<%--                <label for="movieID">${movieID}<br></label>--%>
+<%--                <input id="movieID" class="form-control" type="text" name="movieID" placeholder="movieID" required/>--%>
+<%--                <br/>--%>
+
+                <label for="movieID">Choose a Movie</label>
+                <select name="movieID" id="movieID">
+                <c:forEach var="movie" items="${requestScope.all_movies}">
+<%--                <c:forEach items="${movie}" var="movies">--%>
+                    <c:out value="${movie.title}">movie</c:out>  <%-- BookBean fields that you want print out--%>
+                    <%-- another fields --%>
+                </c:forEach>
+                </select>
+
+
+                <label for="genreID">Choose a Genre:</label>
+                <select name="genreID" id="genreID">
+                    <option value="1">Western</option>
+                    <option value="2">Action</option>
+                    <option value="3">Drama</option>
+                    <option value="4">Comedy</option>
+                </select>
                 <button type="submit" class="btn btn-primary">${submit}</button>
             </form>
         </div>

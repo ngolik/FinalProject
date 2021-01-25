@@ -116,14 +116,14 @@
 
 <script  language="javascript">
     function validateForm() {
-        var uname, email, psw, psw2;
-        var unameText, emailText, pswText;
-        var result = true;
+        let uname, email, psw, psw2;
+        let unameText, emailText, pswText;
+        let result = true;
         uname = document.forms["registerForm"]["username"].value;
         email = document.forms["registerForm"]["email"].value;
         psw = document.forms["registerForm"]["pass"].value;
         psw2 = document.forms["registerForm"]["pass2"].value;
-        var unamePattern = /[a-zA-Z_0-9]{3,15}/;
+        let unamePattern = /[a-zA-Z_0-9]{3,15}/;
         if (!unamePattern.test(uname)) {
             unameText = "Username should contain only latin symbols, digits and _";
             document.getElementById("unameDemo").innerHTML = unameText;
@@ -140,7 +140,7 @@
             unameText = "";
             document.getElementById("unameDemo").innerHTML = unameText;
         }
-        var emailPattern = /[a-zA-Z0-9_]+@[A-Za-z0-9].+/;
+        const emailPattern = /[a-zA-Z0-9_]+@[A-Za-z0-9].+/;
         if (!emailPattern.test(email)) {
             emailText = "Email should contain latin symbols, @, digits, . and _";
             document.getElementById("emailDemo").innerHTML = emailText;
@@ -149,7 +149,7 @@
             unameText = "";
             document.getElementById("emailDemo").innerHTML = unameText;
         }
-        var passPattern = /[a-zA-Z0-9_]{6,32}/;
+        const passPattern = /[a-zA-Z0-9_]{6,32}/;
         if (psw.length < 6) {
             pswText = "Password should be at least 6 symbols";
             document.getElementById("pswDemo").innerHTML = pswText;
