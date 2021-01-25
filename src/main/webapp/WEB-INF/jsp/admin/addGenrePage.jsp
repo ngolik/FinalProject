@@ -61,14 +61,17 @@
 <%--                <input id="movieID" class="form-control" type="text" name="movieID" placeholder="movieID" required/>--%>
 <%--                <br/>--%>
 
-                <label for="movieID">Choose a Movie</label>
-                <select name="movieID" id="movieID">
-                <c:forEach var="movie" items="${requestScope.all_movies}">
-<%--                <c:forEach items="${movie}" var="movies">--%>
-                    <c:out value="${movie.title}">movie</c:out>  <%-- BookBean fields that you want print out--%>
-                    <%-- another fields --%>
+<%--                <label for="movieID">Choose a Movie</label>--%>
+<%--                <select name="movieID" id="movieID">--%>
+<%--                <c:forEach var="movies" items="${requestScope.add_genre_for_movie}">--%>
+<%--                <c:forEach items="${movies}" var="movie">--%>
+<%--                    <c:out value="${movie.title}"> title </c:out>  &lt;%&ndash; BookBean fields that you want print out&ndash;%&gt;--%>
+<%--                    &lt;%&ndash; another fields &ndash;%&gt;--%>
+<%--                </c:forEach>--%>
+<%--                </select>--%>
+                <c:forEach var="item" items="${requestScope.movies}">
+                    <li><c:out value="${item}" /></li>
                 </c:forEach>
-                </select>
 
 
                 <label for="genreID">Choose a Genre:</label>
