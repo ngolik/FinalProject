@@ -32,7 +32,7 @@ public class AddGenreForMovie implements Command {
 
     private static final String ERROR = "errorGenre";
     private static final String MESSAGE_OF_ERROR = "Cannot add genre for movie";
-    private static final String REQUEST = "add_genre_for_movie";
+    private static final String REQUEST = "movies";
     private static final String MESSAGE_OF_SUCCESS = "Genre successfully added";
 
     @Override
@@ -47,8 +47,8 @@ public class AddGenreForMovie implements Command {
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         movies = movieService.readAllMovies();
+        request.setAttribute(REQUEST, movies);
 
-        request.setAttribute("movies", movies);
         if (genreID == null && movieID == null) {
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } else {

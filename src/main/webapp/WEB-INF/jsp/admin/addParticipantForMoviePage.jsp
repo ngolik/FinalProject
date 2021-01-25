@@ -15,6 +15,8 @@
 <fmt:message bundle="${locale}" key="locale.movie" var="movie"/>
 <fmt:message bundle="${locale}" key="locale.movieID" var="movieID"/>
 <fmt:message bundle="${locale}" key="locale.participantID" var="participantID"/>
+<fmt:message bundle="${locale}" key="locale.chooseAMovie" var="chooseAMovie"/>
+<fmt:message bundle="${locale}" key="locale.chooseAParticipant" var="chooseAParticipant"/>
 <fmt:message bundle="${locale}" key="locale.submit" var="submit"/>
 <fmt:message bundle="${locale}" key="locale.cancel" var="cancel"/>
 
@@ -54,12 +56,20 @@
                 <p>
                     <label><input type="radio" name="command" value="add-participant-for-movie" checked/>${addParticipantForMovie}</label>
                 </p>
-                <label for="movieID">${movieID}<br></label>
-                <input id="movieID" class="form-control" type="text" name="movieID" required/>
-                <br/>
-                <label for="participantID">${participantID}<br></label>
-                <input id="participantID" class="form-control" type="text" name="participantID" required/>
-                <br/>
+                <label for="movieID">${chooseAMovie}</label>
+                <select name="movieID" id="movieID">
+                    <c:forEach var="item" items="${requestScope.movies}">
+                        <option value="${item.id}">${item.title}</option>
+                    </c:forEach>
+                </select>
+
+                <label for="participantID">${chooseAParticipant}</label>
+                <select name="participantID" id="participantID">
+                    <c:forEach var="item" items="${requestScope.participants}">
+                        <option value="${item.id}">${item.name} ${item.surname} ${item.secondName}</option>
+                    </c:forEach>
+                </select>
+
                 <button type="submit" class="btn btn-primary">${submit}</button>
             </form>
         </div>

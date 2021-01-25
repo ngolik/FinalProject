@@ -16,6 +16,8 @@
 <fmt:message bundle="${locale}" key="locale.movies" var="movies"/>
 <fmt:message bundle="${locale}" key="locale.movieID" var="movieID"/>
 <fmt:message bundle="${locale}" key="locale.genreID" var="genreID"/>
+<fmt:message bundle="${locale}" key="locale.chooseAMovie" var="chooseAMovie"/>
+<fmt:message bundle="${locale}" key="locale.chooseAGenre" var="chooseAGenre"/>
 <fmt:message bundle="${locale}" key="locale.submit" var="submit"/>
 <fmt:message bundle="${locale}" key="locale.cancel" var="cancel"/>
 
@@ -69,15 +71,14 @@
 <%--                    &lt;%&ndash; another fields &ndash;%&gt;--%>
 <%--                </c:forEach>--%>
 <%--                </select>--%>
-                 <label for="movieID">Choose a Movie</label>
+                 <label for="movieID">${chooseAMovie}</label>
                  <select name="movieID" id="movieID">
                 <c:forEach var="item" items="${requestScope.movies}">
                     <option value="${item.id}">${item.title}</option>
                 </c:forEach>
                  </select>
 
-
-                <label for="genreID">Choose a Genre:</label>
+                <label for="genreID">${chooseAGenre}</label>
                 <select name="genreID" id="genreID">
                     <option value="1">Western</option>
                     <option value="2">Action</option>
