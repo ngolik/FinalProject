@@ -69,9 +69,12 @@
 <%--                    &lt;%&ndash; another fields &ndash;%&gt;--%>
 <%--                </c:forEach>--%>
 <%--                </select>--%>
+                 <label for="movieID">Choose a Movie</label>
+                 <select name="movieID" id="movieID">
                 <c:forEach var="item" items="${requestScope.movies}">
-                    <li><c:out value="${item}" /></li>
+                    <option value="${item.id}">${item.title}</option>
                 </c:forEach>
+                 </select>
 
 
                 <label for="genreID">Choose a Genre:</label>
