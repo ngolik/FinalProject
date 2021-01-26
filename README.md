@@ -20,5 +20,6 @@
 - удаление пользователя для администратора
 - просмотр всех участников фильмов;
 - добавление участника к определенному фильму, а также просмотр списка фильмов по участнику;
-
-![sfwefwe](https://github.com/NikitaGolik/FinalProject/tree/main/src/main/webapp/images/test_db.png)
+<br>
+<img src="https://github.com/NikitaGolik/FinalProject/tree/main/src/main/webapp/images/test_db.png" alt="My cool logo"/>
+<br>
