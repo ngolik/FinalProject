@@ -55,6 +55,7 @@ public class MovieServlet {
 //        System.out.println(movieService.getMovieByID("1").toString());
 //        administratorService.addParticipantForMovie("10", "10");
 //        movieService.findMovieByTitle("nikita");
+        System.out.println(movieService.readAllGenres());
 
 
 

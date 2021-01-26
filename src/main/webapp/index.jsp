@@ -52,7 +52,7 @@
 
                     <div class="col-sm-8">
                         <input id="search" title="${searchTitle}" type="text" class="form-control"
-                               placeholder="${movie}"
+                               placeholder="${searchTitle}"
                                name="movieTitle"/>
                         <br/>
                     </div>

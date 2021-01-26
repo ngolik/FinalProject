@@ -33,8 +33,13 @@ public class MovieDaoImpl implements MovieDAO {
     private final static String SHOW_ALL =
             "SELECT *  FROM `movies`";
     private static final String SHOW_BY_GENRE =
-            "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
-                    "WHERE `movies_db`.genres.name LIKE ? ORDER BY `title`";
+            "SELECT movies.id, movies.title, movies.budget, movies.gross, movies.runtime, movies.year, genres.name\n" +
+                    "FROM   movies_genres \n" +
+                    "       INNER JOIN movies \n" +
+                    "               ON movies.id = movies_genres.movies_id \n" +
+                    "       INNER JOIN genres \n" +
+                    "               ON genres.id = movies_genres.genres_id where genres.name = ?;";
+
     private static final String SHOW_BY_TITLE =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
                     "WHERE `title` LIKE ? ORDER BY `title`";
@@ -70,7 +75,7 @@ public class MovieDaoImpl implements MovieDAO {
             "SELECT * FROM test_db.movies ORDER BY id DESC LIMIT 1;";
 
     private static final String COUNT_ALL_MOVIES_BY_GENRE =
-            "SELECT COUNT(id) AS amount FROM genres WHERE name = ?;";
+            "SELECT COUNT(genres_id) AS amount FROM movies_genres WHERE genres_id = ?";
 
     private static final MovieDAO instance = new MovieDaoImpl();
 
@@ -194,7 +199,7 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(String genre, int offset, int recordsNumber) throws DAOException {
+    public List<Movie> getMoviesByGenre(String genre) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -211,8 +216,10 @@ public class MovieDaoImpl implements MovieDAO {
                 movie = new Movie();
                 movie.setId(rs.getInt(ID));
                 movie.setTitle(rs.getString(TITLE));
-                movie.setAvgRating(rs.getDouble(RATING));
-                movie.setRating(rs.getInt(VOTES));
+                movie.setBudget(rs.getInt(BUDGET));
+                movie.setGross(rs.getInt(GROSS));
+                movie.setRuntime(rs.getInt(RUNTIME));
+                movie.setYear(rs.getInt(YEAR));
                 movies.add(movie);
             }
             return movies;

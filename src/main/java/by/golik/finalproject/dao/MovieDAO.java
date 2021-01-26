@@ -24,7 +24,7 @@ public interface MovieDAO {
      * @return list of movies
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Movie> getMoviesByGenre(String genre, int offset, int recordsNumber) throws DAOException;
+    List<Movie> getMoviesByGenre(String genre) throws DAOException;
 
     /**
      * This method is used to search movies into data source.

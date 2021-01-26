@@ -73,21 +73,18 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(int offset, int recordsPerPage, String genre) throws ServiceException {
-        if (!Validator.validate(offset, recordsPerPage)
-                || !Validator.validate(genre)) {
+    public List<Movie> getMoviesByGenre(String genre) throws ServiceException {
+        if (!Validator.validate(genre)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
-        RatingDAO ratingDAO = daoFactory.getRatingDAO();
         List<Movie> movies;
         try {
-            movies = dao.getMoviesByGenre(genre, offset, recordsPerPage);
+            movies = dao.getMoviesByGenre(genre);
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
-            Validator.fillVotesForMovie(ratingDAO, movies);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }

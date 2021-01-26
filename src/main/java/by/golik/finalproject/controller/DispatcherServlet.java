@@ -84,7 +84,6 @@ public class DispatcherServlet extends HttpServlet {
                 logger.info("Error in disp serv");
             }
         } else {
-
             logger.log(Level.ERROR, "No such command");
             request.setAttribute(ERROR, MESSAGE_OF_ERROR_2);
             request.getRequestDispatcher(ERROR_PAGE).forward(request, response);

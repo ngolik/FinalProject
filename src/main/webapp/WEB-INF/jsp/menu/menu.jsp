@@ -29,6 +29,7 @@
 <fmt:message bundle="${locale}" key="locale.register" var="register"/>
 <fmt:message bundle="${locale}" key="locale.participants" var="participants"/>
 
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
