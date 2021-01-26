@@ -56,6 +56,7 @@
                 <p>
                     <label><input type="radio" name="command" value="add-participant-for-movie" checked/>${addParticipantForMovie}</label>
                 </p>
+
                 <label for="movieID">${chooseAMovie}</label>
                 <select name="movieID" id="movieID">
                     <c:forEach var="item" items="${requestScope.movies}">
