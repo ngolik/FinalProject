@@ -21,4 +21,4 @@
 - просмотр всех участников фильмов;
 - добавление участника к определенному фильму, а также просмотр списка фильмов по участнику;
 
-![alt text](https://github.com/NikitaGolik/FinalProject/tree/main/src/main/webapp/images/test_db.png)
+![sfwefwe](https://github.com/NikitaGolik/FinalProject/tree/main/src/main/webapp/images/test_db.png)
