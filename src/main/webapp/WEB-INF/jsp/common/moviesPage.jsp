@@ -56,7 +56,6 @@
                             <option value="DispatcherServlet?command=show-movies-by-genre&genre=western">Western</option>
                             <option value="DispatcherServlet?command=show-movies-by-genre&genre=comedy">Comedy</option>
                         </select>
-
                 </div>
                 <div class="clear"></div>
             </div>
