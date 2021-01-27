@@ -11,8 +11,11 @@
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="locale" var="locale"/>
 <fmt:message bundle="${locale}" key="locale.usersPage" var="usersPage"/>
-<fmt:message bundle="${locale}" key="locale.ban" var="ban"/>
-<fmt:message bundle="${locale}" key="locale.unban" var="unban"/>
+<fmt:message bundle="${locale}" key="locale.username" var="username"/>
+<fmt:message bundle="${locale}" key="locale.email" var="email"/>
+<fmt:message bundle="${locale}" key="locale.role" var="role"/>
+<fmt:message bundle="${locale}" key="locale.registrationDate" var="registrationDate"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -35,12 +38,10 @@
              <br>
              <table class="table">
                  <tr class="thead-dark">
-                     <th>User Name</th>
-                     <th>Email</th>
-                     <th>Role</th>
-                     <th>Date of registration</th>
-                     <th>Ban</th>
-                     <th>Unban</th>
+                     <th>${username}</th>
+                     <th>${email}</th>
+                     <th>${role}</th>
+                     <th>${registrationDate}</th>
                  </tr>
                  <c:forEach var="user" items="${requestScope.all_users}">
                      <tr>
@@ -48,10 +49,6 @@
                          <td>${user.email}</td>
                          <td>${user.role}</td>
                          <td>${user.registrationDate}</td>
-                         <c:if test="${sessionScope.get('user').role eq 'admin'}">
-                             <td><a href="DispatcherServlet?command=ban-user&userName=${user.username}">${ban}</a> </td>
-                             <td><a href="DispatcherServlet?command=ban-user&userName=${user.username}">${unban}</a> </td>
-                         </c:if>
                      </tr>
                  </c:forEach>
              </table>

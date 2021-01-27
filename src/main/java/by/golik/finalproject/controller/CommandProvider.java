@@ -61,17 +61,16 @@ public class CommandProvider {
         adminCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new ShowMovieByTitle());
         adminCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
         adminCommands.put(CommandList.ALL_PARTICIPANTS, new ShowAllParticipants());
-        adminCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowAllParticipants());
-
+        adminCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowParticipantByID());
 
         userCommands.put(CommandList.LOG_OUT, new Logout());
         userCommands.put(CommandList.ADD_RATING, new AddRating());
         userCommands.put(CommandList.CHANGE_LANGUAGE, new ChangeLanguage());
         userCommands.put(CommandList.ALL_MOVIES, new ShowAllMovies());
         userCommands.put(CommandList.FIND_MOVIE_BY_TITLE, new ShowMovieByTitle());
-        userCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieByTitle());
+        userCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
         userCommands.put(CommandList.ALL_PARTICIPANTS, new ShowAllParticipants());
-        userCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowAllParticipants());
+        userCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowParticipantByID());
 
 
 

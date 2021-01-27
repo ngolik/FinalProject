@@ -12,6 +12,11 @@
 <fmt:setBundle basename="locale" var="locale"/>
 <fmt:message bundle="${locale}" key="locale.all" var="all"/>
 <fmt:message bundle="${locale}" key="locale.movie" var="movie"/>
+<fmt:message bundle="${locale}" key="locale.title" var="title"/>
+<fmt:message bundle="${locale}" key="locale.year" var="year"/>
+<fmt:message bundle="${locale}" key="locale.gross" var="gross"/>
+<fmt:message bundle="${locale}" key="locale.budget" var="budget"/>
+<fmt:message bundle="${locale}" key="locale.runtime" var="runtime"/>
 <fmt:message bundle="${locale}" key="locale.next" var="next"/>
 <fmt:message bundle="${locale}" key="locale.previous" var="previous"/>
 <fmt:message bundle="${locale}" key="locale.yourRating" var="yourRating"/>
@@ -76,11 +81,11 @@
         <table class="table table-stripped">
             <thead>
             <tr class="thead-dark">
-                <th>${movie}</th>
-                <th>Year of issue</th>
-                <th>Runtime</th>
-                <th>Budget</th>
-                <th>Gross</th>
+                <th>${title}</th>
+                <th>${year}</th>
+                <th>${runtime}</th>
+                <th>${budget}</th>
+                <th>${gross}</th>
             </tr>
             </thead>
 

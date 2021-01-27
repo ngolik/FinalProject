@@ -39,7 +39,6 @@ public class ShowMovieById implements Command {
 
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         try {
-
             movie = movieService.getMovieByID(id);
             request.setAttribute(REQUEST_ATTRIBUTE, movie);
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);

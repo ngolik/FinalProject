@@ -31,7 +31,7 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String AMOUNT = "amount";
 
     private final static String SHOW_ALL =
-            "SELECT *  FROM `movies`";
+            "SELECT movies.id, title, year, image_path, runtime, budget, gross  FROM `movies`";
     private static final String SHOW_BY_GENRE =
             "SELECT movies.id, movies.title, movies.budget, movies.gross, movies.runtime, movies.year, genres.name\n" +
                     "FROM   movies_genres \n" +
@@ -49,20 +49,19 @@ public class MovieDaoImpl implements MovieDAO {
                     "WHERE test_db.movies_participants.participants_id = ? ORDER BY `title`";
 
     private static final String SHOW_BY_ID =
-            "SELECT id, title, year, image_path, runtime, budget, gross, description FROM `movies` " +
+            "SELECT id, title, year, image_path, runtime, budget, gross FROM `movies` " +
                     "WHERE `id` = ?";
 
     private static final String COUNT_ALL_MOVIES =
             "SELECT COUNT(movies.id) AS amount FROM movies";
 
     private static final String ADD_MOVIE =
-            "INSERT INTO movies (title, year, runtime, budget, image_path, gross, description) VALUES (?, ?, ?, ?, 'sa', ?, 'empty')";
+            "INSERT INTO movies (title, year, runtime, budget, image_path, gross) VALUES (?, ?, ?, ?, 'sa', ?)";
 
     private static final String UPDATE_BY_ID =
             "UPDATE `test_db`.`movies`\n" +
                     "SET title = ?, year = ?, `runtime` = ?, `budget` = ?,`gross` = ?\n" +
                     "WHERE `id` = ?;\n";
-
 
     private static final String DELETE_BY_ID =
             "DELETE FROM `movies_db`.`movies` WHERE id=?;";

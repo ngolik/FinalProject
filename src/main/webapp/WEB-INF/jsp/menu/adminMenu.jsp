@@ -23,7 +23,6 @@
         <p><a class="admin" href="DispatcherServlet?command=add-participant">${addParticipant}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=add-participant-for-movie">${addParticipantForMovie}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=view-all-users">${viewAllUsers}</a></p>
-        <p><a class="admin" href="DispatcherServlet?command=view-all-banned">${viewAllBanned}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=add-genre-for-movie">${addGenreForMovie}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=delete-user">${deleteUser}</a></p>
     </c:if>
