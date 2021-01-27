@@ -45,10 +45,7 @@ public class CommandProvider {
         adminCommands.put(CommandList.ADD_MOVIE, new AddMovie());
         adminCommands.put(CommandList.ADD_PARTICIPANT, new AddParticipant());
         adminCommands.put(CommandList.ADD_PARTICIPANT_FOR_MOVIE, new AddParticipantForMovie());
-        adminCommands.put(CommandList.BAN_USER, new BanUser());
         adminCommands.put(CommandList.DELETE_GENRE_FOR_MOVIE, new DeleteGenreForMovie());
-        adminCommands.put(CommandList.DELETE_PARTICIPANT_FOR_MOVIE, new DeleteParticipantForMovie());
-        adminCommands.put(CommandList.UNBAN_USER, new UnbanUser());
         adminCommands.put(CommandList.UPDATE_MOVIE, new UpdateMovie());
         adminCommands.put(CommandList.UPDATE_PARTICIPANT, new UpdateParticipant());
         adminCommands.put(CommandList.VIEW_ALL_USERS, new ViewAllUsers());

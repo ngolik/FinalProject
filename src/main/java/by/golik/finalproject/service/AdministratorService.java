@@ -12,8 +12,6 @@ import java.util.List;
  */
 public interface AdministratorService {
     List<User> readAllUsers() throws ServiceException;
-    void banUser(String userNickname) throws ServiceException;
-    void unbanUser(String userNickname) throws ServiceException;
     void deleteUser(String userName) throws DAOException, ServiceException;
 
     void addMovie(String title, String year, String runtime, String budget, String gross) throws ServiceException;

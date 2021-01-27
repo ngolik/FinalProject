@@ -61,25 +61,24 @@
                     ${budget} <c:out value="${movie.budget}"/><br/>
                     ${gross} <c:out value="${movie.gross}"/><br/>
             </div>
+
             <c:if test='${sessionScope.get("user").role eq "admin" || sessionScope.get("user").role eq "user"}'>
             <div id="rate1">
 
                 <label>
-                <input type="radio" name="rating" value="1" class="star">
-                <input type="radio" name="rating" value="2" class="star">
-                <input type="radio" name="rating" value="3" class="star">
-                <input type="radio" name="rating" value="4" class="star">
-                <input type="radio" name="rating" value="5" class="star">
-                <input type="radio" name="rating" value="6" class="star">
-                <input type="radio" name="rating" value="7" class="star">
-                <input type="radio" name="rating" value="8" class="star">
-                <input type="radio" name="rating" value="9" class="star">
-                <input type="radio" name="rating" value="10" class="star">
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=1">1</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=2">2</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=3">3</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=4">4</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=5">5</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=6">6</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=7">7</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=8">8</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=9">9</a>
+                    <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=10">10</a>
+
                 </label>
             </div>
-
-            rating = <%= request.getAttribute("Result") %>
-            <a href="DispatcherServlet?command=add-rating"><c:out value="${addRating}"/> </a>
             </c:if>
         </c:if>
 

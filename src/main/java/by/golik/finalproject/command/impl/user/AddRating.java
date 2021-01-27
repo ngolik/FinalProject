@@ -22,6 +22,7 @@ public class AddRating implements Command {
 
     private static final Logger logger = LogManager.getLogger(AddRating.class);
 
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/common/moviePage.jsp";
     private static final String MOVIE_ID = "movieID";
     private static final String USER = "user";
     private static final String RATING = "rating";
@@ -42,7 +43,7 @@ public class AddRating implements Command {
 
         if (object.getClass().equals(User.class)) {
             User user = (User) object;
-            userName = user.getUsername();
+            userName = user.getId();
         }
 
         String rating = request.getParameter(RATING);
@@ -51,17 +52,14 @@ public class AddRating implements Command {
         if (movieID != null && userName != null && rating != null) {
             try {
                 movieService.addRating(movieID, userName, rating);
-
-                request.getRequestDispatcher(previousQuery).forward(request, response);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR_RATING, MESSAGE_OF_ERROR);
-
                 request.getRequestDispatcher(previousQuery).forward(request, response);
             }
         } else {
             request.setAttribute(ERROR_RATING, MESSAGE_OF_ERROR_2);
-
             request.getRequestDispatcher(previousQuery).forward(request, response);
         }
     }

@@ -21,41 +21,6 @@ public class AdministratorServiceImpl implements AdministratorService {
     private static final String USERS = "users";
     private static final String IMAGES = "images/";
     private static final String DELIM = "/";
-    @Override
-    public void banUser(String userNickname) throws ServiceException {
-        if (!Validator.validate(userNickname)) {
-            throw new ServiceException("Illegal data input");
-        }
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        UserDAO userDAO = daoFactory.getUserDAO();
-
-        try {
-            User user = userDAO.getUserByUsername(userNickname);
-            if (user.getRole().equals(USER)) {
-                userDAO.banUser(userNickname);
-            }
-        } catch (DAOException e) {
-            throw new ServiceException("Error in source!", e);
-        }
-    }
-
-    @Override
-    public void unbanUser(String userNickname) throws ServiceException {
-        if (!Validator.validate(userNickname)) {
-            throw new ServiceException("Illegal data input");
-        }
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        UserDAO userDAO = daoFactory.getUserDAO();
-
-        try {
-            User user = userDAO.getUserByUsername(userNickname);
-            if (user.getRole().equals(BANNED)) {
-                userDAO.unBanUser(userNickname);
-            }
-        } catch (DAOException e) {
-            throw new ServiceException("Error in source!", e);
-        }
-    }
 
     @Override
     public List<User> readAllUsers() throws ServiceException {

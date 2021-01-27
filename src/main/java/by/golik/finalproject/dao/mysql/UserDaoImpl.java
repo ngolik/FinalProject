@@ -19,6 +19,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDAO {
 
     private static final String USER_NAME = "login";
+    private static final String USER_ID = "id";
     private static final String USER_EMAIL = "email";
     private static final String USER_ROLE = "role";
     private static final String USER_REGISTER = "registrationdate";
@@ -29,22 +30,12 @@ public class UserDaoImpl implements UserDAO {
     private final static String LOG_IN_STATEMENT =
             "SELECT * FROM users " +
                     "WHERE `login`= ? and `password` = ?";
-
     private final static String REGISTER_STATEMENT =
             "INSERT INTO users (login, email, password, role, registrationdate) " +
                     "VALUES(?,?, ?,'user',?)";
     private final static String VIEW_ALL_USERS =
             "SELECT * FROM users";
-    private static final String BAN_USER_BY_USERNAME =
-            "UPDATE `movies_db`.`users`\n" +
-                    "SET\n" +
-                    "`users`.role = 'banned'\n" +
-                    "WHERE `users`.login = ?;";
-    private static final String UNBAN_USER_BY_USERNAME =
-            "UPDATE `movies_db`.`users`\n" +
-                    "SET\n" +
-                    "`users`.role = 'user'\n" +
-                    "WHERE `users`.login = ?;";
+
     private static final String VIEW_BY_USERNAME =
             "SELECT id, login, password, email, role, registrationdate FROM users WHERE login=?";
     private static final String DELETE_BY_USERNAME =
@@ -177,51 +168,6 @@ public class UserDaoImpl implements UserDAO {
         }
     }
 
-    @Override
-    public void banUser(String userName) throws DAOException {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(BAN_USER_BY_USERNAME);
-            st.setString(1, userName);
-            int update = st.executeUpdate();
-            if (update > 0) {
-                return;
-            }
-            throw new DAOException("Wrong ban data");
-        } catch (SQLException e) {
-            throw new DAOException("User sql error", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("User pool connection error", e);
-        } finally {
-            ConnectionPoolHelper.closeResource(con, st);
-        }
-    }
-
-    @Override
-    public void unBanUser(String userName) throws DAOException {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(UNBAN_USER_BY_USERNAME);
-            st.setString(1, userName);
-            int update = st.executeUpdate();
-            if (update > 0) {
-
-                return;
-            }
-            throw new DAOException("Wrong unban data");
-        } catch (SQLException e) {
-            throw new DAOException("User sql error", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("User pool connection error", e);
-        } finally {
-            ConnectionPoolHelper.closeResource(con, st);
-        }
-    }
-
     /**
      * This method is used to get detailed information about some user from data source.
      * @param userName of user
@@ -244,6 +190,7 @@ public class UserDaoImpl implements UserDAO {
             User user = null;
             if (rs.next()) {
                 user = new User();
+                user.setId(rs.getString(USER_ID));
                 user.setUsername(rs.getString(USER_NAME));
                 user.setEmail(rs.getString(USER_EMAIL));
                 user.setPassword(rs.getString(USER_PASSWORD));
