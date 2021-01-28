@@ -43,6 +43,9 @@
     <div class="row content">
         <c:import url="../menu/adminMenu.jsp"/>
         <br class="col-sm-8 text-left mainContent">
+
+        <%=request.getAttribute("successMessage")%>
+
         <c:if test="${requestScope.get('errorMessage')!=null}">
             <h3 class="red"><c:out value="${requestScope.get('errorMessage')}"/></h3>
             <c:remove var="errorMessage" scope="request"/>
@@ -51,6 +54,7 @@
             <h3 class="green"><c:out value="${requestScope.get('successMessage')}"/></h3>
             <c:remove var="successMessage" scope="request"/>
         </c:if>
+
         <br>
         <form action="DispatcherServlet" method="post">
             <p>

@@ -64,8 +64,9 @@
                     ${rating} <c:out value="${vote.score}"/><br/>
             </div>
 
-            <c:if test='${sessionScope.get("user").role eq "admin" || sessionScope.get("user").role eq "user"}'>
+            <c:if test='${sessionScope.get("user").role eq "user"}'>
 
+                <h4> Оцените фильм от 1 до 10 </h4>
                 <label>
                     <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=1">1</a>
                     <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=2">2</a>

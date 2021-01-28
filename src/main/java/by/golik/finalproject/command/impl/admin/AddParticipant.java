@@ -42,9 +42,7 @@ public class AddParticipant implements Command {
         String position = request.getParameter(POSITION);
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
         if (name == null && surname == null && secondName == null) {
-
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
-
         } else {
             try {
                 administratorService.addParticipant(name, surname, secondName, position);

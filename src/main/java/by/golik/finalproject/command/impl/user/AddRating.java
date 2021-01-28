@@ -52,11 +52,11 @@ public class AddRating implements Command {
         if (movieID != null && userName != null && rating != null) {
             try {
                 movieService.addRating(movieID, userName, rating);
-                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
+                request.getRequestDispatcher(previousQuery).forward(request, response);
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR_RATING, MESSAGE_OF_ERROR);
-                request.getRequestDispatcher(previousQuery).forward(request, response);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             }
         } else {
             request.setAttribute(ERROR_RATING, MESSAGE_OF_ERROR_2);
