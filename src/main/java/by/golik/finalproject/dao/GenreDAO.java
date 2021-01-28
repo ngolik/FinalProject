@@ -24,10 +24,10 @@ public interface GenreDAO {
      * This method is used to add connection between some movie and genre into data source.
      *
      * @param intMovieID id of movie
-     * @param name genre name
+     * @param intGenreID genre id
      * @throws DAOException if some error occurred while processing data.
      */
-    void createGenreForMovie(int intMovieID, String name) throws DAOException;
+    void createGenreForMovie(int intMovieID, int intGenreID) throws DAOException;
     List<Genre> readAllGenres() throws DAOException, SQLException;
 
     void createGenre(String name) throws DAOException;
@@ -36,8 +36,8 @@ public interface GenreDAO {
      * This method is used to remove connection between some movie and genre from data source.
      *
      * @param intMovieID movie id
-     * @param name name
+     * @param intGenreID genre id
      * @throws DAOException if some error occurred while processing data.
      */
-    void deleteGenreForMovie(int intMovieID, String name) throws DAOException;
+    void deleteGenreForMovie(int intMovieID, int intGenreID) throws DAOException;
 }

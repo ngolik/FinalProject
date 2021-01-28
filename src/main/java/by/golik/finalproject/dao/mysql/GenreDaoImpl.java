@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class GenreDaoImpl implements GenreDAO {
     private final static String SHOW_GENRES_BY_ID =
-            "SELECT name FROM genres\n" +
-                    " WHERE id = ?";
+            "SELECT genres_id FROM movies_genres\n" +
+                    " WHERE movies_id = ?";
 
     private static final String ADD_GENRE = "INSERT INTO `genres` " +
             "(`name`) VALUES (?)";
@@ -30,13 +30,14 @@ public class GenreDaoImpl implements GenreDAO {
             "INSERT INTO movies_genres(movies_id, movies_genres.genres_id) VALUES (?, ?)";
 
     private static final String DELETE_GENRE =
-            "DELETE FROM `genres` WHERE `id` = ?";
+            "DELETE FROM `movies_genres` WHERE movies_id = ?  AND `genres_id` = ?";
 
     private static final String ALL_GENRES =
             "SELECT * FROM genres;";
 
     private static final String GENRE = "genres";
     private static final String ID = "id";
+    private static final String GENRES_ID = "genres_id";
     private static final String NAME = "name";
 
     private static final GenreDAO instance = new GenreDaoImpl();
@@ -89,7 +90,7 @@ public class GenreDaoImpl implements GenreDAO {
             Genre genre = null;
             while (rs.next()) {
                 genre = new Genre();
-                genre.setName(rs.getString(GENRE));
+                genre.setId(rs.getInt(GENRES_ID));
                 genreList.add(genre);
             }
             return genreList;
@@ -138,18 +139,18 @@ public class GenreDaoImpl implements GenreDAO {
      * This method is used to add connection between some movie and genre into data source.
      *
      * @param intMovieId id of movie
-     * @param name       genre name in russian
+     * @param intGenreID genre name id
      * @throws DAOException if some error occurred while processing data.
      */
     @Override
-    public void createGenreForMovie(int intMovieId, String name) throws DAOException {
+    public void createGenreForMovie(int intMovieId, int intGenreID) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
             st = con.prepareStatement(ADD_GENRE_FOR_MOVIE);
             st.setInt(1, intMovieId);
-            st.setString(2, name);
+            st.setInt(2, intGenreID);
             int update = st.executeUpdate();
             if (update > 0) {
                 return;
@@ -172,13 +173,14 @@ public class GenreDaoImpl implements GenreDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     @Override
-    public void deleteGenreForMovie(int intMovieID, String name) throws DAOException {
+    public void deleteGenreForMovie(int intMovieID, int intGenreID) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
             st = con.prepareStatement(DELETE_GENRE);
             st.setInt(1, intMovieID);
+            st.setInt(2, intGenreID);
             int update = st.executeUpdate();
             if (update > 0) {
                 return;

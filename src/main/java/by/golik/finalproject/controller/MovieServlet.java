@@ -1,10 +1,14 @@
 package by.golik.finalproject.controller;
 
 import by.golik.finalproject.dao.*;
+import by.golik.finalproject.dao.mysql.GenreDaoImpl;
 import by.golik.finalproject.dao.pool.ConnectionPool;
+import by.golik.finalproject.entity.Genre;
 import by.golik.finalproject.service.impl.AdministratorServiceImpl;
 import by.golik.finalproject.service.impl.MovieServiceImpl;
 import by.golik.finalproject.service.impl.UserServiceImpl;
+
+import java.util.List;
 
 /**
  * @author Nikita Golik
@@ -23,6 +27,7 @@ public class MovieServlet {
         ConnectionPool connectionPool;
         MovieDAO movieDAO;
         UserDAO userDAO;
+        GenreDAO genreDAO;
 
         daoFactory = DaoFactory.getInstance();
         connectionPool = daoFactory.getConnectionPool();
@@ -35,6 +40,7 @@ public class MovieServlet {
         UserServiceImpl userService = new UserServiceImpl();
         AdministratorServiceImpl administratorService = new AdministratorServiceImpl();
         MovieServiceImpl movieService = new MovieServiceImpl();
+        genreDAO = daoFactory.getGenreDAO();
 //        System.out.println(administratorService.readAllParticipants());
 
 //        System.out.println(userService.getUserByUserName("administrator").toString());
@@ -56,9 +62,10 @@ public class MovieServlet {
 //        administratorService.addParticipantForMovie("10", "10");
 //        movieService.findMovieByTitle("nikita");
 //        movieService.addRating("1","6", "4");
-        System.out.println(movieService.getRatingForMovie("1"));
-
-
+//        genreDAO.createGenreForMovie(22,3);
+//        genreDAO.deleteGenreForMovie(22,3);
+        List<Genre> genres = genreDAO.readGenresByMovie(22);
+        System.out.println(genres.toString());
 
 
     }

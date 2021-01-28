@@ -105,44 +105,48 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void addGenreForMovie(String movieID, String name) throws ServiceException {
-        if (!Validator.validate(name)
+    public void addGenreForMovie(String movieID, String genreID) throws ServiceException {
+        if (!Validator.validateNumber(genreID)
                 || !Validator.validateNumber(movieID)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         GenreDAO dao = daoFactory.getGenreDAO();
         int intMovieID;
+        int intGenreID;
         try {
             intMovieID = Integer.parseInt(movieID);
+            intGenreID = Integer.parseInt(genreID);
         } catch (NumberFormatException e) {
             throw new ServiceException("Wrong data input, while adding film");
         }
 
         try {
-            dao.createGenreForMovie(intMovieID, name);
+            dao.createGenreForMovie(intMovieID, intGenreID);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
     }
 
     @Override
-    public void deleteGenreForMovie(String movieID, String name) throws ServiceException {
-        if (!Validator.validate(name)
+    public void deleteGenreForMovie(String movieID, String genreID) throws ServiceException {
+        if (!Validator.validateNumber(genreID)
                 || !Validator.validateNumber(movieID)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         GenreDAO dao = daoFactory.getGenreDAO();
         int intMovieID;
+        int intGenreID;
         try {
             intMovieID = Integer.parseInt(movieID);
+            intGenreID = Integer.parseInt(genreID);
         } catch (NumberFormatException e) {
             throw new ServiceException("Wrong data input, while adding film");
         }
 
         try {
-            dao.deleteGenreForMovie(intMovieID, name);
+            dao.deleteGenreForMovie(intMovieID, intGenreID);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
