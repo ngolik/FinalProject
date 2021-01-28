@@ -63,28 +63,7 @@
             </div>
 
             <c:if test='${sessionScope.get("user").role eq "admin" || sessionScope.get("user").role eq "user"}'>
-            <div id="rate1">
-                <c:if test="${movie.ratingVotes>0}">
-                    ${rating} <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2"
-                                                value="${movie.avgRating}"/><br/>
-                    ${votes} <c:out value="${movie.ratingVotes}"/><br/>
-                </c:if>
-                <c:if test="${movie.ratingVotes==0}">
-                    ${noRating}<br/>
 
-                </c:if>
-
-                <c:if test="${sessionScope.get('user') != null}">
-                    <c:if test="${requestScope.get('errorRating')!=null}">
-                        <h3 class="red"><c:out value="${requestScope.get('errorRating')}"/></h3>
-                        <c:remove var="errorRating" scope="request"/>
-                    </c:if>
-                    ${yourRating}
-                    <c:forEach var="rating" items="${movie.ratings}">
-                        <c:if test="${rating.userNickname eq sessionScope.get('user').nickname}">
-                            <c:out value="${rating.ratingScore}"/>
-                        </c:if>
-                    </c:forEach>
                 <label>
                     <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=1">1</a>
                     <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=2">2</a>
@@ -96,9 +75,8 @@
                     <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=8">8</a>
                     <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=9">9</a>
                     <a href="DispatcherServlet?command=add-rating&movieID=${movie.id}&rating=10">10</a>
-
                 </label>
-            </div>
+
             </c:if>
         </c:if>
 

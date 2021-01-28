@@ -121,7 +121,6 @@ public class MovieServiceImpl implements MovieService {
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
         Movie movie;
-        List<Vote> ratingList;
         int normId;
         try {
             normId = Integer.parseInt(id);
