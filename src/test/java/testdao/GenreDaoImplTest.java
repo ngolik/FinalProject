@@ -69,7 +69,6 @@ public class GenreDaoImplTest {
             factory = DaoFactory.getInstance();
             dao = factory.getGenreDAO();
             int genreID = 3;
-
             int movieId = factory.getMovieDAO().getLastInsertedMovie().getId();
             dao.createGenreForMovie(movieId, genreID);
             List<Genre> genres = dao.readGenresByMovie(movieId);

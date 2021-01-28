@@ -113,14 +113,6 @@ public class Movie {
         this.year = year;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public int getRuntime() {
         return runtime;
     }
@@ -144,6 +136,13 @@ public class Movie {
     public void setGross(long gross) {
         this.gross = gross;
     }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public float getRating() {
         return rating;
@@ -161,6 +160,7 @@ public class Movie {
         Movie movie = (Movie) o;
         if (id != movie.id) return false;
         if (year != movie.year) return false;
+        if (runtime != movie.runtime) return false;
         if (!Objects.equals(imageUrl, movie.imageUrl)) return false;
         if (budget != movie.budget) return false;
         if (gross != movie.gross) return false;
@@ -175,12 +175,12 @@ public class Movie {
         result = id;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + year;
+        result = 31 * result + runtime;
         result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
         result = 31 * result + (int) (budget ^ (budget >>> 32));
         result = 31 * result + (int) (gross ^ (gross >>> 32));
         temp = Double.doubleToLongBits(rating);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-
         return result;
     }
 
@@ -190,13 +190,12 @@ public class Movie {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", year=" + year +
-                ", imageUrl='" + imageUrl + '\'' +
                 ", runtime=" + runtime +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", budget=" + budget +
                 ", gross=" + gross +
                 ", rating=" + rating +
                 ", avgRating=" + avgRating +
-                ", participants=" + participants +
                 '}';
     }
 }

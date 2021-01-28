@@ -7,6 +7,8 @@ import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.entity.Movie;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -15,18 +17,26 @@ import java.util.List;
  * @author Nikita Golik
  */
 public class MovieDaoImplTest {
+    @BeforeMethod
+    public void takeConnection() {
+        DaoFactory factory = null;
+        ConnectionPool pool = null;
+        try {
+            factory = DaoFactory.getInstance();
+            pool = factory.getConnectionPool();
+            pool.init();
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
+        }
+    }
     @Test
     public void addMovieTest(){
         DaoFactory factory = null;
-        ConnectionPool pool = null;
         MovieDAO dao = null;
         try{
             factory = DaoFactory.getInstance();
-            pool = factory.getConnectionPool();
             dao = factory.getMovieDAO();
-
-            pool.init();
-            String title= "Test";
+            String title= "Test2";
             int year= 1999;
             int runtime = 200;
             long budget = 1000_000;
@@ -44,29 +54,17 @@ public class MovieDaoImplTest {
             Assert.assertEquals(budget, movie.getBudget());
             Assert.assertEquals(gross, movie.getGross());
 
-        } catch (ConnectionPoolException | DAOException e) {
+        } catch (DAOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                assert pool != null;
-                pool.destroy();
-            } catch (ConnectionPoolException e) {
-                e.printStackTrace();
-            }
         }
     }
     @Test
     public void updateMovieTest(){
         DaoFactory factory = null;
-        ConnectionPool pool = null;
         MovieDAO dao = null;
         try{
             factory = DaoFactory.getInstance();
-            pool = factory.getConnectionPool();
             dao = factory.getMovieDAO();
-
-            pool.init();
-
             List<Movie> movieList = dao.readAllMovies();
             Movie movie = null;
             if(movieList.size()>0) {
@@ -79,7 +77,7 @@ public class MovieDaoImplTest {
 
             String title= "Test";
             int year= 1999;
-            int runtime = 205;
+            int runtime = 20522;
             long budget = 1000_000;
             long gross = 10_000_000;
 
@@ -99,15 +97,20 @@ public class MovieDaoImplTest {
 
             dao.updateMovie(id, titleTemp, yearTemp, runtimeTemp, budgetTemp, grossTemp);
 
-        } catch (ConnectionPoolException | DAOException e) {
+        } catch (DAOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                assert pool != null;
-                pool.destroy();
-            } catch (ConnectionPoolException e) {
-                e.printStackTrace();
-            }
+        }
+    }
+    @AfterMethod
+    public void destroyConnection() {
+        DaoFactory factory = null;
+        ConnectionPool pool = null;
+        try {
+            factory = DaoFactory.getInstance();
+            pool = factory.getConnectionPool();
+            pool.destroy();
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
         }
     }
 }

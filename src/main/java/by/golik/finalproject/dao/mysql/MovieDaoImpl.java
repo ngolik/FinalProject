@@ -64,14 +64,14 @@ public class MovieDaoImpl implements MovieDAO {
                     "WHERE `id` = ?;\n";
 
     private static final String DELETE_BY_ID =
-            "DELETE FROM `movies_db`.`movies` WHERE id=?;";
+            "DELETE FROM `movies` WHERE id=?;";
     private static final String UPDATE_IMAGE =
             "UPDATE movies SET image_path= ? WHERE id= ?;";
 
     private static final String MOVIES_FOR_PARTICIPANT =
             "SELECT movies_id from movies_participants where participants_id = ?;";
     private static final String LAST_INSERTED_MOVIE =
-            "SELECT * FROM test_db.movies ORDER BY id DESC LIMIT 1;";
+            "SELECT id, title, year, image_path, runtime, budget, gross FROM test_db.movies ORDER BY id DESC LIMIT 1;";
 
     private static final String COUNT_ALL_MOVIES_BY_GENRE =
             "SELECT COUNT(genres_id) AS amount FROM movies_genres WHERE genres_id = ?";
@@ -435,9 +435,10 @@ public class MovieDaoImpl implements MovieDAO {
                 movie.setId(rs.getInt(ID));
                 movie.setTitle(rs.getString(TITLE));
                 movie.setYear(rs.getInt(YEAR));
+                movie.setRuntime(rs.getInt(RUNTIME));
                 movie.setBudget(rs.getLong(BUDGET));
                 movie.setGross(rs.getLong(GROSS));
-                movie.setGross(rs.getLong(RUNTIME));
+
             }
             return movie;
 
