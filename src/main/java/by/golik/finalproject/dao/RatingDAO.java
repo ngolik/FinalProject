@@ -15,7 +15,7 @@ public interface RatingDAO {
      * @return list of filled rating beans
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Vote> getRatingorMovie(int id) throws DAOException;
+    Vote getRatingForMovie(int id) throws DAOException;
 
     /**
      * This method is used to get rating user gave to any movies.

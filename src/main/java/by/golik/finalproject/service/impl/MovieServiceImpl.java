@@ -36,6 +36,30 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public Vote getRatingForMovie(String movieID) throws ServiceException {
+        if (!Validator.validateNumber(movieID)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        RatingDAO dao = daoFactory.getRatingDAO();
+        Vote vote;
+
+        int normId;
+        try {
+            normId = Integer.parseInt(movieID);
+        } catch (NumberFormatException e) {
+            throw new ServiceException("No film with such ID");
+        }
+        try {
+            vote = dao.getRatingForMovie(normId);
+            logger.info(vote.toString());
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+        return vote;
+    }
+
+    @Override
     public List<Genre> readAllGenres() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         GenreDAO dao = daoFactory.getGenreDAO();
@@ -58,14 +82,12 @@ public class MovieServiceImpl implements MovieService {
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
-        RatingDAO ratingDAO = daoFactory.getRatingDAO();
         List<Movie> movies;
         try {
             movies = dao.readAllMovies();
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
-            Validator.fillVotesForMovie(ratingDAO, movies);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }
@@ -99,7 +121,7 @@ public class MovieServiceImpl implements MovieService {
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
         Movie movie;
-
+        List<Vote> ratingList;
         int normId;
         try {
             normId = Integer.parseInt(id);
@@ -146,7 +168,6 @@ public class MovieServiceImpl implements MovieService {
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
-        RatingDAO ratingDAO = daoFactory.getRatingDAO();
         List<Movie> movies;
         try {
             movies = dao.searchMovieByTitle(title);
@@ -154,7 +175,6 @@ public class MovieServiceImpl implements MovieService {
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
-            Validator.fillVotesForMovie(ratingDAO, movies);
         } catch (DAOException e) {
             throw new ServiceException("Error in source!", e);
         }

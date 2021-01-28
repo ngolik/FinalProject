@@ -48,13 +48,18 @@ public class Movie {
     /**
      * list of marks from users
      */
-    List<Vote> votes;
-    private Participant actor;
-    private Participant director;
-    private Participant producer;
+    private int ratingVotes;
+
+    public int getRatingVotes() {
+        return ratingVotes;
+    }
+
+    public void setRatingVotes(int ratingVotes) {
+        this.ratingVotes = ratingVotes;
+    }
+
+    List<Vote> ratings;
     List<Participant> participants;
-    private String description;
-    private List<Genre> genreList;
 
     public List<Participant> getParticipants() {
         return participants;
@@ -64,36 +69,12 @@ public class Movie {
         this.participants = participants;
     }
 
-    public Participant getActor() {
-        return actor;
+    public List<Vote> getRatings() {
+        return ratings;
     }
 
-    public void setActor(Participant actor) {
-        this.actor = actor;
-    }
-
-    public Participant getDirector() {
-        return director;
-    }
-
-    public void setDirector(Participant director) {
-        this.director = director;
-    }
-
-    public Participant getProducer() {
-        return producer;
-    }
-
-    public void setProducer(Participant producer) {
-        this.producer = producer;
-    }
-
-    public List<Vote> getVotes() {
-        return votes;
-    }
-
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
+    public void setRatings(List<Vote> ratings) {
+        this.ratings = ratings;
     }
 
     public double getAvgRating() {
@@ -172,21 +153,6 @@ public class Movie {
         this.rating = rating;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Genre> getGenreList() {
-        return genreList;
-    }
-
-    public void setGenreList(List<Genre> genreList) {
-        this.genreList = genreList;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -199,9 +165,7 @@ public class Movie {
         if (budget != movie.budget) return false;
         if (gross != movie.gross) return false;
         if (Double.compare(movie.rating, rating) != 0) return false;
-        if (!Objects.equals(title, movie.title)) return false;
-        return  (!Objects.equals(genreList, movie.genreList));
-
+        return  (!Objects.equals(title, movie.title));
     }
 
     @Override
@@ -216,7 +180,6 @@ public class Movie {
         result = 31 * result + (int) (gross ^ (gross >>> 32));
         temp = Double.doubleToLongBits(rating);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (genreList != null ? genreList.hashCode() : 0);
 
         return result;
     }
@@ -233,13 +196,7 @@ public class Movie {
                 ", gross=" + gross +
                 ", rating=" + rating +
                 ", avgRating=" + avgRating +
-                ", votes=" + votes +
-                ", actor=" + actor +
-                ", director=" + director +
-                ", producer=" + producer +
                 ", participants=" + participants +
-                ", description='" + description + '\'' +
-                ", genreList=" + genreList +
                 '}';
     }
 }

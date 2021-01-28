@@ -75,7 +75,6 @@ public class ParticipantDaoImpl implements ParticipantDAO {
 
             st = con.prepareStatement(PARTICIPANTS_FOR_MOVIE);
             st.setInt(1, normId);
-
             rs = st.executeQuery();
 
             List<Participant> participants = new ArrayList<>();

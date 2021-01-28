@@ -5,6 +5,7 @@ import by.golik.finalproject.dao.exception.ConnectionPoolException;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.dao.pool.ConnectionPoolHelper;
+import by.golik.finalproject.entity.Movie;
 import by.golik.finalproject.entity.Vote;
 
 import java.sql.*;
@@ -19,7 +20,7 @@ import static javax.json.bind.JsonbConfig.DATE_FORMAT;
 public class RatingDaoImpl implements RatingDAO {
 
     private final static String SHOW_RATINGS_BY_ID =
-            "SELECT score, date, users_id FROM votes WHERE movies_id=?";
+            "SELECT users_id, date,  AVG(score) AS score FROM votes WHERE movies_id=?";
     private static final String SHOW_RATING_FROM_USER =
             "SELECT score, date, movies_id FROM votes WHERE users_id=?";
     private static final String CHECK_RATING =
@@ -32,6 +33,7 @@ public class RatingDaoImpl implements RatingDAO {
             "DELETE FROM votes WHERE movies_id=? AND users_id=?;";
     private static final String USER_NAME = "userName";
     private static final String MOVIES_ID = "movies_id";
+    private static final String USERS_ID = "users_id";
     private static final String SCORE = "score";
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final RatingDAO instance = new RatingDaoImpl();
@@ -41,27 +43,24 @@ public class RatingDaoImpl implements RatingDAO {
     }
 
     @Override
-    public List<Vote> getRatingorMovie(int id) throws DAOException {
+    public Vote getRatingForMovie(int id) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-
             st = con.prepareStatement(SHOW_RATINGS_BY_ID);
             st.setInt(1, id);
             rs = st.executeQuery();
 
-            List<Vote> voteList = new ArrayList<>();
             Vote vote = null;
-            while (rs.next()) {
+            if (rs.next()) {
                 vote = new Vote();
                 vote.setMovieID(id);
-                vote.setUserName(rs.getString(USER_NAME));
+                vote.setUserID(rs.getInt(USERS_ID));
                 vote.setScore(rs.getInt(SCORE));
-                voteList.add(vote);
             }
-            return voteList;
+            return vote;
 
         } catch (SQLException e) {
             throw new DAOException("Vote sql error", e);

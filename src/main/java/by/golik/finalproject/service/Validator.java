@@ -124,19 +124,4 @@ public class Validator {
         matcher = PATTERN_YEAR.matcher(year);
         return matcher.matches();
     }
-
-    /**
-     * This method is used to fill movies with ratings.
-     *
-     * @param ratingDAO rating DAO
-     * @param movies    list of movies
-     * @throws DAOException if any error occurred while processing method.
-     */
-    public static void fillVotesForMovie(RatingDAO ratingDAO, List<Movie> movies) throws DAOException {
-        List<Vote> voteList;
-        for (Movie movie : movies) {
-            voteList = ratingDAO.getRatingorMovie(movie.getId());
-            movie.setVotes(voteList);
-        }
-    }
 }

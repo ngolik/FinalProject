@@ -1,5 +1,6 @@
 package by.golik.finalproject.entity;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -14,6 +15,7 @@ public class Vote {
     /**
      * id of movie
      */
+
     private int movieID;
     /**
      * id of user
@@ -26,6 +28,7 @@ public class Vote {
 
     public Vote() {
     }
+
 
     public int getMovieID() {
         return movieID;
