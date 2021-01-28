@@ -29,7 +29,7 @@ public class MovieServlet {
         MovieDAO movieDAO;
         UserDAO userDAO;
         GenreDAO genreDAO;
-
+        ParticipantDAO participantDAO;
         daoFactory = DaoFactory.getInstance();
         connectionPool = daoFactory.getConnectionPool();
 
@@ -43,6 +43,7 @@ public class MovieServlet {
         MovieServiceImpl movieService = new MovieServiceImpl();
         genreDAO = daoFactory.getGenreDAO();
         movieDAO = daoFactory.getMovieDAO();
+        participantDAO = daoFactory.getParticipantDAO();
 //        System.out.println(administratorService.readAllParticipants());
 
 //        System.out.println(userService.getUserByUserName("administrator").toString());
@@ -66,6 +67,7 @@ public class MovieServlet {
 //        movieService.addRating("1","6", "4");
 //        genreDAO.createGenreForMovie(22,3);
 //        genreDAO.deleteGenreForMovie(22,3);
+        System.out.println(participantDAO.getLastInsertedParticipant());
 
 
 

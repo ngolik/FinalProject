@@ -45,10 +45,10 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             "DELETE FROM `participants` WHERE `id` = ?";
 
     private static final String ALL_PARTICIPANTS =
-            "SELECT * FROM participants;";
+            "SELECT id, name, surname, secondname, position FROM participants;";
 
     private static final String LAST_INSERTED_PARTICIPANT =
-            "SELECT * FROM movies_db.participants ORDER BY participants.id DESC LIMIT 1;";
+            "SELECT id, name, surname, secondname, position FROM participants ORDER BY participants.id DESC LIMIT 1;";
 
 
     private static final String ID = "id";
@@ -309,6 +309,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
                 participant.setName(rs.getString(NAME));
                 participant.setSurname(rs.getString(SURNAME));
                 participant.setSecondName(rs.getString(SECONDNAME));
+                participant.setPosition(rs.getString(POSITION));
             }
             return participant;
 

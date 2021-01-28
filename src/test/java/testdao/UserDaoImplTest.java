@@ -7,31 +7,39 @@ import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.entity.User;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * @author Nikita Golik
  */
 public class UserDaoImplTest {
+    @BeforeMethod
+    public void takeConnection() {
+        DaoFactory factory = null;
+        ConnectionPool pool = null;
+        try {
+            factory = DaoFactory.getInstance();
+            pool = factory.getConnectionPool();
+            pool.init();
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
+        }
+    }
     @Test
     public void registerTest() throws Exception {
         DaoFactory factory = null;
-        ConnectionPool pool = null;
         UserDAO dao = null;
         try{
             factory = DaoFactory.getInstance();
-            pool = factory.getConnectionPool();
             dao = factory.getUserDAO();
 
-            pool.init();
             String userName= "testUser";
             String userEmail= "testuser@mail.ru";
             String userPass= "testUserPass";
-
-
             dao.register(userName, userEmail, userPass);
             User user = dao.getUserByUsername(userName);
-
 
             dao.deleteUser(userName);
 
@@ -42,13 +50,18 @@ public class UserDaoImplTest {
 
         } catch (ConnectionPoolException | DAOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                assert pool != null;
-                pool.destroy();
-            } catch (ConnectionPoolException e) {
-                e.printStackTrace();
-            }
+        }
+    }
+    @AfterMethod
+    public void destroyConnection() {
+        DaoFactory factory = null;
+        ConnectionPool pool = null;
+        try {
+            factory = DaoFactory.getInstance();
+            pool = factory.getConnectionPool();
+            pool.destroy();
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
         }
     }
 }
