@@ -9,6 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <jsp:useBean id="movie" class="by.golik.finalproject.entity.Movie" scope="request"/>
+<jsp:useBean id="vote" class="by.golik.finalproject.entity.Vote" scope="request"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="locale" var="locale"/>
@@ -60,6 +61,7 @@
                     ${runtime} <c:out value="${movie.runtime}"/><br/>
                     ${budget} <c:out value="${movie.budget}"/><br/>
                     ${gross} <c:out value="${movie.gross}"/><br/>
+                    ${rating} <c:out value="${vote.score}"/><br/>
             </div>
 
             <c:if test='${sessionScope.get("user").role eq "admin" || sessionScope.get("user").role eq "user"}'>
