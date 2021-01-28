@@ -20,6 +20,5 @@
 - удаление пользователя для администратора
 - просмотр всех участников фильмов;
 - добавление участника к определенному фильму, а также просмотр списка фильмов по участнику;
-<br>
+
 ![Image alt](https://github.com/NikitaGolik/FinalProject/tree/main/src/main/webapp/images/test_db.png)
-<br>
