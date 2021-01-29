@@ -120,6 +120,29 @@
         </table>
         <br>
 
+    <style type="text/css">
+        div.pagination {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .pagination a {
+            color: #3b5998;
+            text-decoration: none;
+            border: 1px #c2d1df solid;
+            padding: 2px 5px;
+            margin-right: 5px;
+        }
+        .pagination a:hover {
+            color: #3b5998;
+            text-decoration: none;
+            border: 1px #3b5998 solid;
+        }
+        a.current {
+            background: #c2d6ed;
+        }
+    </style>
+
+    <div class="pagination">
     <%--For displaying Previous link except for the 1st page --%>
     <ul class="pagination">
         <c:if test="${requestScope.currentPage > 1}">
