@@ -30,15 +30,18 @@ public class MovieDaoImpl implements MovieDAO {
 
     private static final String AMOUNT = "amount";
 
+    private final static String SHOW_ALL_PAGINATION =
+            "SELECT id, title, year, image_path, runtime, budget, gross  FROM movies ORDER BY id DESC LIMIT ?, ?";
     private final static String SHOW_ALL =
-            "SELECT movies.id, title, year, image_path, runtime, budget, gross  FROM `movies`";
+            "SELECT id, title, year, image_path, runtime, budget, gross  FROM movies";
+
     private static final String SHOW_BY_GENRE =
             "SELECT movies.id, movies.title, movies.budget, movies.gross, movies.runtime, movies.year, genres.name\n" +
                     "FROM   movies_genres \n" +
                     "       INNER JOIN movies \n" +
                     "               ON movies.id = movies_genres.movies_id \n" +
                     "       INNER JOIN genres \n" +
-                    "               ON genres.id = movies_genres.genres_id where genres.name = ?;";
+                    "               ON genres.id = movies_genres.genres_id where genres.name = ?  ORDER BY title DESC LIMIT ?, ?;";
 
     private static final String SHOW_BY_TITLE =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
@@ -74,7 +77,11 @@ public class MovieDaoImpl implements MovieDAO {
             "SELECT id, title, year, image_path, runtime, budget, gross FROM test_db.movies ORDER BY id DESC LIMIT 1;";
 
     private static final String COUNT_ALL_MOVIES_BY_GENRE =
-            "SELECT COUNT(genres_id) AS amount FROM movies_genres WHERE genres_id = ?";
+            "SELECT COUNT(genres_id) AS amount FROM movies_genres " +
+                    "       INNER JOIN movies \n" +
+                    "               ON movies.id = movies_genres.movies_id \n" +
+                    "       INNER JOIN genres \n" +
+                    "               ON genres.id = movies_genres.genres_id where genres.name = ?";
 
     private static final MovieDAO instance = new MovieDaoImpl();
 
@@ -84,6 +91,44 @@ public class MovieDaoImpl implements MovieDAO {
 
     public static MovieDAO getInstance() {
         return instance;
+    }
+
+
+    @Override
+    public List<Movie> readAllMovies(int offset, int noOfRecords) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(SHOW_ALL_PAGINATION);
+            st.setInt(1, offset);
+            st.setInt(2, noOfRecords);
+
+            rs = st.executeQuery();
+
+            List<Movie> movies = new ArrayList<>();
+            Movie movie;
+            while (rs.next()) {
+                movie = new Movie();
+                movie.setId(rs.getInt(ID));
+                movie.setTitle(rs.getString(TITLE));
+                movie.setYear(rs.getInt(YEAR));
+                movie.setRuntime(rs.getInt(RUNTIME));
+                movie.setBudget(rs.getInt(BUDGET));
+                movie.setGross(rs.getInt(GROSS));
+                movies.add(movie);
+            }
+            return movies;
+
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error");
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st, rs);
+        }
     }
 
     @Override
@@ -120,6 +165,7 @@ public class MovieDaoImpl implements MovieDAO {
             ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
+
     @Override
     public void createMovie(String title, int year, int runtime, long budget, long gross) throws DAOException {
         Connection con = null;
@@ -198,7 +244,7 @@ public class MovieDaoImpl implements MovieDAO {
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(String genre) throws DAOException {
+    public List<Movie> getMoviesByGenre(String genre,int offset, int recordsPerPage) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -207,6 +253,8 @@ public class MovieDaoImpl implements MovieDAO {
 
             st = con.prepareStatement(SHOW_BY_GENRE);
             st.setString(1, genre);
+            st.setInt(2, offset);
+            st.setInt(3, recordsPerPage);
             rs = st.executeQuery();
 
             List<Movie> movies = new ArrayList<>();

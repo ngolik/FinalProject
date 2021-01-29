@@ -14,17 +14,18 @@ public interface MovieDAO {
      * @return list of movies
      * @throws DAOException if some error occurred while processing data.
      */
+    List<Movie> readAllMovies(int offset, int noOfRecords) throws DAOException;
     List<Movie> readAllMovies() throws DAOException;
 
     /**
      * This method is used to get movies of a particular genre from data source.
      * @param genre of movie
      * @param offset first entry offset
-     * @param recordsNumber number of records to return
+     * @param recordsPerPage number of records to return
      * @return list of movies
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Movie> getMoviesByGenre(String genre) throws DAOException;
+    List<Movie> getMoviesByGenre(String genre, int offset, int recordsPerPage) throws DAOException;
 
     /**
      * This method is used to search movies into data source.

@@ -48,10 +48,20 @@ public class ShowMoviesByGenre implements Command {
         List<Movie> movies;
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         try {
-            movies = movieService.getMoviesByGenre(genre);
+            int page = 1;
+            if (request.getParameter(PAGE) != null) {
+                page = Integer.parseInt(request.getParameter(PAGE));
+            }
+            movies = movieService.getMoviesByGenre((page-1)*RECORDS_PER_PAGE, RECORDS_PER_PAGE, genre);
             request.setAttribute(REQUEST_ATTRIBUTE, movies);
+
+            int numberOfMovies = movieService.countMoviesByGenre(genre);
+            int noOfPages = (int) Math.ceil(numberOfMovies * 1.0 / RECORDS_PER_PAGE);
+
+            request.setAttribute(AMOUNT_OF_PAGES, noOfPages);
+            request.setAttribute(CURRENT_PAGE, page);
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
-        } catch (ServiceException e) {
+        } catch (ServiceException | DAOException e) {
             logger.error(e.getMessage(), e);
             request.setAttribute(ERROR, MESSAGE_OF_ERROR);
             request.getRequestDispatcher(ERROR_PAGE).forward(request, response);

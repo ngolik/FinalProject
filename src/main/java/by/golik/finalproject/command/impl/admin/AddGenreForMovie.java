@@ -45,6 +45,7 @@ public class AddGenreForMovie implements Command {
         String genreID = request.getParameter(GENRE_ID);
 
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         movies = movieService.readAllMovies();
         request.setAttribute(REQUEST, movies);

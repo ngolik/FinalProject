@@ -24,6 +24,12 @@ public class ShowAllMovies implements Command {
 
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/common/moviesPage.jsp";
     private static final String ERROR_PAGE = "/error.jsp";
+
+    private static final String PAGE = "page";
+    private static final String AMOUNT_OF_PAGES = "noOfPages";
+    private static final String CURRENT_PAGE = "currentPage";
+    private static final int RECORDS_PER_PAGE = 10;
+
     private static final String REQUEST_ATTRIBUTE = "all_movies";
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "No movies matching your query";
@@ -35,9 +41,20 @@ public class ShowAllMovies implements Command {
         List<Movie> movies;
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         try {
-            movies = movieService.readAllMovies();
+            int page = 1;
+            if (request.getParameter(PAGE) != null) {
+                page = Integer.parseInt(request.getParameter(PAGE));
+            }
+            movies = movieService.getFullList((page-1)* RECORDS_PER_PAGE, RECORDS_PER_PAGE);
+
+            int numberOfMovies = movieService.countAllMoviesAmount();
+            int noOfPages = (int) Math.ceil(numberOfMovies * 1.0 / RECORDS_PER_PAGE);
+
+            request.setAttribute(AMOUNT_OF_PAGES, noOfPages);
+            request.setAttribute(CURRENT_PAGE, page);
             request.setAttribute(REQUEST_ATTRIBUTE, movies);
             logger.info(movies);
+            
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, e.getMessage(), e);

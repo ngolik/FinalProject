@@ -138,7 +138,7 @@
             </c:when>
             <c:otherwise>
             <li>
-                <a href="DispatcherServlet?command=${param.command}&page=${i}">${i}</a>
+                <a href="DispatcherServlet?command=${param.command}&genre=${s}page=${i}">${i}</a>
             </li>
             </c:otherwise>
             </c:choose>
@@ -146,6 +146,7 @@
             </c:if>
 
         </ul>
+ </div>
     <c:import url="../menu/rightside.jsp"/>
     </div>
 </div>

@@ -67,9 +67,7 @@ public class MovieServlet {
 //        movieService.addRating("1","6", "4");
 //        genreDAO.createGenreForMovie(22,3);
 //        genreDAO.deleteGenreForMovie(22,3);
-        System.out.println(participantDAO.getLastInsertedParticipant());
-
-
+        System.out.println(movieService.countMoviesByGenre("western"));
 
     }
 }

@@ -84,7 +84,7 @@ public class MovieServiceImpl implements MovieService {
         MovieDAO dao = daoFactory.getMovieDAO();
         List<Movie> movies;
         try {
-            movies = dao.readAllMovies();
+            movies = dao.readAllMovies(offset, recordsPerPage);
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
@@ -95,15 +95,16 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(String genre) throws ServiceException {
-        if (!Validator.validate(genre)) {
+    public List<Movie> getMoviesByGenre(int offset, int recordsPerPage, String genre) throws ServiceException {
+        if (!Validator.validate(offset, recordsPerPage)
+            ||!Validator.validate(genre)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         MovieDAO dao = daoFactory.getMovieDAO();
         List<Movie> movies;
         try {
-            movies = dao.getMoviesByGenre(genre);
+            movies = dao.getMoviesByGenre(genre,offset, recordsPerPage);
             if (movies == null || movies.size() == 0) {
                 throw new ServiceException("No movies matching your query");
             }
