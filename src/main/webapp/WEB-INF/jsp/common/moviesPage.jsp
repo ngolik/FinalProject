@@ -138,12 +138,18 @@
             </c:when>
             <c:otherwise>
             <li>
-                <a href="DispatcherServlet?command=${param.command}&genre=${s}page=${i}">${i}</a>
+                <a href="DispatcherServlet?command=${param.command}&page=${i}&genre=${param.genre}">${i}</a>
             </li>
             </c:otherwise>
             </c:choose>
             </c:forEach>
             </c:if>
+        <%--For displaying Next link --%>
+        <c:if test="${requestScope.currentPage lt requestScope.noOfPages}">
+            <li>
+                <a href="DispatcherServlet?command=${param.command}&page=${requestScope.currentPage + 1}&genre=${param.genre}">${next}</a>
+            </li>
+        </c:if>
 
         </ul>
  </div>
