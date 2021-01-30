@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* CSS Document */
+
+img{border:0;}
+.clear{clear:both}
+/*wrapper and container*/
+#wrapper{
+	width:1100px;
+	margin:0 auto;
+}
+
+
+.publish{
+	margin-top:46px;
+	font:14px Tahoma, Geneva, sans-serif;
+	color:#5c3315;
+	text-transform:uppercase;
+}
+body {
+	background: url(images/main/9.jpg) no-repeat;
+	-moz-background-size: 100%; /* Firefox 3.6+ */
+	-webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+	-o-background-size: 100%; /* Opera 9.6+ */
+	background-size: 100%; /* Современные браузеры */
+}
+.head{
+	font:58px Verdana, Geneva, sans-serif;
+	color: #ffffff;
+	margin-top: 10px;
+}
+
+.tagln{
+	margin-top:30px;
+	font:12px Tahoma, Geneva, sans-serif;
+	color:#5c3315;
+	text-transform:uppercase;
+	line-height:23px;
+}
+
+.italics{
+	font-style: italic;	
+	text-transform:none;
+}
+
+
+.document{
+	height:265px;
+	background-color:#fff;
+	margin-top: 30px;
+}
+.dochead{
+	background-color:#689e18;
+	height:45px;
+	font:24px Tahoma, Geneva, sans-serif;
+	color:#FFF;
+	width: 385px;
+	margin-left:-10px;
+}
+
+.ltposts ul{
+	float:left;	
+	list-style:none;
+	margin-top: 10px;
+}
+
+.ltposts li a,a:link{
+	font:20px Tahoma, Geneva, sans-serif;
+	color:#413e32;
+	line-height:30px;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.ltposts li a:hover{
+	font:14px Tahoma, Geneva, sans-serif;
+	color:#413e32;
+	line-height:30px;
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+
+.rtposts li a,a:link{
+	font:20px Tahoma, Geneva, sans-serif;
+	color:#413e32;
+	line-height:30px;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.rtposts li a:hover{
+	font:20px Tahoma, Geneva, sans-serif;
+	color:#413e32;
+	line-height:30px;
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+
+.ltdetail li a,a:link{
+	font: 20px Tahoma, Geneva, sans-serif;
+	color:#413e32;
+	text-decoration:none;
+	margin-left: 10px;
+	line-height: 30px;
+	font-weight:bold;
+}
+
+.ltdetail li a:hover{
+	font: 20px Tahoma, Geneva, sans-serif;
+	color:#5c3315;
+	text-decoration:underline;
+	line-height: 30px;
+	font-weight:bold;
+}
+
+
+.flinks a,a:link{
+	font:20px Tahoma, Geneva, sans-serif;
+	color:#6b664f;
+	text-decoration:none;
+}
+
+.flinks a:hover{
+	font:20px Tahoma, Geneva, sans-serif;
+	color:#6b664f;
+	text-decoration:underline;
+}
+
+.separator{
+	color:#6b664f;
+}
+
+.textbox{
+	width:190px; border:none; padding:2px; color:#444;	
+}

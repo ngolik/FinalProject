@@ -30,50 +30,46 @@
 <fmt:message bundle="${locale}" key="locale.participants" var="participants"/>
 
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">${siteName}</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li id="index-page"><a href="${pageContext.request.contextPath}/index.jsp">${home}</a> </li>
-                <li id="movies-page"><a href="DispatcherServlet?command=all-movies">${movies}</a></li>
-                <li id="participants-page"><a href="DispatcherServlet?command=all-participants">${participants}</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <c:if test="${sessionScope.get('user') == null}">
-                    <li class="sign-up">
-                        <a data-toggle="modal" data-target="#register" href="#">
-                            <span class="glyphicon glyphicon-user"> </span>
-                                ${signUp}</a>
-                    </li>
-                    <li><a data-toggle="modal" data-target="#login" href="#">
-                        <span class="glyphicon glyphicon-log-in"></span>
-                            ${logIn}</a>
-                    </li>
-                </c:if>
-                    <c:if test="${sessionScope.get('user') != null}">
-                    <li class="sign-up">
-                        <a href="DispatcherServlet?command=view-user&username=${sessionScope.get('user').username}">
-                            <span class="glyphicon glyphicon-user"></span> ${sessionScope.get('user').username}</a>
-                    </li>
-                    <li><a href="DispatcherServlet?command=log-out">
-                        <span class="glyphicon glyphicon-log-out"></span> ${logOut}</a>
-                    </li>
-                </c:if>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">${siteName}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">${home}</a>
 
-                <li><a href="DispatcherServlet?command=change-language&language=en">English</a></li>
-                <li><a href="DispatcherServlet?command=change-language&language=ru">Русский</a></li>
-            </ul>
-        </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+    <li id="movies-page"><a href="DispatcherServlet?command=all-movies">${movies}</a></li>
+    <li id="participants-page"><a href="DispatcherServlet?command=all-participants">${participants}</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <c:if test="${sessionScope.get('user') == null}">
+        <li class="sign-up">
+        <a data-toggle="modal" data-target="#register" href="#">
+        <span class="glyphicon glyphicon-user"> </span>
+        ${signUp}</a>
+        </li>
+        <li><a data-toggle="modal" data-target="#login" href="#">
+        <span class="glyphicon glyphicon-log-in"></span>
+        ${logIn}</a>
+        </li>
+    </c:if>
+    <c:if test="${sessionScope.get('user') != null}">
+        <li class="sign-up">
+        <a href="DispatcherServlet?command=view-user&username=${sessionScope.get('user').username}">
+        <span class="glyphicon glyphicon-user"></span> ${sessionScope.get('user').username}</a>
+        </li>
+        <li><a href="DispatcherServlet?command=log-out">
+        <span class="glyphicon glyphicon-log-out"></span> ${logOut}</a>
+        </li>
+    </c:if>
+
+    <li><a href="DispatcherServlet?command=change-language&language=en">English</a></li>
+    <li><a href="DispatcherServlet?command=change-language&language=ru">Русский</a></li>
+    </ul>
     </div>
-</nav>
+    </div>
+    </nav>
 
 <div id="login" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

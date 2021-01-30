@@ -59,7 +59,7 @@ public class MovieDaoImpl implements MovieDAO {
             "SELECT COUNT(movies.id) AS amount FROM movies";
 
     private static final String ADD_MOVIE =
-            "INSERT INTO movies (title, year, runtime, budget, image_path, gross) VALUES (?, ?, ?, ?, 'sa', ?)";
+            "INSERT INTO movies (title, year, runtime, budget, image_path, gross) VALUES (?, ?, ?, ?, 'src/main/webapp/images/main/6.png', ?)";
 
     private static final String UPDATE_BY_ID =
             "UPDATE `test_db`.`movies`\n" +

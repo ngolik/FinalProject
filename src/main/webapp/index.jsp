@@ -14,21 +14,19 @@
 <html>
 <head>
     <title>${indexTitle}</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style7.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <H1>Movies</H1>
 
 </head>
 <body onload="active()">
 
 <body style="background-image:url(images/main/9.jpg)">
+
 
 
 <c:import url="WEB-INF/jsp/menu/menu.jsp"/>
@@ -104,7 +102,7 @@
     </div>
     <c:import url="WEB-INF/jsp/menu/footer.jsp"/>
 </div>
-
+</body>
 </body>
 </html>
 

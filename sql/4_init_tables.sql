@@ -1,11 +1,14 @@
-INSERT INTO `users` (
-    `id`,
-    `login`,
-    `password`,
-    `role`
-) VALUES (
-             1,
-             "admin",
-             "21232F297A57A5A743894A0E4A801FC3", /* MD5 хэш пароля "admin" */
-             0
-         );
+INSERT INTO `movies_db`.`users`
+(`id`,
+ `login`,
+ `password`,
+ `email`,
+ `role`,
+ `registrationdate`)
+VALUES
+(1,
+    'admin',
+    '$2a$05$iEeRTdIne5umv448A3Wsu.rijKYX0WP/rfCL8MDP64pvsSla/BM2y', /*ХЕШ-пароль bCrypt */
+    'adminka@mail.ru',
+    'admin',
+    2021-01-30);

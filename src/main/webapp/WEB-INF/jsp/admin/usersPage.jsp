@@ -24,7 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style7.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
@@ -32,7 +32,7 @@
 <body>
 <c:import url="../menu/menu.jsp"/>
 <div class="container-fluid text-center wrapper">
-     <div class="row content">
+     <br class="row content">
          <c:import url="../menu/adminMenu.jsp"/>
          <div class="col-sm-8 text-left mainContent">
              <br>
@@ -54,7 +54,7 @@
              </table>
          </div>
          <c:import url="../menu/rightside.jsp"/>
-     </div>
+     </br>
 </div>
 </body>
 </html>
