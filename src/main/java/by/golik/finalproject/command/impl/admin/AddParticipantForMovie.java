@@ -31,9 +31,9 @@ public class AddParticipantForMovie implements Command {
     private static final String MOVIE_LIST = "movies";
     private static final String PARTICIPANT_LIST = "participants";
 
-    private static final String ERROR = "errorParticipant";
+    private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot add participant for movie";
-    private static final String ADD_PARTICIPANT_FOR_MOVIE = "add_participant_for_movie";
+    private static final String SUCCESS = "successMessage";
     private static final String MESSAGE_OF_SUCCESS = "Participant successfully added";
 
     @Override
@@ -58,8 +58,8 @@ public class AddParticipantForMovie implements Command {
         } else {
             try {
                 administratorService.addParticipantForMovie(movieID, participantID);
-                request.setAttribute(ADD_PARTICIPANT_FOR_MOVIE, MESSAGE_OF_SUCCESS);
-                response.sendRedirect(REDIRECT);
+                request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             }  catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR);

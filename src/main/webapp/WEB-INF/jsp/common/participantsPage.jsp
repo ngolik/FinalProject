@@ -97,7 +97,42 @@
         <c:import url="../menu/rightside.jsp"/>
 
     </div>
+    <div class="pagination">
+        <%--For displaying Previous link except for the 1st page --%>
+        <ul class="pagination">
+            <c:if test="${requestScope.currentPage > 1}">
+                <li>
+                    <a href="DispatcherServlet?command=${param.command}&page=${requestScope.currentPage - 1}">${previous}</a>
+                </li>
 
+            </c:if>
+            <%--For displaying Page numbers.
+                    The when condition does not display a link for the current page--%>
+            <c:if test="${requestScope.noOfPages>1}">
+                <c:forEach begin="1" end="${requestScope.noOfPages}" var="i">
+                    <c:choose>
+                        <c:when test="${requestScope.currentPage eq i}">
+                            <li class="active"><a href="#">${i}</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="DispatcherServlet?command=${param.command}&page=${i}&genre=${param.genre}">${i}</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </c:if>
+            <%--For displaying Next link --%>
+            <c:if test="${requestScope.currentPage lt requestScope.noOfPages}">
+                <li>
+                    <a href="DispatcherServlet?command=${param.command}&page=${requestScope.currentPage + 1}&genre=${param.genre}">${next}</a>
+                </li>
+            </c:if>
+
+        </ul>
+    </div>
+    <c:import url="../menu/rightside.jsp"/>
+</div>
 </div>
 
 </body>

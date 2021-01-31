@@ -47,7 +47,7 @@ public class AddParticipant implements Command {
             try {
                 administratorService.addParticipant(name, surname, secondName, position);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
-                response.sendRedirect(REDIRECT);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR);

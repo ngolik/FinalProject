@@ -44,7 +44,7 @@ public class CommandProvider {
         adminCommands.put(CommandList.ADD_GENRE_FOR_MOVIE, new AddGenreForMovie());
         adminCommands.put(CommandList.ADD_MOVIE, new AddMovie());
         adminCommands.put(CommandList.ADD_PARTICIPANT, new AddParticipant());
-//        adminCommands.put(CommandList.ADD_PARTICIPANT_FOR_MOVIE, new AddParticipantForMovie());
+        adminCommands.put(CommandList.ADD_PARTICIPANT_FOR_MOVIE, new AddParticipantForMovie());
         adminCommands.put(CommandList.DELETE_GENRE_FOR_MOVIE, new DeleteGenreForMovie());
         adminCommands.put(CommandList.UPDATE_MOVIE, new UpdateMovie());
         adminCommands.put(CommandList.UPDATE_PARTICIPANT, new UpdateParticipant());
