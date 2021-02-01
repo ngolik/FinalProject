@@ -10,6 +10,7 @@ import by.golik.finalproject.service.ParticipantService;
 import by.golik.finalproject.service.Validator;
 import by.golik.finalproject.service.exception.ServiceException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -46,5 +47,40 @@ public class ParticipantServiceImpl implements ParticipantService {
                 throw new ServiceException("Error in source!", e);
             }
             return participant;
+    }
+
+    @Override
+    public List<Participant> getFullList(int offset, int recordsPerPage) throws ServiceException {
+        if (!Validator.validate(offset, recordsPerPage)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        List<Participant> participants;
+        try {
+            participants = dao.getAllParticipants(offset, recordsPerPage);
+            if (participants == null || participants.size() == 0) {
+                throw new ServiceException("No participants matching your query");
+            }
+        } catch (DAOException | SQLException e) {
+            throw new ServiceException("Error in source!");
+        }
+        return participants;
+    }
+
+    @Override
+    public int countAllParticipantsAmount() throws ServiceException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        int amount;
+        try {
+            amount = dao.countAllParticipantsAmount();
+            if (amount == 0) {
+                throw new ServiceException("No movies matching your query");
+            }
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+        return amount;
     }
 }

@@ -44,11 +44,15 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     private static final String DELETE_PARTICIPANT_BY_ID =
             "DELETE FROM `participants` WHERE `id` = ?";
 
-    private static final String ALL_PARTICIPANTS =
-            "SELECT id, name, surname, secondname, position FROM participants;";
+    private static final String SHOW_ALL_PARTICIPANTS =
+            "SELECT id, name, surname, secondname, position FROM participants";
+    private static final String SHOW_ALL_PARTICIPANTS_PAGINATION =
+            "SELECT id, name, surname, secondname, position FROM participants ORDER BY id DESC LIMIT ?, ?";
 
     private static final String LAST_INSERTED_PARTICIPANT =
             "SELECT id, name, surname, secondname, position FROM participants ORDER BY participants.id DESC LIMIT 1;";
+    private static final String COUNT_ALL_PARTICIPANTS = "SELECT COUNT(id) AS amount FROM participants";
+    private static final String AMOUNT = "amount";
 
 
     private static final String ID = "id";
@@ -256,14 +260,14 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     }
 
     @Override
-    public List<Participant> getAllParticipants() throws DAOException, SQLException {
+    public List<Participant> getAllParticipants() throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
 
-            st = con.prepareStatement(ALL_PARTICIPANTS);
+            st = con.prepareStatement(SHOW_ALL_PARTICIPANTS);
 
             rs = st.executeQuery();
 
@@ -287,7 +291,40 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         } finally {
             ConnectionPoolHelper.closeResource(con, st, rs);
         }
+    }
+    @Override
+    public List<Participant> getAllParticipants(int offset, int noOfRecords) throws SQLException, DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
 
+            st = con.prepareStatement(SHOW_ALL_PARTICIPANTS_PAGINATION);
+            st.setInt(1, offset);
+            st.setInt(2, noOfRecords);
+            rs = st.executeQuery();
+
+            List<Participant> participants = new ArrayList<>();
+            Participant participant;
+            while (rs.next()) {
+                participant = new Participant();
+                participant.setId(rs.getInt(ID));
+                participant.setName(rs.getString(NAME));
+                participant.setSurname(rs.getString(SURNAME));
+                participant.setSecondName(rs.getString(SECONDNAME));
+                participant.setPosition(rs.getString(POSITION));
+                participants.add(participant);
+            }
+            return participants;
+
+        } catch (SQLException e) {
+            throw new DAOException("Participant sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Participant pool connection error");
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st, rs);
+        }
     }
 
 
@@ -323,4 +360,28 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         }
     }
 
+    @Override
+    public int countAllParticipantsAmount() throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(COUNT_ALL_PARTICIPANTS);
+            int amount = 0;
+            rs = st.executeQuery();
+            if (rs.next()) {
+                amount = rs.getInt(AMOUNT);
+            }
+            return amount;
+
+        } catch (SQLException e) {
+            throw new DAOException("Participant sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Participant pool connection error", e);
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st, rs);
+        }
+    }
 }

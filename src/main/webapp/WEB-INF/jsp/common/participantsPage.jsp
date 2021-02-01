@@ -19,6 +19,8 @@
 <fmt:message bundle="${locale}" key="locale.position" var="position"/>
 <fmt:message bundle="${locale}" key="locale.participant" var="participant"/>
 <fmt:message bundle="${locale}" key="locale.all" var="all"/>
+<fmt:message bundle="${locale}" key="locale.next" var="next"/>
+<fmt:message bundle="${locale}" key="locale.previous" var="previous"/>
 
 <!DOCTYPE html>
 <html>
@@ -42,24 +44,22 @@
     }
 </script>
 <div class="container-fluid text-center wrapper">
-    <div class="row content">
-
+    <br class="row content">
         <c:import url="../menu/adminMenu.jsp"/>
-
         <div class="col-sm-8 text-left mainContent">
             <h1>${allParticipantsList}</h1>
 
             <div class="selectboxes">
                 <div class="sortAwaits" style="width: 391px; float: left;margin: 0">
-                    <label>
+                    <span>Participants</span>>
                         <select onchange="MakeSort(this);">
                             <option value="DispatcherServlet?command=all-participants">-</option>
                             <option selected="" value="DispatcherServlet?command=all-participants">${all}</option>
                         </select>
-                    </label>
                 </div>
                 <div class="clear"></div>
             </div>
+            <div class="clear"></div>
             <script type="text/javascript">
                 function MakeSort(element) {
                     var selected = $('option:selected', element),
@@ -92,11 +92,31 @@
                 </c:forEach>
                 </tbody>
             </table>
-        </div>
+        <br>
 
-        <c:import url="../menu/rightside.jsp"/>
 
-    </div>
+            <style type="text/css">
+                div.pagination {
+                    margin-top: 10px;
+                    text-align: center;
+                }
+                .pagination a {
+                    color: #3b5998;
+                    text-decoration: none;
+                    border: 1px #c2d1df solid;
+                    padding: 2px 5px;
+                    margin-right: 5px;
+                }
+                .pagination a:hover {
+                    color: #3b5998;
+                    text-decoration: none;
+                    border: 1px #3b5998 solid;
+                }
+                a.current {
+                    background: #c2d6ed;
+                }
+            </style>
+
     <div class="pagination">
         <%--For displaying Previous link except for the 1st page --%>
         <ul class="pagination">
@@ -134,6 +154,6 @@
     <c:import url="../menu/rightside.jsp"/>
 </div>
 </div>
-
+<c:import url="../menu/footer.jsp"/>
 </body>
 </html>

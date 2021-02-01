@@ -3,7 +3,6 @@ package by.golik.finalproject.service;
 import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.User;
 import by.golik.finalproject.service.exception.ServiceAuthorizationException;
-import by.golik.finalproject.service.exception.ServiceBanException;
 import by.golik.finalproject.service.exception.ServiceException;
 
 /**

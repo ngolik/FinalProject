@@ -8,7 +8,6 @@ import by.golik.finalproject.service.Encryption;
 import by.golik.finalproject.service.UserService;
 import by.golik.finalproject.service.Validator;
 import by.golik.finalproject.service.exception.ServiceAuthorizationException;
-import by.golik.finalproject.service.exception.ServiceBanException;
 import by.golik.finalproject.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -82,8 +81,6 @@ public class UserServiceImpl implements UserService {
             user = dao.getUserByUsername(login);
             if (user == null || !Encryption.isMatch(pass , user.getPassword())) {
                 throw new ServiceAuthorizationException("Wrong login or password!");
-            } else if (user.getRole().equals(BANNED)) {
-                throw new ServiceBanException("Sorry access for you is temporary unavailable");
             }
         } catch (DAOException e) {
             throw new ServiceException("Error in source", e);

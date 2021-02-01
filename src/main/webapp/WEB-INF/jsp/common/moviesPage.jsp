@@ -44,7 +44,6 @@
     }
 </script>
 <div class="container-fluid text-center wrapper">
-
     <br class="row content">
         <c:import url="../menu/adminMenu.jsp"/>
         <div class="col-sm-8 text-left mainContent">
@@ -77,7 +76,6 @@
             }
         </script>
         <br>
-
         <table class="table table-stripped">
             <thead>
             <tr class="thead-dark">
@@ -88,7 +86,6 @@
                 <th>${gross}</th>
             </tr>
             </thead>
-
             <tbody>
             <c:forEach var="movie" items="${requestScope.all_movies}">
                 <tr>
@@ -120,6 +117,27 @@
         </table>
         <br>
 
+    <style type="text/css">
+        div.pagination {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .pagination a {
+            color: #3b5998;
+            text-decoration: none;
+            border: 1px #c2d1df solid;
+            padding: 2px 5px;
+            margin-right: 5px;
+        }
+        .pagination a:hover {
+            color: #3b5998;
+            text-decoration: none;
+            border: 1px #3b5998 solid;
+        }
+        a.current {
+            background: #c2d6ed;
+        }
+    </style>
     <div class="pagination">
     <%--For displaying Previous link except for the 1st page --%>
     <ul class="pagination">

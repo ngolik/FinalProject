@@ -25,9 +25,6 @@
 </head>
 <body onload="active()">
 
-<body style="background-image:url(images/main/9.jpg)">
-
-
 
 <c:import url="WEB-INF/jsp/menu/menu.jsp"/>
 

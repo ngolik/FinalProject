@@ -65,6 +65,8 @@ public interface ParticipantDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     List<Participant> getAllParticipants() throws DAOException, SQLException;
+    List<Participant> getAllParticipants(int offset, int noOfRecords) throws SQLException, DAOException;
+    int countAllParticipantsAmount() throws DAOException;
 
     /**
      * This method is used to retrieve the most recently added participant from data source.

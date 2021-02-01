@@ -63,7 +63,16 @@
                     ${runtime} <c:out value="${movie.runtime}"/><br/>
                     ${budget} <c:out value="${movie.budget}"/><br/>
                     ${gross} <c:out value="${movie.gross}"/><br/>
+                        <c:choose>
+                        <c:when test="${vote.score==0}">
+                            ${noRating}<br/>
+                        </c:when>
+                        <c:otherwise>
                     ${rating} <c:out value="${vote.score}"/><br/>
+                        </c:otherwise>
+                        </c:choose>
+
+
                         <link rel="stylesheet" href="${pageContext.request.contextPath}/style7.css">
             </div>
 
