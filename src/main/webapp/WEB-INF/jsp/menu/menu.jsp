@@ -39,19 +39,19 @@
 
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
-    <li id="movies-page"><a href="DispatcherServlet?command=all-movies">${movies}</a></li>
-    <li id="participants-page"><a href="DispatcherServlet?command=all-participants">${participants}</a></li>
+    <li id="movies-page"><a href="DispatcherServlet?command=all-movies">| ${movies} |</a></li>
+    <li id="participants-page"><a href="DispatcherServlet?command=all-participants">| ${participants} |</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     <c:if test="${sessionScope.get('user') == null}">
         <li class="sign-up">
         <a data-toggle="modal" data-target="#register" href="#">
         <span class="glyphicon glyphicon-user"> </span>
-        ${signUp}</a>
+        | ${signUp} |</a>
         </li>
         <li><a data-toggle="modal" data-target="#login" href="#">
         <span class="glyphicon glyphicon-log-in"></span>
-        ${logIn}</a>
+        | ${logIn} |</a>
         </li>
     </c:if>
     <c:if test="${sessionScope.get('user') != null}">
@@ -60,12 +60,12 @@
         <span class="glyphicon glyphicon-user"></span> ${sessionScope.get('user').username}</a>
         </li>
         <li><a href="DispatcherServlet?command=log-out">
-        <span class="glyphicon glyphicon-log-out"></span> ${logOut}</a>
+        <span class="glyphicon glyphicon-log-out"></span>| ${logOut} |</a>
         </li>
     </c:if>
 
-    <li><a href="DispatcherServlet?command=change-language&language=en">English</a></li>
-    <li><a href="DispatcherServlet?command=change-language&language=ru">Русский</a></li>
+    <li><a href="DispatcherServlet?command=change-language&language=en">| English |</a></li>
+    <li><a href="DispatcherServlet?command=change-language&language=ru">| Русский |</a></li>
     </ul>
     </div>
     </div>

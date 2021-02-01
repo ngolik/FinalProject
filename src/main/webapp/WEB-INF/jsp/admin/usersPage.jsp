@@ -24,7 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style7.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
@@ -56,5 +56,6 @@
          <c:import url="../menu/rightside.jsp"/>
      </br>
 </div>
+<c:import url="../menu/footer.jsp"/>
 </body>
 </html>

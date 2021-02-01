@@ -27,7 +27,7 @@ public class DeleteUser implements Command {
 
     private static final String ERROR = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot delete user";
-    private static final String SUCCESS = "delete_user";
+    private static final String SUCCESS = "successMessage";
     private static final String MESSAGE_OF_SUCCESS = "USer successfully deleted";
 
     @Override
@@ -43,7 +43,7 @@ public class DeleteUser implements Command {
             try {
                 administratorService.deleteUser(username);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
-                response.sendRedirect(REDIRECT);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             } catch (ServiceException | DAOException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR);

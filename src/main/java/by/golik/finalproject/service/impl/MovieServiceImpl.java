@@ -257,4 +257,24 @@ public class MovieServiceImpl implements MovieService {
         return participants;
     }
 
+    @Override
+    public List<Movie> getMoviesByParticipant(int offset, int recordsPerPage, String participantName, String participantSurname) throws ServiceException {
+        if (!Validator.validate(offset, recordsPerPage)
+                ||!Validator.validate(participantName)
+                || !Validator.validate(participantSurname)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        MovieDAO dao = daoFactory.getMovieDAO();
+        List<Movie> movies;
+        try {
+            movies = dao.getMoviesByParticipant(participantName, participantSurname, offset, recordsPerPage);
+            if (movies == null || movies.size() == 0) {
+                throw new ServiceException("No movies matching your query");
+            }
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
+        return movies;
+    }
 }

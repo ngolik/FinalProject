@@ -40,6 +40,7 @@ public class CommandProvider {
         guestCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
         guestCommands.put(CommandList.ALL_PARTICIPANTS, new ShowAllParticipants());
         guestCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowParticipantByID());
+        guestCommands.put(CommandList.SHOW_MOVIES_BY_PARTICIPANT, new ShowMoviesByParticipant());
 
         adminCommands.put(CommandList.ADD_GENRE_FOR_MOVIE, new AddGenreForMovie());
         adminCommands.put(CommandList.ADD_MOVIE, new AddMovie());

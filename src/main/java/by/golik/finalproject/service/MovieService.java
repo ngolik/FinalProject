@@ -18,6 +18,7 @@ public interface MovieService {
     List<Movie> readAllMovies() throws ServiceException;
 
     List<Movie> getMoviesByGenre(int offset, int recordsPerPage,String genre) throws ServiceException;
+    List<Movie> getMoviesByParticipant(int offset, int recordsPerPage,String participantName, String participantSurname) throws ServiceException;
     Movie getMovieByID(String id) throws ServiceException;
     Participant getParticipantByID(String id) throws ServiceException;
     public void addRating(String movieID, String userName, String rating) throws ServiceException;

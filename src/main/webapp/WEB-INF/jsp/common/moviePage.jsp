@@ -37,7 +37,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style7.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <title><c:out value="${movie.title}"/></title>
@@ -58,7 +58,8 @@
     <div class="col-sm-8 text-left mainContent">
         <c:if test="${sessionScope.get('language') eq 'ru' || sessionScope.get('language')==null}">
             <h1><c:out value="${movie.title}"/></h1>
-            <div class="col-sm-9">
+            <br>
+            <tr class="thead-dark">
                     ${year} <c:out value="${movie.year}"/><br/>
                     ${runtime} <c:out value="${movie.runtime}"/><br/>
                     ${budget} <c:out value="${movie.budget}"/><br/>
@@ -71,9 +72,10 @@
                     ${rating} <c:out value="${vote.score}"/><br/>
                         </c:otherwise>
                         </c:choose>
+            </tr>
 
 
-                        <link rel="stylesheet" href="${pageContext.request.contextPath}/style7.css">
+                        <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
             </div>
 
             <c:if test='${sessionScope.get("user").role eq "user"}'>
@@ -99,6 +101,7 @@
         <c:import url="../menu/rightside.jsp"/>
 </br>
 </div>
+<c:import url="../menu/footer.jsp"/>
 </body>
 </body>
 </html>

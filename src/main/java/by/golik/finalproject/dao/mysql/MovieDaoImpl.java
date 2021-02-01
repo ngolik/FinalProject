@@ -65,6 +65,13 @@ public class MovieDaoImpl implements MovieDAO {
             "UPDATE `test_db`.`movies`\n" +
                     "SET title = ?, year = ?, `runtime` = ?, `budget` = ?,`gross` = ?\n" +
                     "WHERE `id` = ?;\n";
+    private static final String SHOW_MOVIES_BY_PARTICIPANT  =
+            "SELECT movies.id, movies.title, movies.budget, movies.gross, movies.runtime, movies.year, participants.name, participants.surname\n" +
+                    "                    FROM   movies_participants\n" +
+                    "                    INNER JOIN movies\n" +
+                    "                    ON movies.id = movies_participants.movies_id\n" +
+                    "                    INNER JOIN participants\n" +
+                    "                    ON participants.id = movies_participants.participants_id where participants.name = ? AND participants.surname = ? ORDER BY movies.id";
 
     private static final String DELETE_BY_ID =
             "DELETE FROM `movies` WHERE id=?;";
@@ -519,6 +526,42 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie sql error", e);
         } catch (ConnectionPoolException e) {
             throw new DAOException("Movie pool connection error", e);
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st, rs);
+        }
+    }
+    @Override
+    public List<Movie> getMoviesByParticipant(String participantName, String participantSurname, int offset, int recordsPerPage) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(SHOW_MOVIES_BY_PARTICIPANT);
+            st.setString(1, participantName);
+            st.setString(2, participantSurname);
+
+            rs = st.executeQuery();
+
+            List<Movie> movies = new ArrayList<>();
+            Movie movie;
+            while (rs.next()) {
+                movie = new Movie();
+                movie.setId(rs.getInt(ID));
+                movie.setTitle(rs.getString(TITLE));
+                movie.setYear(rs.getInt(YEAR));
+                movie.setRuntime(rs.getInt(RUNTIME));
+                movie.setBudget(rs.getInt(BUDGET));
+                movie.setGross(rs.getInt(GROSS));
+                movies.add(movie);
+            }
+            return movies;
+
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error");
         } finally {
             ConnectionPoolHelper.closeResource(con, st, rs);
         }
