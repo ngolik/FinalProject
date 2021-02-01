@@ -53,7 +53,7 @@ public class ShowMoviesByParticipant implements Command {
             if (request.getParameter(PAGE) != null) {
                 page = Integer.parseInt(request.getParameter(PAGE));
             }
-            movies = movieService.getMoviesByParticipant((page-1)*RECORDS_PER_PAGE, RECORDS_PER_PAGE, participantName, participantSurname);
+            movies = movieService.getMoviesByParticipant(1, 10, participantName, participantSurname);
             request.setAttribute(REQUEST_ATTRIBUTE, movies);
 
 //            int numberOfMovies = movieService.countMoviesByGenre(genre);

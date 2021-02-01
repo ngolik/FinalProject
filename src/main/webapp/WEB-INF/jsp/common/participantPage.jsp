@@ -54,6 +54,43 @@
                 </tr>
         </c:if>
 
+        <br>
+        <table class="table table-stripped">
+            <thead>
+            <tr class="thead-dark">
+                <th>Movies with ${participant.name} ${participant.surname}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="movie" items="${requestScope.all_movies}">
+                <tr>
+                    <td>
+                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
+                            <c:out value="${movie.title}"/></a></td>
+                    <td>
+                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
+                            <c:out value="${movie.year}"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
+                                <c:out value="${movie.runtime}"/>
+                    </td>
+                    <td>
+                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
+                            <c:out value="${movie.budget}"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
+                            <c:out value="${movie.gross}"/>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+
     </div>
     <c:import url="../menu/rightside.jsp"/>
 </br>
