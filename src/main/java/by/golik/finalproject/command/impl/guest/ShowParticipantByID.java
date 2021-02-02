@@ -2,6 +2,7 @@ package by.golik.finalproject.command.impl.guest;
 
 import by.golik.finalproject.command.Command;
 import by.golik.finalproject.command.CommandHelper;
+import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Movie;
 import by.golik.finalproject.entity.Participant;
 import by.golik.finalproject.service.MovieService;
@@ -28,8 +29,11 @@ public class ShowParticipantByID implements Command {
 
     private static final String ID = "id";
 
-    private static final String PARTICIPANT_NAME = "participantName";
-    private static final String PARTICIPANT_SURNAME = "participantSurname";
+    private static final String PAGE = "page";
+    private static final String AMOUNT_OF_PAGES = "noOfPages";
+    private static final String CURRENT_PAGE = "currentPage";
+    private static final int RECORDS_PER_PAGE = 10;
+
     private static final String REQUEST_ATTRIBUTE = "participant";
     private static final String REQUEST_ATTRIBUTE_FOR_MOVIES = "all_movies";
     private static final String ERROR = "errorMessage";
@@ -48,14 +52,24 @@ public class ShowParticipantByID implements Command {
         List<Movie> movies;
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         try {
+            int page = 1;
+            if (request.getParameter(PAGE) != null) {
+                page = Integer.parseInt(request.getParameter(PAGE));
+            }
             participant = movieService.getParticipantByID(id);
             participantName = movieService.getParticipantByID(id).getName();
             participantSurname = movieService.getParticipantByID(id).getSurname();
-            movies = movieService.getMoviesByParticipant(1, 10, participantName, participantSurname);
+            movies = movieService.getMoviesByParticipant((page-1)* RECORDS_PER_PAGE, RECORDS_PER_PAGE, participantName, participantSurname);
+
+            int numberOfMovies = movieService.countMoviesByParticipant(participantName, participantSurname);
+            int noOfPages = (int) Math.ceil(numberOfMovies * 1.0 / RECORDS_PER_PAGE);
+
             request.setAttribute(REQUEST_ATTRIBUTE, participant);
+            request.setAttribute(AMOUNT_OF_PAGES, noOfPages);
+            request.setAttribute(CURRENT_PAGE, page);
             request.setAttribute(REQUEST_ATTRIBUTE_FOR_MOVIES, movies);
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
-        } catch (ServiceException e) {
+        } catch (ServiceException | DAOException e) {
             logger.log(Level.ERROR, e.getMessage(), e);
             request.setAttribute(ERROR, MESSAGE_OF_ERROR);
             request.getRequestDispatcher(ERROR_PAGE).forward(request, response);

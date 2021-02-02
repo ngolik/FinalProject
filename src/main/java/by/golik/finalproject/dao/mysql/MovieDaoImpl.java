@@ -90,6 +90,14 @@ public class MovieDaoImpl implements MovieDAO {
                     "       INNER JOIN genres \n" +
                     "               ON genres.id = movies_genres.genres_id where genres.name = ?";
 
+    private static final String COUNT_ALL_MOVIES_BY_PARTICIPANT =
+            "SELECT COUNT(participants_id) AS amount FROM movies_participants " +
+                    "       INNER JOIN movies \n" +
+                    "               ON movies.id = movies_participants.movies_id \n" +
+                    "       INNER JOIN participants \n" +
+                    "               ON participants.id = movies_participants.participants_id where participants.name = ?" +
+                    "AND participants.surname = ?";
+
     private static final MovieDAO instance = new MovieDaoImpl();
 
     private MovieDaoImpl() {
@@ -515,6 +523,32 @@ public class MovieDaoImpl implements MovieDAO {
 
             st = con.prepareStatement(COUNT_ALL_MOVIES_BY_GENRE);
             st.setString(1, genre);
+            int amount = 0;
+            rs = st.executeQuery();
+            if (rs.next()) {
+                amount = rs.getInt(AMOUNT);
+            }
+            return amount;
+
+        } catch (SQLException e) {
+            throw new DAOException("Movie sql error", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Movie pool connection error", e);
+        } finally {
+            ConnectionPoolHelper.closeResource(con, st, rs);
+        }
+    }
+    @Override
+    public int countMoviesByParticipant(String participantName, String participantSurname) throws DAOException {
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(COUNT_ALL_MOVIES_BY_PARTICIPANT);
+            st.setString(1, participantName);
+            st.setString(2, participantSurname);
             int amount = 0;
             rs = st.executeQuery();
             if (rs.next()) {

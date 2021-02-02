@@ -118,6 +118,7 @@ public interface MovieDAO {
      * @throws DAOException
      */
     int countMoviesByGenre(String genre) throws DAOException;
+    int countMoviesByParticipant(String participantName, String participantSurname) throws DAOException;
     List<Movie> getMoviesByParticipant(String participantName, String participantSurname, int offset, int recordsPerPage) throws DAOException;
 
 }

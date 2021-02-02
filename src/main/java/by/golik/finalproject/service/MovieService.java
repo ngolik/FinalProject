@@ -28,4 +28,5 @@ public interface MovieService {
     List<Participant> readAllParticipants() throws ServiceException;
     List<Genre> readAllGenres() throws ServiceException;
     int countMoviesByGenre(String genre) throws ServiceException, DAOException;
+    int countMoviesByParticipant(String participantName, String participantSurname) throws ServiceException, DAOException;
 }

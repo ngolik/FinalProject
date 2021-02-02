@@ -242,6 +242,17 @@ public class MovieServiceImpl implements MovieService {
         return amount;
     }
     @Override
+    public int countMoviesByParticipant(String participantName, String participantSurname) throws ServiceException, DAOException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        MovieDAO dao = daoFactory.getMovieDAO();
+        int amount;
+        amount = dao.countMoviesByParticipant(participantName, participantSurname);
+        if (amount == 0) {
+            throw new ServiceException("No movies matching your query");
+        }
+        return amount;
+    }
+    @Override
     public List<Participant> readAllParticipants() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         ParticipantDAO dao = daoFactory.getParticipantDAO();
