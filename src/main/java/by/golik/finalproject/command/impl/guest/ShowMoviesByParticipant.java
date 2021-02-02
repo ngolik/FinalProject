@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class ShowMoviesByParticipant implements Command {
 
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/common/moviesPage.jsp";
+    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/common/participantPage.jsp";
     private static final String ERROR_PAGE = "WEB-INF/jsp/error.jsp";
 
     private static final Logger logger = LogManager.getLogger(ShowMoviesByGenre.class);

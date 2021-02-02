@@ -31,13 +31,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
     <title><c:out value="${participant.name}"/></title>
 </head>
 <!--Событие onload используется как указатель, что веб-страница полностью загружена, включая содержание, изображения, стилевые файлы и внешние скрипты.-->
 <body onload="active()">
 
 <c:import url="../menu/menu.jsp"/>
+
+<script language="JavaScript">
+    function active() {
+        document.getElementById("movies-page").className = "active";
+    }
+</script>
 
 <div class="container-fluid text-center wrapper"></div>
 <br class="row content">
@@ -54,6 +59,16 @@
                 </tr>
         </c:if>
 
+<script type="text/javascript">
+    function MakeSort(element) {
+        var selected = $('option:selected', element),
+            href = selected.val();
+        if (/*selected.text() === '-' || */!href) {
+            return false;
+        }
+        document.location = href;
+    }
+</script>
         <br>
         <table class="table table-stripped">
             <thead>
@@ -65,34 +80,17 @@
             <c:forEach var="movie" items="${requestScope.all_movies}">
                 <tr>
                     <td>
-                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
-                            <c:out value="${movie.title}"/></a></td>
-                    <td>
-                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
-                            <c:out value="${movie.year}"/>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
-                                <c:out value="${movie.runtime}"/>
-                    </td>
-                    <td>
-                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
-                            <c:out value="${movie.budget}"/>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="DispatcherServlet?command=show-movies-by-participant&participantName=${participant.name}&participantSurname=${participant.surname}">
-                            <c:out value="${movie.gross}"/>
-                        </a>
+
+                            <c:out value="${movie.title}"/>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+<br>
 
     </div>
-    <c:import url="../menu/rightside.jsp"/>
+
 </br>
 </body>
 <c:import url="../menu/footer.jsp"/>
