@@ -22,7 +22,7 @@ public interface AdministratorService {
     void addParticipant(String name, String surname, String secondName, String position) throws ServiceException;
     void updateParticipant(String ID, String name, String surname, String secondName, String position) throws ServiceException;
     void addParticipantForMovie(String participantID, String movieID) throws ServiceException;
-    void deleteParticipantForMovie(String participantID, String movieID);
+    void deleteParticipantForMovie(String participantID, String movieID) throws ServiceException;
     void updateImage(String entity, String filename, String path) throws ServiceException;
 
 }

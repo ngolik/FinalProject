@@ -7,7 +7,6 @@ import by.golik.finalproject.service.AdministratorService;
 import by.golik.finalproject.service.MovieService;
 import by.golik.finalproject.service.ServiceFactory;
 import by.golik.finalproject.service.exception.ServiceException;
-import by.golik.finalproject.service.impl.MovieServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +24,6 @@ import java.util.List;
 public class AddGenreForMovie implements Command {
 
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/addGenrePage.jsp";
-    private static final String REDIRECT = "DispatcherServlet?command=add-genre-for-movie";
     private static final Logger logger = LogManager.getLogger(AddGenreForMovie.class);
     private static final String MOVIE_ID = "movieID";
     private static final String GENRE_ID = "genreID";

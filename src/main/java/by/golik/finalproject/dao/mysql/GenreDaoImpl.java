@@ -35,7 +35,6 @@ public class GenreDaoImpl implements GenreDAO {
     private static final String ALL_GENRES =
             "SELECT * FROM genres;";
 
-    private static final String GENRE = "genres";
     private static final String ID = "id";
     private static final String GENRES_ID = "genres_id";
     private static final String NAME = "name";

@@ -57,7 +57,6 @@ public interface ParticipantDAO {
      */
     void deleteParticipantForMovie(int participantId, int movieId) throws DAOException;
 
-
     /**
      * This method is used to get list of all participants from data source.
      *

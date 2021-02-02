@@ -17,13 +17,15 @@
 <fmt:message bundle="${locale}" key="locale.viewAllBanned" var="viewAllBanned"/>
 <fmt:message bundle="${locale}" key="locale.addGenreForMovie" var="addGenreForMovie"/>
 <fmt:message bundle="${locale}" key="locale.deleteUser" var="deleteUser"/>
+<fmt:message bundle="${locale}" key="locale.deleteParticipantForMovie" var="deleteParticipantForMovie"/>
 <div class="col-sm-2 sidenav">
     <c:if test='${sessionScope.get("user").role eq "admin"}'>
         <p><a class="admin" href="DispatcherServlet?command=add-movie">${addMovie}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=add-participant">${addParticipant}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=add-participant-for-movie">${addParticipantForMovie}</a></p>
-        <p><a class="admin" href="DispatcherServlet?command=view-all-users">${viewAllUsers}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=add-genre-for-movie">${addGenreForMovie}</a></p>
+        <p><a class="admin" href="DispatcherServlet?command=delete-participant-for-movie">${deleteParticipantForMovie}</a></p>
+        <p><a class="admin" href="DispatcherServlet?command=view-all-users">${viewAllUsers}</a></p>
         <p><a class="admin" href="DispatcherServlet?command=delete-user">${deleteUser}</a></p>
     </c:if>
 

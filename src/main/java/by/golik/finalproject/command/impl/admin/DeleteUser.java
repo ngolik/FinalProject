@@ -19,7 +19,6 @@ import java.io.IOException;
  */
 public class DeleteUser implements Command {
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/deleteUserPage.jsp";
-    private static final String REDIRECT = "DispatcherServlet?command=delete-user";
 
     private static final Logger logger = LogManager.getLogger(DeleteUser.class);
 

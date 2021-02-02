@@ -128,30 +128,6 @@ public class RatingDaoImpl implements RatingDAO {
     }
 
     @Override
-    public void deleteRating(int movieID, String userName) throws DAOException {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(DELETE_RATING);
-            st.setInt(1, movieID);
-            st.setString(2, userName);
-            int update = st.executeUpdate();
-            if (update > 0) {
-                return;
-            }
-            throw new DAOException("Wrong rating data");
-        } catch (SQLException e) {
-            throw new DAOException("Rating sql error", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("Rating pool connection error");
-        }
-        finally {
-            ConnectionPoolHelper.closeResource(con, st);
-        }
-    }
-
-    @Override
     public List<Vote> getRatingFromUser(String userName) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;

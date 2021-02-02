@@ -64,11 +64,12 @@ public class MovieServlet {
 //        System.out.println(movieService.getMovieByID("1").toString());
 //        administratorService.addParticipantForMovie("10", "10");
 //        movieService.findMovieByTitle("nikita");
-        System.out.println(movieService.getMoviesByGenre(1,10, "comedy"));
+//        System.out.println(movieService.getMoviesByGenre(1,10, "comedy"));
 //        genreDAO.createGenreForMovie(22,3);
 //        genreDAO.deleteGenreForMovie(22,3);
 //           System.out.println(movieDAO.getMoviesByParticipant("nikirta", "fas", 1,10).toString());
-        System.out.println(movieDAO.getMoviesByParticipant("nikirta", "fas", 1, 10));
+//        System.out.println(movieService.getParticipantByID("49"));
+            administratorService.deleteParticipantForMovie("1", "2");
 
     }
 }

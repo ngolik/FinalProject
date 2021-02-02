@@ -39,7 +39,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
 
     private static final String DELETE_PARTICIPANT_FOR_MOVIE =
             "DELETE FROM movies_participants\n" +
-                    "WHERE movies_id=? AND participants_id=?;";
+                    "WHERE participants_id=? AND movies_id=?;";
 
     private static final String DELETE_PARTICIPANT_BY_ID =
             "DELETE FROM `participants` WHERE `id` = ?";
@@ -242,11 +242,10 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         try {
             con = ConnectionPool.getInstance().takeConnection();
             st = con.prepareStatement(DELETE_PARTICIPANT_FOR_MOVIE);
-            st.setInt(1, movieId);
-            st.setInt(2, participantId);
+            st.setInt(1, participantId);
+            st.setInt(2, movieId);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Actor udalen vse ok " + actorID);
                 return;
             }
             throw new DAOException("Wrong review data");

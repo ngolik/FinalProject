@@ -56,12 +56,4 @@ public interface RatingDAO {
      */
     void updateRating(int intMovieID, String userNickname, int intRating) throws DAOException;
 
-    /**
-     * This method is used to remove rating some user gave for some movie and used only for tests!!!
-     *
-     * @param movieID      id of movie
-     * @param userNickname nickname of user
-     * @throws DAOException if some error occurred while processing data.
-     */
-    void deleteRating(int movieID, String userNickname) throws DAOException;
 }

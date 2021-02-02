@@ -69,6 +69,7 @@
         document.location = href;
     }
 </script>
+
         <br>
         <table class="table table-stripped">
             <thead>
@@ -80,8 +81,8 @@
             <c:forEach var="movie" items="${requestScope.all_movies}">
                 <tr>
                     <td>
-
-                            <c:out value="${movie.title}"/>
+                        <a href="DispatcherServlet?command=movie-by-id&id=${movie.id}">
+                            <c:out value="${movie.title}"/></a></td>
                     </td>
                 </tr>
             </c:forEach>
@@ -147,6 +148,5 @@
     </ul>
 </div>
 
-<c:import url="../menu/footer.jsp"/>
 </body>
 </html>

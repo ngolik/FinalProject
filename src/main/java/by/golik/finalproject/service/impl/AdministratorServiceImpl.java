@@ -14,11 +14,8 @@ import java.util.List;
  * @author Nikita Golik
  */
 public class AdministratorServiceImpl implements AdministratorService {
-    private static final String USER = "user";
-    private static final String BANNED = "banned";
+
     private static final String MOVIE = "movies";
-    private static final String PARTICIPANT = "participants";
-    private static final String USERS = "users";
     private static final String IMAGES = "images/";
     private static final String DELIM = "/";
 
@@ -211,8 +208,27 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void deleteParticipantForMovie(String participantID, String movieID) {
+    public void deleteParticipantForMovie(String participantID, String movieID) throws ServiceException {
+        if (!Validator.validateNumber(participantID)
+                || !Validator.validateNumber(movieID)) {
+            throw new ServiceException("Illegal data input");
+        }
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        ParticipantDAO dao = daoFactory.getParticipantDAO();
+        int intParticipantID;
+        int intMovieID;
+        try {
+            intParticipantID = Integer.parseInt(participantID);
+            intMovieID = Integer.parseInt(movieID);
+        } catch (NumberFormatException e) {
+            throw new ServiceException("Wrong data input, while adding film");
+        }
 
+        try {
+            dao.deleteParticipantForMovie(intParticipantID, intMovieID);
+        } catch (DAOException e) {
+            throw new ServiceException("Error in source!", e);
+        }
     }
 
     @Override
