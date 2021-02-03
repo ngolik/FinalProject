@@ -31,9 +31,9 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String AMOUNT = "amount";
 
     private final static String SHOW_ALL_PAGINATION =
-            "SELECT id, title, year, image_path, runtime, budget, gross  FROM movies ORDER BY id DESC LIMIT ?, ?";
+            "SELECT id, title, year, runtime, budget, gross  FROM movies ORDER BY id DESC LIMIT ?, ?";
     private final static String SHOW_ALL =
-            "SELECT id, title, year, image_path, runtime, budget, gross  FROM movies";
+            "SELECT id, title, year, runtime, budget, gross  FROM movies";
 
     private static final String SHOW_BY_GENRE =
             "SELECT movies.id, movies.title, movies.budget, movies.gross, movies.runtime, movies.year, genres.name\n" +
@@ -52,14 +52,14 @@ public class MovieDaoImpl implements MovieDAO {
                     "WHERE test_db.movies_participants.participants_id = ? ORDER BY `title`";
 
     private static final String SHOW_BY_ID =
-            "SELECT id, title, year, image_path, runtime, budget, gross FROM `movies` " +
+            "SELECT id, title, year, runtime, budget, gross FROM `movies` " +
                     "WHERE `id` = ?";
 
     private static final String COUNT_ALL_MOVIES =
             "SELECT COUNT(movies.id) AS amount FROM movies";
 
     private static final String ADD_MOVIE =
-            "INSERT INTO movies (title, year, runtime, budget, image_path, gross) VALUES (?, ?, ?, ?, 'src/main/webapp/images/main/6.png', ?)";
+            "INSERT INTO movies (title, year, runtime, budget, gross) VALUES (?, ?, ?, ?, ?)";
 
     private static final String UPDATE_BY_ID =
             "UPDATE `test_db`.`movies`\n" +
@@ -75,13 +75,11 @@ public class MovieDaoImpl implements MovieDAO {
 
     private static final String DELETE_BY_ID =
             "DELETE FROM `movies` WHERE id=?;";
-    private static final String UPDATE_IMAGE =
-            "UPDATE movies SET image_path= ? WHERE id= ?;";
 
     private static final String MOVIES_FOR_PARTICIPANT =
             "SELECT movies_id from movies_participants where participants_id = ?;";
     private static final String LAST_INSERTED_MOVIE =
-            "SELECT id, title, year, image_path, runtime, budget, gross FROM test_db.movies ORDER BY id DESC LIMIT 1;";
+            "SELECT id, title, year, runtime, budget, gross FROM test_db.movies ORDER BY id DESC LIMIT 1;";
 
     private static final String COUNT_ALL_MOVIES_BY_GENRE =
             "SELECT COUNT(genres_id) AS amount FROM movies_genres " +
@@ -420,32 +418,6 @@ public class MovieDaoImpl implements MovieDAO {
             throw new DAOException("Movie pool connection error", e);
         } finally {
             ConnectionPoolHelper.closeResource(con, st, rs);
-        }
-    }
-
-
-
-    @Override
-    public void updateImage(int id, String path) throws DAOException {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(UPDATE_IMAGE);
-            st.setString(1, path);
-            st.setInt(2, id);
-            int update = st.executeUpdate();
-            if (update > 0) {
-
-                return;
-            }
-            throw new DAOException("Wrong review data");
-        } catch (SQLException e) {
-            throw new DAOException("Movie sql error", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("Movie pool connection error");
-        } finally {
-            ConnectionPoolHelper.closeResource(con, st);
         }
     }
 

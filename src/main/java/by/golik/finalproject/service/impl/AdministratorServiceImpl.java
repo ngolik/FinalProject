@@ -232,23 +232,6 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void updateImage(String entity, String filename, String path) throws ServiceException {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        MovieDAO movieDAO;
-        try {
-            switch (entity) {
-                case MOVIE:
-                    movieDAO = daoFactory.getMovieDAO();
-                    int id = Integer.parseInt(filename);
-                    movieDAO.updateImage(id, IMAGES + MOVIE + DELIM + path);
-                    break;
-            }
-        } catch (DAOException e) {
-            throw new ServiceException("Error in source!", e);
-        }
-    }
-
-    @Override
     public void deleteUser(String userName) throws DAOException, ServiceException {
         if (!Validator.validate(userName)) {
             throw new ServiceException("Illegal data input");

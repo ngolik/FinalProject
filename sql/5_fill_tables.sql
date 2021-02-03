@@ -27,15 +27,14 @@ INSERT INTO `movies_db`.`movies`
 (`id`,
  `title`,
  `year`,
- `image_path`,
  `runtime`,
  `budget`,
  `gross`)
 VALUES
-(1, "The Green Mile", 1999, ,189, 60000000, 286801374),
-(2, "The Shawshank Redemption", 1994, , 142, 25000000, 28418687),
-(3, "Interstellar", 2014, , 169, 165000000, 677463813),
-(4, "The Lord of the Rings: The Return of the King", 2003, , 201, 94000000, 1118887224);
+(1, "The Green Mile", 1999, 189, 60000000, 286801374),
+(2, "The Shawshank Redemption", 1994, 142, 25000000, 28418687),
+(3, "Interstellar", 2014,  169, 165000000, 677463813),
+(4, "The Lord of the Rings: The Return of the King", 2003, 201, 94000000, 1118887224);
 
 INSERT INTO `movies_db`.`users`
 (`id`,

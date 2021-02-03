@@ -105,14 +105,6 @@ public interface MovieDAO {
 
     /**
      *
-     * @param id
-     * @param path
-     * @throws DAOException
-     */
-    void updateImage(int id, String path) throws DAOException;
-
-    /**
-     *
      * @param genre
      * @return
      * @throws DAOException

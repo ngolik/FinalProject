@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS `movies_db`.`movies` (
                           `id` int NOT NULL AUTO_INCREMENT,
                           `title` varchar(100) NOT NULL,
                           `year` int NOT NULL,
-                          `image_path` varchar(255) NOT NULL,
                           `runtime` int NOT NULL,
                           `budget` int NOT NULL,
                           `gross` int NOT NULL,

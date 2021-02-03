@@ -22,10 +22,6 @@ public class Movie {
      */
     private int year;
     /**
-     * path to movie icon
-     */
-    private String imageUrl;
-    /**
      * movie runtime
      */
     private int runtime;
@@ -136,13 +132,6 @@ public class Movie {
     public void setGross(long gross) {
         this.gross = gross;
     }
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     public float getRating() {
         return rating;
@@ -161,7 +150,6 @@ public class Movie {
         if (id != movie.id) return false;
         if (year != movie.year) return false;
         if (runtime != movie.runtime) return false;
-        if (!Objects.equals(imageUrl, movie.imageUrl)) return false;
         if (budget != movie.budget) return false;
         if (gross != movie.gross) return false;
         if (Double.compare(movie.rating, rating) != 0) return false;
@@ -176,7 +164,6 @@ public class Movie {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + year;
         result = 31 * result + runtime;
-        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
         result = 31 * result + (int) (budget ^ (budget >>> 32));
         result = 31 * result + (int) (gross ^ (gross >>> 32));
         temp = Double.doubleToLongBits(rating);
@@ -191,7 +178,6 @@ public class Movie {
                 ", title='" + title + '\'' +
                 ", year=" + year +
                 ", runtime=" + runtime +
-                ", imageUrl='" + imageUrl + '\'' +
                 ", budget=" + budget +
                 ", gross=" + gross +
                 ", rating=" + rating +
