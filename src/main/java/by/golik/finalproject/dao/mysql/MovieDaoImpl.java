@@ -62,7 +62,7 @@ public class MovieDaoImpl implements MovieDAO {
             "INSERT INTO movies (title, year, runtime, budget, gross) VALUES (?, ?, ?, ?, ?)";
 
     private static final String UPDATE_BY_ID =
-            "UPDATE `test_db`.`movies`\n" +
+            "UPDATE `movies`\n" +
                     "SET title = ?, year = ?, `runtime` = ?, `budget` = ?,`gross` = ?\n" +
                     "WHERE `id` = ?;\n";
     private static final String SHOW_MOVIES_BY_PARTICIPANT  =
@@ -79,7 +79,7 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String MOVIES_FOR_PARTICIPANT =
             "SELECT movies_id from movies_participants where participants_id = ?;";
     private static final String LAST_INSERTED_MOVIE =
-            "SELECT id, title, year, runtime, budget, gross FROM test_db.movies ORDER BY id DESC LIMIT 1;";
+            "SELECT id, title, year, runtime, budget, gross FROM movies ORDER BY id DESC LIMIT 1;";
 
     private static final String COUNT_ALL_MOVIES_BY_GENRE =
             "SELECT COUNT(genres_id) AS amount FROM movies_genres " +

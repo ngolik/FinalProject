@@ -15,14 +15,47 @@ VALUES
     (12, 'Western');
 
 INSERT INTO participants
-    (id,      name,           surname,         secondname)
+    (id,      name,           surname,         secondname,                          position)
     VALUES
-    (1, 'Thomas',         'Hanks',           'Jeffrey'),
-    (2, 'Morgan',         'Freeman',         ' '),
-    (3, 'Tim',            'Robbins',         ' '),
-    (4, 'Elijah',         'Wood',            'Jordan'),
-    (5, 'Matthew',        'McConaughey',     ' '),
-    (6, 'Christopher',    'Nolan',           ' ');
+    (1, 'Thomas',         'Hanks',           'Jeffrey', 'ACTOR'),
+    (2, 'Morgan',         'Freeman',         ' ', 'ACTOR'),
+    (3, 'Tim',            'Robbins',         ' ', 'ACTOR'),
+    (4, 'Elijah',         'Wood',            'Jordan', 'ACTOR'),
+    (5, 'Matthew',        'McConaughey',     ' ', 'ACTOR'),
+    (6, 'Christopher',    'Nolan',           ' ', 'PRODUCER'),
+    (7, 'Liam',    'Neeson',           ' ', 'ACTOR'),
+    (8, 'Francois',    'Cluzet',           ' ', 'ACTOR'),
+    (9, 'Michael',    'Fox',           'J.', 'ACTOR'),
+    (10, 'Jason',    'Schwartzman',           ' ', 'ACTOR'),
+    (11, 'Roger',    'Allers',           ' ', 'PRODUCER'),
+    (12, 'Lee',    'Unkrich',           ' ', 'PRODUCER'),
+    (13, 'Jason',    'Statham',           ' ', 'ACTOR'),
+    (14, 'Brad',    'Pitt',           ' ', 'ACTOR'),
+    (15, 'Stephen ',    'Graham',           ' ', 'ACTOR'),
+    (16, 'Jason  ',    'Flemyng',           ' ', 'ACTOR'),
+    (17, 'Dexter',    'Fletcher',           ' ', 'ACTOR'),
+    (18, 'John',    'Travolta',           ' ', 'ACTOR'),
+    (19, 'Leonardo',    'DiCaprio',           ' ', 'ACTOR'),
+    (20, 'Hayao',    'Miyazaki',           ' ', 'PRODUCER'),
+    (21, 'Andrew',    'Stanton',           ' ', 'PRODUCER'),
+    (22, 'Jean',    'Reno',           ' ', 'ACTOR'),
+    (23, 'Hugh',    'Jackman',           ' ', 'ACTOR'),
+    (24, 'Keanu',    'Reeves',           ' ', 'ACTOR'),
+    (25, 'Russell',    'Crowe',           ' ', 'ACTOR'),
+    (26, 'Miles',    'Teller',           ' ', 'ACTOR'),
+    (27, 'Andrew',    'Adamson',           ' ', 'PRODUCER'),
+    (28, 'Jamie',    'Foxx',           ' ', 'ACTOR'),
+    (29, 'Arnold',    'Schwarzenegger',           ' ', 'ACTOR'),
+    (30, 'Christian',    'Bale',           ' ', 'ACTOR'),
+    (31, 'Macaulay',    'Culkin',           ' ', 'ACTOR'),
+    (32, 'Marlon',    'Brando',           ' ', 'ACTOR'),
+    (33, 'Daniel',    'Radcliffe',           ' ', 'ACTOR'),
+    (34, 'Roberto',    'Benigni',           ' ', 'ACTOR'),
+    (35, 'Viggo',    'Mortensen',           ' ', 'ACTOR'),
+    (36, 'Johnny',    'Depp',           ' ', 'ACTOR'),
+    (37, 'Pete',    'Docter',           ' ', 'PRODUCER'),
+    (38, 'Makoto',    'Shinkai',           ' ', 'PRODUCER'),
+    (39, 'Anthony',    'Hopkins',           ' ', 'ACTOR');
 INSERT INTO `movies_db`.`movies`
 (`id`,
  `title`,
@@ -30,78 +63,157 @@ INSERT INTO `movies_db`.`movies`
  `runtime`,
  `budget`,
  `gross`)
-VALUES
-(1, "The Green Mile", 1999, 189, 60000000, 286801374),
-(2, "The Shawshank Redemption", 1994, 142, 25000000, 28418687),
-(3, "Interstellar", 2014,  169, 165000000, 677463813),
-(4, "The Lord of the Rings: The Return of the King", 2003, 201, 94000000, 1118887224);
 
-INSERT INTO `movies_db`.`users`
-(`id`,
- `login`,
- `password`,
- `email`,
- `role`,
- `registrationdate`)
 VALUES
-(1,
-    'berry',
-    '$2a$05$3k1pBYhytMKyvSXqiJBN5OVvCvCnAmswSqX6ObrhqtrwLNURff3xC',
-    'berry@mail.ru',
-    'user',
-    2021-01-30);
+(1, 'The Green Mile', 1999, 189, 60000000, 286801374),
+(2, 'The Shawshank Redemption', 1994, 142, 25000000, 28418687),
+(3, 'Interstellar', 2014,  169, 165000000, 677463813),
+(4, 'The Lord of the Rings: The Return of the King', 2003, 201, 94000000, 1118887224),
+(5, 'The Lord of the Rings: The Fellowship of the Ring', 2001, 178, 93000000, 868385360),
+(6, 'The Lord of the Rings: The Two Towers', 2002, 179, 94000000, 936689735),
+(7, 'Forrest Gump', 1994, 142, 55000000, 677387716),
+(8, 'Schindler''s List', 1993, 195, 22000000, 321306305),
+(9, 'Intouchables', 2011, 112, 9500000, 426588510),
+(10, 'Back to the Future', 1985, 116, 19000000, 381109762),
+(11, 'Klaus', 2019, 96, 40000000, 156203649),
+(12, 'The Lion King', 1994, 88, 45000000, 763455561),
+(13, 'Сoco secret', 2017, 105, 175000000, 807082196),
+(14, 'Snatch', 2000, 104, 10000000, 83557872),
+(15, 'Lock, Stock and Two Smoking Barrels', 1998, 107, 960000, 3753929),
+(16, 'Pulp Fiction', 1994, 154, 8000000, 213928762),
+(17, 'Inception', 2010, 148, 160000000, 828322032),
+(18, 'Shutter Island', 2009, 138, 80000000, 294804195),
+(19, 'The Gentlemen', 2019, 113, 22000000, 115171795),
+(20, 'Sen to Chihiro no kamikakushi', 2001, 125, 19000000, 355467076),
+(21, 'WALL-E', 2008, 98, 180000000, 521311860),
+(22, 'Fight Club', 1999, 139, 63000000, 100853753),
+(23, 'Leon', 1994, 133, 5000000, 19552639),
+(24, 'The Prestige', 2006, 125, 40000000, 109676311),
+(25, 'Catch Me If You Can', 2002, 141, 52000000, 352114312),
+(26, 'The Matrix', 1999, 136, 63000000, 463517383),
+(27, 'A Beautiful Mind', 2001, 135, 58000000, 313542341),
+(28, 'The Departed', 2006, 151, 90000000, 291465034),
+(29, 'Whiplash', 2013, 106, 3300000, 48982041),
+(30, 'Shrek', 2001, 90, 60000000, 484409218),
+(31, 'Django Unchained', 2012, 165, 100000000, 425368238),
+(32, 'Terminator 2: Judgment Day', 1991, 137, 102000000, 516950043),
+(33, 'The Dark Knight', 2008, 152, 185000000, 1003045358),
+(34, 'Home Alone', 1990, 103, 18000000, 476684675),
+(35, 'Gladiator', 2000, 155, 103000000, 460583960),
+(36, 'The Godfather', 1972, 175, 6000000, 243862778),
+(37, 'Harry Potter and the Prisoner of Azkaban', 2004, 142 , 130000000, 795634069),
+(38, 'Harry Potter and the Sorcerer''s Stone', 2001, 152 , 125000000, 974755371),
+(39, 'Life is Beautiful', 1997, 116 , 20000000, 228847384),
+(40, 'Green Book', 2018, 130  , 23000000, 321752656),
+(41, 'Pirates of the Caribbean: The Curse of the Black Pearl', 2003, 143  , 140000000, 654264015),
+(42, 'Soul', 2020, 106  , 1000000, 85200000),
+(43, 'Back to the Future Part II', 1989, 108  , 40000000, 331950002),
+(44, 'Kimi no na wa', 2016, 110  , 20000000, 357986087),
+(45, 'The Silence of the Lambs', 1990, 114  , 19000000, 272742922);
 
 
 INSERT INTO movies_genres
     (movies_id, genres_id)
     VALUES
-    (1, 5),
-    (1, 3),
-    (2, 5),
-    (3, 5),
-    (3, 9),
-    (4, 2);
+    (1, 4),
+    (2, 4),
+    (3, 4),
+    (4, 7),
+    (5, 7),
+    (6, 7),
+    (7, 4),
+    (8, 4),
+    (9, 4),
+    (10, 7),
+    (11, 10),
+    (12, 10),
+    (13, 10),
+    (14, 2),
+    (15, 2),
+    (16, 11),
+    (17, 11),
+    (18, 11),
+    (19, 2),
+    (20, 10),
+    (21, 10),
+    (22, 2),
+    (23, 4),
+    (24, 2),
+    (25, 11),
+    (26, 2),
+    (27, 4),
+    (28, 4),
+    (29, 4),
+    (30, 10),
+    (31, 2),
+    (32, 2),
+    (33, 8),
+    (34, 5),
+    (35, 2),
+    (36, 2),
+    (37, 7),
+    (38, 7),
+    (39, 4),
+    (40, 4),
+    (41, 7),
+    (42, 10),
+    (43, 7),
+    (44, 10),
+    (45, 8);
 INSERT INTO movies_participants
-    (movies_id, participants_id, position)
+    (movies_id, participants_id)
     VALUES
-    (1, 1, 3),
-    (2, 2, 3),
-    (3,5, 3),
-    (3, 6, 1),
-    (4, 4, 3);
-INSERT INTO users
-    (id,
-     login,
-     password,
-     email,
-     role,
-     registrationdate)
-    VALUES (
-            2,
-            "moder",
-            "EE11CBB19052E40B07AAC0CA060C23EE", /* MD5 хэш пароля "moder" */
-            "moder@tut.by",
-             1,
-             2020
-            ),
-           (
-            3,
-            "user1",
-            "EE11CBB19052E40B07AAC0CA060C23EE", /* MD5 хэш пароля "user1" */
-            "user1@tut.by",
-            2,
-            2020
-           );
-INSERT INTO votes
-    (score, date, users_id, movies_id)
-    VALUES (
+    (1, 1),
+    (2, 2),
+    (3, 5),
+    (4, 4),
+    (5, 4),
+    (6, 4),
+    (7, 1),
+    (8, 7),
+    (9, 8),
+    (10, 9),
+    (11, 10),
+    (12, 11),
+    (13, 12),
+    (14, 13),
+    (14, 14),
+    (14, 15),
+    (15, 13),
+    (15, 16),
+    (15, 17),
+    (16, 18),
+    (17, 19),
+    (18, 19),
+    (19, 5),
+    (20, 20),
+    (21, 21),
+    (22, 14),
+    (23, 22),
+    (24, 23),
+    (25, 19),
+    (25, 1),
+    (26, 24),
+    (27, 25),
+    (28, 19),
+    (29, 26),
+    (30, 27),
+    (31, 28),
+    (32, 29),
+    (33, 30),
+    (34, 31),
+    (35, 25),
+    (36, 32),
+    (37, 33),
+    (38, 33),
+    (39, 34),
+    (40, 35),
+    (41, 36),
+    (42, 37),
+    (43, 9),
+    (44, 38),
+    (45, 39);
 
-           );
-INSERT INTO movies_users
-    (users_id, date, movies_id)
-    VALUES(
-
-          );
 
 
 
