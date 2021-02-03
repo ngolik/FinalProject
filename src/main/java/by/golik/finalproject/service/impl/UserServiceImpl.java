@@ -19,7 +19,7 @@ import java.util.Arrays;
  */
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger();
-    private static final String BANNED = "banned";
+
 
     @Override
     public User getUserByUserName(String userName) throws ServiceException, ServiceAuthorizationException {

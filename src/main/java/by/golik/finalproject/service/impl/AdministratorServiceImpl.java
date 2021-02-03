@@ -15,9 +15,6 @@ import java.util.List;
  */
 public class AdministratorServiceImpl implements AdministratorService {
 
-    private static final String MOVIE = "movies";
-    private static final String IMAGES = "images/";
-    private static final String DELIM = "/";
 
     @Override
     public List<User> readAllUsers() throws ServiceException {
