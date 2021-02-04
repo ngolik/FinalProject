@@ -21,4 +21,4 @@
 - просмотр всех участников фильмов;
 - добавление участника к определенному фильму, а также просмотр списка фильмов по участнику;
 
-![Image alt](https://github.com/NikitaGolik/FinalProject/raw/main/src/main/webapp/images/test_db.png)
+![Image alt](https://github.com/NikitaGolik/FinalProject/raw/main/src/main/webapp/images/movies_db.png)
