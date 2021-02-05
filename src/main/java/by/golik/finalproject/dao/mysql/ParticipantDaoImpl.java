@@ -222,7 +222,6 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             st.setInt(2, movieId);
             int update = st.executeUpdate();
             if (update > 0) {
-                //System.out.println("Participant added to movie");
                 return;
             }
             throw new DAOException("Wrong movie data");

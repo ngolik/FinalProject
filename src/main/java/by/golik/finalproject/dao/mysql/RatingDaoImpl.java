@@ -29,9 +29,7 @@ public class RatingDaoImpl implements RatingDAO {
             "INSERT INTO votes (movies_id, users_id, score, date) VALUES (?, ?, ?, ?)";
     private final static String UPDATE_RATING =
             "UPDATE votes SET score=? WHERE movies_id=? AND users_id=?;";
-    private final static String DELETE_RATING =
-            "DELETE FROM votes WHERE movies_id=? AND users_id=?;";
-    private static final String USER_NAME = "userName";
+
     private static final String MOVIES_ID = "movies_id";
     private static final String USERS_ID = "users_id";
     private static final String SCORE = "score";

@@ -49,7 +49,7 @@ public class MovieDaoImpl implements MovieDAO {
 
     private static final String SHOW_BY_PARTICIPANT =
             "SELECT `id`, `title`, `year`, `runtime`, `budget`, `gross` FROM `movies` " +
-                    "WHERE test_db.movies_participants.participants_id = ? ORDER BY `title`";
+                    "WHERE movies_db.movies_participants.participants_id = ? ORDER BY `title`";
 
     private static final String SHOW_BY_ID =
             "SELECT id, title, year, runtime, budget, gross FROM `movies` " +

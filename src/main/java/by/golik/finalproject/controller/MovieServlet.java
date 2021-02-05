@@ -54,7 +54,7 @@ public class MovieServlet {
 
 //        administratorService.addParticipant("lol", "lal", "fam", "actor");
 //        administratorService.addParticipantForMovie("3","2");
-        administratorService.addMovie("testService2", "1000", "1500", "1500", "1500");
+//        administratorService.addMovie("testService2", "1000", "1500", "1500", "1500");
 //        administratorService.addGenreForMovie("5", "3");
 //        administratorService.updateParticipant("1", "saasfs","sa","dagger");
 //        administratorService.updateMovie("4","nikita", "1995","156", "152", "138");
@@ -70,6 +70,7 @@ public class MovieServlet {
 //           System.out.println(movieDAO.getMoviesByParticipant("nikirta", "fas", 1,10).toString());
 //        System.out.println(movieService.getParticipantByID("49"));
 //            administratorService.deleteParticipantForMovie("1", "2");
+        administratorService.addParticipantForMovie("49", "46");
 
     }
 }

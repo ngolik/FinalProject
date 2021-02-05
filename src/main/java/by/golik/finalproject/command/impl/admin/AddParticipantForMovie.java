@@ -57,7 +57,7 @@ public class AddParticipantForMovie implements Command {
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } else {
             try {
-                administratorService.addParticipantForMovie(movieID, participantID);
+                administratorService.addParticipantForMovie(participantID, movieID);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
                 request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             }  catch (ServiceException e) {
