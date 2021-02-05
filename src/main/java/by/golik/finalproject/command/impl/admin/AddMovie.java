@@ -46,9 +46,7 @@ public class AddMovie implements Command {
         AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
 
         if (title == null && year == null && runtime == null && budget == null && gross == null) {
-
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
-
         } else {
             try {
                 administratorService.addMovie(title, year, runtime, budget, gross);

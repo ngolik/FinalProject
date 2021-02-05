@@ -44,7 +44,6 @@
         <c:import url="../menu/adminMenu.jsp"/>
         <br class="col-sm-8 text-left mainContent">
 
-        <%=request.getAttribute("successMessage")%>
 
         <c:if test="${requestScope.get('errorMessage')!=null}">
             <h3 class="red"><c:out value="${requestScope.get('errorMessage')}"/></h3>
@@ -61,10 +60,6 @@
                 <label><input type="radio" name="command" value="add-participant" checked/>${addParticipant}</label>
                 <label><input type="radio" name="command" value="update-participant"/>${updateParticipant}</label>
             </p>
-            <label for="participantID">${participantID}<br></label>
-            <input id="participantID" class="form-control" type="text" name="participant-id"
-               placeholder="${leaveBlankParticipantID}"/>
-            <br/>
             <label for="name">${name}<br></label>
             <input id="name" class="form-control" type="text" name="name" required>
             <br/>

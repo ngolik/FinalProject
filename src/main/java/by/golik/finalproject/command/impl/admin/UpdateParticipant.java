@@ -19,15 +19,16 @@ import java.io.IOException;
 public class UpdateParticipant implements Command {
     private static final Logger logger = LogManager.getLogger(UpdateParticipant.class);
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/addParticipantPage.jsp";
-    private static final String REDIRECT = "DispatcherServlet?command=add-participant";
+
     private static final String PARTICIPANT_ID = "participant-id";
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
     private static final String SECOND_NAME = "secondName";
     private static final String POSITION = "position";
     private static final String ERROR = "errorMessage";
-    private static final String MESSAGE_OF_ERROR = "Cannot update participant";
     private static final String SUCCESS = "successMessage";
+
+    private static final String MESSAGE_OF_ERROR = "Cannot update participant";
     private static final String MESSAGE_OF_SUCCESS = "Participant successfully updated";
 
     @Override
@@ -44,7 +45,7 @@ public class UpdateParticipant implements Command {
             try {
                 administratorService.updateParticipant(participantID, name, surName, secondName, position);
                 request.setAttribute(SUCCESS, MESSAGE_OF_SUCCESS);
-                response.sendRedirect(REDIRECT);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR);
