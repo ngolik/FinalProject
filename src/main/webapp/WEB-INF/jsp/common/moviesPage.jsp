@@ -56,10 +56,18 @@
                         <select onchange="MakeSort(this);">
                             <option value="DispatcherServlet?command=all-movies">-</option>
                             <option selected="" value="DispatcherServlet?command=all-movies">${all}</option>
-                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=action">Action</option>
-                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=drama">Drama</option>
-                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=western">Western</option>
                             <option value="DispatcherServlet?command=show-movies-by-genre&genre=comedy">Comedy</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=action">Action</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=documentary">Documentary</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=drama">Drama</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=family">Family</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=horror">Horror</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=adventure">Adventure</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=thriller">Thriller</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=musical">Musical</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=cartoon">Cartoon</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=detective">Detective</option>
+                            <option value="DispatcherServlet?command=show-movies-by-genre&genre=western">Western</option>
                         </select>
                 </div>
                 <div class="clear"></div>

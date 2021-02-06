@@ -69,6 +69,7 @@ public class CommandProvider {
         userCommands.put(CommandList.MOVIE_BY_ID, new ShowMovieById());
         userCommands.put(CommandList.ALL_PARTICIPANTS, new ShowAllParticipants());
         userCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowParticipantByID());
+        userCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
 
 
 
