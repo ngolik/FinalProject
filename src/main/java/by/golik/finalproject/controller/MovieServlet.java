@@ -70,7 +70,8 @@ public class MovieServlet {
 //           System.out.println(movieDAO.getMoviesByParticipant("nikirta", "fas", 1,10).toString());
 //        System.out.println(movieService.getParticipantByID("49"));
 //            administratorService.deleteParticipantForMovie("1", "2");
-        administratorService.addParticipantForMovie("49", "46");
+//        administratorService.addParticipantForMovie("49", "46");
+        administratorService.deleteUser("admineee");
 
     }
 }

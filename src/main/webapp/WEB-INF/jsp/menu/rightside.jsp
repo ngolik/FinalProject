@@ -31,19 +31,19 @@
 
             </div>
             <div data-p="112.50" style="display:none;">
-            <a href="DispatcherServlet?command=movie-by-id&id=1"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/1.jpg"  alt=""/></a>
+            <a href="DispatcherServlet?command=movie-by-id&id=1"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/green%20mile.png"  alt=""/></a>
             </div>
             <div data-p="112.50" style="display:none;">
-            <a href="DispatcherServlet?command=movie-by-id&id=2"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/2.jpg" /></a>
+            <a href="DispatcherServlet?command=movie-by-id&id=2"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/шоушенк.png" /></a>
             </div>
             <div data-p="112.50" style="display:none;">
-            <a href="DispatcherServlet?command=movie-by-id&id=3"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/3.jpg" /></a>
+            <a href="DispatcherServlet?command=movie-by-id&id=3"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/интерстеллар.png" /></a>
             </div>
             <div data-p="112.50" style="display:none;">
-            <a href="DispatcherServlet?command=movie-by-id&id=4"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/4.jpg" /></a>
+            <a href="DispatcherServlet?command=movie-by-id&id=4"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/возвращение%20короля.png" /></a>
             </div>
             <div data-p="112.50" style="display:none;">
-            <a href="DispatcherServlet?command=movie-by-id&id=5"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/5.jpg" /></a>
+            <a href="DispatcherServlet?command=movie-by-id&id=5"><img  data-u="image" src="${pageContext.request.contextPath}/images/movies/братство%20кольца.png" /></a>
             </div>
         </div>
         <span data-u="arrowleft" class="jssora08l" style="top:8px;left:8px;width:50px;height:50px;" data-autocenter="1"></span>
