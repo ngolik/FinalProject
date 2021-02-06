@@ -1,16 +1,11 @@
 package by.golik.finalproject.service;
 
-import by.golik.finalproject.dao.RatingDAO;
-import by.golik.finalproject.dao.exception.DAOException;
-import by.golik.finalproject.entity.Movie;
-import by.golik.finalproject.entity.Vote;
-
 import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Validator is a class used for validation of data from services.
  * @author Nikita Golik
  */
 public class Validator {

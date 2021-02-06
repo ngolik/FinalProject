@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * This class is used to handle client request to
+ * update any information about concrete participant.
  * @author Nikita Golik
  */
 public class UpdateParticipant implements Command {
@@ -40,7 +42,7 @@ public class UpdateParticipant implements Command {
         String surName = request.getParameter(SURNAME);
         String secondName = request.getParameter(SECOND_NAME);
         String position = request.getParameter(POSITION);
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdministratorService(request, response);
         if(name != null && surName != null) {
             try {
                 administratorService.updateParticipant(participantID, name, surName, secondName, position);

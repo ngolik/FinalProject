@@ -19,6 +19,11 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService {
     Logger logger = LogManager.getLogger(MovieServiceImpl.class);
 
+    /**
+     * This method is used to get list of all movies in the system.
+     * @return list of movies
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public List<Movie> readAllMovies() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -35,6 +40,12 @@ public class MovieServiceImpl implements MovieService {
         return movies;
     }
 
+    /**
+     * This method is used to get rating of movie.
+     * @param movieID unique identifier of movie
+     * @return mark from user
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public Vote getRatingForMovie(String movieID) throws ServiceException {
         if (!Validator.validateNumber(movieID)) {
@@ -59,22 +70,13 @@ public class MovieServiceImpl implements MovieService {
         return vote;
     }
 
-    @Override
-    public List<Genre> readAllGenres() throws ServiceException {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        GenreDAO dao = daoFactory.getGenreDAO();
-        List<Genre> genres;
-        try {
-            genres = dao.readAllGenres();
-            if (genres == null || genres.size() == 0) {
-                throw new ServiceException("No genres matching your query");
-            }
-        } catch (DAOException | SQLException e) {
-            throw new ServiceException("Error in source!");
-        }
-        return genres;
-    }
-
+    /**
+     * This method is used to get list of all movies in the system with pagination.
+     * @param offset starting from
+     * @param recordsPerPage amount of movies
+     * @return list of filled movie beans
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public List<Movie> getFullList(int offset, int recordsPerPage) throws ServiceException {
         if (!Validator.validate(offset, recordsPerPage)) {
@@ -94,6 +96,14 @@ public class MovieServiceImpl implements MovieService {
         return movies;
     }
 
+    /**
+     * This method is used to get movies of a particular genre.
+     * @param offset starting from
+     * @param recordsPerPage amount of movies
+     * @param genre of movies
+     * @return list of movies
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public List<Movie> getMoviesByGenre(int offset, int recordsPerPage, String genre) throws ServiceException {
         if (!Validator.validate(offset, recordsPerPage)
@@ -114,9 +124,15 @@ public class MovieServiceImpl implements MovieService {
         return movies;
     }
 
+    /**
+     * This method is used to get all movies by concrete participant with pagination.
+     * @param movieId - id of movie
+     * @return movie bean
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
-    public Movie getMovieByID(String id) throws ServiceException {
-        if (!Validator.validateNumber(id)) {
+    public Movie getMovieByID(String movieId) throws ServiceException {
+        if (!Validator.validateNumber(movieId)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -124,7 +140,7 @@ public class MovieServiceImpl implements MovieService {
         Movie movie;
         int normId;
         try {
-            normId = Integer.parseInt(id);
+            normId = Integer.parseInt(movieId);
         } catch (NumberFormatException e) {
             throw new ServiceException("No film with such ID");
         }
@@ -137,9 +153,15 @@ public class MovieServiceImpl implements MovieService {
         return movie;
     }
 
+    /**
+     * This method is used to get participant by ID.
+     * @param participantId unique identifier of participant
+     * @return participant bean
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
-    public Participant getParticipantByID(String id) throws ServiceException {
-        if (!Validator.validateNumber(id)) {
+    public Participant getParticipantByID(String participantId) throws ServiceException {
+        if (!Validator.validateNumber(participantId)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -148,7 +170,7 @@ public class MovieServiceImpl implements MovieService {
 
         int normId;
         try {
-            normId = Integer.parseInt(id);
+            normId = Integer.parseInt(participantId);
         } catch (NumberFormatException e) {
             throw new ServiceException("No film with such ID");
         }
@@ -161,6 +183,12 @@ public class MovieServiceImpl implements MovieService {
         return participant;
     }
 
+    /**
+     * This method is used to get movie by movie title.
+     * @param title - title of movie
+     * @return list of movies with such name
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public List<Movie> findMovieByTitle(String title) throws ServiceException {
         if (!Validator.validate(title)) {
@@ -181,6 +209,11 @@ public class MovieServiceImpl implements MovieService {
         return movies;
     }
 
+    /**
+     * This method is used to get count of all movies.
+     * @return count of movies
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public int countAllMoviesAmount() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -197,6 +230,13 @@ public class MovieServiceImpl implements MovieService {
         return amount;
     }
 
+    /**
+     * This method is used to add 1-10 rating for a particular movie.
+     * @param movieID unique identifier of movie
+     * @param userName name of user
+     * @param rating mark from user to movie
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public void addRating(String movieID, String userName, String rating) throws ServiceException {
         if (!Validator.validate(movieID, userName, rating)
@@ -230,6 +270,14 @@ public class MovieServiceImpl implements MovieService {
             throw new ServiceException("Error in source!", e);
         }
     }
+
+    /**
+     * This method is used to get all movies by particular genre.
+     * @param genre name of genre
+     * @return count of movies
+     * @throws ServiceException if any error occurred while processing method.
+     * @throws DAOException some error occurred while processing data.
+     */
     @Override
     public int countMoviesByGenre(String genre) throws ServiceException, DAOException {
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -241,6 +289,15 @@ public class MovieServiceImpl implements MovieService {
         }
         return amount;
     }
+
+    /**
+     * This method is used to get all count of movies by participant
+     * @param participantName name of participant
+     * @param participantSurname surname of participant
+     * @return count of movies
+     * @throws ServiceException if any error occurred while processing method.
+     * @throws DAOException some error occurred while processing data.
+     */
     @Override
     public int countMoviesByParticipant(String participantName, String participantSurname) throws ServiceException, DAOException {
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -252,6 +309,12 @@ public class MovieServiceImpl implements MovieService {
         }
         return amount;
     }
+
+    /**
+     * This method is used to get all participants.
+     * @return list of participants
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public List<Participant> readAllParticipants() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -268,6 +331,15 @@ public class MovieServiceImpl implements MovieService {
         return participants;
     }
 
+    /**
+     * This method is used to get all movies by concrete participant.
+     * @param offset starting from
+     * @param recordsPerPage amount of movies
+     * @param participantName name of participant
+     * @param participantSurname surname of participant
+     * @return list of movies
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public List<Movie> getMoviesByParticipant(int offset, int recordsPerPage, String participantName, String participantSurname) throws ServiceException {
         if (!Validator.validate(offset, recordsPerPage)

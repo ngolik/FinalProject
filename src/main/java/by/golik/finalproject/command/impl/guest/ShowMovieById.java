@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * This class is used to handle client request to show
+ * a particular movie by ID of movie.
  * @author Nikita Golik
  */
 public class ShowMovieById implements Command {

@@ -1,16 +1,12 @@
 package by.golik.finalproject.command.impl.admin;
 
-
 import by.golik.finalproject.command.Command;
-import by.golik.finalproject.command.CommandHelper;
-import by.golik.finalproject.dao.exception.DAOException;
 import by.golik.finalproject.entity.Movie;
 import by.golik.finalproject.entity.Participant;
 import by.golik.finalproject.service.AdministratorService;
 import by.golik.finalproject.service.MovieService;
 import by.golik.finalproject.service.ServiceFactory;
 import by.golik.finalproject.service.exception.ServiceException;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,6 +17,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * This class is used to handle client request to
+ * delete participant from movie.
  * @author Nikita Golik
  */
 public class DeleteParticipantForMovie implements Command {
@@ -45,7 +43,7 @@ public class DeleteParticipantForMovie implements Command {
         List<Movie> movies;
         List<Participant> participants;
 
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdministratorService(request, response);
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         movies = movieService.readAllMovies();
         participants = movieService.readAllParticipants();

@@ -19,6 +19,8 @@ import java.util.List;
 
 
 /**
+ * This class is used to handle client request to
+ * add any genre for a particular movie.
  * @author Nikita Golik
  */
 public class AddGenreForMovie implements Command {
@@ -43,7 +45,7 @@ public class AddGenreForMovie implements Command {
         String movieID = request.getParameter(MOVIE_ID);
         String genreID = request.getParameter(GENRE_ID);
 
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdministratorService(request, response);
 
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         movies = movieService.readAllMovies();

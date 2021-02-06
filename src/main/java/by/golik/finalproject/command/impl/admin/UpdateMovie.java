@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * This class is used to handle client request to
+ * update any information about movie.
  * @author Nikita Golik
  */
 public class UpdateMovie implements Command {
@@ -44,7 +46,7 @@ public class UpdateMovie implements Command {
         String runtime = request.getParameter(RUNTIME);
         String budget = request.getParameter(BUDGET);
         String gross = request.getParameter(GROSS);
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdministratorService(request, response);
 
         if (title != null && year != null && runtime != null && budget != null && gross != null) {
 

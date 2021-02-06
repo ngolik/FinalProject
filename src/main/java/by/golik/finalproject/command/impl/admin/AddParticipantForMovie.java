@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * This class is used to handle client request to
+ * add any participant to particular movie.
  * @author Nikita Golik
  */
 public class AddParticipantForMovie implements Command {
@@ -45,7 +47,7 @@ public class AddParticipantForMovie implements Command {
         List<Movie> movies;
         List<Participant> participants;
 
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdministratorService(request, response);
         MovieService movieService = ServiceFactory.getInstance().getMovieService();
         movies = movieService.readAllMovies();
         participants = movieService.readAllParticipants();

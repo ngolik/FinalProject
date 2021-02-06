@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * This class is used to handle client request to show
+ * profile page of a particular user.
  * @author Nikita Golik
  */
 public class ViewUser implements Command {

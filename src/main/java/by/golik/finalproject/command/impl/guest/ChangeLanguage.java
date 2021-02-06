@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * ChangeLanguage class is used to handle request to change language of
+ * This class is used to handle request to change language of
  * application.
  * @author Nikita Golik
  */

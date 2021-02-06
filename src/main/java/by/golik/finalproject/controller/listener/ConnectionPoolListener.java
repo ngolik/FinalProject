@@ -11,6 +11,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 /**
+ * ConnectionPoolListener is listener for ServletContext initialization
+ * and destroying. Used to initialize and destroy DataBase connection pool.
  * @author Nikita Golik
  */
 public class ConnectionPoolListener implements ServletContextListener {
@@ -26,7 +28,6 @@ public class ConnectionPoolListener implements ServletContextListener {
     * ServletContextListener implementation
      * This method is called when the servlet context is
      * initialized(when the Web application is deployed).
-     * You can initialize servlet context related data here.
      */
 
     public void contextInitialized(ServletContextEvent sce) {

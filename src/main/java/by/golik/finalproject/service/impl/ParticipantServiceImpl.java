@@ -17,9 +17,16 @@ import java.util.List;
  * @author Nikita Golik
  */
 public class ParticipantServiceImpl implements ParticipantService {
+
+    /**
+     * This method shows any participant by it's id.
+     * @param participantId - id of participant
+     * @return Participant bean object
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
-    public Participant getParticipant(String id) throws ServiceException {
-            if (!Validator.validateNumber(id)) {
+    public Participant getParticipant(String participantId) throws ServiceException {
+            if (!Validator.validateNumber(participantId)) {
                 throw new ServiceException("Illegal data input");
             }
             DaoFactory daoFactory = DaoFactory.getInstance();
@@ -29,7 +36,7 @@ public class ParticipantServiceImpl implements ParticipantService {
             List<Movie> movieList;
             int normId;
             try {
-                normId = Integer.parseInt(id);
+                normId = Integer.parseInt(participantId);
             } catch (NumberFormatException e) {
                 throw new ServiceException("No person with such ID");
             }
@@ -49,6 +56,13 @@ public class ParticipantServiceImpl implements ParticipantService {
             return participant;
     }
 
+    /**
+     * This method shows list of all participants.
+     * @param offset - page
+     * @param recordsPerPage - maximum count of records on page
+     * @return list of participants
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public List<Participant> getFullList(int offset, int recordsPerPage) throws ServiceException {
         if (!Validator.validate(offset, recordsPerPage)) {
@@ -68,6 +82,11 @@ public class ParticipantServiceImpl implements ParticipantService {
         return participants;
     }
 
+    /**
+     * This method is used to get count of all participants
+     * @return count of participants
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public int countAllParticipantsAmount() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();

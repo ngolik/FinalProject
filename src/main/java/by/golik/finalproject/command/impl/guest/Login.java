@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
+ * This class is used to handle sign in request from client.
  * @author Nikita Golik
  */
 public class Login implements Command {

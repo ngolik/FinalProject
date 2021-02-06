@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * This class is used to handle client request to
+ * delete genre from particular movie.
  * @author Nikita Golik
  */
 public class DeleteGenreForMovie implements Command {
@@ -33,7 +35,7 @@ public class DeleteGenreForMovie implements Command {
         String movieID = request.getParameter(MOVIE_ID);
         String genre = request.getParameter(GENRE);
 
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdministratorService(request, response);
 
         if(movieID != null && genre != null) {
             try {

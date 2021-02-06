@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * This class is used to handle client request to show
+ * a particular movie by title.
  * @author Nikita Golik
  */
 public class ShowMovieByTitle implements Command {

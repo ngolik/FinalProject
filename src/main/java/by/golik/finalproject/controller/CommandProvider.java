@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * This class is used for picking right command for user, depending on
+ * type of user.
  * @author Nikita Golik
  */
 public class CommandProvider {
@@ -70,9 +72,6 @@ public class CommandProvider {
         userCommands.put(CommandList.ALL_PARTICIPANTS, new ShowAllParticipants());
         userCommands.put(CommandList.PARTICIPANT_BY_ID, new ShowParticipantByID());
         userCommands.put(CommandList.SHOW_MOVIES_BY_GENRE, new ShowMoviesByGenre());
-
-
-
     }
 
     static CommandProvider getInstance() {
@@ -84,7 +83,7 @@ public class CommandProvider {
      * looks for corresponding command for this user type if it's available
      * for him or gives default command for guest.
      * @param type of user
-     * @param commandName
+     * @param commandName - name of command
      * @return particular command
      */
     Command getCommandForUser(String type, String commandName) {

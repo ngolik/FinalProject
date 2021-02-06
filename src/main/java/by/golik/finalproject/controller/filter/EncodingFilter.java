@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 /**
+ * CharacterEncodingFilter class is used to set encoding for body of the
+ * ServletRequest and ServletResponse.
  * @author Nikita Golik
  */
 public class EncodingFilter implements Filter {

@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
+ * This class is a helper class used to gather some common methods
+ * which are used by many Command implementation classes.
  * @author Nikita Golik
  */
 public class CommandHelper {
@@ -21,7 +23,7 @@ public class CommandHelper {
     /**
      * This method is used to get session language, if session exists
      * in other case returns russian language by default.
-     * @param request
+     * @param request request
      * @return String language
      */
     public static Object getLanguage(HttpServletRequest request) {
@@ -35,7 +37,7 @@ public class CommandHelper {
     /**
      * This method is used to get previous query string if it exists,
      * in other case it returns default welcome page.
-     * @param request
+     * @param request request
      * @return String previous query String
      */
     public static String getPreviousQuery(HttpServletRequest request) {
@@ -49,7 +51,7 @@ public class CommandHelper {
     /**
      * This method creates session for client if it does not exist
      * and sets query string attribute to this session object.
-     * @param request
+     * @param request request
      */
     public static void saveCurrentQueryToSession(HttpServletRequest request) {
         HttpSession session = request.getSession(true);

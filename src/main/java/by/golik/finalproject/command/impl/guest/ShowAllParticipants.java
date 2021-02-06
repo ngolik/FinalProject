@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * This class is used to show all participants for client request.
  * @author Nikita Golik
  */
 public class ShowAllParticipants implements Command {

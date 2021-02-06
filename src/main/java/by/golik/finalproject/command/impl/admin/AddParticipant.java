@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * This class is used to handle client request to
+ * add new participant.
  * @author Nikita Golik
  */
 public class AddParticipant implements Command {
     private static final String JSP_PAGE_PATH = "WEB-INF/jsp/admin/addParticipantPage.jsp";
-    private static final String REDIRECT = "DispatcherServlet?command=add-participant";
 
     private static final Logger logger = LogManager.getLogger(AddParticipant.class);
 
@@ -40,7 +41,7 @@ public class AddParticipant implements Command {
         String surname = request.getParameter(SURNAME);
         String secondName = request.getParameter(SECOND_NAME);
         String position = request.getParameter(POSITION);
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdministratorService(request, response);
         if (name == null && surname == null && secondName == null) {
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } else {

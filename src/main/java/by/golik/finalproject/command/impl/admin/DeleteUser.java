@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * This class is used to handle client request to
+ * delete concrete user from system.
  * @author Nikita Golik
  */
 public class DeleteUser implements Command {
@@ -34,7 +36,7 @@ public class DeleteUser implements Command {
         CommandHelper.saveCurrentQueryToSession(request);
 
         String username = request.getParameter(USERNAME);
-        AdministratorService administratorService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService administratorService = AdministratorHelper.getAdministratorService(request, response);
         if (username == null) {
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
 

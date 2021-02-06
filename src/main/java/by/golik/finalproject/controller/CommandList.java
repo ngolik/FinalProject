@@ -1,6 +1,7 @@
 package by.golik.finalproject.controller;
 
 /**
+ * List of all available commands.
  * @author Nikita Golik
  */
 public enum CommandList {

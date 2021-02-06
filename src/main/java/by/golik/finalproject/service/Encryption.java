@@ -7,7 +7,7 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public final class Encryption {
     private Encryption() {
-        // can't instantiate
+
     }
 
     /**

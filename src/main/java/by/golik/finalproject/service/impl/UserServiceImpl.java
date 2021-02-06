@@ -12,7 +12,6 @@ import by.golik.finalproject.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
 
 /**
  * @author Nikita Golik
@@ -20,7 +19,13 @@ import java.util.Arrays;
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger();
 
-
+    /**
+     * This method is used to show any user by the username.
+     * @param userName - nickname of user
+     * @return User bean with filled in fields.
+     * @throws ServiceException if any error occurred while processing method.
+     * @throws ServiceAuthorizationException if any error occurred while processing method.
+     */
     @Override
     public User getUserByUserName(String userName) throws ServiceException, ServiceAuthorizationException {
         if (!Validator.validate(userName)) {
@@ -38,6 +43,16 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    /**
+     * This method is used to register and give access to the system for
+     * some new visitor.
+     * @param login of user
+     * @param password of user
+     * @param passwordrep repeat password of user
+     * @param email of user
+     * @return User bean
+     * @throws Exception if any error occurred while processing method.
+     */
     @Override
     public User register(String login, byte[] password, byte[] passwordrep, String email) throws Exception {
         if (!Validator.validate(login, email) ||
@@ -64,6 +79,13 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    /**
+     * This method is used to let user enter his account in the system.
+     * @param login of user
+     * @param password of user
+     * @return USer bean
+     * @throws Exception if any error occurred while processing method.
+     */
     @Override
     public User authorise(String login, byte[] password) throws Exception {
         logger.debug("authorise begin");

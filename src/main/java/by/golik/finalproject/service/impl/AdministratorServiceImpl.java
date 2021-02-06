@@ -15,7 +15,11 @@ import java.util.List;
  */
 public class AdministratorServiceImpl implements AdministratorService {
 
-
+    /**
+     * This method is used to show all users registered in the system.
+     * @return List of User beans with filled in fields.
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public List<User> readAllUsers() throws ServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -32,6 +36,15 @@ public class AdministratorServiceImpl implements AdministratorService {
         return users;
     }
 
+    /**
+     * This method is used to add new movie to the system.
+     * @param title movie title
+     * @param year year of movie
+     * @param runtime runtime of movie
+     * @param budget budget of movie
+     * @param gross gross of movie
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public void addMovie(String title, String year, String runtime, String budget, String gross) throws ServiceException {
         if (!Validator.validate(title)
@@ -64,6 +77,16 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
+    /**
+     * This method is used to update any movie information.
+     * @param id unique identifier of movie
+     * @param title movie title
+     * @param year year of movie
+     * @param runtime runtime of movie
+     * @param budget budget of movie
+     * @param gross gross of movie
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public void updateMovie(String id, String title, String year, String runtime, String budget, String gross) throws ServiceException {
         if (!Validator.validate(title)
@@ -98,6 +121,12 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
+    /**
+     * This method is used to add any genre for any movie.
+     * @param movieID unique identifier of movie
+     * @param genreID - unique identifier of genre
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public void addGenreForMovie(String movieID, String genreID) throws ServiceException {
         if (!Validator.validateNumber(genreID)
@@ -122,6 +151,12 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
+    /**
+     * This method is used to delete genre for movie.
+     * @param movieID unique identifier of movie
+     * @param genreID unique identifier of genre
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public void deleteGenreForMovie(String movieID, String genreID) throws ServiceException {
         if (!Validator.validateNumber(genreID)
@@ -146,6 +181,14 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
+    /**
+     * This method is used to add new participant to the system.
+     * @param name - name of participant
+     * @param surName - surname of participant
+     * @param secondName - second name of participant
+     * @param position - role of participant
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public void addParticipant(String name, String surName, String secondName, String position) throws ServiceException {
         if (!Validator.validate(name, surName, secondName, position)) {
@@ -160,17 +203,26 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
+    /**
+     * This method is used to update any participant information.
+     * @param participantID - unique identifier of participant
+     * @param name - name of participant
+     * @param surname - surname of participant
+     * @param secondName - second name of participant
+     * @param position - role of participant
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
-    public void updateParticipant(String id, String name, String surname, String secondName,String position) throws ServiceException {
+    public void updateParticipant(String participantID, String name, String surname, String secondName, String position) throws ServiceException {
         if (!Validator.validate(name, surname, secondName, position)
-                || !Validator.validateNumber(id)) {
+                || !Validator.validateNumber(participantID)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
         ParticipantDAO dao = daoFactory.getParticipantDAO();
         int intActorId;
         try {
-            intActorId = Integer.parseInt(id);
+            intActorId = Integer.parseInt(participantID);
         } catch (NumberFormatException e) {
             throw new ServiceException("Wrong data input, while updating actor for movie");
         }
@@ -181,10 +233,16 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
+    /**
+     * This method is used to add any participant for any movie.
+     * @param participantID unique identifier of participant
+     * @param movieID unique identifier of movie
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
-    public void addParticipantForMovie(String participantId, String movieId) throws ServiceException {
-        if (!Validator.validateNumber(participantId)
-                || !Validator.validateNumber(movieId)) {
+    public void addParticipantForMovie(String participantID, String movieID) throws ServiceException {
+        if (!Validator.validateNumber(participantID)
+                || !Validator.validateNumber(movieID)) {
             throw new ServiceException("Illegal data input");
         }
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -192,8 +250,8 @@ public class AdministratorServiceImpl implements AdministratorService {
         int intMovieId;
         int intParticipantId;
         try {
-            intMovieId = Integer.parseInt(movieId);
-            intParticipantId = Integer.parseInt(participantId);
+            intMovieId = Integer.parseInt(movieID);
+            intParticipantId = Integer.parseInt(participantID);
         } catch (NumberFormatException e) {
             throw new ServiceException("Wrong data input, while adding actor for movie");
         }
@@ -204,6 +262,12 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
+    /**
+     * This method is used to delete participant from any movie.
+     * @param participantID unique identifier of participant
+     * @param movieID unique identifier of movie
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public void deleteParticipantForMovie(String participantID, String movieID) throws ServiceException {
         if (!Validator.validateNumber(participantID)
@@ -228,6 +292,12 @@ public class AdministratorServiceImpl implements AdministratorService {
         }
     }
 
+    /**
+     * This method lets admin to delete user from system
+     * @param userName - name of user
+     * @throws DAOException if some error occurred while getting information from database.
+     * @throws ServiceException if any error occurred while processing method.
+     */
     @Override
     public void deleteUser(String userName) throws DAOException, ServiceException {
         if (!Validator.validate(userName)) {

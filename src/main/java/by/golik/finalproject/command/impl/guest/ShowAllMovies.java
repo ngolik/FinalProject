@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * This class is used to show all movies for client request.
  * @author Nikita Golik
  */
 public class ShowAllMovies implements Command {

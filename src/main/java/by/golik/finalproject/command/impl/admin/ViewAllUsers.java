@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * This class is used to handle client request to
+ * get list of all users in system.
  * @author Nikita Golik
  */
 public class ViewAllUsers implements Command {
@@ -33,11 +35,10 @@ public class ViewAllUsers implements Command {
         CommandHelper.saveCurrentQueryToSession(request);
 
         List<User> users;
-        AdministratorService adminService = AdministratorHelper.getAdminService(request, response);
+        AdministratorService adminService = AdministratorHelper.getAdministratorService(request, response);
 
         try {
             users = adminService.readAllUsers();
-
             request.setAttribute(REQUEST_ATTRIBUTE, users);
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } catch (ServiceException e) {

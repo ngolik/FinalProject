@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
+ * This class is used to handle client request to
+ * terminate signed-in session.
  * @author Nikita Golik
  */
 public class Logout implements Command {

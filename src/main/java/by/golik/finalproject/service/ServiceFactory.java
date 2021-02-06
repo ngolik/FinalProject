@@ -3,6 +3,7 @@ package by.golik.finalproject.service;
 import by.golik.finalproject.service.impl.*;
 
 /**
+ * ServiceFactory represents the factory for obtaining Service objects.
  * @author Nikita Golik
  */
 public class ServiceFactory {

@@ -1,6 +1,5 @@
 package by.golik.finalproject.command.impl.admin;
 
-import by.golik.finalproject.entity.Role;
 import by.golik.finalproject.entity.User;
 import by.golik.finalproject.service.AdministratorService;
 import by.golik.finalproject.service.ServiceFactory;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * This class is a helper class for commands in administrator package.
  * @author Nikita Golik
  */
 public class AdministratorHelper {
@@ -32,7 +32,7 @@ public class AdministratorHelper {
      * @throws ServletException
      * @throws IOException
      */
-    static AdministratorService getAdminService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    static AdministratorService getAdministratorService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userRole;
         AdministratorService administratorService=null;
         Object object = request.getSession(false).getAttribute(USER);
