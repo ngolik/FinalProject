@@ -56,7 +56,7 @@
 <br class="row content">
 
     <div class="col-sm-8 text-left mainContent">
-        <c:if test="${sessionScope.get('language') eq 'ru' || sessionScope.get('language')==null}">
+
             <h1><c:out value="${movie.title}"/></h1>
             <br>
             <tr class="thead-dark">
@@ -95,7 +95,7 @@
                 </label>
 
             </c:if>
-        </c:if>
+
 
     </div>
         <c:import url="../menu/rightside.jsp"/>
