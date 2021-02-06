@@ -40,21 +40,28 @@ public class RatingDaoImpl implements RatingDAO {
         return instance;
     }
 
+    /**
+     * This method is used to get Rating for a movie.
+     *
+     * @param movieId movieId of movie
+     * @return list of filled rating beans
+     * @throws DAOException if some error occurred while processing data.
+     */
     @Override
-    public Vote getRatingForMovie(int id) throws DAOException {
+    public Vote getRatingForMovie(int movieId) throws DAOException {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
             st = con.prepareStatement(SHOW_RATINGS_BY_ID);
-            st.setInt(1, id);
+            st.setInt(1, movieId);
             rs = st.executeQuery();
 
             Vote vote = null;
             if (rs.next()) {
                 vote = new Vote();
-                vote.setMovieID(id);
+                vote.setMovieID(movieId);
                 vote.setUserID(rs.getInt(USERS_ID));
                 vote.setScore(rs.getInt(SCORE));
             }
@@ -69,6 +76,15 @@ public class RatingDaoImpl implements RatingDAO {
             ConnectionPoolHelper.closeResource(con, st, rs);
         }
     }
+
+    /**
+     * This method is used to add rating of some user for some movie.
+     *
+     * @param intMovieID   id of movie
+     * @param userName nickname of user
+     * @param rating user gave
+     * @throws DAOException if some error occurred while processing data.
+     */
     @Override
     public void createRating(int intMovieID, String userName, int rating) throws DAOException {
         Connection con = null;
@@ -100,6 +116,14 @@ public class RatingDaoImpl implements RatingDAO {
         }
     }
 
+    /**
+     * This method is used to update rating some user gave to some movie in data source.
+     *
+     * @param intMovieID   id of movie
+     * @param userName user nickname
+     * @param intRating    rating user gave
+     * @throws DAOException if some error occurred while processing data.
+     */
     @Override
     public void updateRating(int intMovieID, String userName, int intRating) throws DAOException {
         Connection con = null;
@@ -125,6 +149,13 @@ public class RatingDaoImpl implements RatingDAO {
         }
     }
 
+    /**
+     * This method is used to get rating user gave to any movies.
+     *
+     * @param userName of user
+     * @return list of filled movie beans
+     * @throws DAOException if some error occurred while processing data.
+     */
     @Override
     public List<Vote> getRatingFromUser(String userName) throws DAOException {
         Connection con = null;

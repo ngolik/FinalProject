@@ -28,9 +28,14 @@ public interface GenreDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     void createGenreForMovie(int intMovieID, int intGenreID) throws DAOException;
-    List<Genre> readAllGenres() throws DAOException, SQLException;
 
-    void createGenre(String name) throws DAOException;
+    /**
+     * This method is used to get all genres that are user in system
+     * @return list of genres
+     * @throws DAOException if some error occurred while processing data.
+     * @throws SQLException if some error occurred while getting information from database.
+     */
+    List<Genre> readAllGenres() throws DAOException, SQLException;
 
     /**
      * This method is used to remove connection between some movie and genre from data source.

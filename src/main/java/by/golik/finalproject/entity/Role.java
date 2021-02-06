@@ -1,7 +1,7 @@
 package by.golik.finalproject.entity;
 
 /**
- *
+ * Enum for roles in system
  * @author Nikita Golik
  */
 public enum Role {

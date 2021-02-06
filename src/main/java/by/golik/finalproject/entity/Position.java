@@ -1,6 +1,7 @@
 package by.golik.finalproject.entity;
 
 /**
+ * ENUM for names of participants
  * @author Nikita Golik
  */
 public enum Position {

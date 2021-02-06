@@ -24,7 +24,6 @@ public class UserDaoImpl implements UserDAO {
     private static final String USER_ROLE = "role";
     private static final String USER_REGISTER = "registrationdate";
     private static final String USER_PASSWORD = "password";
-
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     private final static String LOG_IN_STATEMENT =
@@ -35,7 +34,6 @@ public class UserDaoImpl implements UserDAO {
                     "VALUES(?,?, ?,'user',?)";
     private final static String VIEW_ALL_USERS =
             "SELECT * FROM users";
-
     private static final String VIEW_BY_USERNAME =
             "SELECT id, login, password, email, role, registrationdate FROM users WHERE login=?";
     private static final String DELETE_BY_USERNAME =
@@ -50,6 +48,45 @@ public class UserDaoImpl implements UserDAO {
         return instance;
     }
 
+    /**
+     * This method is used to register visitor of site in database.
+     * @param login - username of user
+     * @param email - mail of user
+     * @param password - password from personal area
+     * @return - user bean
+     * @throws Exception - if something went wrong.
+     */
+    @Override
+    public User register(String login, String email, String password) throws Exception {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = ConnectionPool.getInstance().takeConnection();
+
+            st = con.prepareStatement(REGISTER_STATEMENT);
+            st.setString(1, login);
+            st.setString(2, email);
+            st.setString(3, password);
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf =
+                    new java.text.SimpleDateFormat(DATE_FORMAT);
+            String currentTime = sdf.format(dt);
+            st.setDate(4, Date.valueOf(currentTime));
+            int i = st.executeUpdate();
+            if (i > 0) {
+                return authorise(login, password);
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Register sql error", e);
+        } catch (DAOException | ConnectionPoolException e) {
+            throw new DAOException("Login pool connection error");
+        }
+        finally {
+            ConnectionPoolHelper.closeResource(con, st);
+        }
+        return null;
+    }
 
     /**
      * This method is used to authorise user in the system using data source.
@@ -89,46 +126,6 @@ public class UserDaoImpl implements UserDAO {
         finally {
             ConnectionPoolHelper.closeResource(con, st, rs);
         }
-    }
-
-    /**
-     * This method is used to add new user to the system and data source.
-     * @param email of user
-     * @param login of user
-     * @param password of user
-     * @return filled User bean or null
-     * @throws DAOException f some error occurred while processing data.
-     */
-    @Override
-    public User register(String login, String email, String password) throws Exception {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-
-            st = con.prepareStatement(REGISTER_STATEMENT);
-            st.setString(1, login);
-            st.setString(2, email);
-            st.setString(3, password);
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf =
-                    new java.text.SimpleDateFormat(DATE_FORMAT);
-            String currentTime = sdf.format(dt);
-            st.setDate(4, Date.valueOf(currentTime));
-            int i = st.executeUpdate();
-            if (i > 0) {
-                return authorise(login, password);
-            }
-
-        } catch (SQLException e) {
-            throw new DAOException("Register sql error", e);
-        } catch (DAOException | ConnectionPoolException e) {
-            throw new DAOException("Login pool connection error");
-        }
-        finally {
-            ConnectionPoolHelper.closeResource(con, st);
-        }
-        return null;
     }
 
     /**

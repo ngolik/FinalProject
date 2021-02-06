@@ -1,8 +1,8 @@
 package by.golik.finalproject.dao.exception;
 
-import java.sql.SQLException;
 
 /**
+ * ConnectionPoolException is thrown when error with ConnectionPool occurred.
  * @author Nikita Golik
  */
 public class ConnectionPoolException extends Exception {

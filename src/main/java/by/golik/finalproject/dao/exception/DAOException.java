@@ -3,6 +3,7 @@ package by.golik.finalproject.dao.exception;
 import java.sql.SQLException;
 
 /**
+ * DAOException is thrown when error occurred while working with the data source.
  * @author Nikita Golik
  */
 public class DAOException extends Exception {

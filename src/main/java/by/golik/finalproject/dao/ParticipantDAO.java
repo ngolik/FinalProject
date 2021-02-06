@@ -10,14 +10,7 @@ import java.util.List;
  * @author Nikita Golik
  */
 public interface ParticipantDAO {
-    /**
-     * This method gets list of Participants from data source.
-     *
-     * @param id id of participant
-     * @return list of filled Participant beans
-     * @throws DAOException if some error occurred while processing data.
-     */
-    List<Participant> getParticipantsForMovie(int id) throws DAOException;
+
     /**
      * This method is used to retrieve participant by id from data source.
      *
@@ -47,7 +40,16 @@ public interface ParticipantDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     void updateParticipant(int id, String name, String surName, String secondName, String position) throws DAOException;
+
+    /**
+     * This method is used to connect participant with movie.
+     *
+     * @param participantId - unique identifier of participant
+     * @param movieId - unique identifier of movie
+     * @throws DAOException if some error occurred while processing data.
+     */
     void addParticipantForMovie(int participantId, int movieId) throws DAOException;
+
     /**
      * This method is used to delete connection between some Movie and Participant from data source.
      *
@@ -64,7 +66,22 @@ public interface ParticipantDAO {
      * @throws DAOException if some error occurred while processing data.
      */
     List<Participant> getAllParticipants() throws DAOException, SQLException;
+
+    /**
+     * This method is used to get list of all participants from data source.
+     *
+     * @param offset - offset of page
+     * @param noOfRecords - maximum count of records on one page
+     * @return list of filled Participant beans
+     * @throws DAOException if some error occurred while processing data.
+     */
     List<Participant> getAllParticipants(int offset, int noOfRecords) throws SQLException, DAOException;
+
+    /**
+     * This method is used to get count of all participants of movies
+     * @return - count of participants
+     * @throws DAOException if some error occurred while processing data.
+     */
     int countAllParticipantsAmount() throws DAOException;
 
     /**

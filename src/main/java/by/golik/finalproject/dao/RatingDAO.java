@@ -11,49 +11,49 @@ public interface RatingDAO {
     /**
      * This method is used to get Rating for a movie.
      *
-     * @param id id of movie
+     * @param movieId movieId of movie
      * @return list of filled rating beans
      * @throws DAOException if some error occurred while processing data.
      */
-    Vote getRatingForMovie(int id) throws DAOException;
+    Vote getRatingForMovie(int movieId) throws DAOException;
 
     /**
      * This method is used to get rating user gave to any movies.
      *
-     * @param nickname of user
+     * @param userName of user
      * @return list of filled movie beans
      * @throws DAOException if some error occurred while processing data.
      */
-    List<Vote> getRatingFromUser(String nickname) throws DAOException;
+    List<Vote> getRatingFromUser(String userName) throws DAOException;
 
     /**
      * This method is used to check if there is an entry of this user for this movie.
      *
      * @param intMovieID   movie id
-     * @param userNickname user nickname
+     * @param userName user nickname
      * @return filled rating bean
      * @throws DAOException if some error occurred while processing data.
      */
-    Vote checkRating(int intMovieID, String userNickname) throws DAOException;
+    Vote checkRating(int intMovieID, String userName) throws DAOException;
 
     /**
-     * This method is used to add rating of some user for some mvoie.
+     * This method is used to add rating of some user for some movie.
      *
      * @param intMovieID   id of movie
-     * @param userNickname nickname of user
+     * @param userName nickname of user
      * @param rating       user gave
      * @throws DAOException if some error occurred while processing data.
      */
-    void createRating(int intMovieID, String userNickname, int rating) throws DAOException;
+    void createRating(int intMovieID, String userName, int rating) throws DAOException;
 
     /**
      * This method is used to update rating some user gave to some movie in data source.
      *
      * @param intMovieID   id of movie
-     * @param userNickname user nickname
+     * @param userName user nickname
      * @param intRating    rating user gave
      * @throws DAOException if some error occurred while processing data.
      */
-    void updateRating(int intMovieID, String userNickname, int intRating) throws DAOException;
+    void updateRating(int intMovieID, String userName, int intRating) throws DAOException;
 
 }

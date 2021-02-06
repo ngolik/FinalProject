@@ -44,15 +44,6 @@ public class Movie {
     /**
      * list of marks from users
      */
-    private int ratingVotes;
-
-    public int getRatingVotes() {
-        return ratingVotes;
-    }
-
-    public void setRatingVotes(int ratingVotes) {
-        this.ratingVotes = ratingVotes;
-    }
 
     List<Vote> ratings;
     List<Participant> participants;
@@ -63,18 +54,6 @@ public class Movie {
 
     public void setParticipants(List<Participant> participants) {
         this.participants = participants;
-    }
-
-    public List<Vote> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Vote> ratings) {
-        this.ratings = ratings;
-    }
-
-    public double getAvgRating() {
-        return avgRating;
     }
 
     public void setAvgRating(double avgRating) {

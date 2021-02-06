@@ -48,7 +48,7 @@
 <br class="row content">
     <c:import url="../menu/adminMenu.jsp"/>
     <div class="col-sm-8 text-left mainContent">
- 
+
             <h1><c:out value="${participant.name}"/></h1>
             <br>
                 <tr class="thead-dark">
@@ -57,7 +57,6 @@
                         ${secondname} <c:out value="${participant.secondName}"/><br/>
                         ${position} <c:out value="${participant.position}"/><br/>
                 </tr>
-        </c:if>
 
 <script type="text/javascript">
     function MakeSort(element) {

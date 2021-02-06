@@ -10,7 +10,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- *  entity represents connection pool
+ * Entity represents connection pool
  * @author Nikita Golik
  */
 
@@ -105,6 +105,12 @@ public class ConnectionPool {
             throw new ConnectionPoolException("Couldn't take connection from pool", e);
         }
     }
+
+    /**
+     *  This method is used to return connection
+     * @param connection particular Connection object.
+     * @throws ConnectionPoolException if some error occurred while proceeding.
+     */
     public void returnConnection(Connection connection) throws ConnectionPoolException {
         try {
             if(connection == null || connection.isClosed()) {

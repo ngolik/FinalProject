@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * This class is used to close resources.
  * @author Nikita Golik
  */
 public class ConnectionPoolHelper {

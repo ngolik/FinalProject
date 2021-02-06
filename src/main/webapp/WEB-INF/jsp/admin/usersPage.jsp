@@ -53,7 +53,7 @@
                  </c:forEach>
              </table>
          </div>
-         <c:import url="../menu/rightside.jsp"/>
+         <c:import url="../menu/slider.jsp"/>
      </br>
 </div>
 <c:import url="../menu/footer.jsp"/>

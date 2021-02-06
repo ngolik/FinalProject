@@ -23,9 +23,6 @@ public class GenreDaoImpl implements GenreDAO {
             "SELECT genres_id FROM movies_genres\n" +
                     " WHERE movies_id = ?";
 
-    private static final String ADD_GENRE = "INSERT INTO `genres` " +
-            "(`name`) VALUES (?)";
-
     private static final String ADD_GENRE_FOR_MOVIE =
             "INSERT INTO movies_genres(movies_id, movies_genres.genres_id) VALUES (?, ?)";
 
@@ -47,23 +44,6 @@ public class GenreDaoImpl implements GenreDAO {
 
     public static GenreDAO getInstance() {
         return instance;
-    }
-
-    @Override
-    public void createGenre(String name) throws DAOException {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = ConnectionPool.getInstance().takeConnection();
-            st = con.prepareStatement(ADD_GENRE);
-            st.setString(1, name);
-        } catch (SQLException e) {
-            throw new DAOException("Movie sql error", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("Movie pool connection error", e);
-        }finally {
-            ConnectionPoolHelper.closeResource(con, st);
-        }
     }
 
     /**
@@ -103,6 +83,12 @@ public class GenreDaoImpl implements GenreDAO {
         }
     }
 
+    /**
+     * This method is used to get all genres that are user in system
+     * @return list of genres
+     * @throws DAOException if some error occurred while processing data.
+     * @throws SQLException if some error occurred while getting information from database.
+     */
     @Override
     public List<Genre> readAllGenres() throws DAOException, SQLException {
         Connection con = null;
