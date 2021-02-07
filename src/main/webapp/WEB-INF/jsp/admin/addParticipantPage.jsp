@@ -21,6 +21,7 @@
 <fmt:message bundle="${locale}" key="locale.addParticipant" var="addParticipant"/>
 <fmt:message bundle="${locale}" key="locale.updateParticipant" var="updateParticipant"/>
 <fmt:message bundle="${locale}" key="locale.submit" var="submit"/>
+<fmt:message bundle="${locale}" key="locale.choosePosition" var="choosePosition"/>
 
 <c:if test="${sessionScope.get('user') == null && sessionScope.get('user').role ne 'admin'}">
     <c:redirect url="/index.jsp"/>
@@ -71,7 +72,7 @@
             <br/>
             <br/>
 
-            <label for="position">Choose a Position:</label>
+            <label for="position">${choosePosition}</label>
             <select name="position" id="position">
             <c:forEach items="<%=Position.values()%>" var="position">
                 <option value ="${position.name()}">${position.toString()}</option>

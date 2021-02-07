@@ -29,7 +29,9 @@ public class AddRating implements Command {
     private static final String USER = "user";
     private static final String RATING = "rating";
 
-    private static final String ERROR_RATING = "errorRating";
+    private static final String SUCCESS_RATING = "successMessage";
+    private static final String MESSAGE_OF_SUCCESS = "Thanks for you mark";
+    private static final String ERROR_RATING = "errorMessage";
     private static final String MESSAGE_OF_ERROR = "Cannot add rating to movie";
     private static final String MESSAGE_OF_ERROR_2 = "Fill in all fields";
 
@@ -54,7 +56,8 @@ public class AddRating implements Command {
         if (movieID != null && userName != null && rating != null) {
             try {
                 movieService.addRating(movieID, userName, rating);
-                request.getRequestDispatcher(previousQuery).forward(request, response);
+                request.setAttribute(SUCCESS_RATING, MESSAGE_OF_SUCCESS);
+                request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);
                 request.setAttribute(ERROR_RATING, MESSAGE_OF_ERROR);

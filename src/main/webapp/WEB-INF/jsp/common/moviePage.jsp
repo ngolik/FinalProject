@@ -79,6 +79,15 @@
             </div>
 
             <c:if test='${sessionScope.get("user").role eq "user"}'>
+    <div class="col-sm-8 text-left mainContent">
+        <c:if test="${requestScope.get('errorMessage')!=null}">
+            <h3 class="red"><c:out value="${requestScope.get('errorMessage')}"/></h3>
+            <c:remove var="errorMessage" scope="request"/>
+        </c:if>
+        <c:if test="${requestScope.get('successMessage')!=null}">
+            <h3 class="green"><c:out value="${requestScope.get('successMessage')}"/></h3>
+            <c:remove var="successMessage" scope="request"/>
+        </c:if>
 
                 <h4> Оцените фильм от 1 до 10 </h4>
                 <label>

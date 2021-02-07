@@ -466,7 +466,6 @@ public class MovieDaoImpl implements MovieDAO {
         ResultSet rs = null;
         try {
             con = ConnectionPool.getInstance().takeConnection();
-
             st = con.prepareStatement(COUNT_ALL_MOVIES);
             int amount = 0;
             rs = st.executeQuery();
