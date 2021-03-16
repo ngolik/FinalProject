@@ -55,7 +55,6 @@ public class ShowAllMovies implements Command {
             request.setAttribute(CURRENT_PAGE, page);
             request.setAttribute(REQUEST_ATTRIBUTE, movies);
             logger.info(movies);
-            
             request.getRequestDispatcher(JSP_PAGE_PATH).forward(request, response);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, e.getMessage(), e);

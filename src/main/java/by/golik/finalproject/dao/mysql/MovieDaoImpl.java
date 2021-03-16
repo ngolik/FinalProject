@@ -75,8 +75,6 @@ public class MovieDaoImpl implements MovieDAO {
     private static final String DELETE_BY_ID =
             "DELETE FROM `movies` WHERE id=?;";
 
-    private static final String MOVIES_FOR_PARTICIPANT =
-            "SELECT movies_id from movies_participants where participants_id = ?;";
     private static final String LAST_INSERTED_MOVIE =
             "SELECT id, title, year, runtime, budget, gross FROM movies ORDER BY id DESC LIMIT 1;";
 

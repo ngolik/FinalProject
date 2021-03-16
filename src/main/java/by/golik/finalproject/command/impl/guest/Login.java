@@ -53,7 +53,6 @@ public class Login implements Command {
                 User user = userService.authorise(login, password);
                 Arrays.fill(password, (byte) 0);
                 session.setAttribute(USER, user);
-
                 response.sendRedirect(previousQuery);
             } catch (ServiceAuthorizationException e) {
                 logger.log(Level.ERROR, e.getMessage(), e);

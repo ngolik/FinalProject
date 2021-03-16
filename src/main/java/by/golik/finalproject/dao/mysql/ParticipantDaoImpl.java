@@ -18,11 +18,6 @@ import java.util.List;
  */
 public class ParticipantDaoImpl implements ParticipantDAO {
 
-    private static final String PARTICIPANTS_FOR_MOVIE = "SELECT participants.id, name, surname, secondname " +
-            "FROM participants\n" +
-            "LEFT JOIN movies_participants mp ON participants.id = mp.participants_id\n" +
-            "WHERE movies_db.movies.id=?;";
-
     private static final String PARTICIPANT_BY_ID =
             "SELECT name, surname, secondname, position FROM participants\n" +
                     " WHERE `id` = ?";

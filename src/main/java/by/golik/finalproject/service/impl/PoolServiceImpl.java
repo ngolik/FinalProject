@@ -6,6 +6,8 @@ import by.golik.finalproject.dao.pool.ConnectionPool;
 import by.golik.finalproject.service.PoolService;
 import by.golik.finalproject.service.exception.ServiceException;
 
+import java.io.IOException;
+
 /**
  * This class is an implementation of PoolService interface.
  * @author Nikita Golik
@@ -24,7 +26,7 @@ public class PoolServiceImpl implements PoolService {
             ConnectionPool pool = daoFactory.getConnectionPool();
             pool.init();
         } catch (ConnectionPoolException e) {
-            throw new ServiceException("Cannot init the pool", e);
+            throw new ServiceException("Cannot init the pool");
         }
     }
 

@@ -24,7 +24,7 @@ public class AddRating implements Command {
 
     private static final Logger logger = LogManager.getLogger(AddRating.class);
 
-    private static final String JSP_PAGE_PATH = "WEB-INF/jsp/common/moviePage.jsp";
+    private static final String JSP_PAGE_PATH = "index.jsp";
     private static final String MOVIE_ID = "movieID";
     private static final String USER = "user";
     private static final String RATING = "rating";

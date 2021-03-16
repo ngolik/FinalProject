@@ -18,11 +18,9 @@ public class ConnectionPool {
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost/movies_db?serverTimezone=Europe/Moscow&useSSL=false";
-//    jdbc:mysql://localhost/test_db?serverTimezone=Europe/Moscow&useSSL=false
     private static final String USER = "root";
-    private static final String PASSWORD = "canada@123";
+    private static final String PASSWORD = "Knightnick2009@";
 
-    //TODO absolute value
     private static final int MINIMAL_CONNECTION_COUNT = 5;
 
     private static BlockingQueue<Connection> freeConnections;

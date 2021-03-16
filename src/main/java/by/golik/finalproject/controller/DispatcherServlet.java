@@ -68,11 +68,10 @@ public class DispatcherServlet extends HttpServlet {
                 Command command;
                 command = CommandProvider.getInstance().getCommandForUser(role, commandString);
                 if (command == null) {
-
                     logger.log(Level.ERROR, "Access without permission from client");
                     request.setAttribute(ERROR, MESSAGE_OF_ERROR);
                     request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
-                    logger.info("command null disp");
+                    logger.info("command null dispatcher servlet");
                 } else {
                     command.execute(request, response);
                 }
@@ -81,7 +80,7 @@ public class DispatcherServlet extends HttpServlet {
                 logger.log(Level.ERROR, "404 error, client requests a nonexistent command", ex);
                 request.setAttribute(ERROR, MESSAGE_OF_ERROR_2);
                 request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
-                logger.info("Error in disp serv");
+                logger.info("Error in dispatcher servlet");
             }
         } else {
             logger.log(Level.ERROR, "No such command");

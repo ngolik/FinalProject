@@ -44,7 +44,6 @@ public class ChangeLanguage implements Command {
 
             session.setAttribute(SESSION_LANGUAGE, language);
         }
-
         String previousQuery = CommandHelper.getPreviousQuery(request);
         response.sendRedirect(previousQuery);
     }
