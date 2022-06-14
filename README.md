@@ -1,24 +1,24 @@
 # FinalProject
 
-# Доступный функционал
+# Available functionality
 
-- возможность зарегистрироваться в системе, войти в систему, выйти из системы;
-- возможность просматривать список фильмов;
-- возможность просматривать информацию по определенному фильму;
-- возможность ставить оценку к фильму для зарегистрированных пользователей;
-- возможность добавлять фильмы для администратора;
-- просмотр всех пользователей и конкретного пользователя для администратора;
-- добавление жанра к фильму, а также просмотр списка фильмов по жанру;
-- поиск по названию или части названия фильма;
-- интернационализация на русском и английском языках;
-- pagination для фильмов и участников;
-- добавление актеров, продюсеров, а также их привязка к определенному фильму;
-- валидация входящих данных в сервисе;
-- инициализация пула соединений с бд;
-- хранение хэшированного пароля в БД с помощью bCrypt:
-- три роли: гость, пользователь и администратор;
-- удаление пользователя для администратора;
-- просмотр всех участников фильмов;
-- добавление участника к определенному фильму, а также просмотр списка фильмов по участнику;
+- the ability to register in the system, log in, and log out;
+- view a list of movies;
+- the ability to view information on a particular movie;
+- to rate a movie for registered users;
+- ability to add films for the administrator;
+- view all users and a specific user for the administrator;
+- add a genre to a movie, and view a list of movies by genre;
+- search by title or part of a movie title;
+- internationalization in Russian and English;
+- pagination for films and participants;
+- addition of actors, producers, as well as their binding to a particular film;
+- validation of incoming data in the service;
+- initialization of a pool of connections to the database;
+- bCrypt storage of the hashed password in the database:
+- three roles: guest, user and administrator;
+- user deletion for the administrator;
+- viewing of all participants of the movies;
+- adding a participant to a particular movie, as well as viewing the list of movies by participant;
 
 ![Image alt](https://github.com/NikitaGolik/FinalProject/raw/main/src/main/webapp/images/movies_db.png)
